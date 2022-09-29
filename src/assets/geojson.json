@@ -1,0 +1,237 @@
+{
+  "geojson":[
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "5.6084745",
+            "50.6877184"
+          ]
+        },
+        "properties": {
+          "name": "Kitozyme",
+          "image": null,
+          "category": "1",
+          "material": "1",
+          "description": "Wij maken chitosan en chitosan gerelateerde producten"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "3.2843507",
+            "50.8061462"
+          ]
+        },
+        "properties": {
+          "name": "Emile Vandeburie",
+          "image": null,
+          "category": "4",
+          "material": "6",
+          "description": "Expertise rond circulariteit en klimaat"
+        }
+
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "2.8647185",
+            "51.0333408"
+          ]
+        },
+        "properties": {
+          "name": "Victor Vergote",
+          "image": null,
+          "category": "4",
+          "material": "1",
+          "description": "bevraging en onderzoek rond reststromenplatform"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "2.919496",
+            "51.2258565"
+          ]
+        },
+        "properties": {
+          "name": "Oliver DeWolf",
+          "image": null,
+          "category": "4",
+          "material": "2",
+          "description": "Idee generatie en prototyping"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "3.2659884",
+            "50.8276429"
+          ]
+        },
+        "properties": {
+          "name": "Vives hogeschool",
+          "image": null,
+          "category": "3",
+          "material": "1",
+          "description": "We hebben uitgebreide kennis en ervaring in onderwijs en toegepast onderzoek omtrent circulariteit: upcycling van materialen, van idee tot prototype, duurzame materialen, duurzaam ontwerpen, het maken van ecoscans, ..."
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "2.919496",
+            "51.2258565"
+          ]
+        },
+        "properties": {
+          "name": "Upcycle your waste",
+          "image": null,
+          "category": "3",
+          "material": "4",
+          "description": "Upcycle your waste is een EU gesubsidieerd project. Je vind er de mogelijkheid om kennis te maken met partners uit 6 pilootprojecten, met inspiratie, met een acadmie pagina om je zelf vertrouwd te maken met circulariteit, je vind er barriers en drivers voor upcycling, ..."
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "3.1244035858495773",
+            "50.9017185"
+          ]
+        },
+        "properties": {
+          "name": "Inagro",
+          "image": null,
+          "category": "3",
+          "material": "1",
+          "description": "onderzoek land en tuinbouw"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "2.919496",
+            "51.2258565"
+          ]
+        },
+        "properties": {
+          "link": 19,
+          "name": "Vannes dakwerken",
+          "category": "1",
+          "description": "Bedrijf die snijresten van roofing over heeft."
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "3.0203891",
+            "50.9003015"
+          ]
+        },
+        "properties": {
+          "link": 92,
+          "name": "Yentl Bekaert",
+          "category": "4",
+          "description": "Student Electronica-ICT aan Vives Kortrijk. Developer van de deze applicatie."
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "2.9779693",
+            "51.210587"
+          ]
+        },
+        "properties": {
+          "link": 108,
+          "name": "Polyprop netten",
+          "category": "1",
+          "description": "Wekelijks hebben wij zuiver industrieel afval in de vorm van netten in verschillende kleuren, afmetingen, maasgroottes en diktes ter beschikking."
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "10.3333283",
+            "55.670249"
+          ]
+        },
+        "properties": {
+          "link": 109,
+          "name": "Wind turbine blades become bike shelters",
+          "category": "2",
+          "description": "Wind power is one of the fastest-growing renewable energy technologies, with its usage increasing rapidly year by year, on a worldwide level. in denmark, wind power is so commonly used that wind turbines are now really part of the local landscape. in fact, wind energy already provides 40% of the energy in denmark, while the danes hope to reach 70% by 2030.\n\n Since the world of renewable sources —and wind energy specifically— is all about sustainability, it makes sense why the question of recycling wind turbines has been actively discussed these last few years. given the 20-year lifespan of non-biodegradable blades in current wind turbines, many will need to be disposed of in the near future. the danish government has assigned the recycling task to several companies, many of which have come up with ingenious plans for repurposing the gigantic metal structures. the re-wind project is one of the teams selected, and aims to transform wind turbines into bicycle garages or footbridges."
+        }
+    },
+    {
+
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "-72.9088133",
+            "4.099917"
+          ]
+        },
+        "properties": {
+          "link": 111,
+          "name": "House made from coffee",
+          "category": "2",
+          "description": "Coffee husks are usually discarded when coffee is roasted. \nNow they’re being turned into building materials. This house uses building blocks from coffee grit"
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "5.38721",
+            "52.15517"
+          ]
+        },
+        "properties": {
+          "link": 112,
+          "name": "Elektrisch schakelmateriaal kunststofafval uit de oceaan",
+          "category": "2",
+          "description": "Schneider Electric onthulde op CES het eerste schakelmateriaal voor thuis gemaakt van oceaanplastic. \nHet Merten Ocean Plastic-schakelmateriaal is gemaakt van gerecycled oceaanmateriaal en wordt geleverd in duurzame verpakkingen. Zo wordt niet-recyclebaar materiaal geëlimineerd en komen klanten een stap dichter bij het bereiken van hun duurzaamheidsdoelstellingen."
+        }
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            "3.2843507",
+            "50.8061462"
+          ]
+        },
+        "properties": {
+          "link": 113,
+          "name": "test",
+          "category": "1",
+          "description": "test"
+        }
+    }
+  ]
+}

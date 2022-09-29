@@ -1,0 +1,1425 @@
+{
+  "data": [
+        {
+          "id": 4,
+          "name": "Kitozyme",
+          "description": "Wij maken chitosan en chitosan gerelateerde producten",
+          "button": {
+              "id": 1,
+              "name": "Afval",
+              "description": "Afval"
+          },
+          "availible": "0",
+          "materials": [
+              {
+                  "id": 1,
+                  "name": "organisch",
+                  "pivot": {
+                      "items_id": 4,
+                      "materials_id": 1
+                  }
+              }
+          ],
+          "submaterials": [
+              {
+                  "id": 2,
+                  "name": "plantaardig",
+                  "material_id": 1,
+                  "pivot": {
+                      "items_id": 4,
+                      "sub_materials_id": 2
+                  }
+              }
+          ],
+          "approach": {
+              "id": 1,
+              "name": "Bouw",
+              "description": "Bouw"
+          },
+          "location": null,
+          "geojson": {
+              "type": "Feature",
+              "geometry": {"type": "Point", "coordinates": ["5.6084745", "50.6877184"]},
+              "properties": {
+                "name": "Kitozyme",
+                "image": null,
+                "category": "1",
+                "material": "1",
+                "description": "Wij maken chitosan en chitosan gerelateerde producten",
+                "item_id": 4
+              }
+            }
+        },
+        {
+            "id": 4,
+            "name": "Kitozyme",
+            "description": "Wij maken chitosan en chitosan gerelateerde producten",
+            "button": {
+                "id": 1,
+                "name": "Afval",
+                "description": "Afval"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 1,
+                    "name": "organisch",
+                    "pivot": {
+                        "items_id": 4,
+                        "materials_id": 1
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 2,
+                    "name": "plantaardig",
+                    "material_id": 1,
+                    "pivot": {
+                        "items_id": 4,
+                        "sub_materials_id": 2
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": null,
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["5.6084745", "50.6877184"]},
+                "properties": {
+                  "name": "Kitozyme",
+                  "image": null,
+                  "category": "1",
+                  "material": "1",
+                  "description": "Wij maken chitosan en chitosan gerelateerde producten}",
+                  "item_id": 4
+                }
+            },
+            "url": "www.google.com",
+            "user_id": 1,
+            "user_name": "Yentl Bekaert",
+            "contact": null,
+            "job": null,
+            "status": "0",
+            "images": [
+                {
+                    "id": 105,
+                    "filename": "165471020362a0dfbbef239.png",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 3,
+                    "name": "chitosan",
+                    "pivot": {
+                        "items_id": 4,
+                        "tags_id": 3
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "chitine",
+                    "pivot": {
+                        "items_id": 4,
+                        "tags_id": 4
+                    }
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "name": "Vannes dakwerken",
+            "description": "Bedrijf die snijresten van roofing over heeft.",
+            "button": {
+                "id": 1,
+                "name": "Afval",
+                "description": "Afval"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 6,
+                    "name": "rubber",
+                    "pivot": {
+                        "items_id": 19,
+                        "materials_id": 6
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 18,
+                    "name": "harde rubber",
+                    "material_id": 6,
+                    "pivot": {
+                        "items_id": 19,
+                        "sub_materials_id": 18
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":"","city":"Oostende","country":"België"},
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["2.919496", "51.2258565"]},
+                "properties": {
+                  "link": 19,
+                  "name": "Vannes dakwerken",
+                  "category": "1",
+                  "description": "Bedrijf die snijresten van roofing over heeft."},
+                  "item_id": 19
+            },
+            "url": "www.dakwerkenvannes.be/",
+            "user_id": 1,
+            "user_name": "Yentl Bekaert",
+            "contact": "059 436 550",
+            "job": null,
+            "status": "0",
+            "images": [
+                {
+                    "id": 110,
+                    "filename": "1653997634plat-dak-plaatsing-herstelling-Oostende-Bredene-Middelkerke-Gistel.jpg",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 5,
+                    "name": "Roofing",
+                    "pivot": {
+                        "items_id": 19,
+                        "tags_id": 5
+                    }
+                },
+                {
+                    "id": 6,
+                    "name": "Rubber",
+                    "pivot": {
+                        "items_id": 19,
+                        "tags_id": 6
+                    }
+                },
+                {
+                    "id": 7,
+                    "name": "Snijresten Roofing",
+                    "pivot": {
+                        "items_id": 19,
+                        "tags_id": 7
+                    }
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "name": "Emile Vandeburie",
+            "description": "Expertise rond circulariteit en klimaat",
+            "button": {
+                "id": 4,
+                "name": "Expertise",
+                "description": "Expertise"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 7,
+                    "name": "andere",
+                    "pivot": {
+                        "items_id": 28,
+                        "materials_id": 7
+                    }
+                }
+            ],
+            "submaterials": [],
+            "approach": {
+                "id": 9,
+                "name": "Waste",
+                "description": "Waste"
+            },
+            "location": null,
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["3.2843507", "50.8061462"]},
+                "properties": {
+                  "name": "Emile Vandeburie",
+                  "image": null,
+                  "category": "4",
+                  "material": "6",
+                  "description": "Expertise rond circulariteit en klimaat",
+                  "item_id": 28
+              }
+            },
+            "url": null,
+            "user_id": 4,
+            "user_name": "Emile Vandeburie",
+            "contact": "emile.vandeburie@vives.be",
+            "job": "Onderzoeker Vives",
+            "status": "1",
+            "images": [
+                {
+                    "id": 15,
+                    "filename": "1654169943Unknown_person.jpg",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 3,
+                    "name": "chitosan",
+                    "pivot": {
+                        "items_id": 28,
+                        "tags_id": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "name": "Victor Vergote",
+            "description": "bevraging en onderzoek rond reststromenplatform",
+            "button": {
+                "id": 4,
+                "name": "Expertise",
+                "description": "Expertise"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 7,
+                    "name": "andere",
+                    "pivot": {
+                        "items_id": 30,
+                        "materials_id": 7
+                    }
+                }
+            ],
+            "submaterials": [],
+            "approach": {
+                "id": 9,
+                "name": "Waste",
+                "description": "Waste"
+            },
+            "location": null,
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["2.8647185", "51.0333408"]},
+                "properties": {
+                  "name": "Victor Vergote",
+                  "image": null,
+                  "category": "4",
+                  "material": "1",
+                  "description": "bevraging en onderzoek rond reststromenplatform",
+                  "item_id": 30
+                }
+            },
+            "url": null,
+            "user_id": 2,
+            "user_name": "Victor Vergote",
+            "contact": "victor.vergote@student.vives.be  tel:0471 43 61 05",
+            "job": "Ecotechnoloog",
+            "status": "0",
+            "images": [
+                {
+                    "id": 16,
+                    "filename": "1654169950Unknown_person.jpg",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 3,
+                    "name": "chitosan",
+                    "pivot": {
+                        "items_id": 30,
+                        "tags_id": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "name": "Oliver DeWolf",
+            "description": "Idee generatie en prototyping",
+            "button": {
+                "id": 4,
+                "name": "Expertise",
+                "description": "Expertise"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 7,
+                    "name": "andere",
+                    "pivot": {
+                        "items_id": 33,
+                        "materials_id": 7
+                    }
+                }
+            ],
+            "submaterials": [],
+            "approach": {
+                "id": 9,
+                "name": "Waste",
+                "description": "Waste"
+            },
+            "location": null,
+            "geojson": {
+              "type": "Feature",
+              "geometry": {"type": "Point", "coordinates": ["2.919496", "51.2258565"]},
+              "properties": {
+                "name": "Oliver DeWolf",
+                "image": null,
+                "category": "4",
+                "material": "2",
+                "description": "Idee generatie en prototyping",
+                "item_id": 33
+              }
+            },
+            "url": "https://www.vives.be/nl/industriele-wetenschappen-en-technologie/ontwerp-en-productietechnologie",
+            "user_id": 3,
+            "user_name": "oliver",
+            "contact": "oliver.dewolf@vives.be",
+            "job": "Onderzoek en docent",
+            "status": "0",
+            "images": [
+                {
+                    "id": 14,
+                    "filename": "1654169937Unknown_person.jpg",
+                    "cover": 1
+                }
+            ],
+            "tags": []
+        },
+        {
+            "id": 38,
+            "name": "Vives hogeschool",
+            "description": "We hebben uitgebreide kennis en ervaring in onderwijs en toegepast onderzoek omtrent circulariteit: upcycling van materialen, van idee tot prototype, duurzame materialen, duurzaam ontwerpen, het maken van ecoscans, ...",
+            "button": {
+                "id": 3,
+                "name": "Organisatie",
+                "description": "Organisatie"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 1,
+                    "name": "organisch",
+                    "pivot": {
+                        "items_id": 38,
+                        "materials_id": 1
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 1,
+                    "name": "dierlijk",
+                    "material_id": 1,
+                    "pivot": {
+                        "items_id": 38,
+                        "sub_materials_id": 1
+                    }
+                }
+            ],
+            "approach": {
+                "id": 9,
+                "name": "Waste",
+                "description": "Waste"
+            },
+            "location": null,
+            "geojson": {
+               "type": "Feature",
+               "geometry": {"type": "Point", "coordinates": ["3.2659884", "50.8276429"]},
+               "properties": {
+                "name": "Vives hogeschool",
+                "image": null,
+                "category": "3",
+                "material": "1",
+                "description": "We hebben uitgebreide kennis en ervaring in onderwijs en toegepast onderzoek omtrent circulariteit: upcycling van materialen, van idee tot prototype, duurzame materialen, duurzaam ontwerpen, het maken van ecoscans, .",
+                "item_id": 38
+              }
+            },
+            "url": "https://www.vives.be/nl",
+            "user_id": 3,
+            "user_name": "oliver",
+            "contact": "upcycleyourwaste@vives.be",
+            "job": null,
+            "status": "0",
+            "images": [
+                {
+                    "id": 12,
+                    "filename": "1654169189Logo's_(1).png",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 3,
+                    "name": "chitosan",
+                    "pivot": {
+                        "items_id": 38,
+                        "tags_id": 3
+                    }
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "name": "Upcycle your waste",
+            "description": "Upcycle your waste is een EU gesubsidieerd project. Je vind er de mogelijkheid om kennis te maken met partners uit 6 pilootprojecten, met inspiratie, met een acadmie pagina om je zelf vertrouwd te maken met circulariteit, je vind er barriers en drivers voor upcycling, ...",
+            "button": {
+                "id": 3,
+                "name": "Organisatie",
+                "description": "Organisatie"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 4,
+                    "name": "papier/karton",
+                    "pivot": {
+                        "items_id": 39,
+                        "materials_id": 4
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 17,
+                    "name": "karton",
+                    "material_id": 4,
+                    "pivot": {
+                        "items_id": 39,
+                        "sub_materials_id": 17
+                    }
+                }
+            ],
+            "approach": {
+                "id": 9,
+                "name": "Waste",
+                "description": "Waste"
+            },
+            "location": null,
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["2.919496", "51.2258565"]},
+                "properties": {
+                  "name": "Upcycle your waste",
+                  "image": null,
+                  "category": "3",
+                  "material": "4",
+                  "description": "Upcycle your waste is een EU gesubsidieerd project. Je vind er de mogelijkheid om kennis te maken met partners uit 6 pilootprojecten, met inspiratie, met een acadmie pagina om je zelf vertrouwd te maken met circulariteit, je vind er barriers en drivers voor upcycling, ...",
+                  "item_id": 39
+                }
+            },
+            "url": "https://upcycleyourwaste.com/",
+            "user_id": 3,
+            "user_name": "oliver",
+            "contact": "https://upcycleyourwaste.com/contact/",
+            "job": null,
+            "status": "0",
+            "images": [
+                {
+                    "id": 13,
+                    "filename": "1654169200upcycle-your-waste-rgb-1920x888.jpg",
+                    "cover": 1
+                }
+            ],
+            "tags": []
+        },
+        {
+            "id": 91,
+            "name": "Inagro",
+            "description": "onderzoek land en tuinbouw",
+            "button": {
+                "id": 3,
+                "name": "Organisatie",
+                "description": "Organisatie"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 1,
+                    "name": "organisch",
+                    "pivot": {
+                        "items_id": 91,
+                        "materials_id": 1
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 2,
+                    "name": "plantaardig",
+                    "material_id": 1,
+                    "pivot": {
+                        "items_id": 91,
+                        "sub_materials_id": 2
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": null,
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["3.1244035858495773", "50.9017185"]},
+                "properties": {"name": "Inagro", "image": null, "category": "3", "material": "1", "description": "onderzoek land en tuinbouw", "item_id": 91
+              }
+
+            },
+            "url": "www.inagro.be",
+            "user_id": 6,
+            "user_name": "FilipBekaert",
+            "contact": "Filip.bekaert23@telenet.be",
+            "job": "preventieadviseur",
+            "status": "1",
+            "images": [
+                {
+                    "id": 45,
+                    "filename": "1654449928629ce708d2164.png",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 10,
+                    "name": "onderzoek",
+                    "pivot": {
+                        "items_id": 91,
+                        "tags_id": 10
+                    }
+                }
+            ]
+        },
+        {
+            "id": 92,
+            "name": "Yentl Bekaert",
+            "description": "Student Electronica-ICT aan Vives Kortrijk. Developer van de deze applicatie.",
+            "button": {
+                "id": 4,
+                "name": "Expertise",
+                "description": "Expertise"
+            },
+            "availible": "0",
+            "materials": [
+                {
+                    "id": 1,
+                    "name": "organisch",
+                    "pivot": {
+                        "items_id": 92,
+                        "materials_id": 1
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 1,
+                    "name": "dierlijk",
+                    "material_id": 1,
+                    "pivot": {
+                        "items_id": 92,
+                        "sub_materials_id": 1
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":"","city":"Passendale","country":"België"},
+            "geojson": {
+               "type": "Feature",
+               "geometry": {"type": "Point", "coordinates": ["3.0203891", "50.9003015"]},
+               "properties": {"link": 92, "name": "Yentl Bekaert", "category": "4", "description": "Student Electronica-ICT aan Vives Kortrijk. Developer van de deze applicatie.", "item_id": 92
+              }
+            },
+            "url": null,
+            "user_id": 1,
+            "user_name": "Yentl Bekaert",
+            "contact": "bekaert.yentl@student.vives.be",
+            "job": "Student",
+            "status": "0",
+            "images": [
+                {
+                    "id": 145,
+                    "filename": "165493927462a45e8a1c625.png",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 11,
+                    "name": "ICT",
+                    "pivot": {
+                        "items_id": 92,
+                        "tags_id": 11
+                    }
+                }
+            ]
+        },
+        {
+            "id": 108,
+            "name": "Polyprop netten",
+            "description": "Wekelijks hebben wij zuiver industrieel afval in de vorm van netten in verschillende kleuren, afmetingen, maasgroottes en diktes ter beschikking.",
+            "button": {
+                "id": 1,
+                "name": "Afval",
+                "description": "Afval"
+            },
+            "availible": null,
+            "materials": [
+                {
+                    "id": 2,
+                    "name": "plastiek",
+                    "pivot": {
+                        "items_id": 108,
+                        "materials_id": 2
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 5,
+                    "name": "PP",
+                    "material_id": 2,
+                    "pivot": {
+                        "items_id": 108,
+                        "sub_materials_id": 5
+                    }
+                },
+                {
+                    "id": 6,
+                    "name": "HDPE",
+                    "material_id": 2,
+                    "pivot": {
+                        "items_id": 108,
+                        "sub_materials_id": 6
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":"Stationsstraat 107","city":"8400 Oostende","country":"België"},
+            "geojson": {
+              "type": "Feature",
+              "geometry": {"type": "Point", "coordinates": ["2.9779693", "51.210587"]},
+              "properties": {"link": 108, "name": "Polyprop netten", "category": "1", "description": "Wekelijks hebben wij zuiver industrieel afval in de vorm van netten in verschillende kleuren, afmetingen, maasgroottes en diktes ter beschikking.", "item_id": 108
+            }
+            },
+            "url": "www.duranet.com",
+            "user_id": 4,
+            "user_name": "Emile Vandeburie",
+            "contact": null,
+            "job": null,
+            "status": null,
+            "images": [
+                {
+                    "id": 146,
+                    "filename": "165589225062b2e91a9ea21.png",
+                    "cover": 0
+                }
+            ],
+            "tags": [
+                {
+                    "id": 12,
+                    "name": "Netten",
+                    "pivot": {
+                        "items_id": 108,
+                        "tags_id": 12
+                    }
+                },
+                {
+                    "id": 13,
+                    "name": "Polypropeen",
+                    "pivot": {
+                        "items_id": 108,
+                        "tags_id": 13
+                    }
+                },
+                {
+                    "id": 14,
+                    "name": "Duranet",
+                    "pivot": {
+                        "items_id": 108,
+                        "tags_id": 14
+                    }
+                },
+                {
+                    "id": 15,
+                    "name": "Kunststof",
+                    "pivot": {
+                        "items_id": 108,
+                        "tags_id": 15
+                    }
+                },
+                {
+                    "id": 16,
+                    "name": "HDPE",
+                    "pivot": {
+                        "items_id": 108,
+                        "tags_id": 16
+                    }
+                }
+            ]
+        },
+        {
+            "id": 109,
+            "name": "Wind turbine blades become bike shelters",
+            "description": "Wind power is one of the fastest-growing renewable energy technologies, with its usage increasing rapidly year by year, on a worldwide level. in denmark, wind power is so commonly used that wind turbines are now really part of the local landscape. in fact, wind energy already provides 40% of the energy in denmark, while the danes hope to reach 70% by 2030.nn Since the world of renewable sources —and wind energy specifically— is all about sustainability, it makes sense why the question of recycling wind turbines has been actively discussed these last few years. given the 20-year lifespan of non-biodegradable blades in current wind turbines, many will need to be disposed of in the near future. the danish government has assigned the recycling task to several companies, many of which have come up with ingenious plans for repurposing the gigantic metal structures. the re-wind project is one of the teams selected, and aims to transform wind turbines into bicycle garages or footbridges.",
+            "button": {
+                "id": 2,
+                "name": "Inspiratie",
+                "description": "Inspiratie"
+            },
+            "availible": null,
+            "materials": [
+                {
+                    "id": 3,
+                    "name": "composiet",
+                    "pivot": {
+                        "items_id": 109,
+                        "materials_id": 3
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 12,
+                    "name": "polyester",
+                    "material_id": 3,
+                    "pivot": {
+                        "items_id": 109,
+                        "sub_materials_id": 12
+                    }
+                },
+                {
+                    "id": 13,
+                    "name": "epoxy",
+                    "material_id": 3,
+                    "pivot": {
+                        "items_id": 109,
+                        "sub_materials_id": 13
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":"","city":"","country":"Denmark"},
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["10.3333283", "55.670249"]},
+                "properties": {"link": 109, "name": "Wind turbine blades become bike shelters", "category": "2", "description": "Wind power is one of the fastest-growing renewable energy technologies, with its usage increasing rapidly year by year, on a worldwide level. in denmark, wind power is so commonly used that wind turbines are now really part of the local landscape. in fact, wind energy already provides 40% of the energy in denmark, while the danes hope to reach 70% by 2030.nn Since the world of renewable sources —and wind energy specifically— is all about sustainability, it makes sense why the question of recycling wind turbines has been actively discussed these last few years. given the 20-year lifespan of non-biodegradable blades in current wind turbines, many will need to be disposed of in the near future. the danish government has assigned the recycling task to several companies, many of which have come up with ingenious plans for repurposing the gigantic metal structures. the re-wind project is one of the teams selected, and aims to transform wind turbines into bicycle garages or footbridges.", "item_id": 109}
+
+            },
+            "url": "https://www.designboom.com/design/denmark-repurposing-wind-turbine-blades-bike-garages-09-27-2021/",
+            "user_id": 4,
+            "user_name": "Emile Vandeburie",
+            "contact": "Siemens Gamesa",
+            "job": null,
+            "status": null,
+            "images": [
+                {
+                    "id": 147,
+                    "filename": "165589738962b2fd2dbee0a.png",
+                    "cover": 0
+                }
+            ],
+            "tags": [
+                {
+                    "id": 17,
+                    "name": "Windmills",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 17
+                    }
+                },
+                {
+                    "id": 18,
+                    "name": "polyester",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 18
+                    }
+                },
+                {
+                    "id": 19,
+                    "name": "Windpower",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 19
+                    }
+                },
+                {
+                    "id": 20,
+                    "name": "Bikes",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 20
+                    }
+                },
+                {
+                    "id": 21,
+                    "name": "Fietsen",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 21
+                    }
+                },
+                {
+                    "id": 17,
+                    "name": "Windmills",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 17
+                    }
+                },
+                {
+                    "id": 22,
+                    "name": "Windmolens",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 22
+                    }
+                },
+                {
+                    "id": 23,
+                    "name": "Bouwmaterialen",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 23
+                    }
+                },
+                {
+                    "id": 24,
+                    "name": "Beschutting",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 24
+                    }
+                },
+                {
+                    "id": 25,
+                    "name": "Energie",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 25
+                    }
+                },
+                {
+                    "id": 26,
+                    "name": "Energy",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 26
+                    }
+                },
+                {
+                    "id": 27,
+                    "name": "Construction",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 27
+                    }
+                },
+                {
+                    "id": 28,
+                    "name": "Composieten",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 28
+                    }
+                },
+                {
+                    "id": 29,
+                    "name": "Composites",
+                    "pivot": {
+                        "items_id": 109,
+                        "tags_id": 29
+                    }
+                }
+            ]
+        },
+        {
+            "id": 110,
+            "name": "Emile Vandeburie (Test)",
+            "description": "Ik heb expertise omtrent circulariteit en kunststofmaterialen zoals bioplastiek.",
+            "button": {
+                "id": 2,
+                "name": "Inspiratie",
+                "description": "Inspiratie"
+            },
+            "availible": null,
+            "materials": [
+                {
+                    "id": 20,
+                    "name": "Kunststof",
+                    "pivot": {
+                        "items_id": 110,
+                        "materials_id": 20
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 42,
+                    "name": "Bioplastiek",
+                    "material_id": 20,
+                    "pivot": {
+                        "items_id": 110,
+                        "sub_materials_id": 42
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":null,"city":"Lendelede","country":"België"},
+            "geojson": null,
+            "url": null,
+            "user_id": 4,
+            "user_name": "Emile Vandeburie",
+            "contact": "emile.vandeburie@vives.be",
+            "job": null,
+            "status": null,
+            "images": [
+                {
+                    "id": 148,
+                    "filename": "",
+                    "cover": 1
+                }
+            ],
+            "tags": [
+                {
+                    "id": 30,
+                    "name": "Bioplastiek",
+                    "pivot": {
+                        "items_id": 110,
+                        "tags_id": 30
+                    }
+                },
+                {
+                    "id": 15,
+                    "name": "Kunststof",
+                    "pivot": {
+                        "items_id": 110,
+                        "tags_id": 15
+                    }
+                },
+                {
+                    "id": 3,
+                    "name": "chitosan",
+                    "pivot": {
+                        "items_id": 110,
+                        "tags_id": 3
+                    }
+                },
+                {
+                    "id": 4,
+                    "name": "chitine",
+                    "pivot": {
+                        "items_id": 110,
+                        "tags_id": 4
+                    }
+                },
+                {
+                    "id": 31,
+                    "name": "circulariteit",
+                    "pivot": {
+                        "items_id": 110,
+                        "tags_id": 31
+                    }
+                }
+            ]
+        },
+        {
+            "id": 111,
+            "name": "House made from coffee",
+            "description": "Coffee husks are usually discarded when coffee is roasted. nNow they’re being turned into building materials. This house uses building blocks from coffee grit",
+            "button": {
+                "id": 2,
+                "name": "Inspiratie",
+                "description": "Inspiratie"
+            },
+            "availible": null,
+            "materials": [
+                {
+                    "id": 21,
+                    "name": "Koffie",
+                    "pivot": {
+                        "items_id": 111,
+                        "materials_id": 21
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 1,
+                    "name": "dierlijk",
+                    "material_id": 1,
+                    "pivot": {
+                        "items_id": 111,
+                        "sub_materials_id": 1
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":"","city":"","country":"Colombia"},
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["-72.9088133", "4.099917"]},
+                "properties": {"link": 111, "name": "House made from coffee", "category": "2", "description": "Coffee husks are usually discarded when coffee is roasted. nNow they’re being turned into building materials. This house uses building blocks from coffee grit", "item_id": 111}
+
+            },
+            "url": "https://www.fastcompany.com/90604018/now-your-coffee-habit-can-help-build-houses",
+            "user_id": 3,
+            "user_name": "oliver",
+            "contact": null,
+            "job": null,
+            "status": null,
+            "images": [
+                {
+                    "id": 149,
+                    "filename": "165590704062b322e067e66.png",
+                    "cover": 1
+                },
+                {
+                    "id": 150,
+                    "filename": "165590704062b322e069664.png",
+                    "cover": 0
+                },
+                {
+                    "id": 151,
+                    "filename": "165590704062b322e06a9c7.png",
+                    "cover": 0
+                }
+            ],
+            "tags": [
+                {
+                    "id": 23,
+                    "name": "Bouwmaterialen",
+                    "pivot": {
+                        "items_id": 111,
+                        "tags_id": 23
+                    }
+                },
+                {
+                    "id": 27,
+                    "name": "Construction",
+                    "pivot": {
+                        "items_id": 111,
+                        "tags_id": 27
+                    }
+                },
+                {
+                    "id": 32,
+                    "name": "building material",
+                    "pivot": {
+                        "items_id": 111,
+                        "tags_id": 32
+                    }
+                },
+                {
+                    "id": 33,
+                    "name": "housing",
+                    "pivot": {
+                        "items_id": 111,
+                        "tags_id": 33
+                    }
+                },
+                {
+                    "id": 34,
+                    "name": "wonen",
+                    "pivot": {
+                        "items_id": 111,
+                        "tags_id": 34
+                    }
+                },
+                {
+                    "id": 35,
+                    "name": "constructiemateriaal",
+                    "pivot": {
+                        "items_id": 111,
+                        "tags_id": 35
+                    }
+                }
+            ]
+        },
+        {
+            "id": 112,
+            "name": "Elektrisch schakelmateriaal kunststofafval uit de oceaan",
+            "description": "Schneider Electric onthulde op CES het eerste schakelmateriaal voor thuis gemaakt van oceaanplastic. nHet Merten Ocean Plastic-schakelmateriaal is gemaakt van gerecycled oceaanmateriaal en wordt geleverd in duurzame verpakkingen. Zo wordt niet-recyclebaar materiaal geëlimineerd en komen klanten een stap dichter bij het bereiken van hun duurzaamheidsdoelstellingen.",
+            "button": {
+                "id": 2,
+                "name": "Inspiratie",
+                "description": "Inspiratie"
+            },
+            "availible": null,
+            "materials": [
+                {
+                    "id": 20,
+                    "name": "Kunststof",
+                    "pivot": {
+                        "items_id": 112,
+                        "materials_id": 20
+                    }
+                }
+            ],
+            "submaterials": [
+                {
+                    "id": 43,
+                    "name": "Ocean plastics",
+                    "material_id": 20,
+                    "pivot": {
+                        "items_id": 112,
+                        "sub_materials_id": 43
+                    }
+                }
+            ],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":"","city":"","country":"Nederland"},
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["5.38721", "52.15517"]},
+                "properties": {
+                  "link": 112,
+                  "name": "Elektrisch schakelmateriaal kunststofafval uit de oceaan",
+                  "category": "2",
+                  "description": "Schneider Electric onthulde op CES het eerste schakelmateriaal voor thuis gemaakt van oceaanplastic. nHet Merten Ocean Plastic-schakelmateriaal is gemaakt van gerecycled oceaanmateriaal en wordt geleverd in duurzame verpakkingen. Zo wordt niet-recyclebaar materiaal geëlimineerd en komen klanten een stap dichter bij het bereiken van hun duurzaamheidsdoelstellingen.",
+                  "item_id": 112
+                  }
+
+            },
+            "url": "https://www.duurzaam-ondernemen.nl/schneider-electric-onthult-eerste-schakelmateriaal-voor-thuis-gemaakt-van-gerecycled-oceaanplastic/",
+            "user_id": 3,
+            "user_name": "oliver",
+            "contact": null,
+            "job": null,
+            "status": null,
+            "images": [
+                {
+                    "id": 152,
+                    "filename": "165590806062b326dc36ad6.png",
+                    "cover": 0
+                }
+            ],
+            "tags": [
+                {
+                    "id": 36,
+                    "name": "industrieel",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 36
+                    }
+                },
+                {
+                    "id": 37,
+                    "name": "industrial",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 37
+                    }
+                },
+                {
+                    "id": 38,
+                    "name": "oceaan plastics",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 38
+                    }
+                },
+                {
+                    "id": 39,
+                    "name": "plastic soup",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 39
+                    }
+                },
+                {
+                    "id": 40,
+                    "name": "fishnet",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 40
+                    }
+                },
+                {
+                    "id": 12,
+                    "name": "Netten",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 12
+                    }
+                },
+                {
+                    "id": 27,
+                    "name": "Construction",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 27
+                    }
+                },
+                {
+                    "id": 41,
+                    "name": "electricity",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 41
+                    }
+                },
+                {
+                    "id": 32,
+                    "name": "building material",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 32
+                    }
+                },
+                {
+                    "id": 42,
+                    "name": "home",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 42
+                    }
+                },
+                {
+                    "id": 23,
+                    "name": "Bouwmaterialen",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 23
+                    }
+                },
+                {
+                    "id": 43,
+                    "name": "elektriciteit",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 43
+                    }
+                },
+                {
+                    "id": 35,
+                    "name": "constructiemateriaal",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 35
+                    }
+                },
+                {
+                    "id": 35,
+                    "name": "constructiemateriaal",
+                    "pivot": {
+                        "items_id": 112,
+                        "tags_id": 35
+                    }
+                }
+            ]
+        },
+        {
+            "id": 113,
+            "name": "test",
+            "description": "test",
+            "button": {
+                "id": 1,
+                "name": "Afval",
+                "description": "Afval"
+            },
+            "availible": null,
+            "materials": [],
+            "submaterials": [],
+            "approach": {
+                "id": 1,
+                "name": "Bouw",
+                "description": "Bouw"
+            },
+            "location": {"street":"Doorniksesteenweg 145","city":"Kortrijk","country":"belgium"},
+            "geojson": {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": ["3.2843507", "50.8061462"]},
+                "properties": {"link": 113, "name": "test", "category": "1", "description": "test", "item_id": 113}
+            },
+            "url": null,
+            "user_id": 7,
+            "user_name": "hanne",
+            "contact": null,
+            "job": null,
+            "status": null,
+            "images": [],
+            "tags": [
+                {
+                    "id": 46,
+                    "name": "test",
+                    "pivot": {
+                        "items_id": 113,
+                        "tags_id": 46
+                    }
+                }
+            ]
+        }
+    ],
+    "links": {
+        "first": "https://backenduyw.yentlbekaert.be/api/item?page=1",
+        "last": "https://backenduyw.yentlbekaert.be/api/item?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "https://backenduyw.yentlbekaert.be/api/item?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "https://backenduyw.yentlbekaert.be/api/item",
+        "per_page": 20,
+        "to": 15,
+        "total": 15
+    }
+}
+
+

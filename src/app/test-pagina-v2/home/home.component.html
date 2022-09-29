@@ -1,0 +1,6 @@
+<div id="home">
+  <app-category-buttons (categoryButtonEvent)="categoryButtonClicked($event)"></app-category-buttons>
+  <app-map-radius-filter (filterRadius)="filterRadiusClicked($event)" (annuleerFilterRadius)="annuleerfilterRadiusClicked()"></app-map-radius-filter>
+  <app-map></app-map>
+  <app-list-display [listdata]="listdata"></app-list-display>
+</div>

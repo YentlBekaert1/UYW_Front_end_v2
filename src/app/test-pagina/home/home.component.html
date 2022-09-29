@@ -1,0 +1,8 @@
+<app-category-buttons (categoryButtonEvent)="categoryButtonClicked($event)"></app-category-buttons>
+<app-map-radius-filter (filterRadius)="filterRadiusClicked($event)" (annuleerFilterRadius)="annuleerfilterRadiusClicked()"></app-map-radius-filter>
+<app-map [jsonList]="geojsonList"
+[categoryFilter]="categoryFilterNumber"
+(categoryControlEvent)="categoryControlClicked($event)"
+[radiusFilterValues]="radiusFilterValues"
+(selectedPointsEvent)="selectedPointsEvent($event)"></app-map>
+<app-list-display [listdata]="listdata"></app-list-display>

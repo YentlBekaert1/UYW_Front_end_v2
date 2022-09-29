@@ -1,0 +1,19 @@
+<div id="txtboxes">
+  <span>Zoek Locatie:</span>
+  <input type="text">
+
+      <select id="afstanden" #distanceSeletor>
+        <option value='10'>10 km</option>
+        <option value='25'>25 km</option>
+        <option value='50'>50 km</option>
+        <option value='100' >100 km</option>
+        <option value='150'>150 km</option>
+        <option value='200'>200 km</option>
+        <option value='300'>300 km</option>
+        <option value='500'>500 km</option>
+      </select>
+
+      <input type="checkbox" name="use_my_location" id="use_my_location" #userLocationChechekbox> <label for="use_my_location">Gebruik mijn loactie</label>
+      <button type='button' id="zoek_button" (click)="searchButtonClicked()">zoek</button>
+      <button type='button' id="annuleer_button" (click)="annuleerButtonClicked()">annuleer</button>
+</div>
