@@ -1,1 +1,14 @@
-<p>card works!</p>
+<div id="card">
+  <div id="image_container">
+    <img *ngIf="image;else defaultImage" src="https://backenduyw.yentlbekaert.be/images/{{image}}" alt="{{name}}">
+    <ng-template #defaultImage>
+      <img src="../../../../assets/default_image.png" alt="no image">
+    </ng-template>
+  </div>
+  <div>
+    <p>{{name}}</p>
+    <p>{{category}}</p>
+    <p>{{material}}</p>
+    <p>{{date}}</p>
+  </div>
+</div>

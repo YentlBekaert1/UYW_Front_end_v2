@@ -1,5 +1,62 @@
 #home{
-  background-color: pink;
+  background-color: #42998B;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+}
+#filters{
+  float: left;
+  width: 100%;
+  height: 10%;
+  display: block;
+}
+app-map {
+  float: left;
+  width: 50%;
+  height: 90%;
+
+}
+
+app-list-display{
+  float: left;
+  width: 50%;
+  height: 90%;
+  background-color: white;
+  color: #42998B;
+  overflow-y: scroll;
+}
+
+@media (max-width: 820px) {
+  app-map {
+    width: 100%;
+  }
+  app-list-display{
+    display:none;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 1319px) {
+  app-map {
+    width: 60%;
+  }
+  app-list-display{
+    width: 40%;
+  }
+}
+
+@media (min-width: 1320px) and (max-width: 1649px) {
+  app-map {
+    width: 50%;
+  }
+  app-list-display{
+    width: 50%;
+  }
+}
+
+@media (min-width: 1650px){
+  app-map {
+    width: 40%;
+  }
+  app-list-display{
+    width: 60%;
+  }
 }

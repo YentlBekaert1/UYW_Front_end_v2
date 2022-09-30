@@ -10,7 +10,7 @@ import * as L from 'leaflet';
 export class HomeComponentV2 implements OnInit {
 
   title = 'LeafLetMapTest';
-  public geojsonList: any = data;
+  public geojsonList: any = data.geojson;
   public categoryFilterNumber: [number, number] = [0,0];
   public listdataInit:any = [];
   public listdata:any = [];
@@ -43,8 +43,8 @@ export class HomeComponentV2 implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.listdataInit = this.geojsonList.data;
-    this.listdata = this.geojsonList.data;
+    this.listdataInit = this.geojsonList;
+    this.listdata = this.geojsonList;
     this.initMap();
   }
 
@@ -489,7 +489,7 @@ export class HomeComponentV2 implements OnInit {
         this.technologyCategoryState = 0;
       }
     }
-    
+
     this.filterRadiusClicked(this.filterRadius);
   }
 

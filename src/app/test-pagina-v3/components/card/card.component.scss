@@ -1,0 +1,25 @@
+#card
+{
+  background-color: white;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+  float: left;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  max-width: 310px;
+ #image_container{
+  max-width: 310px;
+  img{
+    width: 310px;
+    max-height: 200px;
+    background: rgb(238, 238, 238);
+    object-fit: contain;
+  }
+ }
+
+}
+@media screen and (min-width: 680px){
+  #card{
+    height: 360px;
+  }
+}

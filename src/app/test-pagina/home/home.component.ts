@@ -8,7 +8,7 @@ import data from '../../../assets/geojson.json';
 })
 export class HomeComponent implements OnInit {
   title = 'LeafLetMapTest';
-  public geojsonList: any = data;
+  public geojsonList: any = data.geojson;
   public categoryFilterNumber: [number, number] = [0,0];
   public radiusFilterValues: [number, number, number, boolean]= [0,0,0,false];
   public listdataInit:any = [];
@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.listdataInit = this.geojsonList.data;
-    this.listdata = this.geojsonList.data;
+    this.listdataInit = this.geojsonList;
+    this.listdata = this.geojsonList;
   }
 
   // functie die uitgevoerd word al er op een knop van de categorieen gedrukt word. Output van child component
