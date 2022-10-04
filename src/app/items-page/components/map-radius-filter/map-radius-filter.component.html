@@ -1,0 +1,24 @@
+<div id="txtboxes">
+      <p>Zoek op locatie:</p>
+      <div class="searchInput">
+        <input type="text" #textInput>
+        <select id="afstanden" #distanceSeletor>
+          <option value='10'>10 km</option>
+          <option value='25'>25 km</option>
+          <option value='50'>50 km</option>
+          <option value='100' >100 km</option>
+          <option value='150'>150 km</option>
+          <option value='200'>200 km</option>
+          <option value='300'>300 km</option>
+          <option value='500'>500 km</option>
+        </select>
+      </div>
+      <div class="userLocationCheckbox">
+        <input type="checkbox" name="use_my_location" id="use_my_location" #userLocationChechekbox> <span for="use_my_location">Gebruik mijn loactie</span>
+      </div>
+      <div class="buttons">
+        <button type='button' id="zoek_button" (click)="searchButtonClicked()"><span *ngIf="searchStatus === false;else cross"><i class="material-icons">search</i><span>Zoeken</span></span></button>
+        <ng-template #cross><span><i class="material-icons">close</i> <span>Annuleer</span></span></ng-template>
+        <!-- <button type='button' id="annuleer_button" (click)="annuleerButtonClicked()">annuleer</button> -->
+      </div>
+</div>

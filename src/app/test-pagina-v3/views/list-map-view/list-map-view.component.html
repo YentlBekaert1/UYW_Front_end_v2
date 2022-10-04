@@ -1,0 +1,21 @@
+<div id="listMapView">
+    <app-tabs (tabClickedEvent) = "tabClickedEvent($event)"></app-tabs>
+    <app-map
+    [jsonData]="listdataInit"
+    [radiusFilterValues]="filterRadius"
+    [categoryFilter]="categoryFilter"
+    [clickedItem]="clickedItem"
+    [tab]="activeTab"
+    (categoryControlEvent)="mapControlClickedEvent($event)"
+    (selectedPointsEvent)="selectedPointsEvent($event)"
+
+    class=""
+    #mapV
+    ></app-map>
+    <app-list-display
+    [listdata]="listdata"
+    (clickOnItemEvent)="clickOnItemEvent($event)"
+    class=""
+    #listV
+    ></app-list-display>
+</div>

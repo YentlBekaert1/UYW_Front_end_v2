@@ -13,7 +13,7 @@ export class ListDisplayComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    //console.log(this.listdata);
+    console.log(this.listdata);
   }
 
   listItemClicked(item: any){

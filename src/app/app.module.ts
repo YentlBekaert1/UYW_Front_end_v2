@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { TestPaginaModule } from './test-pagina/test-pagina.module';
 import { TestPaginaModuleV2 } from './test-pagina-v2/test-pagina.module';
 import { TestPaginaModuleV3 } from './test-pagina-v3/test-pagina.module';
+import { ItemsPageModule } from './items-page/items-page.module';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { TestPaginaModuleV3 } from './test-pagina-v3/test-pagina.module';
     AppRoutingModule,
     TestPaginaModule,
     TestPaginaModuleV2,
-    TestPaginaModuleV3
+    TestPaginaModuleV3,
+    ItemsPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

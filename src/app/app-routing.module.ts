@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './test-pagina/home/home.component';
 import { HomeComponentV2 } from './test-pagina-v2/home/home.component';
 import { HomeComponentV3 } from './test-pagina-v3/home/home.component';
+import { ItemsPageComponent } from './items-page/items-page.component';
 
 const routes: Routes = [
   {
@@ -18,13 +19,17 @@ const routes: Routes = [
     component: HomeComponentV3,
   },
   {
+    path: "items",
+    component: ItemsPageComponent,
+  },
+  {
       path: "**",
-      redirectTo: "home1",
+      redirectTo: "items",
       pathMatch: 'full'
   },
   {
       path: "",
-      redirectTo: "home1",
+      redirectTo: "items",
       pathMatch: 'full'
   }
 ];

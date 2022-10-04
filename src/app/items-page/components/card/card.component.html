@@ -1,0 +1,13 @@
+<div id="card">
+
+  <img *ngIf="image;else defaultImage" src="https://backenduyw.yentlbekaert.be/images/{{image}}" alt="{{name}}">
+  <ng-template #defaultImage>
+    <img src="../../../../assets/default_image.png" alt="no image">
+  </ng-template>
+  <div>
+    <p>{{name}}</p>
+    <p>{{category}}</p>
+    <p>{{material}}</p>
+    <p>{{date}}</p>
+  </div>
+</div>

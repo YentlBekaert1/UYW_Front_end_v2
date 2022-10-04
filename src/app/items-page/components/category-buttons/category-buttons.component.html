@@ -1,0 +1,23 @@
+<!-- <div>
+  <button type="button" (click)="ButtonClick($event)" id="1">Afval</button>
+  <button type="button" (click)="ButtonClick($event)" id="2">Inspiratie</button>
+  <button type="button" (click)="ButtonClick($event)" id="4">Mens</button>
+  <button type="button" (click)="ButtonClick($event)" id="3">Organisatie</button>
+  <button type="button" (click)="ButtonClick($event)" id="5">Technology</button>
+</div> -->
+<h3>Kies een categorie
+    <a href="">
+      <span class="tooltip">
+        <i class="material-icons">help</i>
+        <span class="tooltiptext">Meer info over de categorieën</span>
+      </span>
+    </a>
+  </h3>
+
+<div class="category-buttons">
+  <div class="button" (click)="ButtonClick($event)" id="1"><i class="material-icons">delete</i><span>Afval</span></div>
+  <div class="button" (click)="ButtonClick($event)" id="2"><i class="material-icons">emoji_objects</i><span>Inspiratie</span></div>
+  <div class="button" (click)="ButtonClick($event)" id="4"><i class="material-icons">boy</i><span>Persoon</span></div>
+  <div class="button" (click)="ButtonClick($event)" id="3"><i class="material-icons">store</i><span>Organisatie</span></div>
+  <div class="button" (click)="ButtonClick($event)" id="5"><i class="material-icons">memory</i><span>Technologie</span></div>
+</div>

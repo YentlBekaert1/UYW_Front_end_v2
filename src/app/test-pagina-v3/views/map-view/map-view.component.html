@@ -1,0 +1,10 @@
+<div id="mapView">
+  <app-map
+  [jsonData]="data"
+  [radiusFilterValues]="filterRadius"
+  [categoryFilter]="categoryFilter"
+  [clickedItem]="clickedItem"
+  (categoryControlEvent)="mapControlClickedEvent($event)"
+  (selectedPointsEvent)="selectedPointsEvent($event)"
+  ></app-map>
+</div>

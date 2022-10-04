@@ -1,4 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --back-color: #F6F6F6;
+  --white-color: #ffffff;
+  --black-color: #0e1111;
+  --primary-color: #42998B;
+  --primary-light: #5acfbc91;
+  --secondary-color: rgba(255,176,72,1);
+  --yellow-gradient: linear-gradient(180deg, rgba(255,252,159,1) 0%, rgba(255,214,0,1) 45%, rgba(255,176,72,1) 100%);
+  --yellow-gradient-color: rgba(255,176,72,1);
+  --green-gradient: linear-gradient(159deg, rgba(255,242,189,1) 0%, rgba(66,153,139,1) 72%);
+  --green-gradient-color: rgba(66,153,139,1);
+}
+
+*{
+  margin: 0;
+  padding:0;
+}
+body{
+  background-color: var(--back-color);
+  font-family: 'Open Sans', sans-serif;
+}
 
 .user_location_icon{
   width: 20px;

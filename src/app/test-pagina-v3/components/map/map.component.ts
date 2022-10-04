@@ -13,27 +13,29 @@ export class MapComponent implements OnInit  {
   @Input() categoryFilter!: [number,number];
   @Input() radiusFilterValues!: [number,number,number,boolean];
   @Input() clickedItem: any;
+  @Input() tab!: string;
+
   @Output() categoryControlEvent = new EventEmitter<[number,number]>();
   @Output() selectedPointsEvent = new EventEmitter<[]>(); //geselecteerde punten na zoeken in straal;
 
-  map! : any;
-  userLocation: any;
-  userLocationLat: any;
-  userLocationLng: any;
+  private map! : any;
+  private userLocation: any;
+  private userLocationLat: any;
+  private userLocationLng: any;
 
-  wasteLayer: any;
-  inspirationLayer: any;
-  humanLayer: any ;
-  organisationLayer: any;
-  techonolgyLayer: any;
+  private wasteLayer: any;
+  private inspirationLayer: any;
+  private humanLayer: any ;
+  private organisationLayer: any;
+  private techonolgyLayer: any;
 
-  geoJSONData!: L.GeoJSON;
+  private geoJSONData!: L.GeoJSON;
 
-  theCircle: any; //cirkel die de range aanduid
-  theMarker: any; // marker voor middelpunt range
-  geojsonLayer: any; //laag om de punten anders aan te duiden als ze binnen de range staan
-  selPts:any = [];//geselecteerde punten binnen de range
-  RadiusFilter!: [number,number,number,boolean];
+  private theCircle: any; //cirkel die de range aanduid
+  private theMarker: any; // marker voor middelpunt range
+  private geojsonLayer: any; //laag om de punten anders aan te duiden als ze binnen de range staan
+  private selPts:any = [];//geselecteerde punten binnen de range
+  private RadiusFilter!: [number,number,number,boolean];
 
 
   constructor() { }
@@ -139,7 +141,8 @@ export class MapComponent implements OnInit  {
 
       //does this feature have a property named popupContent?
       if (feature.properties && feature.properties.name) {
-          layer.bindPopup(feature.properties.name);
+          var content = popUpGenerator(feature.properties.name, feature.properties.image, feature.properties.category);
+          layer.bindPopup(content);
       }
 
       //voeg de marker toe aan de juiste categorie
@@ -229,65 +232,66 @@ export class MapComponent implements OnInit  {
   //functie die de lagen van de markers in of uitschakeld door categorienummer en state mee te geven
   FilterByCategorie(categoryNumber: [number, number]) {
     //wasteFilter
-    if(categoryNumber[0] == 1 && categoryNumber[1] == 1){
-      if(!this.map.hasLayer(this.wasteLayer)) {
-        this.map.addLayer(this.wasteLayer);
+    if(this.map){
+      if(categoryNumber[0] == 1 && categoryNumber[1] == 1){
+        if(!this.map.hasLayer(this.wasteLayer)) {
+          this.map.addLayer(this.wasteLayer);
+        }
+      }
+      else if(categoryNumber[0] == 1 && categoryNumber[1] == 0){
+        if( this.map.hasLayer(this.wasteLayer)) {
+          this.map.removeLayer(this.wasteLayer);
+        }
+      }
+      //InspirationFilter
+      if(categoryNumber[0] == 2 && categoryNumber[1] == 1){
+        if( !this.map.hasLayer(this.inspirationLayer)) {
+          this.map.addLayer(this.inspirationLayer);
+        }
+      }
+      else if(categoryNumber[0] == 2 && categoryNumber[1] == 0){
+        if( this.map.hasLayer(this.inspirationLayer)) {
+          this.map.removeLayer(this.inspirationLayer);
+        }
+      }
+      //OrganisationFilter
+      if(categoryNumber[0] == 3 && categoryNumber[1] == 1){
+        if( !this.map.hasLayer(this.organisationLayer)) {
+          this.map.addLayer(this.organisationLayer);
+        }
+      }
+      else if(categoryNumber[0] == 3 && categoryNumber[1] == 0){
+        if( this.map.hasLayer(this.organisationLayer)) {
+          this.map.removeLayer(this.organisationLayer);
+        }
+      }
+      //HumanFilter
+      if(categoryNumber[0] == 4 && categoryNumber[1] == 1){
+        if( !this.map.hasLayer(this.humanLayer)) {
+          this.map.addLayer(this.humanLayer);
+        }
+      }
+      else if(categoryNumber[0] == 4 && categoryNumber[1] == 0){
+        if( this.map.hasLayer(this.humanLayer)) {
+          this.map.removeLayer(this.humanLayer);
+        }
+      }
+      //TechnolgyFilter
+      else if(categoryNumber[0] == 5 && categoryNumber[1] == 1){
+        if( !this.map.hasLayer(this.techonolgyLayer)) {
+          this.map.addLayer(this.techonolgyLayer);
+        }
+      }
+      if(categoryNumber[0] == 5 && categoryNumber[1] == 0){
+        if( this.map.hasLayer(this.techonolgyLayer)) {
+          this.map.removeLayer(this.techonolgyLayer);
+        }
+      }
+      if(categoryNumber[0] != 0 && categoryNumber[1] != 0){
+        //kijk of er een radius filter is.
+        this.ProcessRadiusFilter(this.RadiusFilter);
       }
     }
-    else if(categoryNumber[0] == 1 && categoryNumber[1] == 0){
-      if( this.map.hasLayer(this.wasteLayer)) {
-        this.map.removeLayer(this.wasteLayer);
-      }
-    }
-    //InspirationFilter
-    if(categoryNumber[0] == 2 && categoryNumber[1] == 1){
-      if( !this.map.hasLayer(this.inspirationLayer)) {
-        this.map.addLayer(this.inspirationLayer);
-      }
-    }
-    else if(categoryNumber[0] == 2 && categoryNumber[1] == 0){
-      if( this.map.hasLayer(this.inspirationLayer)) {
-        this.map.removeLayer(this.inspirationLayer);
-      }
-    }
-    //OrganisationFilter
-    if(categoryNumber[0] == 3 && categoryNumber[1] == 1){
-      if( !this.map.hasLayer(this.organisationLayer)) {
-        this.map.addLayer(this.organisationLayer);
-      }
-    }
-    else if(categoryNumber[0] == 3 && categoryNumber[1] == 0){
-      if( this.map.hasLayer(this.organisationLayer)) {
-        this.map.removeLayer(this.organisationLayer);
-      }
-    }
-    //HumanFilter
-    if(categoryNumber[0] == 4 && categoryNumber[1] == 1){
-      if( !this.map.hasLayer(this.humanLayer)) {
-        this.map.addLayer(this.humanLayer);
-      }
-    }
-    else if(categoryNumber[0] == 4 && categoryNumber[1] == 0){
-      if( this.map.hasLayer(this.humanLayer)) {
-        this.map.removeLayer(this.humanLayer);
-      }
-    }
-    //TechnolgyFilter
-    else if(categoryNumber[0] == 5 && categoryNumber[1] == 1){
-      if( !this.map.hasLayer(this.techonolgyLayer)) {
-        this.map.addLayer(this.techonolgyLayer);
-      }
-    }
-    if(categoryNumber[0] == 5 && categoryNumber[1] == 0){
-      if( this.map.hasLayer(this.techonolgyLayer)) {
-        this.map.removeLayer(this.techonolgyLayer);
-      }
-    }
-    if(categoryNumber[0] != 0 && categoryNumber[1] != 0){
-      //kijk of er een radius filter is.
-      this.ProcessRadiusFilter(this.RadiusFilter);
-    }
-
   }
 
   //functie die een een radius maakt op de kaart
@@ -404,20 +408,21 @@ export class MapComponent implements OnInit  {
     this.geojsonLayer = L.geoJson(this.selPts, {
       pointToLayer: function(feature, latlng) {
           //console.log(feature.properties.category);
+          var content = popUpGenerator(feature.properties.name, feature.properties.image, feature.properties.category);
           if(feature.properties.category === '1'){
-              return L.marker(latlng, { icon: wasteIconRadius })
+              return L.marker(latlng, { icon: wasteIconRadius }).bindPopup(content);
           }
           else if(feature.properties.category === '2'){
-              return L.marker(latlng, { icon: inspirationIconRadius })
+              return L.marker(latlng, { icon: inspirationIconRadius }).bindPopup(content)
           }
           else if(feature.properties.category === '3'){
-              return L.marker(latlng, { icon: organisationIconRadius })
+              return L.marker(latlng, { icon: organisationIconRadius }).bindPopup(content);
           }
           else if(feature.properties.category === '4'){
-              return L.marker(latlng, { icon: humanIconRadius }).bindPopup("<b>Hello world!</b><br>I am a popup.")
+              return L.marker(latlng, { icon: humanIconRadius }).bindPopup(content);
           }
           else if(feature.properties.category === '5'){
-              return L.marker(latlng, { icon: technologyIconRadius }).bindPopup("<b>Hello world!</b><br>I am a popup.")
+              return L.marker(latlng, { icon: technologyIconRadius }).bindPopup(content);
           }
           else{
               return L.circleMarker(latlng, {
@@ -444,7 +449,7 @@ export class MapComponent implements OnInit  {
 
   //functie uitgevoerd bij initialiseren component
   ngOnInit(): void {
-    this.initMap();
+      this.initMap();
   }
 
   //als er een verandering gebeurt van een Input()
@@ -469,5 +474,18 @@ export class MapComponent implements OnInit  {
         this.showPopUp(changes['clickedItem'].currentValue.properties.name)
       }
     }
+    if(changes['tab']){
+      if(changes['tab'].currentValue != undefined){
+        this.map.invalidateSize()
+      }
+    }
+
   }
+
+
 }
+
+function popUpGenerator(name: string, image: string, category: number){
+  return '<div><img src="https://backenduyw.yentlbekaert.be/images/'+ image + '" alt="" style="width: 50px; height:50px; object-fit: contain;"><p>'+ name +'</p></div>'
+}
+
