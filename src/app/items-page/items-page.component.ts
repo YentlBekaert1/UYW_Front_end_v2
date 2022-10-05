@@ -141,19 +141,19 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
     }
     if(categoryNumber === 2){
       this.inspirationCategoryState = 1 - this.inspirationCategoryState;
-      this.categoryFilter = [categoryNumber,this.wasteCategoryState];
+      this.categoryFilter = [categoryNumber,this.inspirationCategoryState];
     }
     if(categoryNumber === 3){
       this.organisationCategoryState = 1 - this.organisationCategoryState;
-      this.categoryFilter = [categoryNumber,this.wasteCategoryState];
+      this.categoryFilter = [categoryNumber,this.organisationCategoryState];
     }
     if(categoryNumber === 4){
       this.humanCategoryState = 1 - this.humanCategoryState;
-      this.categoryFilter = [categoryNumber,this.wasteCategoryState];
+      this.categoryFilter = [categoryNumber,this.humanCategoryState];
     }
     if(categoryNumber === 5){
       this.technologyCategoryState = 1 - this.technologyCategoryState;
-      this.categoryFilter = [categoryNumber,this.wasteCategoryState];
+      this.categoryFilter = [categoryNumber,this.technologyCategoryState];
     }
     this.filterData();
   }
