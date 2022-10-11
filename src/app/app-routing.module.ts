@@ -4,11 +4,11 @@ import { HomeComponent } from './test-pagina/home/home.component';
 import { HomeComponentV2 } from './test-pagina-v2/home/home.component';
 import { HomeComponentV3 } from './test-pagina-v3/home/home.component';
 import { ItemsPageComponent } from './items-page/items-page.component';
-
+import { HomePageComponent } from './home-page/home-page.component';
 const routes: Routes = [
   {
-    path: "home1",
-    component: HomeComponent,
+    path: "home",
+    component: HomePageComponent,
   },
   {
     path: "home2",
@@ -24,12 +24,12 @@ const routes: Routes = [
   },
   {
       path: "**",
-      redirectTo: "items",
+      redirectTo: "home",
       pathMatch: 'full'
   },
   {
       path: "",
-      redirectTo: "items",
+      redirectTo: "home",
       pathMatch: 'full'
   }
 ];

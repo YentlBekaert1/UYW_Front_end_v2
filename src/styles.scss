@@ -6,11 +6,21 @@
   --primary-color: #42998B;
   --primary-light: #5acfbc91;
   --secondary-color: rgba(255,176,72,1);
-  --yellow-gradient: linear-gradient(180deg, rgba(255,252,159,1) 0%, rgba(255,214,0,1) 45%, rgba(255,176,72,1) 100%);
+  --yellow-gradient: linear-gradient(135deg, rgba(255,252,159,1) 0%, #fcd15c 0%, rgba(255,176,72,1) 100%);
   --yellow-gradient-color: rgba(255,176,72,1);
   --green-gradient: linear-gradient(159deg, rgba(255,242,189,1) 0%, rgba(66,153,139,1) 72%);
   --green-gradient-color: rgba(66,153,139,1);
 }
+
+@font-face {
+  font-family: "ostrich-black";
+  src: local("ostrich"), url(./assets/fonts/ostrich-sans-black.ttf) format("truetype");
+}
+@font-face {
+  font-family: "ostrich-bold";
+  src: local("ostrich"), url(./assets/fonts/ostrich-sans-bold.ttf) format("truetype");
+}
+
 
 *{
   margin: 0;
@@ -18,7 +28,8 @@
 }
 body{
   background-color: var(--back-color);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat',sans-serif;
+  color:#20292f;
 }
 
 .user_location_icon{
@@ -32,4 +43,9 @@ body{
 
 body{
   margin: 0;
+}
+
+:after, :before {
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
