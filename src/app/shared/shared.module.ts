@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FooterComponent } from './footer/footer.component';
     CardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ]
 })
 export class SharedModule { }

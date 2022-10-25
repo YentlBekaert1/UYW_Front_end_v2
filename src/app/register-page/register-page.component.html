@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName" required>
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName">
+
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+
+<hr>
+
+<p>Form Value: {{ profileForm.value }}</p>
+
+<p>Form Status: {{ profileForm.status }}</p>

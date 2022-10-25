@@ -5,10 +5,16 @@ import { HomeComponentV2 } from './test-pagina-v2/home/home.component';
 import { HomeComponentV3 } from './test-pagina-v3/home/home.component';
 import { ItemsPageComponent } from './items-page/items-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { AuthGuard } from './_helpers/auth.guard';
+
+
 const routes: Routes = [
-  {
+    {
     path: "home",
     component: HomePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "home2",
@@ -21,6 +27,14 @@ const routes: Routes = [
   {
     path: "items",
     component: ItemsPageComponent,
+  },
+  {
+    path: "login",
+    component: LoginPageComponent,
+  },
+  {
+    path: "register",
+    component: RegisterPageComponent,
   },
   {
       path: "**",
@@ -36,6 +50,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[
+    AuthGuard
+  ]
 })
 export class AppRoutingModule { }

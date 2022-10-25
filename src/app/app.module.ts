@@ -8,7 +8,11 @@ import { TestPaginaModuleV2 } from './test-pagina-v2/test-pagina.module';
 import { TestPaginaModuleV3 } from './test-pagina-v3/test-pagina.module';
 import { ItemsPageModule } from './items-page/items-page.module';
 import { HomePageModule } from './home-page/home-page.module';
-
+import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { XsrfInterceptor } from './_helpers/http.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginPageModule } from './login-page/login-page.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +26,17 @@ import { HomePageModule } from './home-page/home-page.module';
     TestPaginaModuleV3,
     ItemsPageModule,
     HomePageModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LoginPageModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: XsrfInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

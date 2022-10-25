@@ -1,0 +1,19 @@
+<p>login-page works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+
+  <label for="email">Username</label>
+  <input type="text" class="form-control" formControlName="email" name="email"/>
+
+  <label for="password">Password</label>
+  <input type="password" class="form-control" formControlName="password" name="password"/>
+
+  <label for="remember">Remember</label>
+  <input type="checkbox" class="form-control" formControlName="remember" name="remember"/>
+
+<button type="submit">Login</button>
+
+</form>
+<div>
+{{ loginForm.status }}
+</div>
+<button (click)="logOut($event)">logOut</button>
