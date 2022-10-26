@@ -8,13 +8,15 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { AccountPageComponent } from './account-page/account-page.component';
+import { AddOfferPageComponent } from './add-offer-page/add-offer-page.component';
 
 
 const routes: Routes = [
     {
     path: "home",
     component: HomePageComponent,
-    canActivate: [AuthGuard]
+
   },
   {
     path: "home2",
@@ -27,6 +29,16 @@ const routes: Routes = [
   {
     path: "items",
     component: ItemsPageComponent,
+  },
+  {
+    path: "account",
+    component: AccountPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "addoffer",
+    component: AddOfferPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "login",

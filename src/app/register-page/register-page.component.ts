@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-register-page',
@@ -7,18 +9,30 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent implements OnInit {
-  profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
-  });
-  constructor(private fb: FormBuilder) { }
+  registerForm: FormGroup;
+
+  errorMessage = '';
+
+  constructor(private auth: AuthService, private fb: FormBuilder, private router: Router) {
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      password_confirmation: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
   }
 
 
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
+  onSubmit(): void {
+    if(this.registerForm.invalid){
+      return;
+    }
+  }
+
+  goToLogin(){
+    this.router.navigate(['login']);
   }
 }

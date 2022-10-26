@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-import { LoginService } from '../services/login.service';
-
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -26,43 +24,33 @@ export class LoginPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.auth.csrf().subscribe({
-      next: data => {
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
   }
 
   onSubmit(): void {
     if(this.loginForm.invalid){
       return;
     }
-
-    this.auth.login(this.loginForm.value).pipe(first()).subscribe({
-      next: data => {
-        console.log(data);
-        this.router.navigate(['home']);
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-
-  }
-
-  logOut($event: any): void {
-    $event.stopPropagation();
-
     this.auth.csrf().subscribe({
       next: data => {
-        this.auth.logout()
+        this.auth.login(this.loginForm.value).pipe(first()).subscribe({
+          next: data => {
+            console.log(data);
+            this.router.navigate(['account']);
+          },
+          error: err => {
+            console.log(err);
+          }
+        });
       },
       error: err => {
         console.log(err);
       }
     });
   }
+
+  goToRegister(){
+    this.router.navigate(['register']);
+  }
+
 
 }

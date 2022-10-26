@@ -13,6 +13,9 @@ import { XsrfInterceptor } from './_helpers/http.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginPageModule } from './login-page/login-page.module';
 import { SharedModule } from './shared/shared.module';
+import { RegisterPageModule } from './register-page/register-page.module';
+import { AccountPageModule } from './account-page/account-page.module';
+import { AddOfferPageModule } from './add-offer-page/add-offer-page.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     LoginPageModule,
+    RegisterPageModule,
+    AccountPageModule,
+    AddOfferPageModule,
     SharedModule
   ],
   providers: [ {

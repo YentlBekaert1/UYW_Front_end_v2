@@ -5,7 +5,11 @@
   --black-color: #0e1111;
   --primary-color: #42998B;
   --primary-light: #5acfbc91;
+  --primary-dark: #478E83;
+  --primary-darker: #2F8678;
   --secondary-color: rgba(255,176,72,1);
+  --secondary-light: rgb(255, 193, 111);
+  --secondary-dark: rgb(233, 134, 4);
   --yellow-gradient: linear-gradient(135deg, rgba(255,252,159,1) 0%, #fcd15c 0%, rgba(255,176,72,1) 100%);
   --yellow-gradient-color: rgba(255,176,72,1);
   --green-gradient: linear-gradient(159deg, rgba(255,242,189,1) 0%, rgba(66,153,139,1) 72%);
@@ -13,14 +17,17 @@
 }
 
 @font-face {
-  font-family: "ostrich-black";
-  src: local("ostrich"), url(./assets/fonts/ostrich-sans-black.ttf) format("truetype");
+  font-family: "montserrat-regular";
+  src: local("montserrat"), url(./assets/fonts/Montserrat-Regular.ttf) format("truetype");
 }
 @font-face {
-  font-family: "ostrich-bold";
-  src: local("ostrich"), url(./assets/fonts/ostrich-sans-bold.ttf) format("truetype");
+  font-family: "montserrat-bold";
+  src: local("montserrat"), url(./assets/fonts/Montserrat-Bold.ttf) format("truetype");
 }
-
+@font-face {
+  font-family: "montserrat-light";
+  src: local("montserrat"), url(./assets/fonts/montserrat-light.ttf) format("truetype");
+}
 
 *{
   margin: 0;
@@ -28,7 +35,7 @@
 }
 body{
   background-color: var(--back-color);
-  font-family: 'Montserrat',sans-serif;
+  font-family: "montserrat-light";
   color:#20292f;
 }
 

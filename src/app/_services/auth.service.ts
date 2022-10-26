@@ -2,7 +2,7 @@ import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpRequest, HttpRespo
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, lastValueFrom, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserAccount } from '../models/user';
+import { UserAccount } from '../_models/user';
 
 
 @Injectable({

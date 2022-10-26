@@ -1,0 +1,44 @@
+<app-top-nav></app-top-nav>
+<div class="account-page">
+  <div class="account-page-container">
+     <div class="crumbs">
+      <span>Home</span>
+      <span>-</span>
+      <span>Account</span>
+      <span>-</span>
+      <span>{{active_tab.value}}</span>
+     </div>
+     <div class="rows">
+      <div class="left-colum">
+        <h1>Mijn Account</h1>
+        <ul #tabs>
+          <li *ngFor="let tab of tab_array; let first = first;"  [ngClass]="{'active': first}" (click)="navCLicked(tab.key)">{{tab.value}}</li>
+        </ul>
+      </div>
+      <div class="right-colum">
+        <div class="mijn_gegevens" *ngIf="active_tab.key === 1">
+          <h1>Mijn gegevens</h1>
+        </div>
+
+        <div class="mijn-favorieten" *ngIf="active_tab.key === 2">
+          <h1>Mijn favorieten</h1>
+          <app-card></app-card>
+          <app-card></app-card>
+        </div>
+
+        <div class="instellingen" *ngIf="active_tab.key === 3">
+          <h1>Instelingen</h1>
+        </div>
+
+        <div class="loguit" *ngIf="active_tab.key === 4">
+          <h1>Log uit</h1>
+          <button (click)="logOut($event)">logOut</button> 
+        </div>
+
+      </div>
+     </div>
+   </div>
+   <div class="top_curve"></div>
+</div>
+
+<app-footer></app-footer>

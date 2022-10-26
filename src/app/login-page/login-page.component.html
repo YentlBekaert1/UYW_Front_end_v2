@@ -1,19 +1,36 @@
-<p>login-page works!</p>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+<div id="login-page">
+  <div id="background_circle1"></div>
+  <div id="background_circle2"></div>
+  <div id="background_line"></div>
+  <div class="login">
+    <div class="form-container">
+      <!-- <a [routerLink]="['/home']" class="home">home</a> -->
+      <h1>Log in</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+        <label for="email">email</label>
+        <input type="text" class="form-control" formControlName="email" name="email"/>
 
-  <label for="email">Username</label>
-  <input type="text" class="form-control" formControlName="email" name="email"/>
+        <label for="password">wachtwoord</label>
+        <input type="password" class="form-control" formControlName="password" name="password"/>
+        <div class="btns">
+          <button type="submit">Login</button>
+          <button type="button" (click)="goToRegister()">Maak account aan</button>
+        </div>
+        <div class="forget_password">
+          <span>Wachtwoord vergeten? </span><a href="">Klik hier</a>
+        </div>
+      </form>
+    </div>
+    <div class="image">
+      <div class="logo">
+        <img src="../../assets/logo-upcycle-your-waste 1.png" alt="">
+      </div>
+      <div class="bol-image">
 
-  <label for="password">Password</label>
-  <input type="password" class="form-control" formControlName="password" name="password"/>
-
-  <label for="remember">Remember</label>
-  <input type="checkbox" class="form-control" formControlName="remember" name="remember"/>
-
-<button type="submit">Login</button>
-
-</form>
-<div>
-{{ loginForm.status }}
+      </div>
+    </div>
+  </div>
 </div>
-<button (click)="logOut($event)">logOut</button>
+
+
+
