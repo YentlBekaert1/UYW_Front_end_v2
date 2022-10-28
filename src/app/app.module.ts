@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { RegisterPageModule } from './register-page/register-page.module';
 import { AccountPageModule } from './account-page/account-page.module';
 import { AddOfferPageModule } from './add-offer-page/add-offer-page.module';
+import { OfferDetailPageModule } from './offer-detail-page/offer-detail-page.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddOfferPageModule } from './add-offer-page/add-offer-page.module';
     RegisterPageModule,
     AccountPageModule,
     AddOfferPageModule,
+    OfferDetailPageModule,
     SharedModule
   ],
   providers: [ {

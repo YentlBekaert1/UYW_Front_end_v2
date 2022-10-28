@@ -62,33 +62,22 @@
 
       </div>
       <div class="categories">
-        <div class="categorie" id="categorie1">
-          <img src="../../assets/category-logos/logo1.svg" alt="">
-        </div>
-        <div class="categorie" id="categorie2">
-          <img src="../../assets/category-logos/logo2.svg" alt="">
-        </div>
-        <div class="categorie" id="categorie3">
-          <img src="../../assets/category-logos/logo3.svg" alt="">
-        </div>
-        <div class="categorie" id="categorie4">
-          <img src="../../assets/category-logos/logo4.svg" alt="">
-        </div>
-        <div class="categorie" id="categorie5">
-          <img src="../../assets/category-logos/logo5.svg" alt="">
+        <div *ngFor="let categorie of categories_array; let i = index" class="categorie" id="categorie{{i+1}}" (click)="infoCategoryClicked(categorie.key)">
+          <img src="{{categorie.image}}" alt="{{categorie.name}}">
+          <span>{{categorie.name}}</span>
         </div>
       </div>
      </div>
-     <div class="categorie-info">
+     <div class="categorie-info"  [ngClass]="category_info_visible == true ? 'active' : ''">
         <div class="top">
-          <h1>Info</h1>
-          <span><i class="material-icons">close</i></span>
+          <h1>{{active_category_info.name}}</h1>
+          <span (click)="closeInfoCategoryClicked($event)"><i class="material-icons">close</i></span>
         </div>
         <div class="middle">
-          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words</p>
+          <p>{{active_category_info.description}}</p>
         </div>
         <div class="bottom">
-          <button>Ontdek</button>
+          <button [routerLink]="['/items',(active_category_info.name | lowercase)]" >Ontdek</button>
         </div>
      </div>
     </div>

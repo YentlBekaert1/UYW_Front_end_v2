@@ -32,6 +32,9 @@
       span{
         padding-left:10px;
         font-size: 14px;
+        a{
+          color: inherit
+        }
         &:last-of-type{
           color: var(--secondary-color);
         }
@@ -60,6 +63,7 @@
             border-radius: 15px;
             color: #AEABAB;
             transition: all 0.3s ease;
+            cursor: pointer;
             &.active{
               background-color: var(--secondary-color);
               color: var(--white-color);

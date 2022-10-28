@@ -1,0 +1,30 @@
+.offerdetail-page
+{
+  position: relative;
+  width:100%;
+  height:100%;
+  padding: 5vh 0;
+  .top_curve{
+    //aspect-ratio: 1920/246;
+    width: 100%;
+    padding-bottom: 51%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../../assets/layered-waves-haikei2.svg);
+    position: absolute;
+    top: 0;
+    z-index: -10;
+  }
+  .offerdetail-page-container{
+    background-color: var(--white-color);
+    min-height: 100vh;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 1320px;
+    border-radius: 15px;
+  }
+}
+

@@ -176,22 +176,37 @@
       }
       .categories{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+        grid-template-columns: 1fr 1fr 1fr ;
         width: 100%;
         .categorie{
           justify-self: center;
+          background-color: var(--secondary-color);
+          text-align: center;
+          width: 80px;
+          height: 80px;
+          padding: 10px;
+          border-radius: 70px;
+          transition: all 0.3s ease-in-out;
+          margin-bottom: 20px;
           img{
-            width: 80%;
-            transition: all 0.3s ease-in-out;
-            &:hover{
-              width: 90px;
-            }
+            padding-top: 5px;
+            width: 50%;
+          }
+          span{
+            display: block;
+            padding-top: 5px;
+            color: var(--white-color);
+            font-size: 0.7rem;
           }
         }
       }
     }
     .categorie-info{
-      //display: none;
+      &.active{
+        visibility: visible;
+      }
+
+      visibility: hidden;
       background-color: var(--secondary-color);
       border-radius: 15px;
       margin-top: 10%;
@@ -207,8 +222,16 @@
         span{
           align-self: flex-start;
           color: var(--white-color);
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
           &:hover{
-            color: var(--black-color);
+            color: var(--secondary-color);
+            background-color: var(--white-color);
+            border-radius: 30px;
           }
         }
 
@@ -230,7 +253,7 @@
           font-family: montserrat-bold;
           color: var(--secondary-color);
           background-color: var(--white-color);
-          transition: all 0.3s ease-in-out;
+          transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out, border-radius 0.3s ease-in-out;
           &:hover{
             background-color: var(--secondary-color);
             color: var(--white-color);
@@ -608,28 +631,35 @@
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
           width: 100%;
           top:-30%;
-
           .categorie{
+            width: 80px;
+            height: 80px;
+            border-radius: 90px;
             &#categorie1{
-              padding-top: 20%;
+              margin-top: 20%;
             }
             &#categorie2{
-              padding-top: 55%;
+              margin-top: 55%;
             }
             &#categorie3{
-              padding-top: 130%;
+              margin-top: 130%;
             }
             &#categorie4{
-              padding-top: 30%;
+              margin-top: 30%;
             }
             &#categorie5{
-              padding-top: 20%;
+              margin-top: 20%;
             }
             img{
-              width: 100px;
-              transition: all 0.3s ease-in-out;
-              &:hover{
-                width: 110px;
+              padding-top: 12px;
+            }
+            span{
+              font-size: 0.7rem;
+            }
+            &:hover{
+              img{
+                transition: width 0.3s ease-in-out;
+                width: 55%;
               }
             }
           }
@@ -694,26 +724,33 @@
         .categories{
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
           .categorie{
+            width: 100px;
+            height: 100px;
+            border-radius: 90px;
             &#categorie1{
-              padding-top: 25%;
+              margin-top: 25%;
             }
             &#categorie2{
-              padding-top: 30%;
+              margin-top: 30%;
             }
             &#categorie3{
-              padding-top: 110%;
+              margin-top: 110%;
             }
             &#categorie4{
-              padding-top: 10%;
+              margin-top: 10%;
             }
             &#categorie5{
-              padding-top: 30%;
+              margin-top: 30%;
             }
             img{
-              width: 100px;
-              transition: all 0.3s ease-in-out;
-              &:hover{
-                width: 110px;
+              padding-top: 12px;
+            }
+            span{
+              font-size: 0.8rem;
+            }
+            &:hover{
+              img{
+                width: 55%;
               }
             }
           }
@@ -781,26 +818,33 @@
         .categories{
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
           .categorie{
+            width: 130px;
+            height: 130px;
+            border-radius: 90px;
             &#categorie1{
-              padding-top: 25%;
+              margin-top: 25%;
             }
             &#categorie2{
-              padding-top: 10%;
+              margin-top: 10%;
             }
             &#categorie3{
-              padding-top: 80%;
+              margin-top: 80%;
             }
             &#categorie4{
-              padding-top: 10%;
+              margin-top: 10%;
             }
             &#categorie5{
-              padding-top: 30%;
+              margin-top: 30%;
             }
             img{
-              width: 120px;
-              transition: all 0.3s ease-in-out;
-              &:hover{
-                width: 130px;
+              padding-top: 12px;
+            }
+            span{
+              font-size: 0.9rem;
+            }
+            &:hover{
+              img{
+                width: 55%;
               }
             }
           }
@@ -875,26 +919,33 @@
         .categories{
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
           .categorie{
+            width: 130px;
+            height: 130px;
+            border-radius: 90px;
             &#categorie1{
-              padding-top: 30%;
+              margin-top: 30%;
             }
             &#categorie2{
-              padding-top: 1%;
+              margin-top: 1%;
             }
             &#categorie3{
-              padding-top: 70%;
+              margin-top: 70%;
             }
             &#categorie4{
-              padding-top: 0%;
+              margin-top: 0%;
             }
             &#categorie5{
-              padding-top: 25%;
+              margin-top: 25%;
             }
             img{
-              width: 150px;
-              transition: all 0.3s ease-in-out;
-              &:hover{
-                width: 160px;
+              padding-top: 12px;
+            }
+            span{
+              font-size: 1rem;
+            }
+            &:hover{
+              img{
+                width: 55%;
               }
             }
           }

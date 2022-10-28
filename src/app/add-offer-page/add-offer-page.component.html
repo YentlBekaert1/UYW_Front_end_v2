@@ -1,2 +1,131 @@
-<p>add-offer-page works!</p>
+<app-top-nav></app-top-nav>
+<div class="addoffer-page">
+  <div class="addoffer-page-container">
+    <div class="content">
+      <div class="crumbs">
+        <span><a [routerLink]="['/home']">Home</a></span>
+        <span>-</span>
+        <span>Account</span>
+        <span>-</span>
+        <span>Voeg offer toe</span>
+       </div>
+       <h1>Voeg een nieuw item toe.</h1>
+       <p>Hier kun je een item toevoegen. Selecteer eerst een categorie om de gepaste invulvelden te verkrijgen.</p>
+       <div class="categories">
+        <div *ngFor="let categorie of categories_array">
+          <img src="{{categorie.image}}" alt="{{categorie.name}}">
+          <span>{{categorie.name}}</span>
+        </div>
+       </div>
+       <p>
+        Gekozen categorie: <span>Afval</span>
+       </p>
+       <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <h2>Algemene info</h2>
+        <label for="title">Titel</label>
+        <input type="text" class="form-control" formControlName="title" name="title"/>
+        <label for="description">Beschrijving</label>
+        <textarea class="form-control" formControlName="description" name="description" rows="4" cols="50"></textarea>
+
+
+        <h2>Materialen</h2>
+        <p>Je kunt meerdere materialen selecteren. Selecteer een materiaal en/of submateriaal en druk op de knop om deze toe te voegen.</p>
+        <div class="inputs-select">
+          <div>
+            <label for="material">Materiaal</label>
+          <select name="material" formControlName="material" class="form-control"></select>
+          </div>
+         <div>
+          <label for="submaterial">Submateriaal</label>
+          <select name="submaterial" formControlName="submaterial" class="form-control"></select>
+         </div>
+         <div>
+          <button type="button">toevoegen</button>
+         </div>
+        </div>
+        <div class="chosed-select">
+          <div><span>materiaal,submateriaal</span><i class="material-icons">close</i></div>
+          <div><span>materiaal,submateriaal</span><i class="material-icons">close</i></div>
+          <div><span>materiaal,submateriaal</span><i class="material-icons">close</i></div>
+          <div><span>materiaal,submateriaal</span><i class="material-icons">close</i></div>
+          <div><span>materiaal,submateriaal</span><i class="material-icons">close</i></div>
+          <div><span>materiaal,submateriaal</span><i class="material-icons">close</i></div>
+        </div>
+
+        <h2>Tags</h2>
+        <p>Je kunt meerdere tags selecteren of zelf één toevoegen. Met deze tags kunnen later de zoekresultaten verfijnd worden.</p>
+        <div class="inputs-select">
+          <div>
+            <label for="tag">Tag</label>
+            <select name="tag" formControlName="tag" class="form-control"></select>
+          </div>
+          <div>
+            <label for="new_tag">Nieuwe tag</label>
+            <input type="text" name="new_tag" formControlName="new_tag" class="form-control">
+          </div>
+          <div>
+            <button type="button">toevoegen</button>
+          </div>
+        </div>
+        <div class="chosed-select">
+          <div><span>tag</span><i class="material-icons">close</i></div>
+          <div><span>tag</span><i class="material-icons">close</i></div>
+          <div><span>tag</span><i class="material-icons">close</i></div>
+          <div><span>tag</span><i class="material-icons">close</i></div>
+          <div><span>tag</span><i class="material-icons">close</i></div>
+          <div><span>tag</span><i class="material-icons">close</i></div>
+        </div>
+
+        <h2>Locatie</h2>
+        <label for="street_number">Straat en nummer</label>
+        <input type="text" class="form-control" formControlName="street_number" name="street_number"/>
+        <label for="city">Gemeente</label>
+        <input type="text" class="form-control" formControlName="city" name="city"/>
+        <label for="country">Land</label>
+        <input type="text" class="form-control" formControlName="country" name="country"/>
+
+        <h2>Contact (optioneel)</h2>
+        <label for="contact">Contact</label>
+        <input type="text" class="form-control" formControlName="contact" name="contact"/>
+        <label for="url">URL naar eigen site</label>
+        <input type="text" class="form-control" formControlName="url" name="url"/>
+
+        <h2>Afbeeldingen</h2>
+          <div class="image-inputs">
+            <div class="fileupload" appDragDropFileUpload (click)="fileField.click()" (fileDropped)="fileupload($event)">
+                <span class="ddinfo">Choose a file or drag here</span>
+                <input
+                  type="file"
+                  name="image"
+                  #fileField
+                  (change)="fileupload($any($event).target.files)"
+                  hidden
+                  multiple
+                />
+            </div>
+            <div class="image-list">
+              <div class="image" *ngFor="let file of fileArr; let i = index">
+                <div class="profile">
+                  <img [src]="sanitize(file.url)" alt="" />
+                </div>
+                <p>{{ file.image.name }}</p>
+            </div>
+            </div>
+          </div>
+
+
+
+        <div class="from-bottom">
+          <div>
+            <input type="checkbox" name="terms" id="" formControlName="terms">
+            <label for="terms">Ik ga akkoord met de <a href="">algemene vooraarden</a></label>
+          </div>
+          <button type="submit">Item toevoegen</button>
+        </div>
+       </form>
+    </div>
+  </div>
+  <div class="top_curve"></div>
+</div>
 <app-footer></app-footer>

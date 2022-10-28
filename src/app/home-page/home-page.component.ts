@@ -12,13 +12,34 @@ export class HomePageComponent implements OnInit {
   @ViewChild('earthdrawing') private earthdrawing!: ElementRef;
   public ctx!: any;
 
-  constructor(private auth: AuthService) { }
+  category_info_visible: Boolean = false;
+  active_category_info:  {key: number, name: string, description: string, image: string};
+
+  categories_array: {key: number, name: string, description: string, image: string}[] = [
+    { key: 1, name:"Afval", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words', image:"../../assets/category-logos/afval.svg"},
+    { key: 2, name:"Inspiratie", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words', image:"../../assets/category-logos/inspiratie.svg"},
+    { key: 3, name:"Persoon", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words',image:"../../assets/category-logos/mens.svg"},
+    { key: 4, name:"Organisatie", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words',image:"../../assets/category-logos/organisatie.svg"},
+    { key: 5, name:"Technologie",description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words', image:"../../assets/category-logos/technologie.svg"},
+  ];
+
+
+  constructor(private auth: AuthService) {
+    this.active_category_info = this.categories_array[0];
+  }
 
   ngOnInit(): void {
 
   }
 
-
+  infoCategoryClicked(evkey: any){
+    this.active_category_info = this.categories_array.find(element => element.key == evkey);
+    this.category_info_visible = true;
+    console.log(this.active_category_info);
+  }
+  closeInfoCategoryClicked(event){
+    this.category_info_visible = false;
+  }
 
 
   ngAfterViewInit(): void {

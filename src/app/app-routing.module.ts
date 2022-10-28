@@ -10,6 +10,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { AddOfferPageComponent } from './add-offer-page/add-offer-page.component';
+import { OfferDetailPageComponent } from './offer-detail-page/offer-detail-page.component';
 
 
 const routes: Routes = [
@@ -27,18 +28,23 @@ const routes: Routes = [
     component: HomeComponentV3,
   },
   {
-    path: "items",
+    path: "items/:category",
     component: ItemsPageComponent,
   },
   {
-    path: "account",
+    path: "account/:tab",
     component: AccountPageComponent,
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: "addoffer",
     component: AddOfferPageComponent,
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "offerdetail/:id",
+    component: OfferDetailPageComponent,
+    //canActivate: [AuthGuard]
   },
   {
     path: "login",
