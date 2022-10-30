@@ -5,17 +5,20 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { CardSliderComponent } from './card-slider/card-slider.component';
 
 @NgModule({
   declarations: [
     TopNavComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
+    CardSliderComponent
   ],
   exports:[
     TopNavComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
+    CardSliderComponent
   ],
   imports: [
     CommonModule,

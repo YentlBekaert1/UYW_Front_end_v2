@@ -65,7 +65,7 @@
               -webkit-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.25);
               box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
               input{
-                height: 40px;
+                height: 50px;
                 border: 0;
                 outline: 0;
                 padding-left: 10px;
@@ -80,7 +80,7 @@
                 border: 0;
                 border-left: 1px solid lightgrey;
                 outline: 0;
-                height: 40px;
+                height: 50px;
                 box-sizing: content-box;
                 border-radius: 0 15px 15px 0;
                 font-family: montserrat-light;
@@ -93,11 +93,12 @@
               border-radius: 15px;
               width: 100%;
               margin: 0 auto;
-              padding: 10px 0;
+              padding: 20px 0;
               display: grid;
               grid-template-columns: auto auto auto;
               gap: 10px;
               select{
+                max-width: 100%;
                 height: 40px;
                 border: 0;
                 border-radius: 15px;
@@ -110,23 +111,30 @@
                 text-transform: capitalize;
               }
               button{
+                height: 40px;
                 width: 100%;
+                padding: 10px 50px;
                 background-color: var(--primary-color);
-                color: white;
-                border: none;
+                color:var(--white-color);
                 border-radius: 15px;
-                padding: 10px 20px;
+                border: 3px solid var(--primary-color);
                 font-size: 16px;
-                font-weight: bold;
-                text-transform: uppercase;
-                letter-spacing: 1px;
+                font-family: montserrat-bold;
                 -webkit-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.25);
-                box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
-                font-family: montserrat-light;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                transition: all 0.3s ease-in-out;
                 display: flex;
                 justify-content: space-evenly;
-                i{
-                  font-size: 20px;
+                align-items: center;
+                  i{
+                  font-size: 25px;
+                }
+                &:hover{
+                  background-color: var(--white-color);
+                  color:var(--primary-color);
+
+                  border-radius: 5px;
+                  border: 3px solid var(--primary-color);
                 }
               }
             }
@@ -148,7 +156,7 @@
   }
 }
 .section2{
-  min-height: 80vh;
+
   width: 100%;
   position: relative;
   z-index: 0;
@@ -204,9 +212,11 @@
     .categorie-info{
       &.active{
         visibility: visible;
+        //display: block;
       }
 
       visibility: hidden;
+      //display: none;
       background-color: var(--secondary-color);
       border-radius: 15px;
       margin-top: 10%;
@@ -266,23 +276,21 @@
     }
   }
 }
-
 .linepart{
   position: relative;
 }
-
 .section3{
   min-height: 50vh;
   position: relative;
   z-index: 0;
   margin-top: 15%;
-  margin-bottom: 5%;
+  margin-bottom: 10%;
   .content{
     position: relative;
     z-index: 0;
     h2{
       text-align: center;
-      margin: 10% 0 5%;
+      margin: 20% 0 5%;
       font-size: 2.3rem;
       letter-spacing: 1px;
       color:#656363;
@@ -296,12 +304,12 @@
       .HW-card{
         text-align: center;
         background-color: var(--white-color);
-        height: 80%;
+        height: 100%;
         border-radius: 15px;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
         padding: 10%;
         h3{
-          font-size: 25px;
+          font-size: 18px;
           color: var(--primary-color);
           font-family: montserrat-bold;
           padding: 10% 0 5% 0;
@@ -311,6 +319,8 @@
           color: #656363;
         }
         svg{
+          width: 50px;
+          height: 50px;
         }
         &.middle_card{
           margin-top: 10%;
@@ -359,7 +369,7 @@
         color:var(--primary-color);
         border-radius: 15px;
         border: 3px solid var(--primary-color);
-        font-size: 20px;
+        font-size: 16px;
         font-family: montserrat-bold;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
         transition: all 0.3s ease-in-out;
@@ -373,7 +383,6 @@
     }
   }
 }
-
 .section5{
   position: relative;
   min-height: 60vh;
@@ -405,16 +414,38 @@
         letter-spacing: 1px;
       }
       p{
-        padding-bottom: 20px;
+        margin-bottom: 20px;
+        font-size: 1.3rem
       }
       a{
-        padding-bottom: 20px;
         display: block;
-        color: var(--white-color);
+        width: fit-content;
+        margin-top: 40px;
+        margin-left: 30px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        text-decoration: none;
+        padding: 10px 50px;
+        background-color: var(--white-color);
+        border: 3px solid var(--white-color);
+        color:var(--primary-color);
+        border-radius: 15px;
+
+        font-size: 16px;
+        font-family: montserrat-bold;
+
+        transition: all 0.3s ease-in-out;
+        &:hover{
+          background-color: var(--primary-color);
+          color:var(--white-color);
+          border-radius: 5px;
+          border: 3px solid var(--white-color);
+        }
       }
     }
     .right{
       justify-self: flex-end;
+      align-self: center;
       img{
         width: 90%;
       }
@@ -422,7 +453,6 @@
   }
 
 }
-
 .section6{
   min-height: 50vh;
   margin-bottom: 10%;
@@ -525,25 +555,24 @@
   }
   &.bg-image3{
     width: 100%;
-    bottom: -6%;
-    padding-top: 50%;
+    top: 0%;
+    padding-top: 90vh;
     z-index: -1;
     background-image: url(../../assets/backgrounds/vector-section2-2-groot2.svg);
-    background-position: center;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
   }
   &.bg-image4{
     transform: translate(-50%,-50%);
     width: 100%;
     max-width: 1640px;
-    top: 50%;
+    top: 45%;
     left: 50%;
     height: 100%;
     z-index: -1;
     background-image: url(../../assets/Long-line.svg);
-    background-position: center;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
   }
   &.bg-image5{
@@ -612,6 +641,7 @@
     }
   }
   .section2{
+
     .content{
       p{
         padding-bottom:10%;
@@ -668,6 +698,25 @@
 
     }
   }
+  .section3{
+    .content{
+      div.HW-cards{
+        .HW-card{
+          height: 80%;
+          h3{
+            font-size: 20px;
+          }
+          p{
+            font-size: 14px;
+          }
+          svg{
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+    }
+  }
 
   .bg-image{
     &.bg-image1{
@@ -680,7 +729,8 @@
       padding-top: 30%;
     }
     &.bg-image3{
-      bottom: -8%;
+      top: 5%;
+      padding-top: 80vh;
     }
     &.bg-image5{
       top: -10%;
@@ -760,6 +810,25 @@
     }
   }
 
+  .section3{
+    .content{
+      div.HW-cards{
+        .HW-card{
+          h3{
+            font-size: 20px;
+          }
+          p{
+            font-size: 14px;
+          }
+          svg{
+            width: 70px;
+            height: 70px;
+          }
+        }
+      }
+    }
+  }
+
   .bg-image{
     &.bg-image1{
       bottom: 0%;
@@ -771,7 +840,11 @@
       padding-top: 17%;
     }
     &.bg-image3{
-      bottom: -10%;
+      top: 0%;
+      padding-top: 90vh;
+    }
+    &.bg-image4{
+     // top: 49%;
     }
     &.bg-image5{
       top: -12%;
@@ -782,7 +855,6 @@
   }
 
 }
-
 @media screen and (min-width: 1010px) {
   .section1{
     .intro{
@@ -854,6 +926,24 @@
     }
   }
 
+  .section3{
+    .content{
+      div.HW-cards{
+        .HW-card{
+          h3{
+            font-size: 25px;
+          }
+          p{
+            font-size: 16px;
+          }
+          svg{
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+    }
+  }
   .bg-image{
     &.bg-image1{
       bottom: -30%;
@@ -865,7 +955,11 @@
       padding-top: 17%;
     }
     &.bg-image3{
-      bottom: -15%;
+      top: 0%;
+      padding-top: 100vh;
+    }
+    &.bg-image4{
+
     }
     &.bg-image5{
       top: -15%;
@@ -903,7 +997,7 @@
         .earth-drawing.right{
           display: block;
           background-image: url(../../assets/hero-aardbol.svg);
-          background-position: 50% 30%;
+          background-position: 50% 100%;
           background-size: 90%;
           background-repeat: no-repeat;
         }
@@ -965,9 +1059,12 @@
       padding-top: 17%;
     }
     &.bg-image3{
-      bottom: -20%;
+      top: 0%;
+      padding-top: 110vh;
     }
-
+    &.bg-image4{
+      top: 44%;
+    }
     &.bg-image5{
       top: -20%;
     }

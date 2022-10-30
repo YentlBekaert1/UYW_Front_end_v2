@@ -1,0 +1,55 @@
+.slide-container{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  cursor: move;
+  .cards {
+    width: calc(100% - 80px);
+    overflow: hidden;
+
+    app-card{
+      height: 100%;
+      display: inline-block;
+      margin-right: 10px;
+      position: relative;
+    }
+  }
+  .left, .right {
+    height: 50px;
+    width: 50px;
+    color: var(--black-color);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    i{
+      font-size: 3rem;
+    }
+    &.disabled{
+      color:#CCC;
+    }
+  }
+  .left{
+    left: 0;
+    i{
+      padding-right: 10px;
+    }
+  }
+  .right {
+    right: 0;
+    i{
+      padding-left: 10px;
+    }
+  }
+}
+.overflow {
+  position: relative;
+  transition: left 0.5s ease-in-out;
+}
+
+.w-100 {
+  width: 100%!important;
+}
+
+.no-right-margin {
+  margin-right: 0px;
+}
