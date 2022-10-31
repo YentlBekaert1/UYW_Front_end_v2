@@ -17,10 +17,11 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
   test = new Observable();
 
   tab_array: {key: number, value: string}[] = [
-    { key: 1, value:"Mijn gegevens"},
+    { key: 1, value:"Mijn Gegevens"},
     { key: 2, value:"Mijn Favorieten"},
-    { key: 3, value:"Instellingen"},
-    { key: 4, value:"Log Uit"},
+    { key: 3, value:"Mijn Items"},
+    { key: 4, value:"Instellingen"},
+    { key: 5, value:"Log Uit"},
   ];
 
   constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {
@@ -37,11 +38,14 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
        else if(tab === 'favorites'){
          number = 2;
        }
-       else if(tab === 'settings'){
+       else if(tab === 'items'){
         number = 3;
         }
+       else if(tab === 'settings'){
+        number = 4;
+        }
         else if(tab === 'logout'){
-          number = 4;
+          number = 5;
         }
        const found = this.tab_array.find(element => element.key === number);
        this.active_tab = found;
@@ -59,11 +63,14 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
        else if(tab === 'favorites'){
          number = 2;
        }
-       else if(tab === 'settings'){
+       else if(tab === 'items'){
         number = 3;
+      }
+       else if(tab === 'settings'){
+        number = 4;
         }
         else if(tab === 'logout'){
-          number = 4;
+          number = 5;
         }
        const found = this.tab_array.find(element => element.key === number);
        this.active_tab = found;
@@ -80,9 +87,12 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
       this.router.navigate(['account', 'favorites']);
     }
     else if(number === 3){
-      this.router.navigate(['account', 'settings']);
+      this.router.navigate(['account', 'items']);
     }
     else if(number === 4){
+      this.router.navigate(['account', 'settings']);
+    }
+    else if(number === 5){
       this.router.navigate(['account', 'logout']);
     }
 

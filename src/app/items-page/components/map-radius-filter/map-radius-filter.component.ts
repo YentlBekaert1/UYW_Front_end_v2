@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Output, ViewChild, EventEmitter} from '@angular/core';
-import { Feature, GeosearchService } from './geosearch.service';
+import { Feature, GeosearchService } from '../../../_services/geosearch.service';
 
 
 @Component({
@@ -39,7 +39,7 @@ export class MapRadiusFilterComponent implements OnInit {
         const searchTerm = this.textInput.nativeElement.value.toLowerCase();
         if (searchTerm && searchTerm.length > 0) {
             this.geoSearch
-            .search_word_photon(searchTerm)
+            .searchWordPhoton(searchTerm)
             .subscribe((features: any) => {
               if(features[0].lat && features[0].lon){
                 console.log(features[0].lat, features[0].lon)

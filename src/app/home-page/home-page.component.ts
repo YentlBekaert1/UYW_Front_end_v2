@@ -1,4 +1,5 @@
 import { Component, Input, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 @Component({
   selector: 'app-home-page',
@@ -24,7 +25,7 @@ export class HomePageComponent implements OnInit {
   ];
 
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
     this.active_category_info = this.categories_array[0];
   }
 
@@ -39,6 +40,10 @@ export class HomePageComponent implements OnInit {
   }
   closeInfoCategoryClicked(event){
     this.category_info_visible = false;
+  }
+  zoekformClicked(){
+    console.log('click')
+    this.router.navigate(['/items/all']);
   }
 
 

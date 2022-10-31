@@ -15,6 +15,14 @@ export class CategoryButtonsComponent implements OnInit {
 
   @Output() categoryButtonEvent = new EventEmitter<number>();
 
+  categories_array: {key: number, name: string, image: string}[] = [
+    { key: 1, name:"Afval", image:"../../assets/category-logos/afval.svg"},
+    { key: 2, name:"Inspiratie", image:"../../assets/category-logos/inspiratie.svg"},
+    { key: 3, name:"Persoon", image:"../../assets/category-logos/mens.svg"},
+    { key: 4, name:"Organisatie", image:"../../assets/category-logos/organisatie.svg"},
+    { key: 5, name:"Technologie", image:"../../assets/category-logos/technologie.svg"},
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -22,7 +30,7 @@ export class CategoryButtonsComponent implements OnInit {
 
   ButtonClick(event: any){
     //console.log(event.target.id);
-    this.categoryButtonEvent.emit(parseInt(event.target.id));
+    this.categoryButtonEvent.emit(parseInt(event));
   }
    //als er een verandering gebeurt van een Input()
    ngOnChanges(changes: SimpleChanges) {
@@ -72,5 +80,4 @@ export class CategoryButtonsComponent implements OnInit {
       }
     }
   }
-
 }

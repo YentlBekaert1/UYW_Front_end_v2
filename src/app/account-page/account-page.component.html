@@ -26,11 +26,16 @@
           <app-card></app-card>
         </div>
 
-        <div class="instellingen" *ngIf="active_tab.key === 3">
+        <div class="mijn-items" *ngIf="active_tab.key === 3">
+          <h1>Mijn items</h1>
+        </div>
+
+
+        <div class="instellingen" *ngIf="active_tab.key === 4">
           <h1>Instelingen</h1>
         </div>
 
-        <div class="loguit" *ngIf="active_tab.key === 4">
+        <div class="loguit" *ngIf="active_tab.key === 5">
           <h1>Log uit</h1>
           <button (click)="logOut($event)">logOut</button>
         </div>

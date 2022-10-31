@@ -71,8 +71,19 @@
                 padding-left: 10px;
                 border-radius: 15px 0 0 15px;
                 font-family: montserrat-light;
-                color: #AEABAB;
                 text-transform: capitalize;
+                &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                  color: var(--black-color);
+                  opacity: 1; /* Firefox */
+                }
+
+                &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                  color: var(--black-color);
+                }
+
+                &::-ms-input-placeholder { /* Microsoft Edge */
+                  color: var(--black-color);
+                }
               }
               select{
                 background-color:  var(--white-color);
@@ -84,7 +95,9 @@
                 box-sizing: content-box;
                 border-radius: 0 15px 15px 0;
                 font-family: montserrat-light;
-                color: #AEABAB;
+                option:first-of-type {
+                  color: #AEABAB;
+                }
               }
             }
           }
@@ -107,13 +120,15 @@
                 outline: 0;
                 -webkit-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.25);
                 box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
-                color: #AEABAB;
                 text-transform: capitalize;
+                option:first-of-type {
+                  color: #AEABAB;
+                }
               }
               button{
                 height: 40px;
                 width: 100%;
-                padding: 10px 50px;
+                padding: 10px 20px;
                 background-color: var(--primary-color);
                 color:var(--white-color);
                 border-radius: 15px;
@@ -342,7 +357,7 @@
       width: 117px;
       height: 8px;
       border-radius: 10px;
-      background: #FFB048;
+      background: var(--secondary-color);
       transform: translate(-50%,-50%);
       position: absolute;
       left: 50%;
@@ -635,6 +650,14 @@
           }
           .zoek-form{
             width: 80%;
+            .more-selection{
+              div{
+                button{
+                  padding: 10px 50px;
+                }
+              }
+            }
+
           }
         }
       }

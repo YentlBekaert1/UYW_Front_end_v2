@@ -1,4 +1,4 @@
-<div id="txtboxes">
+<!-- <div id="txtboxes">
       <p>Zoek op locatie:</p>
       <div class="searchInput">
         <input type="text" #textInput>
@@ -19,6 +19,40 @@
       <div class="buttons">
         <button type='button' id="zoek_button" (click)="searchButtonClicked()"><span *ngIf="searchStatus === false;else cross"><i class="material-icons">search</i><span>Zoeken</span></span></button>
         <ng-template #cross><span><i class="material-icons">close</i> <span>Annuleer</span></span></ng-template>
-        <!-- <button type='button' id="annuleer_button" (click)="annuleerButtonClicked()">annuleer</button> -->
+        <button type='button' id="annuleer_button" (click)="annuleerButtonClicked()">annuleer</button>
       </div>
+</div> -->
+
+<div class="zoek-form" #zoekform>
+  <div class="location">
+    <div>
+      <input type="text" placeholder="locatie" #textInput>
+      <select name="distance" id="distance" #distanceSeletor>
+        <option value="">Afstand</option>
+        <option value="10">+10km</option>
+        <option value="20">+20km</option>
+        <option value="30">+30km</option>
+        <option value="40">+40km</option>
+        <option value="50">+50km</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="more_selection">
+    <div>
+      <select name="materiaal_filter" id="materiaal_filter">
+        <option value=" ">Materiaal</option>
+        <option value="">materiaal</option>
+      </select>
+      <select name="more_filters" id="more_filters">
+        <option value="">Meer filters</option>
+      </select>
+      <button id="zoek_button" (click)="searchButtonClicked()"><i class="material-icons">search</i>Zoeken</button>
+    </div>
+  </div>
+
+  <div class="userLocationCheckbox">
+    <input type="checkbox" name="use_my_location" id="use_my_location" #userLocationChechekbox> <span for="use_my_location">Gebruik mijn loactie</span>
+  </div>
 </div>
+

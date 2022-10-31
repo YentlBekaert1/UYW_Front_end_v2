@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GeosearchService } from './geosearch.service';
+import { MapboxgeosearchService } from './geosearch.service';
 
 describe('MapboxgeosearchService', () => {
-  let service: GeosearchService;
+  let service: MapboxgeosearchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GeosearchService);
+    service = TestBed.inject(MapboxgeosearchService);
   });
 
   it('should be created', () => {

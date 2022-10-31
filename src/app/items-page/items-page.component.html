@@ -4,6 +4,7 @@
   </header>
   <main>
     <section class="filters">
+        <div class="filter-background"></div>
         <div class="filters-container container ">
             <app-category-buttons
               [wasteCategoryState] = "wasteCategoryState"
@@ -15,6 +16,7 @@
             ></app-category-buttons>
             <app-map-radius-filter (filterRadius)="filterRadiusClicked($event)" (annuleerFilterRadius)="annuleerfilterRadiusClicked()"></app-map-radius-filter>
             <app-tabs (tabClickedEvent) = "tabClickedEvent($event)"></app-tabs>
+            <p>Er zijn {{listdata.length}} resultaten gevonden</p>
             <!-- <div class="moreFilters">
               <i class="material-icons">tune</i><span>Filter resultaten</span>
             </div> -->
@@ -33,7 +35,6 @@
             ></app-map>
         </div>
         <div class="property-list" #propertylist>
-          <p>Er zijn {{listdata.length}} resultaten gevonden</p>
            <app-list-display
               [listdata]="listdata"
               [activeTab]="activeTab"

@@ -18,6 +18,7 @@
               <div>
                 <input type="text" placeholder="locatie">
                 <select name="distance" id="distance">
+                  <option value="">Afstand</option>
                   <option value="10">+10km</option>
                   <option value="20">+20km</option>
                   <option value="30">+30km</option>
@@ -30,13 +31,13 @@
             <div class="more_selection">
               <div>
                 <select name="category_filter" id="category_filter">
-                  <option value=" ">selecteer</option>
+                  <option value=" ">Categorie</option>
                   <option value="volvo">categorie</option>
                 </select>
                 <select name="materiaal_filter" id="materiaal_filter">
-                  <option value="">selecteer</option>
+                  <option value="">Materiaal</option>
                 </select>
-                <button><i class="material-icons">search</i>Zoeken</button>
+                <button (click)="zoekformClicked()"><i class="material-icons">search</i>Zoeken</button>
               </div>
             </div>
           </div>
