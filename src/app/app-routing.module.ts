@@ -28,7 +28,7 @@ const routes: Routes = [
     component: HomeComponentV3,
   },
   {
-    path: "items/:category",
+    path: "items/:tab/:category",
     component: ItemsPageComponent,
   },
   {

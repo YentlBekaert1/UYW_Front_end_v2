@@ -1,20 +1,25 @@
 <div id="card">
 
-  <img *ngIf="image;else defaultImage" src="https://backenduyw.yentlbekaert.be/images/{{image}}" alt="{{name}}">
+  <img *ngIf="image;else defaultImage" src="http://127.0.0.1:8000/{{image}}" alt="{{name}}">
   <ng-template #defaultImage>
     <img src="../../../../assets/default_image.png" alt="no image">
   </ng-template>
   <div class="card-content">
-    <!-- <p>{{name}}</p>
-    <p>{{category}}</p>
-    <p>{{material}}</p>
-    <p>{{date}}</p> -->
-    <div class="category-circle">
-      <img src="../../../assets/category-logos/afval.svg" alt="">
+    <div class="category-circle" *ngIf="category;else defaultCircle">
+      <img *ngIf="category.id === 1" src="../../../assets/category-logos/afval.svg" alt="">
+      <img *ngIf="category.id === 2" src="../../../assets/category-logos/inspiratie.svg" alt="">
+      <img *ngIf="category.id === 3" src="../../../assets/category-logos/mens.svg" alt="">
+      <img *ngIf="category.id === 4" src="../../../assets/category-logos/organisatie.svg" alt="">
+      <img *ngIf="category.id === 5" src="../../../assets/category-logos/technologie.svg" alt="">
     </div>
-    <h2>Titel</h2>
-    <p>Material</p>
-    <p>Locatie</p>
+    <ng-template #defaultCircle>
+      <div class="category-circle">
+        <img src="../../../assets/category-logos/afval.svg" alt="">
+      </div>
+    </ng-template>
+    <h2>{{name}}</h2>
+    <p>{{materials}}</p>
+    <p>{{locatie_string}}</p>
     <a href="">Meer info</a>
   </div>
 </div>

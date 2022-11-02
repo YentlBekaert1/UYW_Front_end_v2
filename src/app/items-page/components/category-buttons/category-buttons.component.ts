@@ -36,46 +36,46 @@ export class CategoryButtonsComponent implements OnInit {
    ngOnChanges(changes: SimpleChanges) {
     if(changes['wasteCategoryState']){
     //console.log('change wasteCategoryState:',changes['wasteCategoryState'].currentValue);
-      if(changes['wasteCategoryState'].currentValue == 0){
+      if(changes['wasteCategoryState'].currentValue == 1){
         document.getElementById('1')?.classList.add('active');
       }
-      if(changes['wasteCategoryState'].currentValue == 1){
+      if(changes['wasteCategoryState'].currentValue == 0){
         document.getElementById('1')?.classList.remove('active');
       }
     }
     if(changes['inspirationCategoryState']){
       //console.log('change inspirationCategoryState:',changes['inspirationCategoryState'].currentValue);
-      if(changes['inspirationCategoryState'].currentValue == 0){
+      if(changes['inspirationCategoryState'].currentValue == 1){
         document.getElementById('2')?.classList.add('active');
       }
-      if(changes['inspirationCategoryState'].currentValue == 1){
+      if(changes['inspirationCategoryState'].currentValue == 0){
         document.getElementById('2')?.classList.remove('active');
       }
     }
     if(changes['organisationCategoryState']){
       //console.log('change organisationCategoryState:',changes['organisationCategoryState'].currentValue);
-      if(changes['organisationCategoryState'].currentValue == 0){
+      if(changes['organisationCategoryState'].currentValue == 1){
         document.getElementById('3')?.classList.add('active');
       }
-      if(changes['organisationCategoryState'].currentValue == 1){
+      if(changes['organisationCategoryState'].currentValue == 0){
         document.getElementById('3')?.classList.remove('active');
       }
     }
     if(changes['humanCategoryState']){
       //console.log('change humanCategoryState:',changes['humanCategoryState'].currentValue);
-      if(changes['humanCategoryState'].currentValue == 0){
+      if(changes['humanCategoryState'].currentValue == 1){
         document.getElementById('4')?.classList.add('active');
       }
-      if(changes['humanCategoryState'].currentValue == 1){
+      if(changes['humanCategoryState'].currentValue == 0){
         document.getElementById('4')?.classList.remove('active');
       }
     }
     if(changes['technologyCategoryState']){
       //console.log('change technologyCategoryState:',changes['technologyCategoryState'].currentValue);
-      if(changes['technologyCategoryState'].currentValue == 0){
+      if(changes['technologyCategoryState'].currentValue == 1){
         document.getElementById('5')?.classList.add('active');
       }
-      if(changes['technologyCategoryState'].currentValue == 1){
+      if(changes['technologyCategoryState'].currentValue == 0){
         document.getElementById('5')?.classList.remove('active');
       }
     }

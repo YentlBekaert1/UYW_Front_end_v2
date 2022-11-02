@@ -1,0 +1,7 @@
+<div class="links">
+  <div class="link" *ngFor="let link of linkData; let i = index" (click)="linkClicked(link.url)" [ngClass]="link.active === true ? 'active' : ''">
+    <p *ngIf="i == 0"><</p>
+    <p *ngIf="i != 0 && i != linkData.length -1">{{link.label}}</p>
+    <p *ngIf="i == linkData.length -1">></p>
+  </div>
+</div>

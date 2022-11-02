@@ -15,7 +15,7 @@
   </h3> -->
 
 <div class="categories" #categories>
-  <div *ngFor="let categorie of categories_array"  id="{{categorie.key}}" (click)="ButtonClick(categorie.key)">
+  <div *ngFor="let categorie of categories_array"  id="{{categorie.key}}" (click)="ButtonClick(categorie.key)" class="active">
     <img src="{{categorie.image}}" alt="{{categorie.name}}">
     <span>{{categorie.name}}</span>
   </div>

@@ -1,0 +1,22 @@
+<!-- <div>
+  <button type="button" (click)="ButtonClick($event)" id="1">Afval</button>
+  <button type="button" (click)="ButtonClick($event)" id="2">Inspiratie</button>
+  <button type="button" (click)="ButtonClick($event)" id="4">Mens</button>
+  <button type="button" (click)="ButtonClick($event)" id="3">Organisatie</button>
+  <button type="button" (click)="ButtonClick($event)" id="5">Technology</button>
+</div> -->
+<!-- <h3>Kies een categorie
+    <a href="">
+      <span class="tooltip">
+        <i class="material-icons">help</i>
+        <span class="tooltiptext">Meer info over de categorieën</span>
+      </span>
+    </a>
+  </h3> -->
+
+<div class="categories" #categories>
+  <div *ngFor="let categorie of categories_array"  id="{{categorie.key}}" (click)="ButtonClick(categorie.key)">
+    <img src="{{categorie.image}}" alt="{{categorie.name}}">
+    <span>{{categorie.name}}</span>
+  </div>
+ </div>

@@ -1,13 +1,19 @@
+<p>Er zijn {{total_items}} resultaten gevonden</p>
 <div id="cards">
-  <!-- <p>Er zijn {{listdata.length}} resultaten gevonden</p> -->
-  <div *ngFor="let item of listdata" class="card">
+  <div *ngFor="let item of displayData" class="card">
     <app-card (click)="listItemClicked(item)"
-    [image]="item.properties.image"
-    [name]="item.properties.name"
-    [category]="item.properties.category"
-    [material]="item.properties.material"
-    [date]="'18-07-1999'"
+      [name]="item.title"
+      [images]="item.images"
+      [category]="item.category"
+      [material]="item.materials"
+      [locatie]="item.location"
     ></app-card>
+    <!-- <p *ngIf="item.images.length > 0">{{item.images[0].filename}}</p> -->
   </div>
 </div>
 
+<!-- [image]="item.properties.image"
+[name]="item.properties.name"
+[category]="item.properties.category"
+[material]="item.properties.material"
+[date]="'18-07-1999'" -->

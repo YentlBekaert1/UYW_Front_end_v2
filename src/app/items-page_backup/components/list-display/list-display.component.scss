@@ -1,0 +1,48 @@
+@supports (display:grid){
+  #cards{
+     display: grid;
+     grid-column-gap: 20px;
+     grid-template-columns: 1fr;
+  }
+
+}
+
+@media screen and (min-width: 680px) {
+  @supports (display:grid){
+    #cards{
+      &.listV, .mapv{
+        grid-template-columns: 1fr 1fr;
+      }
+      &.maplistV{
+        grid-template-columns: 1fr;
+      }
+     }
+  }
+}
+@media screen and (min-width: 1010px) {
+  @supports (display:grid){
+    #cards{
+      &.listV, .mapv{
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      &.maplistV{
+        grid-template-columns: 1fr;
+      }
+     }
+
+  }
+}
+@media screen and (min-width: 1340px) {
+  @supports (display:grid){
+    #cards{
+      &.listV, .mapv{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+      &.maplistV{
+        grid-template-columns: 1fr 1fr;
+      }
+     }
+
+  }
+}
+

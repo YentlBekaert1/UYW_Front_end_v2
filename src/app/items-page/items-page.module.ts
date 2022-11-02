@@ -11,6 +11,7 @@ import { MapComponent } from './components/map/map.component';
 import { ListDisplayComponent } from './components/list-display/list-display.component';
 import { ScrollSpyDirective } from './scrollspy.directive';
 import { ResizeDirective } from './resize.directive';
+import { LinksComponent } from './components/links/links.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ResizeDirective } from './resize.directive';
     ListDisplayComponent,
     ScrollSpyDirective,
     ResizeDirective,
+    LinksComponent,
   ],
   imports: [
     CommonModule,

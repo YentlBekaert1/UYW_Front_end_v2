@@ -43,7 +43,7 @@ export class HomePageComponent implements OnInit {
   }
   zoekformClicked(){
     console.log('click')
-    this.router.navigate(['/items/all']);
+    this.router.navigate(['/items/list/all']);
   }
 
 

@@ -15,7 +15,7 @@ main{
   .filters {
     position: relative;
     .filter-background{
-      height: 120%;
+      height: 105%;
       background-color: var(--primary-color);
       background: url(../../assets/items-top.svg);
       background-position: center;
@@ -44,6 +44,8 @@ main{
       align-items: center;
       app-category-buttons{
         height: 100%;
+        display: block;
+        margin-bottom: 20px;
       }
       app-map-radius-filter{
         justify-self: end;
@@ -78,13 +80,18 @@ main{
     }
   }
   .list-container{
-    margin-top: 3%;
+    margin-top: 20px;
     margin-bottom: 30px;
     .property-list {
       margin-top: 0;
       p{
         text-align: right;
         color: var(--white-color);
+      }
+      app-links{
+        display: block;
+        margin: 20px auto;
+        width: fit-content;
       }
     }
     &::after,::before{

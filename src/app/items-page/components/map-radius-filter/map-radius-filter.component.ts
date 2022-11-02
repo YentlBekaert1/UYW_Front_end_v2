@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, Output, ViewChild, EventEmitter} from '@angular/core';
+import { Component, ElementRef, OnInit, Output, ViewChild, EventEmitter, Input, SimpleChanges} from '@angular/core';
+import { Filters } from 'src/app/_models/filters';
 import { Feature, GeosearchService } from '../../../_services/geosearch.service';
 
 
@@ -12,57 +13,75 @@ export class MapRadiusFilterComponent implements OnInit {
   @ViewChild("distanceSeletor") distanceSeletor!: ElementRef;
   @ViewChild("userLocationChechekbox") userLocationChechekbox!: ElementRef;
   @ViewChild("textInput") textInput!: ElementRef;
+  @ViewChild("materialInput") materialInput!: ElementRef;
 
-  @Output() filterRadius = new EventEmitter<[number,number,number,boolean]>(); //[afstand, lat, lng, useUserLocation]
-  @Output() annuleerFilterRadius = new EventEmitter();
+  @Input() materials: any;
+  @Output() filterRadius = new EventEmitter<Filters>(); //[afstand, lat, lng, useUserLocation]
+
   distance: number = 0;
-
   addresses: string[] = [];
   selectedAddress = "";
 
-  searchStatus: boolean = false;
+  selectedFitlers: Filters = {category:0, distance: 0, lat:0, lon:0, userLocation:false, material: 0};
+
+  showMoreFiltes = false;
 
   constructor(private geoSearch: GeosearchService) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['materials']){
+      this.materials = changes['materials'].currentValue;
+      console.log(this.materials)
+    }
   }
 
   searchButtonClicked(){
-    if(this.searchStatus === false){
-      this.distance = parseInt(this.distanceSeletor.nativeElement.value) * 1000 //*1000 om in kilometer te plaatsen
+      //material select value
+      this.selectedFitlers.material = this.materialInput.nativeElement.value;
+      //plaats distance
+      this.selectedFitlers.distance = parseInt(this.distanceSeletor.nativeElement.value) * 1000 //*1000 om in kilometer te plaatsen
+      //kijk of user location in gechecked
       if(this.userLocationChechekbox.nativeElement.checked){
-        this.filterRadius.emit([this.distance,0,0,this.userLocationChechekbox.nativeElement.checked]);
+        this.selectedFitlers.userLocation = true;
       }
       else{
+        this.selectedFitlers.userLocation = false;
         //zoek hier de coordinaten van de plaats
-        console.log('input:',this.textInput.nativeElement.value);
         const searchTerm = this.textInput.nativeElement.value.toLowerCase();
         if (searchTerm && searchTerm.length > 0) {
             this.geoSearch
             .searchWordPhoton(searchTerm)
             .subscribe((features: any) => {
               if(features[0].lat && features[0].lon){
-                console.log(features[0].lat, features[0].lon)
-                this.filterRadius.emit([this.distance,features[0].lat,features[0].lon,this.userLocationChechekbox.nativeElement.checked]);
+                this.selectedFitlers.lat = features[0].lat;
+                this.selectedFitlers.lon = features[0].lon;
+                this.filterRadius.emit(this.selectedFitlers);
+              }
+              else {
+                this.selectedFitlers.lat = 0;
+                this.selectedFitlers.lon = 0;
+                this.filterRadius.emit(this.selectedFitlers);
               }
             });
         }
         else {
-            this.filterRadius.emit([this.distance,0,0,this.userLocationChechekbox.nativeElement.checked]);
+          this.selectedFitlers.lat = 0;
+          this.selectedFitlers.lon = 0;
+          this.filterRadius.emit(this.selectedFitlers);
         }
       }
-      this.searchStatus = true;
-    }
-    else if(this.searchStatus === true){
-      this.annuleerFilterRadius.emit();
-      this.searchStatus = false;
+
+
     }
 
-
-  }
-
-  annuleerButtonClicked(){
-    this.annuleerFilterRadius.emit();
-  }
+    moreFiltersClicked(){
+     this.showMoreFiltes = !this.showMoreFiltes
+    }
 
 }
+
+

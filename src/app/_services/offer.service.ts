@@ -10,6 +10,22 @@ export class OfferService {
 
   constructor(private http: HttpClient) { }
 
+  getOffers(url: string, pagesize:number, materialFilter:number, locationFilter: string){
+    var mat = materialFilter.toString();
+    if(materialFilter == 0){
+      mat = ""
+    }
+    const requesturl = url +'&page_size=' + pagesize + '&materials=' + mat + '&location=' + locationFilter;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+    return lastValueFrom(
+      this.http.get(requesturl, httpOptions)
+    );
+
+  }
+
   addOffer(formData: any){
 
     const requesturl = environment.apiUrl + 'api/offers';

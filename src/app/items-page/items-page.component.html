@@ -6,41 +6,35 @@
     <section class="filters">
         <div class="filter-background"></div>
         <div class="filters-container container ">
-            <app-category-buttons
+            <div>
+              <app-category-buttons
               [wasteCategoryState] = "wasteCategoryState"
               [inspirationCategoryState] = "inspirationCategoryState"
               [humanCategoryState] = "humanCategoryState"
               [organisationCategoryState] = "organisationCategoryState"
               [technologyCategoryState] = "technologyCategoryState"
-              (categoryButtonEvent)="categoryButtonClicked($event)"
-            ></app-category-buttons>
-            <app-map-radius-filter (filterRadius)="filterRadiusClicked($event)" (annuleerFilterRadius)="annuleerfilterRadiusClicked()"></app-map-radius-filter>
-            <app-tabs (tabClickedEvent) = "tabClickedEvent($event)"></app-tabs>
-            <p>Er zijn {{listdata.length}} resultaten gevonden</p>
+              ></app-category-buttons>
+              <app-tabs></app-tabs>
+            </div>
+            <app-map-radius-filter
+              [materials]="res_materials"
+              (filterRadius)="filtersSelectedEvent($event)"
+            ></app-map-radius-filter>
+
+            <!-- <p>Er zijn {{listdata}} resultaten gevonden</p> -->
             <!-- <div class="moreFilters">
               <i class="material-icons">tune</i><span>Filter resultaten</span>
             </div> -->
         </div>
     </section>
     <section class="container list-container" #listcontainer>
-        <div class="property-map" #propertymap>
-            <app-map
-            [jsonData]="geojsonList"
-            [radiusFilterValues]="filterRadius"
-            [categoryFilter]="categoryFilter"
-            [clickedItem]="clickedItem"
-            [tab]="activeTab"
-            (categoryControlEvent)="mapControlClickedEvent($event)"
-            (selectedPointsEvent)="selectedPointsEvent($event)"
-            ></app-map>
-        </div>
-        <div class="property-list" #propertylist>
-           <app-list-display
-              [listdata]="listdata"
-              [activeTab]="activeTab"
-              (clickOnItemEvent)="clickOnItemEvent($event)"
-           ></app-list-display>
-        </div>
+      <div class="property-map" #propertymap>
+        <app-map [active_tab]="active_tab"></app-map>
+    </div>
+    <div class="property-list" #propertylist>
+       <app-list-display [listdata]="listdata" [active_tab]="active_tab"></app-list-display>
+       <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
+    </div>
     </section>
   </main>
   <div id="scrollBottom"></div>

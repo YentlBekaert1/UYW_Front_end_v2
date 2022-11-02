@@ -11,7 +11,7 @@ export class OfferlocationService {
   constructor(private http: HttpClient) { }
 
   public getLocations(bounds: {latNW: any, latSE: any, lonNW: any, lonSE: any}){
-    console.log("getLoc", bounds);
+    //console.log("getLoc", bounds);
     const requesturl = environment.apiUrl + 'api/locationsmap';
 
     const httpOptions = {
@@ -20,6 +20,7 @@ export class OfferlocationService {
     };
 
     return this.http.post<any>(requesturl, bounds, httpOptions).pipe(map(data => {
+      //console.log(data);
       return data.data;
     }))
   }

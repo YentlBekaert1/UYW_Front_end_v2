@@ -7,10 +7,12 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
   styleUrls: ['./list-display.component.scss']
 })
 export class ListDisplayComponent implements OnInit {
-  @Input() listdata: any
-  @Input() activeTab!: string;
+  @Input() listdata: any;
+  @Input() active_tab!: string;
   @Output() clickOnItemEvent = new EventEmitter<any>();
 
+  displayData: any = [];
+  total_items: number = 0;
   constructor() { }
 
   ngOnInit(): void {
@@ -19,13 +21,18 @@ export class ListDisplayComponent implements OnInit {
 
   listItemClicked(item: any){
     console.log(item);
-    this.clickOnItemEvent.emit(item);
+    //this.clickOnItemEvent.emit(item);
   }
    //als er een verandering gebeurt van een Input()
    ngOnChanges(changes: SimpleChanges) {
-    if(changes['activeTab']){
+    if(changes['active_tab']){
       var cards = document.querySelectorAll('#cards');
-      cards[0].className = changes['activeTab'].currentValue;
+      cards[0].className = changes['active_tab'].currentValue;
+    }
+    if(changes['listdata']){
+      //console.log(changes['listdata'].currentValue);
+      this.total_items = changes['listdata'].currentValue.meta.total;
+      this.displayData = changes['listdata'].currentValue.data;
     }
   }
 

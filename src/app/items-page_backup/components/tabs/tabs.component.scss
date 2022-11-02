@@ -1,0 +1,19 @@
+.tabs{
+  display: grid;
+  width: fit-content;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:20px;
+  .tab{
+    background-color: transparent;
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    text-align: center;
+    padding: 5px 10px;
+    color: var(--white-color);
+    &.active{
+      background-color: var(--secondary-color);
+      color: var(--white-color);
+   }
+ }
+}
