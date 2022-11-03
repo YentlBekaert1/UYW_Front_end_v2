@@ -1,6 +1,8 @@
 import { Component, Input, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Filters } from '../_models/filters';
 import { AuthService } from '../_services/auth.service';
+import { GeosearchService } from '../_services/geosearch.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -13,6 +15,11 @@ export class HomePageComponent implements OnInit {
   @ViewChild('earthdrawing') private earthdrawing!: ElementRef;
   public ctx!: any;
 
+  @ViewChild("distanceSeletor") distanceSeletor!: ElementRef;
+  @ViewChild("categorieInput") categorieInput!: ElementRef;
+  @ViewChild("locationInput") locationInput!: ElementRef;
+  @ViewChild("materialInput") materialInput!: ElementRef;
+
   category_info_visible: Boolean = false;
   active_category_info:  {key: number, name: string, description: string, image: string};
 
@@ -24,8 +31,10 @@ export class HomePageComponent implements OnInit {
     { key: 5, name:"Technologie",description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words', image:"../../assets/category-logos/technologie.svg"},
   ];
 
+  materials: any;
+  selectedFitlers: Filters = {category:'', distance: 0, lat:0, lon:0, userLocation:false, material: 0};
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router, private geoSearch: GeosearchService) {
     this.active_category_info = this.categories_array[0];
   }
 
@@ -42,8 +51,46 @@ export class HomePageComponent implements OnInit {
     this.category_info_visible = false;
   }
   zoekformClicked(){
-    console.log('click')
-    this.router.navigate(['/items/list/all']);
+    console.log('click');
+
+    //zoek hier de coordinaten van de plaats
+    const searchTerm = this.locationInput.nativeElement.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+        this.geoSearch
+        .searchWordPhoton(searchTerm)
+        .subscribe((features: any) => {
+          if(features[0].lat && features[0].lon){
+            this.selectedFitlers.lat = features[0].lat;
+            this.selectedFitlers.lon = features[0].lon;
+          }
+          else {
+            this.selectedFitlers.lat = 0;
+            this.selectedFitlers.lon = 0;
+          }
+          this.goToitemsPage();
+        });
+    }
+    else {
+      this.selectedFitlers.lat = 0;
+      this.selectedFitlers.lon = 0;
+      this.goToitemsPage();
+    }
+  }
+
+  goToitemsPage(){
+
+    var url = '/items/list/'
+    + this.categorieInput.nativeElement.value
+    + '/'
+    + this.materialInput.nativeElement.value
+    + '/'
+    + parseInt(this.distanceSeletor.nativeElement.value) * 1000
+    + '/'
+    +this.selectedFitlers.lat
+    + '/'
+    +this.selectedFitlers.lon;
+    console.log(url);
+    this.router.navigate([url]);
   }
 
 

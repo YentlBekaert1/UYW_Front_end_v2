@@ -1,6 +1,6 @@
 export class Filters
 {
-  category:number
+  category:string
   distance: number;
   lat: number;
   lon:number;

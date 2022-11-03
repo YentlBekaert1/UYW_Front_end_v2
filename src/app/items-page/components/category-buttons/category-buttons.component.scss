@@ -1,64 +1,15 @@
-h3{
-  padding-top: 10px;
-  color: var(--white-color);
-  font-weight: 400;
-  a{
-    color: var(--white-color);
-    i{
-      font-size: 1rem;
-      margin-left: 10px;
-    }
-  }
-}
-.category-buttons{
-  padding: 10px 0 30px 0;
-  display: grid;
-  width: fit-content;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 20px;
-
-  .button{
-    /* border: 3px solid var(--primary-color); */
-    box-sizing: border-box;
-    border-radius: 15px;
-    width: 90px;
-    height: 80px;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr 1fr;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--primary-color);
-    background-color: var(--white-color);
-    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
-    font-size: 0.8rem;
-    &.active{
-      color: var( --primary-light);;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-    i{
-      padding-top: 10px;
-      font-size: 2.5rem;
-      pointer-events: none;
-    }
-    span{
-      pointer-events: none;
-    }
-  }
-}
 
 div.categories{
-  display:  grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display:  flex;
+  flex-wrap: wrap;
   gap: 20px;
   width: fit-content;
   margin: 2% 0;
   div{
     background-color: var(--black-color);
     text-align: center;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     padding: 10px;
     border-radius: 70px;
     img{
@@ -67,8 +18,10 @@ div.categories{
     }
     span{
       display: none;
-      padding-top: 5px;
+      padding-top: 2px;
+      font-size: 0.6rem;
       color: var(--white-color);
+      text-transform: capitalize;
     }
     &.active{
       background-color: var(--secondary-color);
@@ -78,7 +31,6 @@ div.categories{
 
 @media screen and (min-width: 480px) {
   div.categories{
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     div{
       width: 50px;
       height: 50px;

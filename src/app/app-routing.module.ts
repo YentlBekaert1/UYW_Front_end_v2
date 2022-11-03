@@ -28,7 +28,7 @@ const routes: Routes = [
     component: HomeComponentV3,
   },
   {
-    path: "items/:tab/:category",
+    path: "items/:tab/:categories/:material/:distance/:lat/:lon",
     component: ItemsPageComponent,
   },
   {

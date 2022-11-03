@@ -8,13 +8,11 @@
         <div class="filters-container container ">
             <div>
               <app-category-buttons
-              [wasteCategoryState] = "wasteCategoryState"
-              [inspirationCategoryState] = "inspirationCategoryState"
-              [humanCategoryState] = "humanCategoryState"
-              [organisationCategoryState] = "organisationCategoryState"
-              [technologyCategoryState] = "technologyCategoryState"
+              (categoryFilterEvent)="filtersCategorieEvent($event)"
               ></app-category-buttons>
-              <app-tabs></app-tabs>
+              <app-tabs
+              [activeFilters]="selectedFitlers"
+              ></app-tabs>
             </div>
             <app-map-radius-filter
               [materials]="res_materials"

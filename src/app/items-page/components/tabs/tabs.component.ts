@@ -10,8 +10,8 @@ export class TabsComponent implements AfterViewInit {
   @ViewChild('tabs', { read: ElementRef }) tabs!: ElementRef<HTMLInputElement>;
   @Output() tabClickedEvent = new EventEmitter<string>();
   @Input() activeTab: string;
-
-  category: string = 'all';
+  @Input() activeFilters: any;
+  category: string= "all"
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -32,6 +32,7 @@ export class TabsComponent implements AfterViewInit {
     });
   }
 
+
   setTabActive(tab_number: number){
     //console.log(tab_number, this.tabs)
     for(var i = 0; i < this.tabs.nativeElement.children.length; i++){
@@ -42,14 +43,15 @@ export class TabsComponent implements AfterViewInit {
 
   tabClicked(event: any){
     this.setTabActive(event.target.id);
+    console.log(this.activeFilters)
     if(event.target.id === '1'){
-      this.router.navigate(['items', 'list', this.category]);
+      this.router.navigate(['items', 'list', this.activeFilters.category, this.activeFilters.material, this.activeFilters.distance, this.activeFilters.lat, this.activeFilters.lon]);
     }
     else if(event.target.id === '2'){
-      this.router.navigate(['items', 'map', this.category]);
+      this.router.navigate(['items', 'map', this.activeFilters.category, this.activeFilters.material, this.activeFilters.distance, this.activeFilters.lat, this.activeFilters.lon]);
     }
     else if(event.target.id === '3'){
-      this.router.navigate(['items','combi', this.category]);
+      this.router.navigate(['items', 'combi', this.activeFilters.category, this.activeFilters.material, this.activeFilters.distance, this.activeFilters.lat, this.activeFilters.lon]);
     }
   }
 }

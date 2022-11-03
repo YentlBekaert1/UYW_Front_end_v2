@@ -16,9 +16,8 @@
             <h2>Zoek op locatie:</h2>
             <div class="location">
               <div>
-                <input type="text" placeholder="locatie">
-                <select name="distance" id="distance">
-                  <option value="">Afstand</option>
+                <input type="text" placeholder="locatie" #locationInput>
+                <select name="distance" id="distance" #distanceSeletor>
                   <option value="10">+10km</option>
                   <option value="20">+20km</option>
                   <option value="30">+30km</option>
@@ -30,12 +29,13 @@
 
             <div class="more_selection">
               <div>
-                <select name="category_filter" id="category_filter">
-                  <option value=" ">Categorie</option>
-                  <option value="volvo">categorie</option>
+                <select name="category_filter" id="category_filter" #categorieInput>
+                  <option value="0">Categorie</option>
+                  <option *ngFor="let category of categories_array" value="{{category.key}}">{{category.name | lowercase}}</option>
                 </select>
-                <select name="materiaal_filter" id="materiaal_filter">
-                  <option value="">Materiaal</option>
+                <select name="materiaal_filter" id="materiaal_filter" #materialInput>
+                  <option value="0">Materiaal</option>
+                  <option *ngFor="let material of materials" value="{{material.id}}">{{material.name}}</option>
                 </select>
                 <button (click)="zoekformClicked()"><i class="material-icons">search</i>Zoeken</button>
               </div>
@@ -78,7 +78,7 @@
           <p>{{active_category_info.description}}</p>
         </div>
         <div class="bottom">
-          <button [routerLink]="['/items',(active_category_info.name | lowercase)]" >Ontdek</button>
+          <button [routerLink]="['/items/list/'+(active_category_info.key)+'/0/0/0/0']" >Ontdek</button>
         </div>
      </div>
     </div>
@@ -130,7 +130,7 @@
         <h2>Recent toegevoegd</h2>
         <app-card-slider></app-card-slider>
         <div class="btn-cnt">
-          <button>Meer Items</button>
+          <button [routerLink]="['/items/list/1,2,3,4,5,6/0/0/0/0']">Meer Items</button>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ export class MapRadiusFilterComponent implements OnInit {
   addresses: string[] = [];
   selectedAddress = "";
 
-  selectedFitlers: Filters = {category:0, distance: 0, lat:0, lon:0, userLocation:false, material: 0};
+  selectedFitlers: Filters = {category:'', distance: 0, lat:0, lon:0, userLocation:false, material: 0};
 
   showMoreFiltes = false;
 
@@ -47,6 +47,7 @@ export class MapRadiusFilterComponent implements OnInit {
       //kijk of user location in gechecked
       if(this.userLocationChechekbox.nativeElement.checked){
         this.selectedFitlers.userLocation = true;
+        this.filterRadius.emit(this.selectedFitlers);
       }
       else{
         this.selectedFitlers.userLocation = false;
