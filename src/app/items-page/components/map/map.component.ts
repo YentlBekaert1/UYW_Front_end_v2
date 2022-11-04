@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, OnInit, Input, SimpleChanges, Output, EventEmitter  } from '@angular/core';
 import * as L from 'leaflet';
-import geojsonvt from 'geojson-vt';
 import { OfferlocationService } from '../../../_services/offerlocation.service';
 
 import {wasteIcon,inspirationIcon,organisationIcon,humanIcon,technologyIcon,radiusCenterIcon,wasteIconRadius,
@@ -56,7 +55,7 @@ export class MapComponent implements OnInit  {
       this.map = L.map('map', {
         center: [50.85, 3.6],
         zoom: 10,
-        minZoom: 7,
+        minZoom: 2,
         maxZoom: 19
     });
 

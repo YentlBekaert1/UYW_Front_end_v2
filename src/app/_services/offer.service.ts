@@ -26,6 +26,19 @@ export class OfferService {
 
   }
 
+  getOfferById(id: string){
+
+    const requesturl = environment.apiUrl + "api/offers/" + id;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+    return lastValueFrom(
+      this.http.get(requesturl, httpOptions)
+    );
+
+  }
+
   addOffer(formData: any){
 
     const requesturl = environment.apiUrl + 'api/offers';

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,14 +14,17 @@ export class ListDisplayComponent implements OnInit {
 
   displayData: any = [];
   total_items: number = 0;
-  constructor() { }
+  start_items: number = 0;
+  stop_items: number = 0;
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
     //console.log(this.listdata);
   }
 
-  listItemClicked(item: any){
+  listItemClicked(item: number){
     console.log(item);
+    this.route.navigate(['/offerdetail', item]);
     //this.clickOnItemEvent.emit(item);
   }
    //als er een verandering gebeurt van een Input()
@@ -30,8 +34,10 @@ export class ListDisplayComponent implements OnInit {
       cards[0].className = changes['active_tab'].currentValue;
     }
     if(changes['listdata']){
-      //console.log(changes['listdata'].currentValue);
+      console.log(changes['listdata'].currentValue);
       this.total_items = changes['listdata'].currentValue.meta.total;
+      this.start_items = changes['listdata'].currentValue.meta.from;
+      this.stop_items = changes['listdata'].currentValue.meta.to;
       this.displayData = changes['listdata'].currentValue.data;
     }
   }

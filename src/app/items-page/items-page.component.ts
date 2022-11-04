@@ -40,6 +40,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.items_per_page = 20;
+    this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
     this.getData();
     this.offerService.getMaterials().then((res: any) => {
       this.res_materials = res.data;
@@ -92,6 +93,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
       else{
         this.locationString = "";
       }
+      this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
       this.getData();
     });
   }
@@ -105,6 +107,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
 
     this.setLocationFilters(this.selectedFitlers).then((res: string) => {
       this.locationString = res;
+      this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
       this.getData();
     });
 
@@ -113,6 +116,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
   filtersCategorieEvent(event: Array<any>){
     console.log(event);
     this.selectedFitlers.category = event.toString();
+    this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
     this.getData();
   }
 
@@ -141,7 +145,6 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
   }
 
   getData(){
-    this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
     this.offerService.getOffers(this.getoffersurl, this.items_per_page, this.selectedFitlers.material, this.locationString, this.selectedFitlers.category).then( (res: {data: [], links:[], meta:[]})=> {this.listdata = res});
   }
 }

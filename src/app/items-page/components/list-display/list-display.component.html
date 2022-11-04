@@ -1,7 +1,8 @@
-<p>Er zijn {{total_items}} resultaten gevonden</p>
+<p>{{start_items}}-{{stop_items}} van de {{total_items}} resultaten.</p>
 <div id="cards">
   <div *ngFor="let item of displayData" class="card">
-    <app-card (click)="listItemClicked(item)"
+    <app-card
+      [id]="item.id"
       [name]="item.title"
       [images]="item.images"
       [category]="item.category"

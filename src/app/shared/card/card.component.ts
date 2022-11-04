@@ -11,6 +11,7 @@ export class CardComponent implements OnInit {
   @Input() category!: any;
   @Input() locatie!: any;
   @Input() material!: any;
+  @Input() id!: any;
   @Output() likeButtonClicked = new EventEmitter();
   image: any;
   materials: any

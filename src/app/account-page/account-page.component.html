@@ -18,26 +18,29 @@
       <div class="right-colum">
         <div class="mijn_gegevens" *ngIf="active_tab.key === 1">
           <h1>Mijn gegevens</h1>
+          <app-my-profile></app-my-profile>
         </div>
 
         <div class="mijn-favorieten" *ngIf="active_tab.key === 2">
           <h1>Mijn favorieten</h1>
-          <app-card></app-card>
-          <app-card></app-card>
+          <app-my-favorites></app-my-favorites>
         </div>
 
         <div class="mijn-items" *ngIf="active_tab.key === 3">
           <h1>Mijn items</h1>
+          <app-my-items></app-my-items>
         </div>
 
 
         <div class="instellingen" *ngIf="active_tab.key === 4">
           <h1>Instelingen</h1>
+          <app-settings></app-settings>
         </div>
 
         <div class="loguit" *ngIf="active_tab.key === 5">
           <h1>Log uit</h1>
           <button (click)="logOut($event)">logOut</button>
+          <app-logout></app-logout>
         </div>
 
       </div>
