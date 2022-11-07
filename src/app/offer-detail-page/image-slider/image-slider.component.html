@@ -5,8 +5,8 @@
 	<div class="images" [ngClass]="{'w-100': totalPages === 1}">
 		<div class="overflow" [ngStyle]="{'width': overflowWidth, 'left': pagePosition}">
       <div *ngFor="let img of arr; let index = index" [ngStyle]="{'width': imageWidth}" (click)="imageClicked(img)">
-        <div class="overlay" *ngIf="'http://127.0.0.1:8000/'+img.filename != activeImage"></div>
-        <img src="http://127.0.0.1:8000/{{img.filename}}" alt="" >
+        <div class="overlay" *ngIf="env_url + img.filename != activeImage"></div>
+        <img src="{{env_url +img.filename}}" alt="" >
       </div>
 		</div>
 	</div>

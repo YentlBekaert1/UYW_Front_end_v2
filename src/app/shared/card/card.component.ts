@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
@@ -17,6 +18,7 @@ export class CardComponent implements OnInit {
   image: any;
   materials: any
   locatie_string: string;
+  env_url: string = environment.apiUrl;
   constructor() { }
 
   ngOnInit(): void {

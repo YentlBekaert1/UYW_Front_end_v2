@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { OfferService } from '../_services/offer.service';
 
 @Component({
@@ -46,7 +47,7 @@ export class OfferDetailPageComponent implements OnInit {
         this.likes = this.offer.total_likes;
         if(this.offer.images.length > 0){
           this.imageArr = this.offer.images
-          this.activeImage = "http://127.0.0.1:8000/" + this.offer.images[0].filename;
+          this.activeImage = environment.apiUrl + this.offer.images[0].filename;
         }
         else{
           this.activeImage = "../../assets/default_image.png"
@@ -111,12 +112,12 @@ export class OfferDetailPageComponent implements OnInit {
   }
   changeActive(number: number){
     this.imageActiveIndex = this.imageActiveIndex + number;
-    this.activeImage = "http://127.0.0.1:8000/" +  this.imageArr[this.imageActiveIndex-1].filename;
+    this.activeImage = environment.apiUrl +  this.imageArr[this.imageActiveIndex-1].filename;
   }
 
   imageSliderClickedEvent(event: any){
     this.imageActiveIndex = this.imageArr.findIndex((element) => element.id == event.id) + 1;
-    this.activeImage = "http://127.0.0.1:8000/" + event.filename;
+    this.activeImage = environment.apiUrl + event.filename;
   }
 
   likeClicked(){

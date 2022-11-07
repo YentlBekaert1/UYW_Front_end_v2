@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OfferService } from 'src/app/_services/offer.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-my-items',
@@ -8,7 +9,7 @@ import { OfferService } from 'src/app/_services/offer.service';
 })
 export class MyItemsComponent implements OnInit {
   userOffers: any = [];
-
+  url = environment.apiUrl;
   constructor(private offerservice: OfferService) { }
 
   ngOnInit(): void {

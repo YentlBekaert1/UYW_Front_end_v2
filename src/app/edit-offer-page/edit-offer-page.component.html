@@ -182,7 +182,7 @@
               <div class="image" *ngFor="let file of startfileArr; let i = index">
                 <button type="button" (click)="deleteImageFromStartArry(i)"><i class="material-icons">delete</i></button>
                 <div class="profile">
-                  <img src="http://127.0.0.1:8000/{{file.filename}}" alt="" />
+                  <img src="{{environment_url + file.filename}}" alt="" />
                 </div>
                 <p>{{ file.filename }}</p>
               </div>

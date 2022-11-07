@@ -32,7 +32,7 @@ export class AuthService {
     const requesturl = environment.apiUrl + 'sanctum/csrf-cookie';
 
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json'}),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'accept': 'application/json'}),
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 
@@ -47,17 +47,18 @@ export class AuthService {
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 
-    return this.http.post<any>(requesturl, loginData, httpOptions).pipe(map(user => {
-      this.userAccountSubject.next(user);
-      localStorage.setItem("USER_DATA", JSON.stringify(user));
-      return user;
-    }))
+    return this.http.post<any>(requesturl, loginData, httpOptions)
+    // .pipe(map(user => {
+    //   this.userAccountSubject.next(user);
+    //   localStorage.setItem("USER_DATA", JSON.stringify(user));
+    //   return user;
+    // }))
   }
 
   public logout(){
     const requesturl = environment.apiUrl + 'logout';
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json'}),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'accept': 'application/json'}),
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 
@@ -77,7 +78,7 @@ export class AuthService {
     const requesturl = environment.apiUrl + 'api/userprofile';
 
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'accept': 'application/json', }),
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 

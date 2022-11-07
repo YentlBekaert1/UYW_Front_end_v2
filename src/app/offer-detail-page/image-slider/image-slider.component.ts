@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-image-slider',
@@ -19,6 +20,7 @@ export class ImageSliderComponent implements OnInit {
   overflowWidth: string;
   imageWidth: string;
   containerWidth: number;
+  env_url: string = environment.apiUrl;
 
   @ViewChild("container", { static: true, read: ElementRef }) container: ElementRef;
 

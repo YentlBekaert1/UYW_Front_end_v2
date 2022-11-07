@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { GeosearchService } from '../_services/geosearch.service';
 import { OfferService } from '../_services/offer.service';
 import { TagserviceService } from '../_services/tagservice.service';
@@ -15,7 +16,7 @@ import { cutomValidators } from './customvalidators';
 export class EditOfferPageComponent implements OnInit {
   @ViewChild('categories', { read: ElementRef }) categories!: ElementRef<HTMLInputElement>;
   @ViewChild('taglist', { read: ElementRef }) taglist!: ElementRef<HTMLInputElement>;
-
+  environment_url = environment.apiUrl;
   offerId: number;
 
   form!: FormGroup;
