@@ -8,6 +8,7 @@ import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 import { MyItemsComponent } from './my-items/my-items.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LogoutComponent } from './logout/logout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,10 @@ import { LogoutComponent } from './logout/logout.component';
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ]
 })
 export class AccountPageModule { }

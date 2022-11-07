@@ -1,0 +1,16 @@
+<div class="slide-container" #container>
+	<div class="left" *ngIf="totalPages > 1" (click)="currentPage != 1 && changePage(-1)" [ngClass]="{'disabled':currentPage === 1}">
+    <i class="material-icons">chevron_left</i>
+  </div>
+	<div class="images" [ngClass]="{'w-100': totalPages === 1}">
+		<div class="overflow" [ngStyle]="{'width': overflowWidth, 'left': pagePosition}">
+      <div *ngFor="let img of arr; let index = index" [ngStyle]="{'width': imageWidth}" (click)="imageClicked(img)">
+        <div class="overlay" *ngIf="'http://127.0.0.1:8000/'+img.filename != activeImage"></div>
+        <img src="http://127.0.0.1:8000/{{img.filename}}" alt="" >
+      </div>
+		</div>
+	</div>
+	<div class="right" *ngIf="totalPages > 1" (click)="currentPage != totalPages && changePage(+1)"
+		[ngClass]="{'disabled':currentPage === totalPages}">
+    <i class="material-icons">chevron_right</i></div>
+</div>

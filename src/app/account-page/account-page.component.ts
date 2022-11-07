@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthService } from '../_services/auth.service';
+
 
 @Component({
   selector: 'app-account-page',
@@ -24,7 +24,7 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
     { key: 5, value:"Log Uit"},
   ];
 
-  constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router) {
+  constructor( private route: ActivatedRoute, private router: Router) {
     this.activeTabSubject = new BehaviorSubject<any>({} as any);
     this.active_tab$ = this.activeTabSubject.asObservable();
   }
@@ -105,16 +105,5 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
     this.tabs.nativeElement.children[tab_number-1].classList.add('active');
   }
 
-  logOut($event: any): void {
-    $event.stopPropagation();
 
-    this.auth.csrf().subscribe({
-      next: data => {
-        this.auth.logout()
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-  }
 }

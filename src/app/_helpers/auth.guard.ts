@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log(this.checkLoggedIn());
+      //console.log(this.checkLoggedIn());
     return this.checkLoggedIn();
   }
 
@@ -25,9 +25,15 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.checkLoggedIn();
   }
 
-  private checkLoggedIn(){
-    return this.auth.userLoggedIn$.pipe(
-      map(logindata => logindata ? true : this.router.parseUrl('/login'))
-    )
+  private async checkLoggedIn(){
+    try {
+      const res = await this.auth.userdata();
+      return true;
+    } catch (error) {
+      return this.router.parseUrl('/login');
+    }
+    // return this.auth.userLoggedIn$.pipe(
+    //   map(logindata => logindata ? true : this.router.parseUrl('/login'))
+    // )
   }
 }

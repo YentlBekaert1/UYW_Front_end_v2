@@ -1,5 +1,8 @@
 <div id="card">
-
+  <div class="likes">
+    <i class="material-icons out">favorite_outline</i>
+    {{likes}}
+  </div>
   <img *ngIf="image;else defaultImage" src="http://127.0.0.1:8000/{{image}}" alt="{{name}}">
   <ng-template #defaultImage>
     <img src="../../../../assets/default_image.png" alt="no image">

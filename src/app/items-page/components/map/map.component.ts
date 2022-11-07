@@ -55,8 +55,8 @@ export class MapComponent implements OnInit  {
       this.map = L.map('map', {
         center: [50.85, 3.6],
         zoom: 10,
-        minZoom: 2,
-        maxZoom: 19
+        minZoom: 4,
+        maxZoom: 17
     });
 
     //kaartlagen

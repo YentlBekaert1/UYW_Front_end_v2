@@ -18,7 +18,7 @@ export class LoginPageComponent implements OnInit {
       this.loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
-        remember: [Boolean]
+        remember: [false]
       });
    }
 
@@ -35,7 +35,7 @@ export class LoginPageComponent implements OnInit {
         this.auth.login(this.loginForm.value).pipe(first()).subscribe({
           next: data => {
             console.log(data);
-            this.router.navigate(['account']);
+            this.router.navigate(['account', 'profile']);
           },
           error: err => {
             console.log(err);

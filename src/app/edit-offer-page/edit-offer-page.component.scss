@@ -1,4 +1,4 @@
-.addoffer-page
+.editoffer-page
 {
   position: relative;
   width:100%;
@@ -16,7 +16,7 @@
     top: 0;
     z-index: -10;
   }
-  .addoffer-page-container{
+  .editoffer-page-container{
     background-color: var(--white-color);
 
     margin-right: auto;
@@ -338,8 +338,8 @@
 }
 }
 @media screen and (min-width: 480px) {
-  .addoffer-page{
-    .addoffer-page-container{
+  .editoffer-page{
+    .editoffer-page-container{
       .content{
         div.categories{
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -365,8 +365,8 @@
 }
 
 @media screen and (min-width: 680px) {
-  .addoffer-page{
-    .addoffer-page-container{
+  .editoffer-page{
+    .editoffer-page-container{
       .content{
         div.categories{
           div{
@@ -392,8 +392,8 @@
 }
 
 @media screen and (min-width: 850px) {
-  .addoffer-page{
-    .addoffer-page-container{
+  .editoffer-page{
+    .editoffer-page-container{
       .content{
         div.categories{
           div{

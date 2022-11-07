@@ -1,1 +1,21 @@
-<p>my-favorites works!</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>name</th>
+      <th>categorie</th>
+      <th>actie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let offer of userFavorites">
+      <td>
+        <img *ngIf="offer.images[0]; else default" src="http://127.0.0.1:8000/{{offer.images[0].filename}}" alt="">
+        <ng-template #default> <img src="../../../assets/default_image.png" alt=""></ng-template>
+      </td>
+      <td><p>{{offer.title}}</p></td>
+      <td>{{offer.category.name}}</td>
+      <td><a [routerLink]="['/offerdetail', offer.id]">bekijk</a></td>
+    </tr>
+  </tbody>
+</table>

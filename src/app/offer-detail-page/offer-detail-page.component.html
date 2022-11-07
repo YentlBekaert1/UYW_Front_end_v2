@@ -1,5 +1,17 @@
 <app-top-nav></app-top-nav>
 <div class="offerdetail-page">
+  <div class="imageExpand" *ngIf="imageExpand == true">
+    <div class="content">
+      <button (click)="closeImageClicked()"><i class="material-icons">close</i></button>
+      <div class="left" *ngIf="imageArr.length > 1" (click)="imageActiveIndex != 1 &&changeActive(-1)" >
+        <i class="material-icons">chevron_left</i>
+      </div>
+      <div class="right" *ngIf="imageArr.length > 1" (click)="imageActiveIndex != imageArr.length && changeActive(1)" >
+        <i class="material-icons">chevron_right</i>
+      </div>
+      <img src="{{activeImage}}" alt="">
+    </div>
+  </div>
   <div class="offerdetail-page-container">
     <!-- <p>{{offer.title}}</p>
     <p>{{offer.description}}</p>
@@ -10,68 +22,65 @@
     <p>{{offer.location.steet}} {{offer.location.city}},{{offer.location.country}}</p> -->
     <div class="image-container">
       <div class="head-image">
-
+        <img src="{{activeImage}}" alt="" (click)="imageClicked($event)">
       </div>
       <div class="image-slider">
-
+        <app-image-slider [arr]="imageArr" [activeImage]="activeImage" (imageClickedEvent)="imageSliderClickedEvent($event)"></app-image-slider>
       </div>
     </div>
     <div class="primary-container">
-      <h1>Huis gemaakt uit koffie</h1>
-      <p>Koffieschillen worden gewoonlijk weggegooid wanneer koffie wordt gebrand. Nu worden ze omgezet in bouwmaterialen. Dit huis gebruikt bouwstenen van koffieschillen.</p>
+      <h1>{{title}}</h1>
+      <p>{{description}}</p>
       <div class="inpsiratie-row">
-        <h3>Inpsiratie</h3>
-        <span>3 <i class="material-icons">favorite_outline</i></span>
+        <h3>{{category_name}}</h3>
+        <span>
+          {{likes}}
+          <i class="material-icons fill" (click)="likeClicked()" *ngIf="isFavorite == true">favorite</i>
+          <i class="material-icons out" (click)="likeClicked()" *ngIf="isFavorite == false">favorite_outline</i>
+        </span>
       </div>
-      <div class="material-row">
+      <div class="material-row" *ngIf="materials.length > 0">
         <h4>Materialen</h4>
         <div class="materials">
-          <div>
-            <p>organisch</p>
-            <ul>
-              <li>koffie</li>
-            </ul>
-          </div>
-          <div>
-            <p>Voedsel</p>
-            <ul>
-              <li>koffie</li>
+          <div *ngFor="let material of materials">
+            <p>{{material.name}}</p>
+            <ul *ngFor="let submaterial of submaterials">
+              <li  *ngIf="submaterial.material_id == material.id">{{submaterial.name}}</li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="tag-row">
+      <div class="tag-row" *ngIf="tags.length > 0">
         <h4>Tags</h4>
         <div>
-          <div class="tag-pil">Bouwmaterialen</div>
-          <div class="tag-pil">Construction</div>
-          <div class="tag-pil">Building material</div>
-          <div class="tag-pil">Housing</div>
-          <div class="tag-pil">wonen</div>
-          <div class="tag-pil">constructiemateriaal</div>
+          <div class="tag-pil" *ngFor="let tag of tags">{{tag.name}}</div>
         </div>
       </div>
 
     </div>
-    <div class="info-container">
+    <div class="line">
+      <div class="accent"></div>
+    </div>
+    <div class="info-container" *ngIf="location || contact || url">
       <h4>Meer info & contact</h4>
       <table>
-        <tr>
+        <tr *ngIf="location">
           <td>Adres:</td>
-          <td>Colombia</td>
+          <td>{{location}}</td>
         </tr>
-        <tr>
+        <tr *ngIf="contact">
           <td>Contact:</td>
-          <td>0056/286698969, koffie@colombia.com</td>
+          <td>{{contact}}</td>
         </tr>
-        <tr>
+        <tr *ngIf="url">
           <td>Link naar info:</td>
-          <td><a href="">Link</a></td>
+          <td><a href="http://{{url}}">{{url}}</a></td>
         </tr>
       </table>
     </div>
-    <div class="locatie-container">
+    <div class="locatie-container" *ngIf="location">
       <h4>Locatie op de kaart</h4>
+      <app-detail-map [lat_lan] = "Latlan"></app-detail-map>
     </div>
   </div>
   <div class="top_curve"></div>

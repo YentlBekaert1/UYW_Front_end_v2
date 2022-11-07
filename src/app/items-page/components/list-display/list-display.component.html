@@ -3,6 +3,7 @@
   <div *ngFor="let item of displayData" class="card">
     <app-card
       [id]="item.id"
+      [likes]="item.total_likes"
       [name]="item.title"
       [images]="item.images"
       [category]="item.category"

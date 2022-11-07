@@ -72,17 +72,19 @@ export class AuthService {
     )
   }
 
-  // public userdata(): Observable<any>{
+  public userdata(){
 
-  //   const requesturl = environment.apiUrl + 'api/userprofile';
+    const requesturl = environment.apiUrl + 'api/userprofile';
 
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
-  //     withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
-  //   };
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
+    };
 
-  //   return this.http.get<any>(requesturl, httpOptions)
-  // }
+    return lastValueFrom(
+      this.http.get(requesturl, httpOptions)
+    );
+  }
 
 
 }

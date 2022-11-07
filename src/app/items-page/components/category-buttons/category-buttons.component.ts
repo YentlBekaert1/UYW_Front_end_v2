@@ -29,14 +29,27 @@ export class CategoryButtonsComponent implements AfterViewInit {
     const paramsub = this.route.paramMap.subscribe(params => {
       const active_category = params.get('categories').split(',');
       this.active_categories = [];
-        active_category.forEach(cat => {
+      active_category.forEach(cat => {
           console.log()
-          this.categories_array.forEach(element => {
-            if(parseInt(cat) === element.key){
-              this.active_categories.push(element.key);
-              this.categories.nativeElement.children[element.key-1].classList.add('active');
-            }
-          });
+          // if(cat === '0'){
+          //   this.categories_array.forEach(element => {
+          //       this.active_categories.push(element.key);
+          //       this.categories.nativeElement.children[element.key-1].classList.add('active');
+          //   });
+          // }else{
+          //   this.categories_array.forEach(element => {
+          //     if(parseInt(cat) === element.key){
+          //       this.active_categories.push(element.key);
+          //       this.categories.nativeElement.children[element.key-1].classList.add('active');
+          //     }
+          //   });
+          // }
+            this.categories_array.forEach(element => {
+              if(parseInt(cat) === element.key){
+                this.active_categories.push(element.key);
+                this.categories.nativeElement.children[element.key-1].classList.add('active');
+              }
+            });
         });
         //this.categoryFilterEvent.emit(this.active_categories);
     });

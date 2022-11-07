@@ -12,6 +12,10 @@
 
         <label for="password">wachtwoord</label>
         <input type="password" class="form-control" formControlName="password" name="password"/>
+        <div class="remember_input">
+          <input type="checkbox" name="remember" id="remember" formControlName="remember">
+          <label for="remember" >onthoud mij</label>
+        </div>
         <div class="btns">
           <button type="submit">Login</button>
           <button type="button" (click)="goToRegister()">Maak account aan</button>

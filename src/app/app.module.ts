@@ -17,6 +17,7 @@ import { RegisterPageModule } from './register-page/register-page.module';
 import { AccountPageModule } from './account-page/account-page.module';
 import { AddOfferPageModule } from './add-offer-page/add-offer-page.module';
 import { OfferDetailPageModule } from './offer-detail-page/offer-detail-page.module';
+import { EditOfferPageModule } from './edit-offer-page/edit-offer-page.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { OfferDetailPageModule } from './offer-detail-page/offer-detail-page.mod
     AccountPageModule,
     AddOfferPageModule,
     OfferDetailPageModule,
+    EditOfferPageModule,
     SharedModule
   ],
   providers: [ {

@@ -12,6 +12,7 @@ export class CardComponent implements OnInit {
   @Input() locatie!: any;
   @Input() material!: any;
   @Input() id!: any;
+  @Input() likes!: any;
   @Output() likeButtonClicked = new EventEmitter();
   image: any;
   materials: any
@@ -32,7 +33,17 @@ export class CardComponent implements OnInit {
       this.materials = matArray.toString();
     }
     if(this.locatie){
-      this.locatie_string =  this.locatie.city + ", " + this.locatie.country
+      var city = "";
+      var country = "";
+
+      if(this.locatie.city !== null){
+        city = this.locatie.city + ", ";
+      }
+
+      if(this.locatie.country !== null){
+        country = this.locatie.country
+      }
+      this.locatie_string =  city + country
     }
   }
 

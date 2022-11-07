@@ -1,0 +1,215 @@
+<app-top-nav></app-top-nav>
+<div class="editoffer-page">
+  <div class="editoffer-page-container" (click)="containerClicked()">
+    <div class="content">
+      <div class="crumbs">
+        <span><a [routerLink]="['/home']">Home</a></span>
+        <span>-</span>
+        <span>Account</span>
+        <span>-</span>
+        <span>Voeg offer toe</span>
+       </div>
+       <h1>Voeg een nieuw item toe.</h1>
+       <p>Hier kun je een item toevoegen. Selecteer eerst een categorie om de gepaste invulvelden te verkrijgen.</p>
+       <div class="categories" #categories>
+        <div *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.key)">
+          <img src="{{categorie.image}}" alt="{{categorie.name}}">
+          <span>{{categorie.name}}</span>
+        </div>
+       </div>
+       <p>
+        Gekozen categorie: <span>{{selectedCategory.name}}</span>
+       </p>
+       <div *ngFor="let validation of offer_validation_messages.category_id">
+        <div *ngIf="form.get('category_id').hasError(validation.type) && (form.get('category_id').dirty || form.get('category_id').touched)" class="alert alert-danger">
+          {{validation.message}}
+        </div>
+      </div>
+       <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <h2>Algemene info</h2>
+        <label for="title">Titel</label>
+        <input type="text" class="form-control" formControlName="title" name="title" [ngClass]="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched) ? 'alert-danger' : ''"/>
+
+        <div *ngFor="let validation of offer_validation_messages.title">
+          <div *ngIf="form.get('title').hasError(validation.type) && (form.get('title').dirty || form.get('title').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+
+        <label for="description">Beschrijving</label>
+        <textarea class="form-control" formControlName="description" name="description" rows="4" cols="50"  [ngClass]="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched) ? 'alert-danger' : ''"></textarea>
+        <div *ngFor="let validation of offer_validation_messages.description">
+          <div *ngIf="form.get('description').hasError(validation.type) && (form.get('description').dirty || form.get('description').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+
+        <h2>Materialen</h2>
+        <p>Je kunt meerdere materialen selecteren. Selecteer een materiaal en/of submateriaal en druk op de knop om deze toe te voegen.</p>
+        <div class="inputs-select">
+          <div>
+            <label for="material">Materiaal</label>
+            <select name="material" formControlName="material" class="form-control" (change)="getSubMaterials($event)">
+              <option value="0">Selecteer</option>
+              <option *ngFor="let material of materials" value="{{material.id}}">{{material.name}}</option>
+            </select>
+          </div>
+         <div>
+          <label for="submaterial">Submateriaal</label>
+          <select name="submaterial" formControlName="submaterial" class="form-control">
+            <option value="0">Selecteer</option>
+            <option *ngFor="let submaterial of submaterials" value="{{submaterial.id}}">{{submaterial.name}}</option>
+          </select>
+         </div>
+         <div>
+          <button type="button" (click)="addToSelectedMaterials()">toevoegen</button>
+         </div>
+        </div>
+        <div *ngFor="let validation of offer_validation_messages.materials">
+          <div *ngIf="form.get('selectedmaterials').hasError(validation.type) && (form.get('material').dirty || form.get('material').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+        <div *ngFor="let validation of offer_validation_messages.submaterials">
+          <div *ngIf="form.get('selectedsubmaterials').hasError(validation.type) && (form.get('submaterial').dirty || form.get('submaterial').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+        <div class="chosed-select">
+          <div *ngFor="let selected_material of selected_materials">
+            <span>{{selected_material.materialname}},{{selected_material.submaterialname}}</span>
+            <i class="material-icons" (click)="deleteFromSelectedMaterials(selected_material.materialkey, selected_material.submaterialkey)">close</i>
+          </div>
+        </div>
+
+        <h2>Tags</h2>
+        <p>Je kunt meerdere tags selecteren of zelf één toevoegen. Met deze tags kunnen later de zoekresultaten verfijnd worden.</p>
+        <div class="inputs-select">
+          <div>
+            <label for="tag">Tag</label>
+            <input type="text" name="tag" formControlName="tag" class="form-control" (keyup)="autocompleteTag($event)">
+            <div class="taglist" #taglist>
+              <div class="taglistitem" *ngFor="let tag of tags" (click)="taglistitemclicked(tag.id, tag.name)">{{tag.name}}</div>
+            </div>
+          </div>
+          <div>
+            <label for="new_tag">Nieuwe tag</label>
+            <input type="text" name="new_tag_input" formControlName="new_tag_input" class="form-control">
+          </div>
+          <div>
+            <button type="button" (click)="addToSelectedTags()">toevoegen</button>
+          </div>
+        </div>
+        <div *ngFor="let validation of offer_validation_messages.tags">
+          <div *ngIf="form.get('selectedtags').hasError(validation.type) && (form.get('tag').dirty || form.get('tag').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+        <div *ngFor="let validation of offer_validation_messages.new_tags">
+          <div *ngIf="form.get('new_tags').hasError(validation.type) && (form.get('new_tag_input').dirty || form.get('new_tag_input').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+        <div class="chosed-select">
+          <div *ngFor="let tag of selected_tags">
+            <span>{{tag.tagname}}</span><i class="material-icons" (click)="deleteFromSelectedTags(tag.tagname, tag.new)">close</i>
+          </div>
+        </div>
+
+
+        <h2>Locatie</h2>
+        <label for="street_number">Straat en nummer</label>
+        <input type="text" class="form-control" formControlName="street_number" name="street_number" [ngClass]="form.controls['street_number'].invalid && (form.controls['street_number'].dirty || form.controls['street_number'].touched) ? 'alert-danger' : ''"/>
+        <label for="city">Gemeente</label>
+        <input type="text" class="form-control" formControlName="city" name="city" [ngClass]="form.controls['city'].invalid && (form.controls['city'].dirty || form.controls['city'].touched) ? 'alert-danger' : ''"/>
+        <label for="country">Land</label>
+        <input type="text" class="form-control" formControlName="country" name="country" [ngClass]="form.controls['country'].invalid && (form.controls['country'].dirty || form.controls['country'].touched) ? 'alert-danger' : ''"/>
+        <div *ngFor="let validation of offer_validation_messages.street_number">
+          <div *ngIf="form.get('street_number').hasError(validation.type) && (form.get('street_number').dirty || form.get('street_number').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+        <div *ngFor="let validation of offer_validation_messages.city">
+          <div *ngIf="form.get('city').hasError(validation.type) && (form.get('city').dirty || form.get('city').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+        <div *ngFor="let validation of offer_validation_messages.country">
+          <div *ngIf="form.get('country').hasError(validation.type) && (form.get('country').dirty || form.get('country').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+
+        <h2>Contact (optioneel)</h2>
+        <label for="contact">Contact</label>
+        <input type="text" class="form-control" formControlName="contact" name="contact" [ngClass]="form.controls['contact'].invalid && (form.controls['contact'].dirty || form.controls['contact'].touched) ? 'alert-danger' : ''"/>
+        <div *ngFor="let validation of offer_validation_messages.contact">
+          <div *ngIf="form.get('contact').hasError(validation.type) && (form.get('contact').dirty || form.get('contact').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+
+        <label for="url">URL naar eigen site</label>
+        <input type="text" class="form-control" formControlName="url" name="url" [ngClass]="form.controls['url'].invalid && (form.controls['url'].dirty || form.controls['url'].touched) ? 'alert-danger' : ''"/>
+        <div *ngFor="let validation of offer_validation_messages.url">
+          <div *ngIf="form.get('url').hasError(validation.type) && (form.get('url').dirty || form.get('url').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+
+        <h2>Afbeeldingen</h2>
+          <div class="image-inputs">
+            <div class="fileupload" appDragDropFileUpload (click)="fileField.click()" (fileDropped)="fileupload($event)">
+                <span class="ddinfo">Choose a file or drag here</span>
+                <input
+                  type="file"
+                  name="image"
+                  #fileField
+                  (change)="fileupload($any($event).target.files)"
+                  hidden
+                  multiple
+                />
+            </div>
+            <div class="image-list">
+              <div class="image" *ngFor="let file of fileArr; let i = index">
+                <button type="button" (click)="deleteImageFromArry(i)"><i class="material-icons">delete</i></button>
+                <div class="profile">
+                  <img [src]="sanitize(file.url)" alt="" />
+                </div>
+                <p>{{ file.image.name }}</p>
+              </div>
+              <div class="image" *ngFor="let file of startfileArr; let i = index">
+                <button type="button" (click)="deleteImageFromStartArry(i)"><i class="material-icons">delete</i></button>
+                <div class="profile">
+                  <img src="http://127.0.0.1:8000/{{file.filename}}" alt="" />
+                </div>
+                <p>{{ file.filename }}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngFor="let validation of offer_validation_messages.images">
+            <div *ngIf="(image_error === validation.type) && (image_error_show === true)" class="alert alert-danger">
+              {{validation.message}}
+            </div>
+          </div>
+
+
+        <div class="from-bottom">
+          <div>
+            <input type="checkbox" name="terms" id="" formControlName="terms">
+            <label for="terms">Ik ga akkoord met de <a href="">algemene vooraarden</a></label>
+          </div>
+          <button type="submit">Item aanpassen</button>
+        </div>
+        <div *ngFor="let validation of offer_validation_messages.terms">
+          <div *ngIf="form.get('terms').hasError(validation.type) && (form.get('terms').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </div>
+        </div>
+       </form>
+    </div>
+  </div>
+  <div class="top_curve"></div>
+</div>
+<app-footer></app-footer>

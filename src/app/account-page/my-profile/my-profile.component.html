@@ -1,1 +1,10 @@
-<p>my-profile works!</p>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+  <label for="name">naam</label>
+  <input type="text" class="form-control" formControlName="name" name="name" value="{{userData.name}}"/>
+  <label for="email">email</label>
+  <input type="text" class="form-control" formControlName="email" name="email" value="{{userData.email}}"/>
+  <div class="btns">
+    <button type="submit">Sla op</button>
+  </div>
+</form>

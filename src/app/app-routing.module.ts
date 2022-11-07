@@ -11,6 +11,7 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { AddOfferPageComponent } from './add-offer-page/add-offer-page.component';
 import { OfferDetailPageComponent } from './offer-detail-page/offer-detail-page.component';
+import { EditOfferPageComponent } from './edit-offer-page/edit-offer-page.component';
 
 
 const routes: Routes = [
@@ -34,17 +35,22 @@ const routes: Routes = [
   {
     path: "account/:tab",
     component: AccountPageComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: "addoffer",
     component: AddOfferPageComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "editoffer/:id",
+    component: EditOfferPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "offerdetail/:id",
     component: OfferDetailPageComponent,
-    //canActivate: [AuthGuard]
+
   },
   {
     path: "login",

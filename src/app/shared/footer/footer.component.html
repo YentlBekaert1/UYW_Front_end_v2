@@ -4,11 +4,11 @@
       <div class="col-1">
         <h3>Mijn upcycle your waste</h3>
         <ul>
-          <li><a href="">Inloggen</a></li>
-          <li><a href="">Registreren</a></li>
-          <li><a href="">Mijn items</a></li>
-          <li><a href="">Mijn favorieten</a></li>
-          <li><a href="">Instellingen</a></li>
+          <li><a [routerLink]="['/account','profile']">Inloggen</a></li>
+          <li><a [routerLink]="['/register']">Registreren</a></li>
+          <li><a [routerLink]="['/account','item']">Mijn items</a></li>
+          <li><a [routerLink]="['/account','favorites']">Mijn favorieten</a></li>
+          <li><a [routerLink]="['/account','settings']">Instellingen</a></li>
         </ul>
         <p>Copyright © 2022 door Upcycleyourwaste.com</p>
         <p>Gebruiksvoorwaarden - Cookiebeleid - Privacy beleid - Privacy voorkeuren beheren</p>

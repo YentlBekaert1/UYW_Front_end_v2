@@ -10,7 +10,6 @@ export class TagserviceService {
   constructor(private http: HttpClient) { }
 
   tagsTypeAhead(name: string){
-    console.log('name')
     const requesturl = environment.apiUrl + 'api/tagsautocomplete';
     const httpOptions = {
       headers: new HttpHeaders({'Accept': 'application/json', }),
