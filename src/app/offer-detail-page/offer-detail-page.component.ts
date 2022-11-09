@@ -65,6 +65,10 @@ export class OfferDetailPageComponent implements OnInit {
           this.tags = this.offer.tags
         }
 
+        if(this.offer.contact != "" ){
+          this.contact = this.offer.contact;
+        }
+
         if(this.offer.location !== null){
           var street = "";
           var city = "";

@@ -88,7 +88,7 @@ export class OfferService {
 
     body.append('category', formData.category_id);
     body.append('approach', '1');
-
+    body.append('status', '1');
     console.log(body);
 //this.http.post(requesturl, body, httpOptions);
     return this.http.post(requesturl, body, httpOptions);
