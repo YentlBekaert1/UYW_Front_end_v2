@@ -55,6 +55,51 @@ export class AuthService {
     // }))
   }
 
+  public register(registerData: any){
+    const requesturl = environment.apiUrl + 'register';
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
+    };
+
+    return this.http.post<any>(requesturl, registerData, httpOptions)
+  }
+
+  public verfiyaccount(url){
+    const requesturl = url
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
+    };
+
+    return this.http.get<any>(requesturl, httpOptions)
+  }
+
+  public forgetpassword(data: any){
+    const requesturl = environment.apiUrl + 'forgot-password'
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
+    };
+
+    return this.http.post<any>(requesturl, data, httpOptions)
+  }
+
+  public resetpassword(data: any){
+    const requesturl = environment.apiUrl + 'reset-password '
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
+    };
+
+    return this.http.post<any>(requesturl, data, httpOptions)
+  }
+
+
   public logout(){
     const requesturl = environment.apiUrl + 'logout';
     const httpOptions = {

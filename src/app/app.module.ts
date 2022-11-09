@@ -11,13 +11,15 @@ import { HomePageModule } from './home-page/home-page.module';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { XsrfInterceptor } from './_helpers/http.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginPageModule } from './login-page/login-page.module';
+import { LoginPageModule } from './Auth/login-page/login-page.module';
 import { SharedModule } from './shared/shared.module';
-import { RegisterPageModule } from './register-page/register-page.module';
+import { RegisterPageModule } from './Auth/register-page/register-page.module';
 import { AccountPageModule } from './account-page/account-page.module';
 import { AddOfferPageModule } from './add-offer-page/add-offer-page.module';
 import { OfferDetailPageModule } from './offer-detail-page/offer-detail-page.module';
 import { EditOfferPageModule } from './edit-offer-page/edit-offer-page.module';
+import { ForgetPasswordModule } from './Auth/forget-password/forget-password.module';
+import { ResetPasswordModule } from './Auth/reset-password/reset-password.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { EditOfferPageModule } from './edit-offer-page/edit-offer-page.module';
     AddOfferPageModule,
     OfferDetailPageModule,
     EditOfferPageModule,
+    ForgetPasswordModule,
+    ResetPasswordModule,
     SharedModule
   ],
   providers: [ {

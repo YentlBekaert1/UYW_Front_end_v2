@@ -21,7 +21,7 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
     { key: 2, value:"Mijn Favorieten"},
     { key: 3, value:"Mijn Items"},
     { key: 4, value:"Instellingen"},
-    { key: 5, value:"Log Uit"},
+    { key: 5, value:"Uitloggen"},
   ];
 
   constructor( private route: ActivatedRoute, private router: Router) {

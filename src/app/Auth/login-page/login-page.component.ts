@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AuthService } from '../_services/auth.service';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,6 +13,16 @@ export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
 
   errorMessage = '';
+
+  offer_validation_messages = {
+    'email': [
+      { type: 'required', message: 'Email is required' },
+      { type: 'email', message: 'Er is geen correct email adres ingegeven' }
+    ],
+    'password': [
+      { type: 'required', message: 'Wachtwoord is required' },
+    ]
+  }
 
   constructor(private auth: AuthService, private fb: FormBuilder, private router: Router) {
       this.loginForm = this.fb.group({
@@ -28,6 +38,7 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(): void {
     if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
       return;
     }
     this.auth.csrf().subscribe({
@@ -37,8 +48,13 @@ export class LoginPageComponent implements OnInit {
             console.log(data);
             this.router.navigate(['account', 'profile']);
           },
-          error: err => {
-            console.log(err);
+          error: err_res => {
+            if(err_res.error.errors.email){
+              this.errorMessage = err_res.error.errors.email;
+            }
+            if(err_res.error.errors.password){
+              this.errorMessage = err_res.error.errors.password;
+            }
           }
         });
       },

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginPageComponent } from './login-page.component';
+import { ResetPasswordComponent } from './reset-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+
 
 
 @NgModule({
   declarations: [
-    LoginPageComponent
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -16,4 +17,4 @@ import { AppRoutingModule } from '../app-routing.module';
     AppRoutingModule
   ]
 })
-export class LoginPageModule { }
+export class ResetPasswordModule { }
