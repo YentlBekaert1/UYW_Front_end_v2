@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EmailVerfiyPageComponent } from './email-verfiy-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../../app-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { AppRoutingModule } from '../../app-routing.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ]
 })
 export class EmailVerfiyPageModule { }

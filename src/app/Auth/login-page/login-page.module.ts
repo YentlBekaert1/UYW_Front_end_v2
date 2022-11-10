@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../../app-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AppRoutingModule } from '../../app-routing.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ]
 })
 export class LoginPageModule { }

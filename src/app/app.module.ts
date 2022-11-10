@@ -20,6 +20,7 @@ import { OfferDetailPageModule } from './offer-detail-page/offer-detail-page.mod
 import { EditOfferPageModule } from './edit-offer-page/edit-offer-page.module';
 import { ForgetPasswordModule } from './Auth/forget-password/forget-password.module';
 import { ResetPasswordModule } from './Auth/reset-password/reset-password.module';
+import { EmailVerfiyPageModule } from './Auth/email-verfiy-page/email-verfiy-page.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ResetPasswordModule } from './Auth/reset-password/reset-password.module
     EditOfferPageModule,
     ForgetPasswordModule,
     ResetPasswordModule,
+    EmailVerfiyPageModule,
     SharedModule
   ],
   providers: [ {

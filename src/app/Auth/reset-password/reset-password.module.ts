@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ResetPasswordComponent } from './reset-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ]
 })
 export class ResetPasswordModule { }
