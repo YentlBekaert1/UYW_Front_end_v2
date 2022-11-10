@@ -22,12 +22,20 @@
         </div>
 
         <div class="mijn-favorieten" *ngIf="active_tab.key === 2">
-          <h1>Mijn favorieten</h1>
+          <div>
+            <h1>Mijn favorieten</h1>
+            <button (click)="ontdekClicked()">Ontdek de items</button>
+          </div>
+
           <app-my-favorites></app-my-favorites>
         </div>
 
         <div class="mijn-items" *ngIf="active_tab.key === 3">
-          <h1>Mijn items</h1>
+          <div>
+            <h1>Mijn items</h1>
+            <button (click)="voegtoeClicked()">Voeg toe</button>
+          </div>
+
           <app-my-items></app-my-items>
         </div>
 

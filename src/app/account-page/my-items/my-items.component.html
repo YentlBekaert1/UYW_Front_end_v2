@@ -1,39 +1,50 @@
-<table (click)="showActions($event)">
-  <thead>
-    <tr>
-      <th></th>
-      <th>name</th>
-      <th>categorie</th>
-      <th>aantal likes</th>
-      <th>aantal views</th>
-      <th>status</th>
-      <th>actie</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let offer of userOffers">
-      <td>
-        <img *ngIf="offer.images[0]; else default" src="{{url + offer.images[0].filename}}" alt="">
-        <ng-template #default> <img src="../../../assets/default_image.png" alt=""></ng-template>
-      </td>
-      <td><p>{{offer.title}}</p></td>
-      <td>{{offer.category.name}}</td>
-      <td>{{offer.total_likes}}</td>
-      <td>{{offer.total_views}}</td>
-      <td>
-        <span *ngIf="offer.status == 1" class="online">online</span>
-        <span *ngIf="offer.status == 0" class="offline">offline</span>
-      </td>
-      <td>
-        <i class="material-icons">more_vert</i>
-        <ul>
-          <li><a [routerLink]="['/offerdetail', offer.id]">bekijk</a></li>
-          <li><a [routerLink]="['/editoffer', offer.id]">edit offer</a></li>
-          <li><a href="">edit status</a></li>
-          <li><a href="">delete</a></li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<!--  -->
+<div class="myitems-page">
+  <div *ngIf="isLoaded">
+    <table (click)="showActions($event)" *ngIf="userOffers.length > 0;else myitemsEmpty">
+      <thead>
+        <tr>
+          <th></th>
+          <th>name</th>
+          <th>categorie</th>
+          <th>aantal likes</th>
+          <th>aantal views</th>
+          <th>status</th>
+          <th>actie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let offer of userOffers">
+          <td>
+            <img *ngIf="offer.images[0]; else default" src="{{url + offer.images[0].filename}}" alt="">
+            <ng-template #default> <img src="../../../assets/default_image.png" alt=""></ng-template>
+          </td>
+          <td><p>{{offer.title}}</p></td>
+          <td>{{offer.category.name}}</td>
+          <td>{{offer.total_likes}}</td>
+          <td>{{offer.total_views}}</td>
+          <td>
+            <span *ngIf="offer.status == 1" class="online">online</span>
+            <span *ngIf="offer.status == 0" class="offline">offline</span>
+          </td>
+          <td>
+            <i class="material-icons">more_vert</i>
+            <ul>
+              <li><a [routerLink]="['/offerdetail', offer.id]">bekijk</a></li>
+              <li><a [routerLink]="['/editoffer', offer.id]">edit offer</a></li>
+              <li><a href="">edit status</a></li>
+              <li><a href="">delete</a></li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #myitemsEmpty>
+      <div class="myitemsEmpty">
+        <p>U heeft nog zelf geen items toegevoegd.</p>
+        <!-- <a routerLink="/addoffer">Voeg hier een item toe</a> -->
+      </div>
+    </ng-template>
+  </div>
+  <app-loading-overlay-account *ngIf="isLoaded == false"></app-loading-overlay-account>
+</div>
+

@@ -21,6 +21,7 @@ import { EditOfferPageModule } from './edit-offer-page/edit-offer-page.module';
 import { ForgetPasswordModule } from './Auth/forget-password/forget-password.module';
 import { ResetPasswordModule } from './Auth/reset-password/reset-password.module';
 import { EmailVerfiyPageModule } from './Auth/email-verfiy-page/email-verfiy-page.module';
+import { VerifyControlPageModule } from './Auth/verify-control-page/verify-control-page.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EmailVerfiyPageModule } from './Auth/email-verfiy-page/email-verfiy-pag
     ForgetPasswordModule,
     ResetPasswordModule,
     EmailVerfiyPageModule,
-    SharedModule
+    SharedModule,
+    VerifyControlPageModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

@@ -64,7 +64,7 @@ export class RegisterPageComponent implements OnInit {
           this.auth.register(this.registerForm.value).pipe(first()).subscribe({
             next: data => {
               this.isLoading = false;
-              //this.router.navigate(['account', 'profile']);
+              this.router.navigate(['email', 'verify']);
             },
             error: err_res => {
               this.isLoading = false;

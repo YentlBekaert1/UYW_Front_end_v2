@@ -105,5 +105,10 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
     this.tabs.nativeElement.children[tab_number-1].classList.add('active');
   }
 
-
+  voegtoeClicked(){
+      this.router.navigate(['addoffer']);
+  }
+  ontdekClicked(){
+    this.router.navigate(['items']);
+  }
 }

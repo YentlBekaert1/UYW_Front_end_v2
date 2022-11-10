@@ -65,12 +65,14 @@
         display: grid;
         align-items: center;
         .search-input{
+          -webkit-box-shadow: 5px 5px 21px -5px rgba(0,0,0,0.21);
+          box-shadow: 5px 5px 21px -5px rgba(0,0,0,0.21);
           display: block;
           margin: auto;
           width: 95%;
           height: 60%;
           background-color: var(--white-color);
-          border: 1px solid #B0B0B0;
+          border: 1px solid #e2e2e2;
           border-radius: 15px;
           box-sizing: content-box;
           display: grid;

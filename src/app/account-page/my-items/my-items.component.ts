@@ -10,10 +10,16 @@ import { environment } from 'src/environments/environment';
 export class MyItemsComponent implements OnInit {
   userOffers: any = [];
   url = environment.apiUrl;
+
+  isLoaded = false;
+
   constructor(private offerservice: OfferService) { }
 
   ngOnInit(): void {
-    this.offerservice.getUserOffers().then((res: any) => this.userOffers = res.data)
+    this.offerservice.getUserOffers().then((res: any) =>{
+      this.userOffers = res.data;
+      this.isLoaded = true;
+    });
   }
 
   showActions(event){

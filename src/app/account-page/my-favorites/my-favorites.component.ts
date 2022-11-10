@@ -10,12 +10,15 @@ import { environment } from 'src/environments/environment';
 export class MyFavoritesComponent implements OnInit {
   userFavorites: any = [];
   url = environment.apiUrl;
+  isLoaded = false;
+
   constructor(private offerservice: OfferService) { }
 
   ngOnInit(): void {
     this.offerservice.getUserFavorites().then((res: any) => {
       this.userFavorites = res.data;
       console.log( this.userFavorites);
+      this.isLoaded = true;
     })
   }
 

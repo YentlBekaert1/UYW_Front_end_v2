@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { CardSliderComponent } from './card-slider/card-slider.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import { LoadingOverlayAccountComponent } from './loading-overlay-account/loading-overlay-account.component';
 
 @NgModule({
   declarations: [
@@ -14,14 +15,16 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
     FooterComponent,
     CardComponent,
     CardSliderComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    LoadingOverlayAccountComponent
   ],
   exports:[
     TopNavComponent,
     FooterComponent,
     CardComponent,
     CardSliderComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    LoadingOverlayAccountComponent
   ],
   imports: [
     CommonModule,
