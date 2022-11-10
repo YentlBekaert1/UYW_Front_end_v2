@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ForbiddenPageComponent } from './forbidden-page.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,7 +12,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ]
 })
 export class ForbiddenPageModule { }
