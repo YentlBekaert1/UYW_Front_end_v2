@@ -13,6 +13,7 @@ export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
 
   errorMessage = '';
+  isLoading = false;
 
   offer_validation_messages = {
     'email': [
@@ -40,28 +41,33 @@ export class LoginPageComponent implements OnInit {
     if(this.loginForm.invalid){
       this.loginForm.markAllAsTouched();
       return;
+    }else{
+      this.isLoading = true;
+      this.auth.csrf().subscribe({
+        next: data => {
+          this.auth.login(this.loginForm.value).pipe(first()).subscribe({
+            next: data => {
+              console.log(data);
+              this.router.navigate(['account', 'profile']);
+              this.isLoading = false;
+            },
+            error: err_res => {
+              this.isLoading = false;
+              if(err_res.error.errors.email){
+                this.errorMessage = err_res.error.errors.email;
+              }
+              if(err_res.error.errors.password){
+                this.errorMessage = err_res.error.errors.password;
+              }
+            }
+          });
+        },
+        error: err => {
+          this.isLoading = false;
+          this.errorMessage = "Oeps, er is iets mis gegaan";
+        }
+      });
     }
-    this.auth.csrf().subscribe({
-      next: data => {
-        this.auth.login(this.loginForm.value).pipe(first()).subscribe({
-          next: data => {
-            console.log(data);
-            this.router.navigate(['account', 'profile']);
-          },
-          error: err_res => {
-            if(err_res.error.errors.email){
-              this.errorMessage = err_res.error.errors.email;
-            }
-            if(err_res.error.errors.password){
-              this.errorMessage = err_res.error.errors.password;
-            }
-          }
-        });
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
   }
 
   goToRegister(){

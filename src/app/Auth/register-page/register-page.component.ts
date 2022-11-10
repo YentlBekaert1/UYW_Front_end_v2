@@ -15,6 +15,9 @@ export class RegisterPageComponent implements OnInit {
   errorMessage = '';
   emailServerError:string;
   passwordServerError:string;
+
+  isLoading = false;
+
   offer_validation_messages = {
     'name': [
       { type: 'required', message: 'Naam is required' },
@@ -54,28 +57,32 @@ export class RegisterPageComponent implements OnInit {
       this.registerForm.markAllAsTouched();
       return;
     }
-    this.auth.csrf().subscribe({
-      next: data => {
-        this.auth.register(this.registerForm.value).pipe(first()).subscribe({
-          next: data => {
-            console.log(data);
-            //this.router.navigate(['account', 'profile']);
-          },
-          error: err_res => {
-            console.log(err_res.error.errors);
-            if(err_res.error.errors.email){
-              this.emailServerError = err_res.error.errors.email;
+    else{
+      this.isLoading = true;
+      this.auth.csrf().subscribe({
+        next: data => {
+          this.auth.register(this.registerForm.value).pipe(first()).subscribe({
+            next: data => {
+              this.isLoading = false;
+              //this.router.navigate(['account', 'profile']);
+            },
+            error: err_res => {
+              this.isLoading = false;
+              if(err_res.error.errors.email){
+                this.emailServerError = err_res.error.errors.email;
+              }
+              if(err_res.error.errors.password){
+                this.passwordServerError = err_res.error.errors.password;
+              }
             }
-            if(err_res.error.errors.password){
-              this.passwordServerError = err_res.error.errors.password;
-            }
-          }
-        });
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+          });
+        },
+        error: err => {
+          this.isLoading = false;
+          this.emailServerError = "Oeps, er is iets mis gegaan."
+        }
+      });
+    }
   }
 
   goToLogin(){

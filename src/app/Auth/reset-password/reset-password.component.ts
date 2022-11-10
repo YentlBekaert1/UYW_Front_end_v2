@@ -20,6 +20,8 @@ export class ResetPasswordComponent implements OnInit {
   responseMessage = "";
   responseMessageState = false;
 
+  isLoading = false;
+
   offer_validation_messages = {
     'email': [
       { type: 'required', message: 'Email is required' },
@@ -60,27 +62,31 @@ export class ResetPasswordComponent implements OnInit {
     if(this.resetpasswordForm.invalid){
       this.resetpasswordForm.markAllAsTouched();
       return;
+    }else{
+      this.isLoading = true;
+      this.auth.csrf().subscribe({
+        next: data => {
+          this.auth.resetpassword(this.resetpasswordForm.value).pipe(first()).subscribe({
+            next: data => {
+              this.isLoading = false;
+              this.responseMessage = data.message
+              this.responseMessageState = true;
+            },
+            error: err => {
+              this.isLoading = false;
+              this.emailServerError = err.message
+              this.responseMessageState = true;
+            }
+          });
+        },
+        error: err => {
+          this.isLoading = false;
+          this.emailServerError = "Oeps, er is iets mis gegaan."
+          console.log(err);
+        }
+      });
     }
-    this.auth.csrf().subscribe({
-      next: data => {
-        this.auth.resetpassword(this.resetpasswordForm.value).pipe(first()).subscribe({
-          next: data => {
-            console.log(data);
-            //this.router.navigate(['account','profile']);
-            this.responseMessage = data.message
-            this.responseMessageState = true;
-          },
-          error: err => {
-            console.log(err)
-            this.responseMessage = err.message
-            this.responseMessageState = true;
-          }
-        });
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+
   }
 
   closeClicked(){

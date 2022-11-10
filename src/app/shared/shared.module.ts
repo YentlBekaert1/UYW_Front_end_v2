@@ -6,19 +6,22 @@ import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { CardSliderComponent } from './card-slider/card-slider.component';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 
 @NgModule({
   declarations: [
     TopNavComponent,
     FooterComponent,
     CardComponent,
-    CardSliderComponent
+    CardSliderComponent,
+    LoadingOverlayComponent
   ],
   exports:[
     TopNavComponent,
     FooterComponent,
     CardComponent,
-    CardSliderComponent
+    CardSliderComponent,
+    LoadingOverlayComponent
   ],
   imports: [
     CommonModule,

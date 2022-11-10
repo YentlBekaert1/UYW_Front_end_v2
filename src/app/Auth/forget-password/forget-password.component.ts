@@ -15,6 +15,7 @@ export class ForgetPasswordComponent implements OnInit {
   errorMessage = '';
   responseMessage = "We hebben de link naar u toegemaild";
   responseMessageState = false;
+  isLoading = false;
 
   offer_validation_messages = {
     'email': [
@@ -38,27 +39,31 @@ export class ForgetPasswordComponent implements OnInit {
       this.forgetPasswordForm.markAllAsTouched();
       return;
     }
-    this.auth.csrf().subscribe({
-      next: data => {
-        this.auth.forgetpassword(this.forgetPasswordForm.value).pipe(first()).subscribe({
-          next: data => {
-            console.log(data);
-            this.responseMessage = data.message
-            this.responseMessageState = true;
-            // this.router.navigate(['account', 'profile']);
-          },
-          error: err_res => {
-            console.log(err_res);
-            if(err_res.error.errors.email){
-              this.errorMessage = err_res.error.errors.email;
+    else{
+      this.isLoading = true;
+      this.auth.csrf().subscribe({
+        next: data => {
+          this.auth.forgetpassword(this.forgetPasswordForm.value).pipe(first()).subscribe({
+            next: data => {
+              console.log(data);
+              this.responseMessage = data.message
+              this.responseMessageState = true;
+              this.isLoading = false;
+            },
+            error: err_res => {
+              this.isLoading = false;
+              if(err_res.error.errors.email){
+                this.errorMessage = err_res.error.errors.email;
+              }
             }
-          }
-        });
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+          });
+        },
+        error: err => {
+          this.errorMessage = "Oeps, er is iets mis gegaan";
+          this.isLoading = false;
+        }
+      });
+    }
   }
 
   closeClicked(){

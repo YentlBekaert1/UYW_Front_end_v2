@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./email-verfiy-page.component.scss']
 })
 export class EmailVerfiyPageComponent implements OnInit {
-
+  isLoading = false;
+  
   constructor() { }
 
   ngOnInit(): void {
