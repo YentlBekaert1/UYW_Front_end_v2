@@ -17,12 +17,38 @@
           <ul>
             <li><a  [routerLink]="['/addoffer']"><i class="material-icons">add_circle_outline</i><span>Voeg toe</span></a></li>
               <li><a  [routerLink]="['/account','favorites']"><i class="material-icons">favorite_outline</i><span>Favorieten</span></a></li>
-              <li><a  [routerLink]="['/account','profile']"><span><i class="material-icons">person_outline</i><i class="material-icons">arrow_drop_down</i></span><span>Account</span></a></li>
+              <li><a  (click)="accountButtonClicked()"><span><i class="material-icons">person_outline</i></span><span>Account</span></a></li>
           </ul>
       </div>
       <div class="menu-items-small">
-        <a href=""><i class="material-icons">menu</i></a>
+        <a (click)="toggleResponsiveNav()"><i class="material-icons">menu</i></a>
     </div>
   </div>
+</div>
 
+<div class="responsiveNav" *ngIf="responsiveNavState == true && fullNavState == false">
+  <div class="responsiveNavDropdown">
+    <ul>
+      <li><a routerLink="/account/profile" (click)="responsiveNavitemClicked()">Accountoverzicht</a></li>
+      <li><a routerLink="/account/favorites" (click)="responsiveNavitemClicked()">Mijn Favorieten</a></li>
+      <li><a routerLink="/account/items" (click)="responsiveNavitemClicked()">Mijn Toegevoegde Items</a></li>
+      <li><a routerLink="/addoffer" (click)="responsiveNavitemClicked()">Voeg een item toe</a></li>
+      <li><a routerLink="/account/settings" (click)="responsiveNavitemClicked()">Instellingen</a></li>
+      <li><a routerLink="/account/logout" (click)="responsiveNavitemClicked()">Uitloggen</a></li>
+    </ul>
+  </div>
+  </div>
+
+
+<div class="accountDropdown" *ngIf="accountDropdownState == true && fullNavState == true" (click)="dropdowncontainerClicked()">
+<div class="dropdown">
+  <ul [ngClass]="accountDropdownState == true && fullNavState == true ? 'visible' : ''">
+    <li><a routerLink="/account/profile">Accountoverzicht</a></li>
+    <li><a routerLink="/account/favorites">Mijn Favorieten</a></li>
+    <li><a routerLink="/account/items">Mijn Toegevoegde Items</a></li>
+    <li><a routerLink="/addoffer">Voeg een item toe</a></li>
+    <li><a routerLink="/account/settings">Instellingen</a></li>
+    <li><a routerLink="/account/logout">Uitloggen</a></li>
+  </ul>
+</div>
 </div>

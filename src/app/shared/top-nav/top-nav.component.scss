@@ -52,7 +52,94 @@
       }
     }
   }
+  .accountDropdown{
+    // background-color: red;
+    position: absolute;
+    top: 95px;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    .dropdown{
+      // background-color: blue;
+      margin-right: auto;
+      margin-left: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+      max-width: 1320px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      ul{
+        background-color: var(--white-color);
+        width: fit-content;
+        list-style: none;
+        border-left: 1px solid var(--grey-border-color);
+        border-right: 1px solid var(--grey-border-color);
+        border-bottom: 5px solid var(--secondary-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 1s ease-in-out;
+        &.visible{
+          max-height: 500px;
+          transition: max-height 1s ease-in-out;
+        }
+        li{
+          padding: 1rem;
+          // background-color: green;
+          border-bottom: 1px solid var(--grey-border-color);
+          a{
+            // background-color: blue;
+            padding:0 1rem 0 1rem;
+            text-decoration: none;
+            display: block;
+            color: var(--primary-color)
+          }
+          &:hover{
+            a{
+              color: var(--primary-darker)
+            }
+          }
+        }
+      }
+    }
+  }
 
+  .responsiveNav{
+    // background-color: red;
+    position: absolute;
+    top: 95px;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    .responsiveNavDropdown{
+      ul{
+        background-color: var(--white-color);
+        width: 100%;
+        list-style: none;
+        border-bottom: 5px solid var(--secondary-color);
+        height: 100%;
+        overflow: hidden;
+        transition: max-height 1s ease-in-out;
+        li{
+          padding: 1rem;
+          // background-color: green;
+          border-bottom: 1px solid var(--grey-border-color);
+          a{
+            // background-color: blue;
+            padding:0 1rem 0 1rem;
+            text-decoration: none;
+            display: block;
+            color: var(--primary-color)
+          }
+          &:hover{
+            a{
+              color: var(--primary-darker)
+            }
+          }
+        }
+      }
+    }
+  }
 
   @media screen and (min-width: 680px) {
 

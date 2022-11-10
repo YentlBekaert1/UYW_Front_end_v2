@@ -52,6 +52,8 @@ export class ResetPasswordComponent implements OnInit {
         this.resetpasswordForm.patchValue({
           token: url_token
         })
+      }else{
+        this.router.navigate(['forbidden']);
       }
     });
   }
