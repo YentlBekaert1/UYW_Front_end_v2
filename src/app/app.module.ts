@@ -23,6 +23,7 @@ import { ResetPasswordModule } from './Auth/reset-password/reset-password.module
 import { EmailVerfiyPageModule } from './Auth/email-verfiy-page/email-verfiy-page.module';
 import { VerifyControlPageModule } from './Auth/verify-control-page/verify-control-page.module';
 import { ForbiddenPageModule } from './forbidden-page/forbidden-page.module';
+import { TermsofconditonsPageModule } from './Auth/termsofconditons-page/termsofconditons-page.module';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ForbiddenPageModule } from './forbidden-page/forbidden-page.module';
     EmailVerfiyPageModule,
     SharedModule,
     VerifyControlPageModule,
-    ForbiddenPageModule
+    ForbiddenPageModule,
+    TermsofconditonsPageModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

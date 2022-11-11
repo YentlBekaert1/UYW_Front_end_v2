@@ -193,16 +193,16 @@ export class MapComponent implements OnInit  {
           layer.addTo(this.wasteLayer);
           this.wasteMarkers.push(layer._leaflet_id);
       }
-      else if(feature.properties.category === 21){
+      else if(feature.properties.category === 2){
           layer.addTo(this.inspirationLayer);
       }
-      else if(feature.properties.category === '3'){
+      else if(feature.properties.category === 3){
           layer.addTo(this.organisationLayer);
       }
-      else if(feature.properties.category === '4'){
+      else if(feature.properties.category === 4){
           layer.addTo(this.humanLayer);
       }
-      else if(feature.properties.category === '5'){
+      else if(feature.properties.category === 5){
           layer.addTo(this.techonolgyLayer);
       }
       else{
@@ -214,19 +214,19 @@ export class MapComponent implements OnInit  {
             onEachFeature: onEachFeature,
             pointToLayer: function(feature, latlng) {
                if(zoom >= 10){
-                    if(feature.properties.category === 21){
+                    if(feature.properties.category === 1){
                       return L.marker(latlng, { icon: wasteIcon })
                     }
-                    else if(feature.properties.category === 1){
+                    else if(feature.properties.category === 2){
                         return L.marker(latlng, { icon: inspirationIcon })
                     }
-                    else if(feature.properties.category === '3'){
+                    else if(feature.properties.category === 3){
                         return L.marker(latlng, { icon: organisationIcon })
                     }
-                    else if(feature.properties.category === '4'){
+                    else if(feature.properties.category === 4){
                         return L.marker(latlng, { icon: humanIcon })
                     }
-                    else if(feature.properties.category === '5'){
+                    else if(feature.properties.category === 5){
                         return L.marker(latlng, { icon: technologyIcon })
                     }
                     else{

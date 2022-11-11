@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { OfferService } from '../_services/offer.service';
 
@@ -67,6 +67,10 @@ export class OfferDetailPageComponent implements OnInit {
 
         if(this.offer.contact != "" ){
           this.contact = this.offer.contact;
+        }
+
+        if(this.offer.url != "" ){
+          this.url = this.offer.url;
         }
 
         if(this.offer.location !== null){

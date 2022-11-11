@@ -46,11 +46,8 @@ export class TopNavComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-
     if(this.eRef.nativeElement.contains(event.target)) {
-      console.log("clicked inside");
     } else {
-      console.log("clicked outside");
       this.accountDropdownState = false;
       this.responsiveNavState = false;
     }

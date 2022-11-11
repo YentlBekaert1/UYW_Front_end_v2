@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { GeosearchService } from '../_services/geosearch.service';
 import { OfferService } from '../_services/offer.service';
@@ -54,12 +54,12 @@ export class EditOfferPageComponent implements OnInit {
     'title': [
       { type: 'required', message: 'Title is required' },
       { type: 'minlength', message: 'Title must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Title cannot be more than 30 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 60 characters long' },
     ],
     'description': [
       { type: 'required', message: 'Description is required' },
       { type: 'minlength', message: 'Description must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Description cannot be more than 800 characters long' },
+      { type: 'maxlength', message: 'Description cannot be more than 2000 characters long' },
     ],
     'materials': [
       { type: 'betweenLength', message: 'There can only be 20 materials' },
@@ -103,16 +103,17 @@ export class EditOfferPageComponent implements OnInit {
     private offerservice: OfferService,
     private tagservice: TagserviceService,
     private geoservice: GeosearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) {
 
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(5)]],
-      description: ['', [Validators.required, Validators.maxLength(800), Validators.minLength(5)]],
+      title: ['', [Validators.required, Validators.maxLength(60)]],
+      description: ['', [Validators.required, Validators.maxLength(2000)]],
       material: [0, []],
       submaterial: [0, []],
-      selectedmaterials:[[], Validators.compose([cutomValidators.betweenLength(0,20)])],
-      selectedsubmaterials:[[], Validators.compose([cutomValidators.betweenLength(0,20)])],
+      selectedmaterials:[[]],
+      selectedsubmaterials:[[]],
       tag: ['', []],
       new_tag_input: ['', [Validators.maxLength(30)]],
       new_tags: [[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
@@ -213,7 +214,10 @@ export class EditOfferPageComponent implements OnInit {
               lon: features[0].lon
             })
           }
-          this.offerservice.editOffer(this.form.value, this.offerId).subscribe(res => console.log(res));
+          this.offerservice.editOffer(this.form.value, this.offerId).subscribe(res => {
+            console.log(res);
+            this.router.navigate(['account', 'items']);
+          });
         });
       }
       else{

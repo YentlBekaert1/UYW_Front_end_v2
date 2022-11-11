@@ -2,7 +2,7 @@
 <div class="account-page">
   <div class="account-page-container">
      <div class="crumbs">
-      <span><a [routerLink]="['/home']">Home</a></span>
+      <span><a [routerLink]="['/items/list/0/0/10000/0/0']">Items</a></span>
       <span>-</span>
       <span>Account</span>
       <span>-</span>
@@ -40,12 +40,12 @@
         </div>
 
 
-        <div class="instellingen" *ngIf="active_tab.key === 4">
+        <div class="instellingen" *ngIf="active_tab.key === 5">
           <h1>Instelingen</h1>
           <app-settings></app-settings>
         </div>
 
-        <div class="loguit" *ngIf="active_tab.key === 5">
+        <div class="loguit" *ngIf="active_tab.key === 6">
           <h1>Log uit</h1>
           <app-logout></app-logout>
         </div>

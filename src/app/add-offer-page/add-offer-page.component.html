@@ -141,7 +141,7 @@
           </div>
         </div>
 
-        <h2>Contact (optioneel)</h2>
+        <h2>Contact gegevens (optioneel)</h2>
         <label for="contact">Contact</label>
         <input type="text" class="form-control" formControlName="contact" name="contact" [ngClass]="form.controls['contact'].invalid && (form.controls['contact'].dirty || form.controls['contact'].touched) ? 'alert-danger' : ''"/>
         <div *ngFor="let validation of offer_validation_messages.contact">

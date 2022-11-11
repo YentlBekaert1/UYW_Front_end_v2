@@ -20,8 +20,9 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
     { key: 1, value:"Mijn Gegevens"},
     { key: 2, value:"Mijn Favorieten"},
     { key: 3, value:"Mijn Items"},
-    { key: 4, value:"Instellingen"},
-    { key: 5, value:"Uitloggen"},
+    { key: 4, value:"Voeg item toe"},
+    { key: 5, value:"Instellingen"},
+    { key: 6, value:"Uitloggen"},
   ];
 
   constructor( private route: ActivatedRoute, private router: Router) {
@@ -41,11 +42,14 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
        else if(tab === 'items'){
         number = 3;
         }
-       else if(tab === 'settings'){
+        else if(tab === 'additem'){
         number = 4;
         }
+       else if(tab === 'settings'){
+        number = 5;
+        }
         else if(tab === 'logout'){
-          number = 5;
+          number = 6;
         }
        const found = this.tab_array.find(element => element.key === number);
        this.active_tab = found;
@@ -66,11 +70,14 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
        else if(tab === 'items'){
         number = 3;
       }
-       else if(tab === 'settings'){
+      else if(tab === 'additem'){
         number = 4;
         }
+       else if(tab === 'settings'){
+        number = 5;
+        }
         else if(tab === 'logout'){
-          number = 5;
+          number = 6;
         }
        const found = this.tab_array.find(element => element.key === number);
        this.active_tab = found;
@@ -90,9 +97,12 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
       this.router.navigate(['account', 'items']);
     }
     else if(number === 4){
-      this.router.navigate(['account', 'settings']);
+      this.router.navigate(['addoffer']);
     }
     else if(number === 5){
+      this.router.navigate(['account', 'settings']);
+    }
+    else if(number === 6){
       this.router.navigate(['account', 'logout']);
     }
 
