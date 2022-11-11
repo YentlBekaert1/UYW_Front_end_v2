@@ -1,8 +1,7 @@
 import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpRequest, HttpResponse, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, lastValueFrom, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, lastValueFrom, map, Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserAccount } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +9,21 @@ import { UserAccount } from '../_models/user';
 export class AuthService {
 
   //observable to store userdata
-  private userAccountSubject: BehaviorSubject<UserAccount>;
-  public user: Observable<UserAccount>;
+  private userAccountSubject: BehaviorSubject<any>;
+  public user: Observable<any>;
   userLoggedIn$: Observable<Boolean>;
 
   constructor(private http: HttpClient, private cookieExtractor:HttpXsrfTokenExtractor) {
-    this.userAccountSubject = new BehaviorSubject<UserAccount>({} as any);
+    this.userAccountSubject = new BehaviorSubject<any>({} as any);
     this.user = this.userAccountSubject.asObservable();
     this.userLoggedIn$ = this.user.pipe(map(user => { return !!user.name;}));
 
-    if(localStorage.getItem("USER_DATA")){
-      const user = localStorage.getItem("USER_DATA");
-      if(user){
-        this.userAccountSubject.next(JSON.parse(user));
-      }
-    }
+    // if(sessionStorage.getItem("_user")){
+    //   const user = sessionStorage.getItem("_user");
+    //   if(user){
+    //     this.userAccountSubject.next(user);
+    //   }
+    // }
   }
 
   public csrf(): Observable<any>{
@@ -50,7 +49,7 @@ export class AuthService {
     return this.http.post<any>(requesturl, loginData, httpOptions)
     // .pipe(map(user => {
     //   this.userAccountSubject.next(user);
-    //   localStorage.setItem("USER_DATA", JSON.stringify(user));
+    //   sessionStorage.setItem("_user", JSON.stringify(true));
     //   return user;
     // }))
   }
@@ -118,15 +117,16 @@ export class AuthService {
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 
-    return this.http.post<any>(requesturl, {}, httpOptions).subscribe(
-      response =>{
-        //if logout succes
-        this.userAccountSubject.next(null as any);
-        //delete data
-        localStorage.removeItem("USER_DATA");
-        //this.router.navigate(['login']);
-      }
-    )
+    return this.http.post<any>(requesturl, {}, httpOptions)
+    // .subscribe(
+    //   response =>{
+    //     //if logout succes
+    //     this.userAccountSubject.next(null as any);
+    //     //delete data
+    //     sessionStorage.removeItem("_user");
+    //     //this.router.navigate(['login']);
+    //   }
+    // )
   }
 
   public userdata(){
@@ -140,6 +140,26 @@ export class AuthService {
 
     return lastValueFrom(
       this.http.get(requesturl, httpOptions)
+    //   .pipe(
+    //     map(res => {
+    //       sessionStorage.setItem("_user", JSON.stringify(true));
+    //       return res
+    //     }),
+    //     catchError(err => {
+    //          //if logout succes
+    //           this.userAccountSubject.next(null as any);
+    //           //delete data
+    //           sessionStorage.removeItem("_user");
+    //         return throwError(err);
+    //     }),
+    //     catchError(err => {
+    //          //if logout succes
+    //           this.userAccountSubject.next(null as any);
+    //           //delete data
+    //           sessionStorage.removeItem("_user");
+    //         return throwError(err);
+    //     })
+    // )
     );
   }
 
