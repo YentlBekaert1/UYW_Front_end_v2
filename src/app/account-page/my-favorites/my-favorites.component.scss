@@ -11,17 +11,18 @@
   }
   div{
     margin-top: 2rem;
+    width:100%;
+    overflow-x: auto;
     table{
       width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-      border-radius: 15px;
+        border-collapse: collapse;
+        border-radius: 15px;
       thead{
         background-color: var(--table-head-color);
         border-radius: 15px;
         tr{
           th{
-            padding: 1rem 0;
+            padding: 1rem;
             text-transform: uppercase;
             font-family: montserrat-bold;
             color: var(--white-color);
@@ -86,4 +87,23 @@
       }
     }
   }
+}
+
+@media screen and (min-width: 800px) {
+  .myitems-page{
+      div{
+        table{
+          table-layout: fixed;
+          tbody{
+            tr{
+              &:last-child{
+                ul{
+                  right: 1rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
 }
