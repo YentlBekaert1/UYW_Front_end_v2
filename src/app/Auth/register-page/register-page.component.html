@@ -5,7 +5,7 @@
   <div id="background_line"></div>
   <div class="login">
     <div class="form-container">
-      <a [routerLink]="['/home']" class="home"><i class="material-icons">home</i><span>Home</span></a>
+      <!-- <a [routerLink]="['/home']" class="home"><i class="material-icons">home</i><span>Home</span></a> -->
       <h1>Maak een account aan</h1>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
         <div class="validators">
@@ -64,9 +64,15 @@
 
         <div class="btns">
           <button type="submit">Maak aan</button>
-          <button type="button" (click)="goToLogin()">Aanmelden</button>
         </div>
       </form>
+      <div class="or">
+        <div class="line"></div>
+        <span>of</span>
+      </div>
+      <div class="back_container">
+        <span><a routerLink="/login">Log terug in</a></span>
+      </div>
     </div>
     <div class="image">
       <div class="logo">
@@ -78,9 +84,6 @@
     </div>
   </div>
 </div>
-<div class="loader" [ngClass]="isLoading == true ? 'visible' : ''">
-  <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  <p>Loading...</p>
-</div>
+
 <app-loading-overlay *ngIf="isLoading == true"></app-loading-overlay>
 

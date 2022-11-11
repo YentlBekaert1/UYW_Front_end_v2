@@ -11,7 +11,13 @@
       <p>Voordat u verdergaat, Moet u uw e-mailadres verifiëren door op de link te klikken die we u zojuist hebben gemaild? Als u de e-mail niet hebt ontvangen, sturen we u graag een nieuwe.</p>
       <div class="btns">
         <button>Log uit</button>
-        <button (click)="resendVerification()">Zend code opnieuw</button>
+      </div>
+      <div class="or">
+        <div class="line"></div>
+        <span>of</span>
+      </div>
+      <div class="register_container">
+        <span>Zend code  <a routerLink="#" (click)="resendVerification()">opnieuw</a></span>
       </div>
     </div>
   </div>

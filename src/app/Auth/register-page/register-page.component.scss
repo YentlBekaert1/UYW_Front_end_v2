@@ -42,7 +42,7 @@
     background-color: var(--white-color);
     z-index: 10;
     position: relative;
-    width: 90%;
+    width: 100%;
     min-height: 90vh;
     margin: auto;
     margin-top: 5vh;
@@ -81,14 +81,14 @@
             padding-left: 1rem;
             li.alert.alert-danger{
               color: red;
-              font-size: 0.8rem;
+              font-size: 0.9rem;
             }
           }
         }
         label{
           text-transform: uppercase;
           color: #AEABAB;
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
         input{
           display: block;
@@ -120,10 +120,9 @@
         }
 
         .btns{
-          padding:2rem 0;
+          padding:1rem 0;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 5%;
+          grid-template-columns: 1fr;
           button{
             border: none;
             height: 50px;
@@ -139,25 +138,37 @@
                 border: 2px solid var(--secondary-color);
               }
             }
-            &:last-child{
-              color: var(--secondary-color);
-              background-color: var(--white-color);
-              border: 2px solid var(--secondary-color);
-              &:hover{
-                background-color: var(--secondary-color);
-                color: var(--white-color);
-              }
-            }
           }
         }
-        .forget_password{ padding-top: 10%;
-          text-align: center;
+      }
+      div.or{
+        padding: 2rem 0 2rem 0;
+        position: relative;
+        .line{
+          width: 100%;
+          height: 1px;
+          border-bottom: 1px solid var(--grey-border-color);
+        }
+        span{
+          position: absolute;
+          top:50%;
+          left: 50%;
+          background-color: var(--white-color);
+          padding: 0 1rem;
+          transform: translate(-50%,-50%);
           color: #AEABAB;
-          font-size: 14px;
-          font-weight: 500;
-          a{
-            color: #AEABAB;
-          }
+          font-size: 0.9rem;
+        }
+      }
+      div.back_container{
+        padding: 1rem 0 2rem 0;
+        text-align: center;
+        color: #AEABAB;
+        font-size: 14px;
+        font-weight: 500;
+        a{
+          color: #AEABAB;
+          text-decoration: underline;
         }
       }
     }
