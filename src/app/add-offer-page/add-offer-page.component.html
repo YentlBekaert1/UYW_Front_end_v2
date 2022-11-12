@@ -78,7 +78,7 @@
         </div>
         <div class="chosed-select">
           <div *ngFor="let selected_material of selected_materials">
-            <span>{{selected_material.materialname}},{{selected_material.submaterialname}}</span>
+            <span>{{selected_material.materialname}} -> {{selected_material.submaterialname}}</span>
             <i class="material-icons" (click)="deleteFromSelectedMaterials(selected_material.key)">close</i>
           </div>
         </div>

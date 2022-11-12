@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./my-items.component.scss']
 })
 export class MyItemsComponent implements OnInit, AfterViewInit {
-  @ViewChild('wrapper1', { read: ElementRef }) wrapper1!: ElementRef<HTMLInputElement>;
-  @ViewChild('wrapper2', { read: ElementRef }) wrapper2!: ElementRef<HTMLInputElement>;
 
   userOffers: any = [];
   url = environment.apiUrl;
@@ -26,15 +24,6 @@ export class MyItemsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.wrapper1);
-    var wrap1 = this.wrapper1.nativeElement;
-    var wrap2 = this.wrapper2.nativeElement;
-    this.wrapper1.nativeElement.onscroll = function() {
-      wrap2.scrollLeft = wrap1.scrollLeft;
-    };
-    this.wrapper2.nativeElement.onscroll = function() {
-      wrap1.scrollLeft = wrap2.scrollLeft;
-    };
   }
 
   showActions(event){

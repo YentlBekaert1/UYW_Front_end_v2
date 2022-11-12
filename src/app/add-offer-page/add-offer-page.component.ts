@@ -236,31 +236,52 @@ export class AddOfferPageComponent implements OnInit {
     //verander formvalue
     const material = this.form.get('material').value;
     const submaterial = this.form.get('submaterial').value;
+
     const materialselected = this.form.get('selectedmaterials').value;
     const submaterialselected  = this.form.get('selectedsubmaterials').value;
-    materialselected.push(parseInt(material));
-    submaterialselected.push(parseInt(submaterial));
+    var foundmaterial = {id: 0, name: ""};
+    var foundsubmaterial = {id: 0, name: ""};
 
-    this.form.patchValue({
-      selectedmaterials: materialselected,
-      selectedsubmaterials: submaterialselected
-    })
-
-    //maak pill met namen
-    const foundmaterial = this.materials.find(element => element.id === parseInt(material));
-    const foundsubmaterial = this.submaterials.find(element => element.id === parseInt(submaterial));
-    this.selected_materials.push({key: this.selected_materials_count, materialkey: foundmaterial.id, materialname: foundmaterial.name, submaterialkey: foundsubmaterial.id, submaterialname: foundsubmaterial.name })
-    this.selected_materials_count ++;
+    if(material){
+      if(material != 0){
+        console.log("add material");
+         foundmaterial = this.materials.find(element => element.id === parseInt(material));
+         materialselected.push(parseInt(material));
+      }
+      if(submaterial){
+        console.log("add submaterial");
+        foundsubmaterial = this.submaterials.find(element => element.id === parseInt(submaterial));
+        console.log("foundsubmaterial",foundsubmaterial);
+        if(foundsubmaterial !== undefined){
+          submaterialselected.push(parseInt(submaterial));
+        }else{
+          foundsubmaterial = {id: 0, name: ""};
+        }
+      }
+      this.form.patchValue({
+        selectedmaterials: materialselected,
+        selectedsubmaterials: submaterialselected
+      });
+      //maak pill met namen
+      this.selected_materials.push({key: this.selected_materials_count, materialkey: foundmaterial.id, materialname: foundmaterial.name, submaterialkey: foundsubmaterial.id, submaterialname: foundsubmaterial.name })
+      this.selected_materials_count ++;
+      console.log("materialselected",materialselected);
+      console.log("submaterialselected",submaterialselected)
+    }
   }
+
   deleteFromSelectedMaterials(key: number){
     const found = this.selected_materials.find(element => element.key === key);
+    console.log("delete found", found)
 
     //delete from form array
     const materialselected = this.form.get('selectedmaterials').value;
     const submaterialselected  = this.form.get('selectedsubmaterials').value;
 
     materialselected.splice(materialselected.indexOf(found.materialkey, 0), 1);
-    submaterialselected.splice(submaterialselected.indexOf(found.submaterialkey,0), 1);
+    if(found.submaterialkey != 0){
+      submaterialselected.splice(submaterialselected.indexOf(found.submaterialkey,0), 1);
+    }
 
     this.form.patchValue({
       selectedmaterials: materialselected,
@@ -269,6 +290,9 @@ export class AddOfferPageComponent implements OnInit {
 
    //delete visible pil
     this.selected_materials.splice(this.selected_materials.indexOf(found), 1);
+    this.selected_materials_count --;
+    console.log("materialselected",materialselected);
+    console.log("submaterialselected",submaterialselected)
   }
 
 

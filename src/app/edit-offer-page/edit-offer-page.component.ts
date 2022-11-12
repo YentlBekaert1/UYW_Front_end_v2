@@ -143,50 +143,80 @@ export class EditOfferPageComponent implements OnInit {
             this.offerId = res.data[0].id;
             this.form.controls['title'].setValue(res.data[0].title);
             this.form.controls['description'].setValue(res.data[0].description);
-            this.form.controls['street_number'].setValue(res.data[0].location.street);
-            this.form.controls['city'].setValue(res.data[0].location.city);
-            this.form.controls['country'].setValue(res.data[0].location.country);
-            this.form.controls['contact'].setValue(res.data[0].contact);
-            this.form.controls['url'].setValue(res.data[0].url);
-
-            //categorie
             this.categoryClicked(res.data[0].category.id);
 
-            //tags
-            const tags  = this.form.get('selectedtags').value;
-            res.data[0].tags.forEach((element: any) => {
-              tags.push(element.id);
-              //maak pill met namen
-              this.selected_tags.push({id: element.id, tagname: element.name, new: false})
-            });
-            this.form.patchValue({
-              selectedtags: tags,
-            });
-
-            //materials
-            const materialselected = this.form.get('selectedmaterials').value;
-            const submaterialselected  = this.form.get('selectedsubmaterials').value;
-            res.data[0].materials.forEach((mat: any) => {
-              res.data[0].submaterials.forEach((submat: any) => {
-                if(mat.id === submat.material_id){
-                  const found = this.selected_materials.find(element => element.materialkey === parseInt(mat.id) &&  element.submaterialkey === parseInt(submat.id));
-                  if(!found){
-                    this.selected_materials.push({materialkey: mat.id, materialname: mat.name, submaterialkey: submat.id, submaterialname: submat.name })
-                    materialselected.push(parseInt(mat.id));
-                    submaterialselected.push(parseInt(submat.id));
-                  }
-                }
+            if(res.data[0].location && res.data[0].location.street){
+              this.form.controls['street_number'].setValue(res.data[0].location.street);
+            }
+            if(res.data[0].location && res.data[0].location.city){
+              this.form.controls['city'].setValue(res.data[0].location.city);
+            }
+            if(res.data[0].location && res.data[0].location.country){
+              this.form.controls['country'].setValue(res.data[0].location.country);
+            }
+            if(res.data[0].contact){
+              this.form.controls['contact'].setValue(res.data[0].contact);
+            }
+            if(res.data[0].url){
+              this.form.controls['url'].setValue(res.data[0].url);
+            }
+            if(res.data[0].tags){
+              //tags
+              const tags  = this.form.get('selectedtags').value;
+              res.data[0].tags.forEach((element: any) => {
+                tags.push(element.id);
+                //maak pill met namen
+                this.selected_tags.push({id: element.id, tagname: element.name, new: false})
               });
-            });
-            this.form.patchValue({
-              selectedmaterials: materialselected,
-              selectedsubmaterials: submaterialselected
-            });
+              this.form.patchValue({
+                selectedtags: tags,
+              });
+            }
+            if(res.data[0].materials){
+              //materials
+              const materialselected = this.form.get('selectedmaterials').value;
+              const submaterialselected  = this.form.get('selectedsubmaterials').value;
+              var materialArray = [];
+              console.log(materialArray);
+              //plaats alle materialen/submaterialen
+              res.data[0].materials.forEach((mat: any) => {
+                res.data[0].submaterials.forEach((submat: any) => {
+                  if(mat.id === submat.material_id){
+                    const found = this.selected_materials.find(element => element.materialkey === parseInt(mat.id) &&  element.submaterialkey === parseInt(submat.id));
+                    if(!found){
+                      this.selected_materials.push({materialkey: mat.id, materialname: mat.name, submaterialkey: submat.id, submaterialname: submat.name })
+                      materialselected.push(parseInt(mat.id));
+                      submaterialselected.push(parseInt(submat.id));
+                      materialArray.push(mat.id);
+                    }
+                  }
+                });
+              });
+              //plaats alle enkel materialen
+              console.log(materialArray);
+              res.data[0].materials.forEach((mat: any) => {
+                  const findinArray = materialArray.find(element => element === (mat.id));
+                  console.log(findinArray);
+                  if(!findinArray){
+                    materialselected.push(parseInt(mat.id));
+                    this.selected_materials.push({materialkey: mat.id, materialname: mat.name, submaterialkey: 0, submaterialname: "" })
+                  };
+              });
 
-            //images
-            res.data[0].images.forEach((img: any) => {
-              this.startfileArr.push(img);
-            });
+              this.form.patchValue({
+                selectedmaterials: materialselected,
+                selectedsubmaterials: submaterialselected
+              });
+              console.log("materialselected",materialselected);
+              console.log("submaterialselected",submaterialselected)
+            }
+
+            if(res.data[0].images){
+              //images
+              res.data[0].images.forEach((img: any) => {
+                this.startfileArr.push(img);
+              });
+            }
 
             this.form.patchValue({
               editimages: this.startfileArr,

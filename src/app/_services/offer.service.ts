@@ -61,10 +61,12 @@ export class OfferService {
     body.append('title', formData.title);
     body.append('description', formData.description);
     if(formData.selectedmaterials){
-      body.append('materials', JSON.stringify(formData.selectedmaterials));
+      let uniqueMaterials = [...new Set(formData.selectedmaterials)];
+      body.append('materials', JSON.stringify(uniqueMaterials));
     }
     if(formData.selectedsubmaterials){
-      body.append('submaterials', JSON.stringify(formData.selectedsubmaterials));
+      let uniqueSubMaterials = [...new Set(formData.selectedsubmaterials)];
+      body.append('submaterials', JSON.stringify(uniqueSubMaterials));
     }
     if(formData.selectedtags){
       body.append('tags', JSON.stringify(formData.selectedtags));
@@ -122,10 +124,12 @@ export class OfferService {
     body.append('title', formData.title);
     body.append('description', formData.description);
     if(formData.selectedmaterials){
-      body.append('materials', JSON.stringify(formData.selectedmaterials));
+      let uniqueMaterials = [...new Set(formData.selectedmaterials)];
+      body.append('materials', JSON.stringify(uniqueMaterials));
     }
     if(formData.selectedsubmaterials){
-      body.append('submaterials', JSON.stringify(formData.selectedsubmaterials));
+      let uniqueSubMaterials = [...new Set(formData.selectedsubmaterials)];
+      body.append('submaterials', JSON.stringify(uniqueSubMaterials));
     }
     if(formData.selectedtags){
       body.append('tags', JSON.stringify(formData.selectedtags));
