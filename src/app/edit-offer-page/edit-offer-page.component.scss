@@ -150,6 +150,9 @@
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
           gap: 20px;
+          &.tag{
+          grid-template-columns: 2fr 1fr ;
+          }
           div{
             position: relative;
             select{

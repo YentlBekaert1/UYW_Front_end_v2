@@ -45,7 +45,8 @@ export class EditOfferPageComponent implements OnInit {
 
   tags: {id: number, name: string}[] = [];
   tagtimeout = null;
-  selected_tags: {id: number, tagname: string, new: boolean}[] = [];
+  selected_tags_count: number = 1;
+  selected_tags: {key: number, tagname: string, new: boolean}[] = [];
 
   offer_validation_messages = {
     'category_id': [
@@ -166,7 +167,8 @@ export class EditOfferPageComponent implements OnInit {
               res.data[0].tags.forEach((element: any) => {
                 tags.push(element.id);
                 //maak pill met namen
-                this.selected_tags.push({id: element.id, tagname: element.name, new: false})
+                this.selected_tags.push({key: element.id, tagname: element.name, new: false});
+                this.selected_tags_count ++;
               });
               this.form.patchValue({
                 selectedtags: tags,
@@ -390,45 +392,71 @@ export class EditOfferPageComponent implements OnInit {
     this.taglist.nativeElement.style.display = "none";
   }
   taglistitemclicked(key: number, name:string){
-    const found = this.selected_tags.find(element => element.tagname === name);
-    if(!found){
-      const tags  = this.form.get('selectedtags').value;
-      tags.push(key);
-
-      this.form.patchValue({
-        selectedtags: tags,
-      })
-
-       //maak pill met namen
-       this.selected_tags.push({id: key, tagname: name, new: false})
-       console.log(this.selected_tags);
-    }
+    this.form.patchValue({
+      tag: name
+   })
   }
 
   addToSelectedTags(){
-    const tag = this.form.get('new_tag_input').value;
+    //vraag de waarden van de taginput op
+    const tag = this.form.get('tag').value;
+    var tag_id: number;
+    var isInDatabase = false;
+
+    //kijk of er iets is ingevuld in het input veld
+    if(this.onlySpaces(tag) !== true){
     //kijk of de tag niet is geselecteerd
-    const found = this.selected_tags.find(element => element.tagname === tag);
-    if(!found){
-      //kijk of de tag niet bestaat.
-      this.tagservice.tagsTypeAhead(tag).subscribe(
-        (res:any) => {
-          if(res.data.length != 1){
-            if(this.onlySpaces(tag) !== true){
-              const tags = this.form.get('new_tags').value;
-              tags.push(tag);
-              this.form.patchValue({
-                new_tags: tags,
-              })
-              //maak pill met namen
-              this.selected_tags.push({id: 0,tagname: tag, new:true})
-              console.log(this.selected_tags);
+      const found = this.selected_tags.find(element => element.tagname === tag);
+      if(!found){
+        //kijk of de tag niet bestaat.
+        this.tagservice.tagsTypeAhead(tag).subscribe(
+          (res:any) => {
+            console.log(res);
+            if(res){
+              res.data.forEach((res_element: any) =>{
+                const found_of_database = res_element;
+                console.log(found_of_database.name);
+                if(found_of_database.name == tag){
+                  isInDatabase = true;
+                  tag_id = found_of_database.id
+                }
+              });
+              console.log(isInDatabase);
+              //als het in de database zit
+              if(isInDatabase == true){
+                const found = this.selected_tags.find(element => element.tagname === tag);
+                if(!found){
+                  const tags  = this.form.get('selectedtags').value;
+                  tags.push(tag_id);
+
+                  this.form.patchValue({
+                    selectedtags: tags,
+                  })
+
+                  //maak pill met namen
+                  this.selected_tags.push({key: this.selected_tags_count, tagname: tag, new: false})
+                  this.selected_tags_count ++;
+                  console.log(this.selected_tags);
+                }
+              }
+              //als het niet in de database zit
+              else{
+                const tags = this.form.get('new_tags').value;
+                tags.push(tag);
+                this.form.patchValue({
+                  new_tags: tags,
+                });
+                this.selected_tags.push({key: this.selected_tags_count, tagname: tag, new:true})
+                this.selected_tags_count ++;
+                console.log(this.selected_tags);
+              }
             }
           }
-        }
-      );
+        );
+      }
     }
   }
+
   //hulpfunctie
   onlySpaces(str: string) {
     return str.trim().length === 0;
@@ -450,12 +478,14 @@ export class EditOfferPageComponent implements OnInit {
     }
     else{
       const tags = this.form.get('selectedtags').value;
-      tags.splice(tags.indexOf(found, 0), 1);
+      console.log(tags);
+      tags.splice(tags.indexOf(tags.find(element => element == found.key), 0), 1);
+      console.log(tags);
       this.form.patchValue({
         selectedtags: tags,
       });
     }
-
+    this.selected_tags_count --;
     //delete visible pil
     this.selected_tags.splice(this.selected_tags.indexOf(found), 1);
   }

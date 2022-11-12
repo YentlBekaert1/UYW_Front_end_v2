@@ -5,12 +5,12 @@
       <div class="crumbs">
         <span><a [routerLink]="['/home']">Home</a></span>
         <span>-</span>
-        <span>Account</span>
+        <span><a [routerLink]="['/account/items']">Account</a></span>
         <span>-</span>
-        <span>Voeg offer toe</span>
+        <span>Edit item</span>
        </div>
-       <h1>Voeg een nieuw item toe.</h1>
-       <p>Hier kun je een item toevoegen. Selecteer eerst een categorie om de gepaste invulvelden te verkrijgen.</p>
+       <h1>Pas je item aan</h1>
+       <p>Hier kun je jouw item aanpassen.</p>
        <div class="categories" #categories>
         <div *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.key)">
           <img src="{{categorie.image}}" alt="{{categorie.name}}">
@@ -85,17 +85,13 @@
 
         <h2>Tags</h2>
         <p>Je kunt meerdere tags selecteren of zelf één toevoegen. Met deze tags kunnen later de zoekresultaten verfijnd worden.</p>
-        <div class="inputs-select">
+        <div class="inputs-select tag">
           <div>
             <label for="tag">Tag</label>
             <input type="text" name="tag" formControlName="tag" class="form-control" (keyup)="autocompleteTag($event)">
             <div class="taglist" #taglist>
               <div class="taglistitem" *ngFor="let tag of tags" (click)="taglistitemclicked(tag.id, tag.name)">{{tag.name}}</div>
             </div>
-          </div>
-          <div>
-            <label for="new_tag">Nieuwe tag</label>
-            <input type="text" name="new_tag_input" formControlName="new_tag_input" class="form-control">
           </div>
           <div>
             <button type="button" (click)="addToSelectedTags()">toevoegen</button>

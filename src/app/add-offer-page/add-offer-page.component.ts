@@ -115,7 +115,6 @@ export class AddOfferPageComponent implements OnInit {
       selectedmaterials:[[]],
       selectedsubmaterials:[[]],
       tag: ['', []],
-      new_tag_input: ['', [Validators.maxLength(30)]],
       new_tags: [[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
       selectedtags:[[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
       street_number: ['', [Validators.maxLength(100)]],
@@ -311,50 +310,74 @@ export class AddOfferPageComponent implements OnInit {
       }, 1000);
     }
   }
+  //als er naast de dropdown geklikt word.
   containerClicked(){
     this.taglist.nativeElement.style.display = "none";
   }
 
   taglistitemclicked(key: number, name:string){
-    const found = this.selected_tags.find(element => element.tagname === name);
-    if(!found){
-      const tags  = this.form.get('selectedtags').value;
-      tags.push(key);
-
-      this.form.patchValue({
-        selectedtags: tags,
-      })
-
-       //maak pill met namen
-       this.selected_tags.push({key: this.selected_tags_count, tagname: name, new: false})
-       this.selected_tags_count ++;
-       console.log(this.selected_tags);
-    }
+    this.form.patchValue({
+       tag: name
+    })
   }
 
   addToSelectedTags(){
-    const tag = this.form.get('new_tag_input').value;
+    //vraag de waarden van de taginput op
+    const tag = this.form.get('tag').value;
+    var tag_id: number;
+    var isInDatabase = false;
+
+    //kijk of er iets is ingevuld in het input veld
+    if(this.onlySpaces(tag) !== true){
     //kijk of de tag niet is geselecteerd
-    const found = this.selected_tags.find(element => element.tagname === tag);
-    if(!found){
-      //kijk of de tag niet bestaat.
-      this.tagservice.tagsTypeAhead(tag).subscribe(
-        (res:any) => {
-          if(res.data.length != 1){
-            if(this.onlySpaces(tag) !== true){
-              const tags = this.form.get('new_tags').value;
-              tags.push(tag);
-              this.form.patchValue({
-                new_tags: tags,
-              })
-              //maak pill met namen
-              this.selected_tags.push({key: this.selected_tags_count, tagname: tag, new:true})
-              this.selected_tags_count ++;
-              console.log(this.selected_tags);
+      const found = this.selected_tags.find(element => element.tagname === tag);
+      if(!found){
+        //kijk of de tag niet bestaat.
+        this.tagservice.tagsTypeAhead(tag).subscribe(
+          (res:any) => {
+            console.log(res);
+            if(res){
+              res.data.forEach((res_element: any) =>{
+                const found_of_database = res_element;
+                console.log(found_of_database.name);
+                if(found_of_database.name == tag){
+                  isInDatabase = true;
+                  tag_id = found_of_database.id
+                }
+              });
+              console.log(isInDatabase);
+              //als het in de database zit
+              if(isInDatabase == true){
+                const found = this.selected_tags.find(element => element.tagname === tag);
+                if(!found){
+                  const tags  = this.form.get('selectedtags').value;
+                  tags.push(tag_id);
+
+                  this.form.patchValue({
+                    selectedtags: tags,
+                  })
+
+                  //maak pill met namen
+                  this.selected_tags.push({key: this.selected_tags_count, tagname: tag, new: false})
+                  this.selected_tags_count ++;
+                  console.log(this.selected_tags);
+                }
+              }
+              //als het niet in de database zit
+              else{
+                const tags = this.form.get('new_tags').value;
+                tags.push(tag);
+                this.form.patchValue({
+                  new_tags: tags,
+                });
+                this.selected_tags.push({key: this.selected_tags_count, tagname: tag, new:true})
+                this.selected_tags_count ++;
+                console.log(this.selected_tags);
+              }
             }
           }
-        }
-      );
+        );
+      }
     }
   }
 
