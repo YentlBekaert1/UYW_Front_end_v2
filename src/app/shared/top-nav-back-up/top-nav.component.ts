@@ -1,5 +1,4 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-top-nav',
@@ -13,8 +12,6 @@ export class TopNavComponent implements OnInit {
   public responsiveNavState:boolean = false;
 
   fullNavState = true;
-  userLoggedIn = false;
-
   public innerWidth: any;
 
   constructor(private eRef: ElementRef) { }

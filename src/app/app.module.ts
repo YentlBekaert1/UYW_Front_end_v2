@@ -24,6 +24,7 @@ import { EmailVerfiyPageModule } from './Auth/email-verfiy-page/email-verfiy-pag
 import { VerifyControlPageModule } from './Auth/verify-control-page/verify-control-page.module';
 import { ForbiddenPageModule } from './forbidden-page/forbidden-page.module';
 import { TermsofconditonsPageModule } from './Auth/termsofconditons-page/termsofconditons-page.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { TermsofconditonsPageModule } from './Auth/termsofconditons-page/termsof
     SharedModule,
     VerifyControlPageModule,
     ForbiddenPageModule,
-    TermsofconditonsPageModule
+    TermsofconditonsPageModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,
