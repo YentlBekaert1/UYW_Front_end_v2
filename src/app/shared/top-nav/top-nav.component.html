@@ -63,12 +63,12 @@
 <div class="accountDropdown" *ngIf="accountDropdownState == true && fullNavState == true" (click)="dropdowncontainerClicked()">
 <div class="dropdown">
   <ul [ngClass]="accountDropdownState == true && fullNavState == true ? 'visible' : ''">
-    <li><a routerLink="/account/profile">Accountoverzicht</a></li>
-    <li><a routerLink="/account/favorites">Mijn Favorieten</a></li>
-    <li><a routerLink="/account/items">Mijn Toegevoegde Items</a></li>
-    <li><a routerLink="/addoffer">Voeg een item toe</a></li>
-    <li><a routerLink="/account/settings">Instellingen</a></li>
-    <li><a routerLink="/account/logout">Uitloggen</a></li>
+    <li routerLink="/account/profile"><a>Accountoverzicht</a></li>
+    <li routerLink="/account/favorites"><a>Mijn Favorieten</a></li>
+    <li routerLink="/account/items"><a>Mijn Toegevoegde Items</a></li>
+    <li routerLink="/addoffer"><a>Voeg een item toe</a></li>
+    <li routerLink="/account/settings"><a>Instellingen</a></li>
+    <li routerLink="/account/logout"><a>Uitloggen</a></li>
   </ul>
 </div>
 </div>

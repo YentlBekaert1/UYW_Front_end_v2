@@ -10,21 +10,7 @@
         <span>Voeg offer toe</span>
        </div>
        <h1>Voeg een nieuw item toe.</h1>
-       <p>Hier kun je een item toevoegen. Selecteer eerst een categorie om de gepaste invulvelden te verkrijgen.</p>
-       <div class="categories" #categories>
-        <div *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.key)">
-          <img src="{{categorie.image}}" alt="{{categorie.name}}">
-          <span>{{categorie.name}}</span>
-        </div>
-       </div>
-       <p>
-        Gekozen categorie: <span>{{selectedCategory.name}}</span>
-       </p>
-       <div *ngFor="let validation of offer_validation_messages.category_id">
-        <div *ngIf="form.get('category_id').hasError(validation.type) && (form.get('category_id').dirty || form.get('category_id').touched)" class="alert alert-danger">
-          {{validation.message}}
-        </div>
-      </div>
+       <p>Hier kun je een item toevoegen.</p>
        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <h2>Algemene info</h2>
@@ -43,6 +29,22 @@
           <div *ngIf="form.get('description').hasError(validation.type) && (form.get('description').dirty || form.get('description').touched)" class="alert alert-danger">
             {{validation.message}}
           </div>
+        </div>
+
+        <h2>Categorie</h2>
+        <div class="categories" #categories>
+          <div *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.key)">
+            <img src="{{categorie.image}}" alt="{{categorie.name}}">
+            <span>{{categorie.name}}</span>
+          </div>
+         </div>
+         <p>
+          Gekozen categorie: <span>{{selectedCategory.name}}</span>
+         </p>
+         <div *ngFor="let validation of offer_validation_messages.category_id">
+            <div *ngIf="form.get('category_id').hasError(validation.type) && (form.get('category_id').dirty || form.get('category_id').touched)" class="alert alert-danger">
+              {{validation.message}}
+            </div>
         </div>
 
         <h2>Materialen</h2>
