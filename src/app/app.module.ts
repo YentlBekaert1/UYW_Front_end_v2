@@ -29,6 +29,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/authstate/auth.effects';
 import { AuthReducer } from './store/authstate/auth.reducer';
 import { LoadReducer } from './store/loadstate/load.reducer';
+import { AuthGuard } from './_helpers/auth.guard';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { LoadReducer } from './store/loadstate/load.reducer';
     StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer}, {}),
     EffectsModule.forRoot([AuthEffects])
   ],
-  providers: [ {
+  providers: [
+    AuthGuard,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: XsrfInterceptor,
     multi: true,

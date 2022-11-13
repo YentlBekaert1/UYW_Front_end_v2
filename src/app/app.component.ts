@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { throttleTime } from 'rxjs';
 import { GetProfile } from './store/authstate/auth.actions';
+import { Profile } from './store/authstate/auth.model';
 import { selectisLoggedIn, selectProfile } from './store/authstate/auth.selector';
 import { isLoaded, isNotLoaded } from './store/loadstate/load.actions';
 import { BooleanisLoaded, selectLoad } from './store/loadstate/load.selector';
@@ -22,8 +24,8 @@ export class AppComponent{
 
   loadState$ = this.store.select(BooleanisLoaded);
 
-  constructor(private auth: AuthService, private store: Store){
+  constructor(private auth: AuthService, private store: Store, private route: ActivatedRoute){
     this.store.dispatch(GetProfile());
-    this.store.dispatch(isNotLoaded())
+    this.store.dispatch(isNotLoaded());
   }
 }

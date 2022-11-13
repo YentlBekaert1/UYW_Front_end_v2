@@ -9,9 +9,14 @@ import { Profile } from './auth.model';
 @Injectable()
 export class AuthEffects {
 
+  constructor(
+    private actions$: Actions,
+    private authservice: AuthService
+  ) {}
+
   getUserData$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.GetProfile),
-    switchMap(() => this.autservice.getuserdata()
+    switchMap(() => this.authservice.getuserdata()
       .pipe(
         map((profile: Profile) => AuthActions.ShowProfile({ profile: profile, isLoggedIn: true })),
         catchError(() => EMPTY)
@@ -19,8 +24,14 @@ export class AuthEffects {
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private autservice: AuthService
-  ) {}
+  updateUserData$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActions.UpdateProfile),
+    mergeMap((data) => this.authservice.updateuserdata(data)
+      .pipe(
+        map((profile: Profile) => AuthActions.ShowProfile({ profile: profile, isLoggedIn: true })),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
+
 }

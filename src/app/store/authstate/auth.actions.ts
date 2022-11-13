@@ -15,6 +15,11 @@ export const ShowProfile = createAction(
   props<{ profile: Profile, isLoggedIn: Boolean }>()
 );
 
+export const UpdateProfile = createAction(
+  '[auth] UpdateProfile',
+  props<{ data: any }>()
+);
+
 export const DeleteProfile = createAction(
   '[auth] DeleteProfile',
 );
@@ -23,5 +28,6 @@ export const AuthActions = {
   Authenticated:Authenticated,
   GetProfile:GetProfile,
   ShowProfile:ShowProfile,
+  UpdateProfile:UpdateProfile,
   DeleteProfile:DeleteProfile,
 }

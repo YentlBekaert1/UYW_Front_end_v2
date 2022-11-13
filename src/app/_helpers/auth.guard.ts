@@ -1,38 +1,46 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
-import { GetProfile } from '../store/authstate/auth.actions';
-import { selectisLoggedIn, selectProfile } from '../store/authstate/auth.selector';
-import { AuthService } from '../_services/auth.service';
+import { catchError, filter, map, Observable, of, switchMap, take, tap} from 'rxjs';
+import { AuthFacade } from '../store/authstate/auth.facade';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanLoad {
+
+export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private auth: AuthService,
-    private store: Store
+    private authFacade: AuthFacade
   ){}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log(this.checkLoggedIn());
-    return this.checkLoggedIn();
+  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):| boolean | UrlTree| Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return this.getuserData().pipe(
+      map((authenticate) => {
+        console.log(authenticate);
+        if (!authenticate) {
+          return this.router.createUrlTree(['/login']);
+        }
+        return true;
+      })
+    );
   }
 
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.checkLoggedIn();
+  private getuserData() {
+    return this.authFacade.isLoggedIn$.pipe(
+      tap(data => this.prefetch()),
+      filter(data => !!data),
+      take(1)
+    );
   }
 
-  private checkLoggedIn(){
-    this.store.dispatch(GetProfile());
-    return this.store.select(selectisLoggedIn).pipe(map(isLoggedIn => isLoggedIn ? true : this.router.parseUrl('/login')))
+  private prefetch() {
+      this.authFacade.getProfile();
   }
+
+  // private checkLoggedIn(){
+  //   this.store.dispatch(GetProfile());
+  //   return this.store.select(selectisLoggedIn).pipe(map(isLoggedIn => isLoggedIn ? true : this.router.parseUrl('/login')))
+  // }
 
   //  private async checkLoggedIn2(){
   //   try {

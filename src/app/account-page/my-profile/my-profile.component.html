@@ -1,11 +1,12 @@
 
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
   <label for="name">naam</label>
-  <input type="text" class="form-control" formControlName="name" name="name" value="{{userData.name}}"/>
+  <input type="text" class="form-control" formControlName="name" name="name"/>
   <label for="email">email</label>
-  <input type="text" class="form-control" formControlName="email" name="email" value="{{userData.email}}"/>
+  <input type="text" class="form-control" formControlName="email" name="email"/>
   <div class="btns">
     <button type="submit">Sla op</button>
   </div>
   <span>Opslaan werkt nog niet.</span>
 </form>
+
