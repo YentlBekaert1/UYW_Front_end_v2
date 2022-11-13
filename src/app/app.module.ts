@@ -25,6 +25,10 @@ import { VerifyControlPageModule } from './Auth/verify-control-page/verify-contr
 import { ForbiddenPageModule } from './forbidden-page/forbidden-page.module';
 import { TermsofconditonsPageModule } from './Auth/termsofconditons-page/termsofconditons-page.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/authstate/auth.effects';
+import { AuthReducer } from './store/authstate/auth.reducer';
+import { LoadReducer } from './store/loadstate/load.reducer';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,8 @@ import { StoreModule } from '@ngrx/store';
     VerifyControlPageModule,
     ForbiddenPageModule,
     TermsofconditonsPageModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer}, {}),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { throttleTime } from 'rxjs';
+import { GetProfile } from './store/authstate/auth.actions';
+import { selectisLoggedIn, selectProfile } from './store/authstate/auth.selector';
+import { isLoaded, isNotLoaded } from './store/loadstate/load.actions';
+import { BooleanisLoaded, selectLoad } from './store/loadstate/load.selector';
+
 import { UserAccount } from './_models/user';
 import { AuthService } from './_services/auth.service';
 
@@ -8,11 +15,15 @@ import { AuthService } from './_services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent{
   user!: UserAccount;
+  profile$ = this.store.select(selectProfile);
+  userLoggedIn$ = this.store.select(selectisLoggedIn);
 
-  constructor(private auth: AuthService){
-    this.auth.user.subscribe(x => this.user = x);
-    //getting user details
+  loadState$ = this.store.select(BooleanisLoaded);
+
+  constructor(private auth: AuthService, private store: Store){
+    this.store.dispatch(GetProfile());
+    this.store.dispatch(isNotLoaded())
   }
 }

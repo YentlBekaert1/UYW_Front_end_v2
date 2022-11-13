@@ -28,26 +28,33 @@
             <a [routerLink]="['/login']" class="login_knop">login</a>
           </div>
           <div class="login" *ngIf="userLoggedIn">
-            <p (click)="accountButtonClicked()">Welkom Yentl</p>
+            <p (click)="accountButtonClicked()">Welkom {{profile.name}}</p>
           </div>
         </div>
       </div>
-      <div class="menu-responsive-small">
-        <a (click)="toggleResponsiveNav()"><i class="material-icons">menu</i></a>
+      <div class="menu-responsive-small" (click)="toggleResponsiveNav()">
+        <a><i class="material-icons">menu</i></a>
       </div>
     </div>
   </div>
 </div>
-
 <div class="responsiveNav" *ngIf="responsiveNavState == true && fullNavState == false">
   <div class="responsiveNavDropdown">
     <ul>
-      <li><a routerLink="/account/profile" (click)="responsiveNavitemClicked()">Accountoverzicht</a></li>
-      <li><a routerLink="/account/favorites" (click)="responsiveNavitemClicked()">Mijn Favorieten</a></li>
-      <li><a routerLink="/account/items" (click)="responsiveNavitemClicked()">Mijn Toegevoegde Items</a></li>
-      <li><a routerLink="/addoffer" (click)="responsiveNavitemClicked()">Voeg een item toe</a></li>
-      <li><a routerLink="/account/settings" (click)="responsiveNavitemClicked()">Instellingen</a></li>
-      <li><a routerLink="/account/logout" (click)="responsiveNavitemClicked()">Uitloggen</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/home']" routerLinkActive="active"><a>Home</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/items','list','0','0','10000','0','0']" routerLinkActive="active"><a>Items</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/addoffer']" [routerLinkActive]="['active']"><a>Voeg zelf toe</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li>
+      <li *ngIf="!userLoggedIn" (click)="responsiveNavitemClicked()" [routerLink]="['/login']" [routerLinkActive]="['active']"><a >Log In</a></li>
+      <li class="account" (click)="responsiveAccountButtonClicked()" *ngIf="userLoggedIn"><a>Account</a><i class="material-icons">add</i></li>
+      <ul *ngIf="userLoggedIn && accountresponsiveState == true" class="responsiveAccount">
+        <li routerLink="/account/profile" (click)="responsiveNavitemClicked()"><a>Accountoverzicht</a></li>
+        <li routerLink="/account/favorites" (click)="responsiveNavitemClicked()"><a>Mijn Favorieten</a></li>
+        <li routerLink="/account/items" (click)="responsiveNavitemClicked()"><a>Mijn Toegevoegde Items</a></li>
+        <li routerLink="/addoffer" (click)="responsiveNavitemClicked()"><a >Voeg een item toe</a></li>
+        <li routerLink="/account/settings" (click)="responsiveNavitemClicked()"><a>Instellingen</a></li>
+        <li routerLink="/account/logout" (click)="responsiveNavitemClicked()"><a>Uitloggen</a></li>
+      </ul>
     </ul>
   </div>
   </div>

@@ -1,5 +1,8 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Profile } from 'src/app/store/authstate/auth.model';
+
+
 
 @Component({
   selector: 'app-top-nav',
@@ -11,11 +14,14 @@ export class TopNavComponent implements OnInit {
 
   public accountDropdownState:boolean = false;
   public responsiveNavState:boolean = false;
+  public accountresponsiveState:boolean = false;
 
   fullNavState = true;
-  userLoggedIn = false;
 
   public innerWidth: any;
+
+  @Input() profile: Profile;
+  @Input() userLoggedIn: Boolean;
 
   constructor(private eRef: ElementRef) { }
 
@@ -45,6 +51,10 @@ export class TopNavComponent implements OnInit {
   }
   responsiveNavitemClicked(){
     this.responsiveNavState = false;
+    this.accountresponsiveState = false;
+  }
+  responsiveAccountButtonClicked(){
+    this.accountresponsiveState = !this.accountresponsiveState;
   }
 
   @HostListener('document:click', ['$event'])
