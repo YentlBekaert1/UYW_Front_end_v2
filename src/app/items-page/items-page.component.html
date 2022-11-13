@@ -4,16 +4,10 @@
         <div class="filter-background"></div>
         <div class="filters-container container ">
             <div>
-              <app-category-buttons
-              [categorieFilters]="filter_categories$ | async"
-              ></app-category-buttons>
-              <app-tabs
-              [activeFilters]="selectedFitlers"
-              ></app-tabs>
+              <app-category-buttons [categorieFilters]="filter_categories$ | async"></app-category-buttons>
+              <app-tabs></app-tabs>
             </div>
-            <app-map-radius-filter
-              [materials]="res_materials"
-            ></app-map-radius-filter>
+            <app-map-radius-filter [materials]="res_materials"></app-map-radius-filter>
        </div>
     </section>
     <section class="container list-container" #listcontainer>

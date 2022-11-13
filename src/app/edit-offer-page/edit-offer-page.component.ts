@@ -451,10 +451,14 @@ export class EditOfferPageComponent implements OnInit {
                 console.log(this.selected_tags);
               }
             }
+            this.form.patchValue({
+              tag: ""
+            });
           }
         );
       }
     }
+
   }
 
   //hulpfunctie

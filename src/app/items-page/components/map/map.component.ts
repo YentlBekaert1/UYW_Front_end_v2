@@ -195,15 +195,19 @@ export class MapComponent implements OnInit  {
       }
       else if(feature.properties.category === 2){
           layer.addTo(this.inspirationLayer);
+          this.inspirationMarkers.push(layer._leaflet_id);
       }
       else if(feature.properties.category === 3){
-          layer.addTo(this.organisationLayer);
+          layer.addTo(this.humanLayer);
+          this.humanMarkers.push(layer._leaflet_id);
       }
       else if(feature.properties.category === 4){
-          layer.addTo(this.humanLayer);
+          layer.addTo(this.organisationLayer);
+          this.organisationMarkers.push(layer._leaflet_id);
       }
       else if(feature.properties.category === 5){
           layer.addTo(this.techonolgyLayer);
+          this.techonolgyMarkers.push(layer._leaflet_id);
       }
       else{
           layer.addTo(this.map);
@@ -221,10 +225,10 @@ export class MapComponent implements OnInit  {
                         return L.marker(latlng, { icon: inspirationIcon })
                     }
                     else if(feature.properties.category === 3){
-                        return L.marker(latlng, { icon: organisationIcon })
+                        return L.marker(latlng, { icon: humanIcon })
                     }
                     else if(feature.properties.category === 4){
-                        return L.marker(latlng, { icon: humanIcon })
+                        return L.marker(latlng, { icon:  organisationIcon})
                     }
                     else if(feature.properties.category === 5){
                         return L.marker(latlng, { icon: technologyIcon })

@@ -108,7 +108,7 @@ export class AddOfferPageComponent implements OnInit {
     ) {
 
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(60)]],
+      title: ['', [Validators.required, Validators.maxLength(100)]],
       description: ['', [Validators.required, Validators.maxLength(2000)]],
       material: [0, []],
       submaterial: [0, []],
@@ -375,6 +375,10 @@ export class AddOfferPageComponent implements OnInit {
                 console.log(this.selected_tags);
               }
             }
+            
+            this.form.patchValue({
+              tag: ""
+            });
           }
         );
       }

@@ -21,7 +21,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
     { key: 3, name:"persoon", image:"../../assets/category-logos/mens.svg"},
     { key: 4, name:"organisatie", image:"../../assets/category-logos/organisatie.svg"},
     { key: 5, name:"technologie", image:"../../assets/category-logos/technologie.svg"},
-    { key: 6, name:"events", image:"../../assets/category-logos/technologie.svg"},
+    // { key: 6, name:"events", image:"../../assets/category-logos/technologie.svg"},
   ];
 
   active_categories: number[];
