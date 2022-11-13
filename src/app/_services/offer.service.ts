@@ -10,12 +10,30 @@ export class OfferService {
 
   constructor(private http: HttpClient) { }
 
-  getOffers(url: string, pagesize:number, materialFilter:number, locationFilter: string, categories: string){
-    var mat = materialFilter.toString();
-    if(materialFilter == 0){
-      mat = ""
+  getOffers(url: string, pagesize:number, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
+    var categorieFilterString: string;
+    var materialFilterString: string;
+    var locationFilterString: string;
+
+    if(categorieFilter.length == 0){
+      categorieFilterString = ""
+    }else{
+      categorieFilterString = categorieFilter.toString();
     }
-    const requesturl = url +'&page_size=' + pagesize + '&materials=' + mat + '&location=' + locationFilter +'&categories=' + categories;
+
+    if(materialFilter.length == 0){
+      materialFilterString = ""
+    }else{
+      materialFilterString = materialFilter.toString();
+    }
+
+    if(coordinatesFilter[0] !== null && coordinatesFilter[1] !== null){
+      locationFilterString = coordinatesFilter[0] + "," + coordinatesFilter[1] + "," + distanceFilter.toString();
+    }else{
+      locationFilterString = "";
+    }
+    const requesturl = url +'&page_size=' + pagesize + '&materials=' + materialFilterString + '&location=' + locationFilterString +'&categories=' + categorieFilterString;
+
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
       withCredentials: true,

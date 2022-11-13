@@ -30,6 +30,7 @@ import { AuthEffects } from './store/authstate/auth.effects';
 import { AuthReducer } from './store/authstate/auth.reducer';
 import { LoadReducer } from './store/loadstate/load.reducer';
 import { AuthGuard } from './_helpers/auth.guard';
+import { FilterReducer } from './store/filterstate/filter.reducers';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { AuthGuard } from './_helpers/auth.guard';
     VerifyControlPageModule,
     ForbiddenPageModule,
     TermsofconditonsPageModule,
-    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer}, {}),
+    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer}, {}),
     EffectsModule.forRoot([AuthEffects])
   ],
   providers: [

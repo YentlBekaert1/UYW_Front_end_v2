@@ -38,7 +38,7 @@ const routes: Routes = [
     component: HomeComponentV3,
   },
   {
-    path: "items/:tab/:categories/:material/:distance/:lat/:lon",
+    path: "items/:tab",
     component: ItemsPageComponent,
   },
   //account

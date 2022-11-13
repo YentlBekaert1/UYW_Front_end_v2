@@ -14,7 +14,7 @@
         <div class="links">
           <ul>
             <li [routerLink]="['/home']" routerLinkActive="active"><a>Home</a></li>
-            <li [routerLink]="['/items','list','0','0','10000','0','0']" routerLinkActive="active"><a>Items</a></li>
+            <li [routerLink]="['/items','list']" routerLinkActive="active"><a>Items</a></li>
             <li [routerLink]="['/addoffer']" [routerLinkActive]="['active']"><a>Voeg zelf toe</a></li>
             <li [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li>
           </ul>
@@ -42,7 +42,7 @@
   <div class="responsiveNavDropdown">
     <ul>
       <li (click)="responsiveNavitemClicked()" [routerLink]="['/home']" routerLinkActive="active"><a>Home</a></li>
-      <li (click)="responsiveNavitemClicked()" [routerLink]="['/items','list','0','0','10000','0','0']" routerLinkActive="active"><a>Items</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/items','list']" routerLinkActive="active"><a>Items</a></li>
       <li (click)="responsiveNavitemClicked()" [routerLink]="['/addoffer']" [routerLinkActive]="['active']"><a>Voeg zelf toe</a></li>
       <li (click)="responsiveNavitemClicked()" [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li>
       <li *ngIf="!userLoggedIn" (click)="responsiveNavitemClicked()" [routerLink]="['/login']" [routerLinkActive]="['active']"><a >Log In</a></li>

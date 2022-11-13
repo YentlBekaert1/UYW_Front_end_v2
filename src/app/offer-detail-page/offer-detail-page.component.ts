@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
+import { selectisLoggedIn } from '../store/authstate/auth.selector';
 import { OfferService } from '../_services/offer.service';
 
 @Component({
@@ -30,9 +32,14 @@ export class OfferDetailPageComponent implements OnInit {
 
   isFavorite: boolean = false;
 
-  constructor(private offerservice: OfferService, private route: ActivatedRoute) { }
+  isLoaded: boolean = false;
+
+  isLoggedIn$ = this.store.select(selectisLoggedIn);
+  isLoggedIn: Boolean = false;
+  constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store) { }
 
   ngOnInit(): void {
+    this.isLoggedIn$.subscribe(res => this.isLoggedIn = res);
 
     const paramsub = this.route.paramMap.subscribe(params => {
       //get activetab
@@ -101,7 +108,7 @@ export class OfferDetailPageComponent implements OnInit {
             }
           });
         });
-
+        this.isLoaded = true;
         // Make a new timeout set to go off in 1000ms (1 second)
         this.viewTimeOut = setTimeout(() => {
           //console.log('item viewed');
@@ -130,14 +137,19 @@ export class OfferDetailPageComponent implements OnInit {
 
   likeClicked(){
     console.log('clicked' + this.offer.id);
-    if(this.isFavorite == false){
-      this.offerservice.addToFavorites(this.offer.id).then((res) => console.log(res));
-      this.isFavorite = true;
-      this.likes ++;
-    }else if(this.isFavorite == true){
-      this.offerservice.removerFromFavorites(this.offer.id).then((res) => console.log(res));
-      this.isFavorite = false;
-      this.likes --;
+    if(this.isLoggedIn == true){
+      if(this.isFavorite == false){
+        this.offerservice.addToFavorites(this.offer.id).then((res) => console.log(res));
+        this.isFavorite = true;
+        this.likes ++;
+      }else if(this.isFavorite == true){
+        this.offerservice.removerFromFavorites(this.offer.id).then((res) => console.log(res));
+        this.isFavorite = false;
+        this.likes --;
+      }
+    }
+    else{
+      alert("Je moet aangemeld zijn om een bericht leuk te vinden")
     }
 
   }

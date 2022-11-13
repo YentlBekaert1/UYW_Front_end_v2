@@ -11,14 +11,10 @@
       <img src="{{activeImage}}" alt="">
     </div>
   </div>
-  <div class="offerdetail-page-container">
-    <!-- <p>{{offer.title}}</p>
-    <p>{{offer.description}}</p>
-    <p>{{offer.category.name}}</p>
-    <p *ngFor="let material of offer.materials">{{material.name}}</p>
-    <p *ngFor="let submaterial of offer.submaterials">{{submaterial.name}}</p>
-    <p *ngFor="let tag of offer.tags">{{tag.name}}</p>
-    <p>{{offer.location.steet}} {{offer.location.city}},{{offer.location.country}}</p> -->
+  <div class="offerdetail-page-container" *ngIf="!isLoaded">
+      <app-loading-overlay-account></app-loading-overlay-account>
+  </div>
+  <div class="offerdetail-page-container" *ngIf="isLoaded">
     <div class="image-container">
       <div class="head-image">
         <img src="{{activeImage}}" alt="" (click)="imageClicked($event)">

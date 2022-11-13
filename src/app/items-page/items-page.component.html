@@ -5,7 +5,7 @@
         <div class="filters-container container ">
             <div>
               <app-category-buttons
-              (categoryFilterEvent)="filtersCategorieEvent($event)"
+              [categorieFilters]="filter_categories$ | async"
               ></app-category-buttons>
               <app-tabs
               [activeFilters]="selectedFitlers"
@@ -13,7 +13,6 @@
             </div>
             <app-map-radius-filter
               [materials]="res_materials"
-              (filterRadius)="filtersSelectedEvent($event)"
             ></app-map-radius-filter>
        </div>
     </section>

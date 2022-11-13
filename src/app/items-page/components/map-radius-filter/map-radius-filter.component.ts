@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, Output, ViewChild, EventEmitter, Input, SimpleChanges} from '@angular/core';
+import { Store } from '@ngrx/store';
+import { updateFiltersFromFilterComponent, updateLocation, updateMaterials, updatePageURL } from 'src/app/store/filterstate/filter.actions';
 import { Filters } from 'src/app/_models/filters';
 import { Feature, GeosearchService } from '../../../_services/geosearch.service';
 
@@ -26,28 +28,45 @@ export class MapRadiusFilterComponent implements OnInit {
 
   showMoreFiltes = false;
 
-  constructor(private geoSearch: GeosearchService) { }
+  constructor(private geoSearch: GeosearchService, private store: Store) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['materials']){
       this.materials = changes['materials'].currentValue;
-      console.log(this.materials)
+      //console.log(this.materials)
     }
   }
 
   searchButtonClicked(){
-      //material select value
-      this.selectedFitlers.material = this.materialInput.nativeElement.value;
+    var lat: any;
+    var lon: any;
+    var distance: number;
+    var materialsArray: number[] = [];
+
+    //material select value
+    materialsArray.push(parseInt(this.materialInput.nativeElement.value));
+
       //plaats distance
-      this.selectedFitlers.distance = parseInt(this.distanceSeletor.nativeElement.value) * 1000 //*1000 om in kilometer te plaatsen
+      distance = parseInt(this.distanceSeletor.nativeElement.value) * 1000 //*1000 om in kilometer te plaatsen
+
       //kijk of user location in gechecked
       if(this.userLocationChechekbox.nativeElement.checked){
-        this.selectedFitlers.userLocation = true;
-        this.filterRadius.emit(this.selectedFitlers);
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position)=>{
+            lon = position.coords.longitude;
+            lat = position.coords.latitude;
+
+            this.store.dispatch(updateFiltersFromFilterComponent({
+              materials:materialsArray,
+              coordinates:[parseInt(lat),parseInt(lon)],
+              distance:distance
+            }))
+          });
+           }else {
+            console.log("No support for geolocation");
+          }
       }
       else{
         this.selectedFitlers.userLocation = false;
@@ -58,25 +77,31 @@ export class MapRadiusFilterComponent implements OnInit {
             .searchWordPhoton(searchTerm)
             .subscribe((features: any) => {
               if(features[0].lat && features[0].lon){
-                this.selectedFitlers.lat = features[0].lat;
-                this.selectedFitlers.lon = features[0].lon;
-                this.filterRadius.emit(this.selectedFitlers);
+                lat = features[0].lat;
+                lon = features[0].lon;
               }
               else {
-                this.selectedFitlers.lat = 0;
-                this.selectedFitlers.lon = 0;
-                this.filterRadius.emit(this.selectedFitlers);
+                lat = null;
+                lon = null;
               }
+              this.store.dispatch(updateFiltersFromFilterComponent({
+                materials:materialsArray,
+                coordinates:[parseFloat(lat),parseFloat(lon)],
+                distance:distance
+              }))
             });
         }
         else {
-          this.selectedFitlers.lat = 0;
-          this.selectedFitlers.lon = 0;
-          this.filterRadius.emit(this.selectedFitlers);
+          lat = null;
+          lon = null;
+
+          this.store.dispatch(updateFiltersFromFilterComponent({
+            materials:materialsArray,
+            coordinates:[lat,lon],
+            distance:distance
+          }))
         }
       }
-
-
     }
 
     moreFiltersClicked(){

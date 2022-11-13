@@ -1,7 +1,10 @@
 import { Component, OnInit, Input,Output, EventEmitter,SimpleChanges,ViewChild,ElementRef, AfterViewInit, ViewContainerRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { updatePageURL } from '../store/filterstate/filter.actions';
+import { selectAllFilters, selectCategories } from '../store/filterstate/filter.selector';
 import { Filters } from '../_models/filters';
 import { OfferService } from '../_services/offer.service';
 import { OfferlocationService } from '../_services/offerlocation.service';
@@ -36,21 +39,26 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
 
   selectedFitlers: Filters = {category:'', distance: 0, lat:0, lon:0, userLocation:false, material: 0};
 
-  constructor(private route: ActivatedRoute, private offerService: OfferService) { }
+  filter_categories$ = this.store.select(selectCategories);
+  filters$ = this.store.select(selectAllFilters);
+
+  constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store) { }
 
   ngOnInit(): void {
     this.items_per_page = 20;
-    this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-    this.getData();
     this.offerService.getMaterials().then((res: any) => {
       this.res_materials = res.data;
+    });
+    this.filters$.subscribe(res => {
+      console.log(res)
+      //this.filtersCategorieEvent(res.categories)
+      this.getOffers(res.pageUrl, this.items_per_page, res.categories, res.materials, res.coordinates, res.distance)
     })
   }
 
   changeListPage(urlstring: string){
     window.scrollTo(0, 0);
-    this.getoffersurl = urlstring;
-    this.getData();
+    this.store.dispatch(updatePageURL({pageURL:urlstring}))
   }
 
   ngAfterViewInit(): void {
@@ -93,58 +101,13 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
       else{
         this.locationString = "";
       }
-      this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-      this.getData();
     });
   }
 
-  filtersSelectedEvent(filters:Filters){
-    this.selectedFitlers.distance =filters.distance
-    this.selectedFitlers.lat = filters.lat
-    this.selectedFitlers.lon = filters.lon
-    this.selectedFitlers.userLocation = filters.userLocation
-    this.selectedFitlers.material = filters.material
 
-    this.setLocationFilters(this.selectedFitlers).then((res: string) => {
-      this.locationString = res;
-      this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-      this.getData();
-    });
 
-  }
-
-  filtersCategorieEvent(event: Array<any>){
-    console.log(event);
-    this.selectedFitlers.category = event.toString();
-    this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-    this.getData();
-  }
-
- async setLocationFilters(filters: any){
-  return new Promise(function (resolve, reject) {
-    if( filters.userLocation == false){
-      if(filters.lat !== 0 && filters.lat !== 0){
-        resolve((filters.lat + "," +filters.lon + "," +filters.distance).toString());
-      }else{
-        resolve("");
-      }
-    }
-    else{
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=>{
-          const longitude = position.coords.longitude;
-          const latitude = position.coords.latitude;
-          resolve((latitude + "," +longitude + "," +filters.distance).toString());
-        });
-         }else {
-          console.log("No support for geolocation");
-          resolve("");
-        }
-    }
-   });
-  }
-
-  getData(){
-    this.offerService.getOffers(this.getoffersurl, this.items_per_page, this.selectedFitlers.material, this.locationString, this.selectedFitlers.category).then( (res: {data: [], links:[], meta:[]})=> {this.listdata = res});
+  getOffers(url: string, pagesize:number, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
+    this.offerService.getOffers(url, pagesize, categorieFilter, materialFilter, coordinatesFilter, distanceFilter)
+    .then((res: {data: [], links:[], meta:[]})=> { this.listdata = res });
   }
 }

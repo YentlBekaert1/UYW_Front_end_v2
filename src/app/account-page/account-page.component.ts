@@ -119,6 +119,6 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
       this.router.navigate(['addoffer']);
   }
   ontdekClicked(){
-    this.router.navigate(['items']);
+    this.router.navigate(['items', 'list']);
   }
 }
