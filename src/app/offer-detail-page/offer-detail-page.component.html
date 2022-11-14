@@ -67,11 +67,8 @@
           <td>Contact:</td>
           <td>{{contact}}</td>
         </tr>
-        <tr *ngIf="url">
-          <td>Link naar info:</td>
-          <td><a href="{{url}}">{{url}}</a></td>
-        </tr>
       </table>
+      <a *ngIf="url" href="{{url}}" target="_blank">Kom hier meer te weten.</a>
     </div>
     <div class="locatie-container" *ngIf="location">
       <h4>Locatie op de kaart</h4>
