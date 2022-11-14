@@ -172,21 +172,23 @@
                   multiple
                 />
             </div>
-            <div class="image-list">
-              <div class="image" *ngFor="let file of fileArr; let i = index">
-                <button type="button" (click)="deleteImageFromArry(i)"><i class="material-icons">delete</i></button>
+            <h2>Toegevoegde afbeeldingen</h2>
+            <div class="image-list" cdkDropList (cdkDropListDropped)="drop($event)">
+              <div class="image-box" *ngFor="let file of startfileArr; let i = index"  cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                <button type="button" (click)="deleteImageFromStartArry(i)"><i class="material-icons">delete</i></button>
                 <div class="profile">
-                  <img [src]="sanitize(file.url)" alt="" />
+                  <img [src]="sanitize(file.url)" alt="" draggable="false"/>
                 </div>
                 <p>{{ file.image.name }}</p>
               </div>
-              <div class="image" *ngFor="let file of startfileArr; let i = index">
+              <!-- <div class="image" *ngFor="let file of startfileArr; let i = index" cdkDrag>
                 <button type="button" (click)="deleteImageFromStartArry(i)"><i class="material-icons">delete</i></button>
                 <div class="profile">
-                  <img src="{{environment_url + file.filename}}" alt="" />
+                  <img src="{{environment_url + file.filename}}" alt="" draggable="false"/>
                 </div>
                 <p>{{ file.filename }}</p>
-              </div>
+              </div> -->
             </div>
           </div>
           <div *ngFor="let validation of offer_validation_messages.images">

@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { DragDropFileUploadDirective } from './drag-drop-file-upload.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ]
 })
 export class EditOfferPageModule { }

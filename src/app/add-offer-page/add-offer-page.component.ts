@@ -8,6 +8,7 @@ import { GeosearchService } from '../_services/geosearch.service';
 import { OfferService } from '../_services/offer.service';
 import { TagserviceService } from '../_services/tagservice.service';
 import { cutomValidators } from './customvalidators';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-add-offer-page',
@@ -55,7 +56,7 @@ export class AddOfferPageComponent implements OnInit {
     'title': [
       { type: 'required', message: 'Title is required' },
       { type: 'minlength', message: 'Title must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Title cannot be more than 60 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 100 characters long' },
     ],
     'description': [
       { type: 'required', message: 'Description is required' },
@@ -117,13 +118,13 @@ export class AddOfferPageComponent implements OnInit {
       tag: ['', []],
       new_tags: [[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
       selectedtags:[[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
-      street_number: ['', [Validators.maxLength(100)]],
-      city: ['', [Validators.maxLength(100)]],
-      country: ['', [Validators.maxLength(100)]],
+      street_number: ['', [Validators.maxLength(250)]],
+      city: ['', [Validators.maxLength(250)]],
+      country: ['', [Validators.maxLength(250)]],
       contact: ['', [Validators.maxLength(250)]],
       lat: [0, []],
       lon: [0, []],
-      url: ['', [Validators.maxLength(100)]],
+      url: ['', [Validators.maxLength(250)]],
       terms: [false, [Validators.requiredTrue]],
       images: [null],
       category_id:['',Validators.required]
@@ -207,7 +208,17 @@ export class AddOfferPageComponent implements OnInit {
     this.iArr.splice(i,1);
   }
 
+  drop(event: CdkDragDrop<[]>) {
+    console.log(event);
+    moveItemInArray(this.fileArr, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.iArr, event.previousIndex, event.currentIndex);
 
+    this.form.patchValue({
+      images: this.iArr
+    })
+
+    this.form.get('images').updateValueAndValidity();
+  }
 
  //  --------------------------------------- category  --------------------------------------- //
   categoryClicked(category_key: number){
@@ -375,7 +386,7 @@ export class AddOfferPageComponent implements OnInit {
                 console.log(this.selected_tags);
               }
             }
-            
+
             this.form.patchValue({
               tag: ""
             });

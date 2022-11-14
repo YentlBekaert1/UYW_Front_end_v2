@@ -7,6 +7,7 @@ import { GeosearchService } from '../_services/geosearch.service';
 import { OfferService } from '../_services/offer.service';
 import { TagserviceService } from '../_services/tagservice.service';
 import { cutomValidators } from './customvalidators';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-edit-offer-page',
@@ -36,7 +37,7 @@ export class EditOfferPageComponent implements OnInit {
   image_error_show = false;
   image_error = '';
   startfileArr = [];
-
+  positionCount = 0;
   selectedCategory: {key: number, name: string, image: string} = {key: 0, name: 'Geen categorie geselecteerd', image: ''};
 
   materials: {id: number, name: string}[] = [];
@@ -119,15 +120,15 @@ export class EditOfferPageComponent implements OnInit {
       new_tag_input: ['', [Validators.maxLength(30)]],
       new_tags: [[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
       selectedtags:[[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
-      street_number: ['', [Validators.maxLength(100)]],
-      city: ['', [Validators.maxLength(100)]],
-      country: ['', [Validators.maxLength(100)]],
+      street_number: ['', [Validators.maxLength(250)]],
+      city: ['', [Validators.maxLength(250)]],
+      country: ['', [Validators.maxLength(250)]],
       contact: ['', [Validators.maxLength(250)]],
       lat: [0, []],
       lon: [0, []],
-      url: ['', [Validators.maxLength(100)]],
+      url: ['', [Validators.maxLength(250)]],
       terms: [false, [Validators.requiredTrue]],
-      images: [null],
+      newimages: [],
       editimages: [],
       category_id:['',Validators.required]
     })
@@ -216,15 +217,13 @@ export class EditOfferPageComponent implements OnInit {
             if(res.data[0].images){
               //images
               res.data[0].images.forEach((img: any) => {
-                this.startfileArr.push(img);
+                this.startfileArr.push({id:img.id, url:this.environment_url + img.filename, image:{name:img.filename}, position:img.position, new:false});
+                this.positionCount++;
               });
             }
-
             this.form.patchValue({
               editimages: this.startfileArr,
             });
-            this.form.get('editimages').updateValueAndValidity();
-
           }
         });
       }
@@ -236,6 +235,18 @@ export class EditOfferPageComponent implements OnInit {
     if(this.form.status === 'VALID'){
       if(this.form.get('terms').value == true){
         console.log(this.form.value);
+        //afbeeldingen de positie juist plaatsen
+        var count = 1;
+        this.startfileArr.forEach((element)=>{
+          element.position = count;
+          count++;
+        })
+        // Set files form control
+        this.form.patchValue({
+          editimages: this.startfileArr
+        })
+
+        //locatie
         const searchTerm = (this.form.value.street_number + '+' + this.form.value.city + '+' + this.form.value.country).toLowerCase();
         this.geoservice.searchWordPhoton(searchTerm)
         .subscribe((features: any) => {
@@ -280,20 +291,20 @@ export class EditOfferPageComponent implements OnInit {
       else{
         const file = (e as HTMLInputElement);
         const url = URL.createObjectURL(file[i]);
-        this.imgArr.push(url);
-        this.fileArr.push({ image , url: url });
+        this.startfileArr.push({url: url, image:image, position:this.positionCount, new:true});
+        this.positionCount++;
         this.iArr.push(image);
       }
     });
 
-    console.log(this.fileArr);
+    console.log(this.startfileArr);
 
     // Set files form control
     this.form.patchValue({
-      images: this.iArr
+      newimages: this.iArr
     })
 
-    this.form.get('images').updateValueAndValidity();
+    this.form.get('newimages').updateValueAndValidity();
 
   }
   // Clean Url
@@ -301,17 +312,21 @@ export class EditOfferPageComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
   deleteImageFromArry(i: number){
-    console.log(i)
-    this.fileArr.splice(i,1);
     this.iArr.splice(i,1);
   }
+
   deleteImageFromStartArry(i: number){
+    this.iArr.splice(this.iArr.indexOf(this.iArr.find(el => el.image == this.startfileArr[i].image)),1);
     this.startfileArr.splice(i,1);
     this.form.patchValue({
+      newimages: this.iArr,
       editimages: this.startfileArr,
     });
-    console.log( this.startfileArr);
-    this.form.get('editimages').updateValueAndValidity();
+  }
+
+  drop(event: CdkDragDrop<[]>) {
+    console.log(event);
+    moveItemInArray(this.startfileArr, event.previousIndex, event.currentIndex);
   }
 
  //  --------------------------------------- category  --------------------------------------- //

@@ -24,7 +24,7 @@
         </div>
 
         <label for="description">Beschrijving</label>
-        <textarea class="form-control" formControlName="description" name="description" rows="4" cols="50"  [ngClass]="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched) ? 'alert-danger' : ''"></textarea>
+        <textarea class="form-control" formControlName="description" name="description" rows="10" cols="50"  [ngClass]="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched) ? 'alert-danger' : ''"></textarea>
         <div *ngFor="let validation of offer_validation_messages.description">
           <div *ngIf="form.get('description').hasError(validation.type) && (form.get('description').dirty || form.get('description').touched)" class="alert alert-danger">
             {{validation.message}}
@@ -172,13 +172,14 @@
                   multiple
                 />
             </div>
-            <div class="image-list">
-              <div class="image" *ngFor="let file of fileArr; let i = index">
-                <button type="button" (click)="deleteImageFromArry(i)"><i class="material-icons">delete</i></button>
+            <div class="image-list" cdkDropList (cdkDropListDropped)="drop($event)">
+              <div class="image-box" *ngFor="let file of fileArr; let i = index" cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
                 <div class="profile">
-                  <img [src]="sanitize(file.url)" alt="" />
+                  <img [src]="sanitize(file.url)" alt="{{file.url}}" draggable="false"/>
                 </div>
                 <p>{{ file.image.name }}</p>
+                <button type="button" (click)="deleteImageFromArry(i)"><i class="material-icons">delete</i></button>
             </div>
             </div>
           </div>

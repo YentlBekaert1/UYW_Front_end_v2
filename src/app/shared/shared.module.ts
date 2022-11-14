@@ -8,6 +8,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { CardSliderComponent } from './card-slider/card-slider.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { LoadingOverlayAccountComponent } from './loading-overlay-account/loading-overlay-account.component';
+import { Filter1Component } from './filter1/filter1.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LoadingOverlayAccountComponent } from './loading-overlay-account/loadin
     CardComponent,
     CardSliderComponent,
     LoadingOverlayComponent,
-    LoadingOverlayAccountComponent
+    LoadingOverlayAccountComponent,
+    Filter1Component
   ],
   exports:[
     TopNavComponent,

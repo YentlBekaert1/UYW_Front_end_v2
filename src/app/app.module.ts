@@ -31,6 +31,7 @@ import { AuthReducer } from './store/authstate/auth.reducer';
 import { LoadReducer } from './store/loadstate/load.reducer';
 import { AuthGuard } from './_helpers/auth.guard';
 import { FilterReducer } from './store/filterstate/filter.reducers';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { FilterReducer } from './store/filterstate/filter.reducers';
     ForbiddenPageModule,
     TermsofconditonsPageModule,
     StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer}, {}),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects]),
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthGuard,

@@ -126,12 +126,18 @@ export class OfferService {
     //create formdata
     var body = new FormData();
 
-    if(formData.images){
-      console.log(formData.images)
-      Array.from(formData.images).forEach((file: Blob, i) => {
+    var newimagespositions = [];
+    if(formData.newimages){
+      console.log(formData.newimages)
+      Array.from(formData.newimages).forEach((file: Blob, i) => {
         console.log('newimages['+i+']',file)
         body.append('newimages['+i+']', file);
+        var index = formData.editimages.indexOf(formData.editimages.find(el => el.image == file), 0);
+        newimagespositions.push(formData.editimages[index].position);
        });
+    }
+    if(newimagespositions.length > 0){
+      body.append('newimagepositions', JSON.stringify(newimagespositions));
     }
     if(formData.editimages){
       console.log(formData.editimages)
