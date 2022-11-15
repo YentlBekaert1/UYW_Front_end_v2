@@ -8,6 +8,11 @@ export const selectAllFilters= createSelector(
     (state: FilterState) => state
 );
 
+export const selectQuery= createSelector(
+  selectFilter,
+    (state: FilterState) => state.query
+);
+
 export const selectCategories= createSelector(
   selectFilter,
     (state: FilterState) => state.categories

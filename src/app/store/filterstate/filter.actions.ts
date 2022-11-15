@@ -5,6 +5,11 @@ export const updatePageURL = createAction(
    props<{  pageURL: string}>()
 );
 
+export const updateQuery = createAction(
+  '[filters] updateQuery',
+   props<{ query: string}>()
+);
+
 export const updateCategories = createAction(
   '[filters] updateCategories',
    props<{ categories: number[]}>()

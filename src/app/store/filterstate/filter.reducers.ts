@@ -2,11 +2,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 
-import { updateCategories, updateFiltersFromFilterComponent, updateLocation, updateMaterials, updatePageURL } from './filter.actions';
+import { updateCategories, updateFiltersFromFilterComponent, updateLocation, updateMaterials, updatePageURL, updateQuery } from './filter.actions';
 import { FilterState } from './filter.state';
 
 
 export const initialFilterState: FilterState = {
+  query:"",
   pageUrl: environment.apiUrl + "api/offers?page=1",
   categories: [],
   materials: [],
@@ -17,6 +18,7 @@ export const initialFilterState: FilterState = {
 
 export const FilterReducer = createReducer(
   initialFilterState,
+  on(updateQuery, ((state, {query}) => ({...state, query:query}))),
   on(updateCategories, ((state, {categories}) => ({...state, categories:categories}))),
   on(updateMaterials, ((state, {materials}) => ({...state, materials:materials}))),
   on(updateLocation, ((state, {coordinates, distance}) => ({...state, coordinates:coordinates, distance:distance}))),

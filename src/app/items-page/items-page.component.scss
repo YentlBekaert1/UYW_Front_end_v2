@@ -13,7 +13,7 @@ header{
 main{
   position: relative;
   .filters {
-    margin-top: 90px;
+    margin-top: 65px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -152,17 +152,61 @@ main{
 
   }
 }
+.search{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  div{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    background-color: var(--back-color);
+    input{
+      background-color: var(--back-color);
+      border: none;
+      //border-bottom: 0.5px solid #8B8B8B;
+      border-radius: 15px 0 0 15px;
+      font-size: 1rem;
+      font-family: "montserrat-light";
+      padding: 0.7rem 1rem;
+      transition: padding .3s ease-in;
+      width: 80%;
+      outline: none;
+    }
+    button{
+      width: 20%;
+      border:none;
+      background-color: var(--primary-color);
+      width: 42px;
+      height: 41px;
+      border-radius:15px;
+      display: inline-block;
+      i{
+        color: var(--white-color);
+      }
+      &:hover{
+        background-color: var(--back-color);
+        border: 2px solid var(--primary-color);
+        i{
+          color: var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
 .more_filters{
   display: none;
   position: absolute;
-  width: 50%;
   height: 300px;
   background-color: var(--white-color);
   border-radius: 15px;
    z-index: 10;
    left: 20%;
    top: 30vh;
-   padding: 2% 5%;
+   padding: 2% 2%;
    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
    &.show{
     display: block;
@@ -170,8 +214,8 @@ main{
 }
 
 .more-button{
-  width: fit-content;
-  padding: 0.8rem 2rem;
+  width: 30%;
+  padding: 0.7rem 0rem;
   background-color: var(--back-color);
   border-radius: 15px;
   color: var(--primary-color);
@@ -179,6 +223,7 @@ main{
   display: block;
   font-family: "montserrat-regular";
   cursor: pointer;
+  text-align: center;
   &:hover{
     text-decoration: underline;
   }

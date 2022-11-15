@@ -1,10 +1,10 @@
-import { Component, OnInit, Input,Output, EventEmitter,SimpleChanges,ViewChild,ElementRef, AfterViewInit, ViewContainerRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter,SimpleChanges,ViewChild,ElementRef, AfterViewInit, ViewContainerRef, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { updatePageURL } from '../store/filterstate/filter.actions';
-import { selectAllFilters, selectCategories, selectMaterials } from '../store/filterstate/filter.selector';
+import { updatePageURL, updateQuery } from '../store/filterstate/filter.actions';
+import { selectAllFilters, selectCategories, selectMaterials, selectQuery } from '../store/filterstate/filter.selector';
 import { Filters } from '../_models/filters';
 import { OfferService } from '../_services/offer.service';
 import { OfferlocationService } from '../_services/offerlocation.service';
@@ -15,7 +15,7 @@ import { OfferlocationService } from '../_services/offerlocation.service';
   templateUrl: './items-page.component.html',
   styleUrls: ['./items-page.component.scss']
 })
-export class ItemsPageComponent implements OnInit, AfterViewInit {
+export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   listdata: {data: [], links:[], meta:[]} = {data: [], links:[], meta:[]};
 
   public wasteCategoryState: number = 1;
@@ -42,6 +42,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
   filter_categories$ = this.store.select(selectCategories);
   filter_materials$ = this.store.select(selectMaterials);
   filters$ = this.store.select(selectAllFilters);
+  query$ = this.store.select(selectQuery);
 
   showMoreFiltes = false;
 
@@ -55,7 +56,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
     this.filters$.subscribe(res => {
       console.log(res)
       //this.filtersCategorieEvent(res.categories)
-      this.getOffers(res.pageUrl, this.items_per_page, res.categories, res.materials, res.coordinates, res.distance)
+      this.getOffers(res.pageUrl,  this.items_per_page, res.query, res.categories, res.materials, res.coordinates, res.distance)
     })
   }
 
@@ -109,12 +110,20 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
 
 
 
-  getOffers(url: string, pagesize:number, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
-    this.offerService.getOffers(url, pagesize, categorieFilter, materialFilter, coordinatesFilter, distanceFilter)
+  getOffers(url: string, pagesize:number, query:string, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
+    this.offerService.getOffers(url, pagesize, query, categorieFilter, materialFilter, coordinatesFilter, distanceFilter)
     .then((res: {data: [], links:[], meta:[]})=> { this.listdata = res });
   }
 
   moreFiltersClicked(){
     this.showMoreFiltes = !this.showMoreFiltes
    }
+
+   removeQuery(){
+    this.store.dispatch(updateQuery({query:"" }));
+   }
+
+   ngOnDestroy() {
+    this.store.dispatch(updateQuery({query:"" }));
+  }
 }

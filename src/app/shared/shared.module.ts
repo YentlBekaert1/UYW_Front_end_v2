@@ -9,7 +9,11 @@ import { CardSliderComponent } from './card-slider/card-slider.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { LoadingOverlayAccountComponent } from './loading-overlay-account/loading-overlay-account.component';
 import { Filter1Component } from './filter1/filter1.component';
-
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     TopNavComponent,
@@ -18,7 +22,8 @@ import { Filter1Component } from './filter1/filter1.component';
     CardSliderComponent,
     LoadingOverlayComponent,
     LoadingOverlayAccountComponent,
-    Filter1Component
+    Filter1Component,
+    SearchbarComponent
   ],
   exports:[
     TopNavComponent,
@@ -26,11 +31,16 @@ import { Filter1Component } from './filter1/filter1.component';
     CardComponent,
     CardSliderComponent,
     LoadingOverlayComponent,
-    LoadingOverlayAccountComponent
+    LoadingOverlayAccountComponent,
+    SearchbarComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
   ]
 })
 export class SharedModule { }

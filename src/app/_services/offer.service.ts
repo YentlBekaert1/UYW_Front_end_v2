@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom, of } from 'rxjs';
+import { Observable, lastValueFrom, of, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,15 @@ export class OfferService {
 
   constructor(private http: HttpClient) { }
 
-  getOffers(url: string, pagesize:number, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
+  getOffers(url: string, pagesize:number, query: string, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
     var categorieFilterString: string;
     var materialFilterString: string;
     var locationFilterString: string;
-
+    var queryFilterString: string = "";
+    console.log(query);
+    if(this.onlySpaces(query) !== true){
+      queryFilterString = query
+    }
     if(categorieFilter.length == 0){
       categorieFilterString = ""
     }else{
@@ -32,7 +37,7 @@ export class OfferService {
     }else{
       locationFilterString = "";
     }
-    const requesturl = url +'&page_size=' + pagesize + '&materials=' + materialFilterString + '&location=' + locationFilterString +'&categories=' + categorieFilterString;
+    const requesturl = url +'&page_size=' + pagesize + '&query=' + queryFilterString + '&materials=' + materialFilterString + '&location=' + locationFilterString +'&categories=' + categorieFilterString;
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
@@ -42,6 +47,10 @@ export class OfferService {
       this.http.get(requesturl, httpOptions)
     );
 
+  }
+
+  onlySpaces(str: string) {
+    return str.trim().length === 0;
   }
 
   getOfferById(id: string){
@@ -55,6 +64,18 @@ export class OfferService {
       this.http.get(requesturl, httpOptions)
     );
 
+  }
+
+  autocomplete(query: string): Observable<any[]> {
+    const requesturl = environment.apiUrl + "api/offersearchterms?query=" + query;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+
+    return this.http.get<any[]>(requesturl, httpOptions).pipe(map((res:any)=> res),
+      catchError(err => of([]))
+    );
   }
 
   addOffer(formData: any){

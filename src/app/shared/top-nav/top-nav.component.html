@@ -19,16 +19,16 @@
             <li [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li> -->
           </ul>
         </div>
-        <div class="search">
-          <input type="text" placeholder="Zoek in de database..." #searchInput>
-          <button (click)="searchClicked()"><i class="material-icons">search</i></button>
-        </div>
+  
+        <app-searchbar></app-searchbar>
+
         <div class="account_container">
           <div class="login" *ngIf="!userLoggedIn">
             <a [routerLink]="['/login']" class="login_knop">login</a>
           </div>
-          <div class="login" *ngIf="userLoggedIn">
+          <div class="login user" *ngIf="userLoggedIn">
             <p (click)="accountButtonClicked()">Welkom {{profile.name}}</p>
+            <i class="material-icons">arrow_drop_down </i>
           </div>
         </div>
       </div>

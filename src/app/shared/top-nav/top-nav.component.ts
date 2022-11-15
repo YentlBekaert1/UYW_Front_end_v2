@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { fromEvent } from 'rxjs';
 import { Profile } from 'src/app/store/authstate/auth.model';
 
 
@@ -10,8 +11,6 @@ import { Profile } from 'src/app/store/authstate/auth.model';
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent implements OnInit {
-  @ViewChild('searchInput', { read: ElementRef }) searchInput!: ElementRef<HTMLInputElement>;
-
   public accountDropdownState:boolean = false;
   public responsiveNavState:boolean = false;
   public accountresponsiveState:boolean = false;
@@ -35,10 +34,6 @@ export class TopNavComponent implements OnInit {
       this.responsiveNavState = false;
     }
   }
-  searchClicked(){
-    console.log(this.searchInput.nativeElement.value);
-  }
-
   accountButtonClicked(){
     this.accountDropdownState = !this.accountDropdownState;
   }

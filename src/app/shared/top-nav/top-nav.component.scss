@@ -66,8 +66,9 @@
           border-bottom: 0.5px solid #8B8B8B;
           font-size: 1rem;
           font-family: "montserrat-light";
-          padding: 0.5rem;
+          padding: 0.7rem 0.5rem;
           transition: padding .3s ease-in;
+          outline: none;
           &:focus{
             padding-right: 10rem;
           }
@@ -80,6 +81,7 @@
           border-radius:30px;
           margin: 0 1rem;
           display: inline-block;
+          padding-top: 0.2rem;
           i{
             color: var(--white-color);
           }
@@ -112,9 +114,22 @@
               color: var(--primary-color);
             }
           }
-          p{
-            font-family: 'montserrat-light';
+          &.user{
+            display: flex;
+            align-items: center;
+            align-content: center;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            padding: 0.5rem;
+            border-bottom: 2px solid var(--back-color);
+            &:hover{
+              border-bottom: 2px solid var(--primary-color);
+            }
+            p{
+              font-family: 'montserrat-light';
+            }
           }
+
         }
       }
     }
@@ -195,6 +210,8 @@
     width: 100%;
     z-index: 2000;
     .responsiveNavDropdown{
+      max-height: 60vh;
+      overflow-y: scroll;
       ul{
         background-color: var(--white-color);
         width: 100%;
@@ -203,6 +220,9 @@
         height: 100%;
         overflow: hidden;
         transition: max-height 1s ease-in-out;
+        ul{
+          border-bottom:none;
+        }
         li{
           padding: 1rem;
           // background-color: green;
