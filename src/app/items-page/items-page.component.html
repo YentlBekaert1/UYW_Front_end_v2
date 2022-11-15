@@ -2,44 +2,56 @@
   <main>
     <section class="filters">
         <div class="filter-background"></div>
-        <div class="filters-container container ">
-            <div class="buttons">
-              <h2>Filter op een categorie:</h2>
+        <div class="filters-container-large container ">
+            <div class="categrory-buttons">
               <app-category-buttons [categorieFilters]="filter_categories$ | async"></app-category-buttons>
-              <div class="search">
-                <div>
-                  <input type="text" placeholder="Zoek op naam, materiaal, tag" #searchInput>
-                  <button ><i class="material-icons">search</i></button>
+              <h5>Filter op categorie</h5>
+            </div>
+            <div class="search">
+              <div class="search-top">
+                <div class="add" (click)="goToAdd()" >
+                  <i class="material-icons">add</i>
                 </div>
-                <a class="more-button" (click)="moreFiltersClicked()">Zoek op locatie</a>
+                <app-searchbar [placement]="'filterbalk'"></app-searchbar>
+                <select name="material" formControlName="material" class="form-control">
+                  <option value="300">+300km</option>
+                  <option value="150">+150km</option>
+                  <option value="100">+100km</option>
+                  <option value="70">+70km</option>
+                  <option value="20">+20km</option>
+                </select>
+              </div>
+              <div class="gb-locatie">
+                <h5>Voeg toe</h5>
+                <div>
+                  <input type="checkbox">
+                  <h5>Gebruik mijn locatie</h5>
+                </div>
               </div>
             </div>
-            <!-- <app-map-radius-filter [materials]="res_materials"></app-map-radius-filter> -->
-            <div>
-              <div class="more-button">
-                <i class="material-icons">add</i>
-                <span class="tooltiptext">Voeg toe aan de database</span>
+            <div class="tabs">
+              <div>
+                <button (click)="moreFiltersClicked()"><i class="material-icons">filter_list</i></button>
+                <h5>Filter</h5>
               </div>
               <app-tabs></app-tabs>
             </div>
-
-       </div>
+        </div>
+        <div class="filters-container-small container ">
+          <div class="categrory-buttons">
+            <app-category-buttons [categorieFilters]="filter_categories$ | async"></app-category-buttons>
+            <h5>Filter op categorie</h5>
+          </div>
+          <div class="tabs">
+            <div>
+              <button (click)="moreFiltersClicked()"><i class="material-icons">filter_list</i></button>
+              <h5>Filter</h5>
+            </div>
+            <app-tabs></app-tabs>
+          </div>
+        </div>
     </section>
     <section class="container list-container" #listcontainer>
-      <!-- <div class="active_filters">
-        <div class="active_filter" *ngFor="let item of filter_materials$ |async">
-          {{item}}
-        </div>
-      </div> -->
-
-      <!-- <mat-chip-list #chipList aria-label="Fruit selection" *ngIf="query">
-        <mat-chip (removed)="removeQuery()">
-          {{(query)}}
-          <button matChipRemove>
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip>
-      </mat-chip-list> -->
       <div class="property-map" #propertymap>
         <app-map [active_tab]="active_tab"></app-map>
       </div>
@@ -56,3 +68,38 @@
   <button (click)="showMoreFiltes = false">close</button>
   <app-map-radius-filter [materials]="res_materials"></app-map-radius-filter>
 </div>
+
+       <!-- <div class="buttons">
+              <h2>Filter op een categorie:</h2>
+              <app-category-buttons [categorieFilters]="filter_categories$ | async"></app-category-buttons>
+              <div class="search">
+                <div>
+                  <input type="text" placeholder="Zoek op naam, materiaal, tag" #searchInput>
+                  <button ><i class="material-icons">search</i></button>
+                </div>
+                <a class="more-button" (click)="moreFiltersClicked()">Zoek op locatie</a>
+              </div>
+            </div>
+
+            <div>
+              <div class="more-button">
+                <i class="material-icons">add</i>
+                <span class="tooltiptext">Voeg toe aan de database</span>
+              </div>
+              <app-tabs></app-tabs>
+            </div> -->
+
+      <!-- <div class="active_filters">
+        <div class="active_filter" *ngFor="let item of filter_materials$ |async">
+          {{item}}
+        </div>
+      </div> -->
+
+      <!-- <mat-chip-list #chipList aria-label="Fruit selection" *ngIf="query">
+        <mat-chip (removed)="removeQuery()">
+          {{(query)}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </mat-chip-list> -->

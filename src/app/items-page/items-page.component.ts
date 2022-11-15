@@ -1,5 +1,5 @@
 import { Component, OnInit, Input,Output, EventEmitter,SimpleChanges,ViewChild,ElementRef, AfterViewInit, ViewContainerRef, HostListener, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -46,7 +46,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showMoreFiltes = false;
 
-  constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store) { }
+  constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store, private router: Router) { }
 
   ngOnInit(): void {
     this.items_per_page = 20;
@@ -122,6 +122,11 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
    removeQuery(){
     this.store.dispatch(updateQuery({query:"" }));
    }
+
+   goToAdd(){
+    this.router.navigateByUrl('/addoffer');
+   }
+
 
    ngOnDestroy() {
     this.store.dispatch(updateQuery({query:"" }));

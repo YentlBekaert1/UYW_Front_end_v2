@@ -19,8 +19,8 @@
             <li [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li> -->
           </ul>
         </div>
-  
-        <app-searchbar></app-searchbar>
+
+        <app-searchbar [placement]="'top'"></app-searchbar>
 
         <div class="account_container">
           <div class="login" *ngIf="!userLoggedIn">
