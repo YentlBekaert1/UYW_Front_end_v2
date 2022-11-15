@@ -1,25 +1,40 @@
-<div appScroll appResize>
+<div appScroll appResize [active_tab]="active_tab">
   <main>
     <section class="filters">
         <div class="filter-background"></div>
         <div class="filters-container container ">
-            <div>
+            <div class="buttons">
+              <h2>Filter op een categorie:</h2>
               <app-category-buttons [categorieFilters]="filter_categories$ | async"></app-category-buttons>
+              <a class="more-button" (click)="moreFiltersClicked()">Verfijnder zoeken</a>
+            </div>
+            <!-- <app-map-radius-filter [materials]="res_materials"></app-map-radius-filter> -->
+            <div>
+
               <app-tabs></app-tabs>
             </div>
-            <app-map-radius-filter [materials]="res_materials"></app-map-radius-filter>
+
        </div>
     </section>
     <section class="container list-container" #listcontainer>
+      <!-- <div class="active_filters">
+        <div class="active_filter" *ngFor="let item of filter_materials$ |async">
+          {{item}}
+        </div>
+      </div> -->
       <div class="property-map" #propertymap>
         <app-map [active_tab]="active_tab"></app-map>
-    </div>
-    <div class="property-list" #propertylist>
-       <app-list-display [listdata]="listdata" [active_tab]="active_tab"></app-list-display>
-       <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
-    </div>
+      </div>
+      <div class="property-list" #propertylist>
+        <app-list-display [listdata]="listdata" [active_tab]="active_tab"></app-list-display>
+        <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
+      </div>
     </section>
   </main>
   <div id="scrollBottom"></div>
   <app-footer></app-footer>
+</div>
+<div class="more_filters" [ngClass]="showMoreFiltes == true ? 'show' : ''">
+  <button (click)="showMoreFiltes = false">close</button>
+  <app-map-radius-filter [materials]="res_materials"></app-map-radius-filter>
 </div>

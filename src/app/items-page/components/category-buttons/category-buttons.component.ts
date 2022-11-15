@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, Input,SimpleChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { updateCategories } from 'src/app/store/filterstate/filter.actions';
 import { FilterState } from 'src/app/store/filterstate/filter.state';
@@ -26,7 +26,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
 
   active_categories: number[];
 
-  constructor(private route: ActivatedRoute, private store: Store<FilterState>) { }
+  constructor(private route: ActivatedRoute, private store: Store<FilterState>, private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['categorieFilters']){
@@ -92,5 +92,8 @@ export class CategoryButtonsComponent implements AfterViewInit {
       new_array.push(category_id);
     }
     this.store.dispatch(updateCategories({categories: new_array}));
+  }
+  goToAdd(){
+      this.router.navigate(['/addoffer'])
   }
 }

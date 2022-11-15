@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { updatePageURL } from '../store/filterstate/filter.actions';
-import { selectAllFilters, selectCategories } from '../store/filterstate/filter.selector';
+import { selectAllFilters, selectCategories, selectMaterials } from '../store/filterstate/filter.selector';
 import { Filters } from '../_models/filters';
 import { OfferService } from '../_services/offer.service';
 import { OfferlocationService } from '../_services/offerlocation.service';
@@ -40,7 +40,10 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
   selectedFitlers: Filters = {category:'', distance: 0, lat:0, lon:0, userLocation:false, material: 0};
 
   filter_categories$ = this.store.select(selectCategories);
+  filter_materials$ = this.store.select(selectMaterials);
   filters$ = this.store.select(selectAllFilters);
+
+  showMoreFiltes = false;
 
   constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store) { }
 
@@ -110,4 +113,8 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
     this.offerService.getOffers(url, pagesize, categorieFilter, materialFilter, coordinatesFilter, distanceFilter)
     .then((res: {data: [], links:[], meta:[]})=> { this.listdata = res });
   }
+
+  moreFiltersClicked(){
+    this.showMoreFiltes = !this.showMoreFiltes
+   }
 }

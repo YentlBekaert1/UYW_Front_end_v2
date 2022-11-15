@@ -32,6 +32,7 @@ import { LoadReducer } from './store/loadstate/load.reducer';
 import { AuthGuard } from './_helpers/auth.guard';
 import { FilterReducer } from './store/filterstate/filter.reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomePagev2Module } from './home-page-v2/home-page.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TestPaginaModuleV3,
     ItemsPageModule,
     HomePageModule,
+    HomePagev2Module,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

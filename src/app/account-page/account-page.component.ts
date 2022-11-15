@@ -17,9 +17,9 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
   test = new Observable();
 
   tab_array: {key: number, value: string}[] = [
-    { key: 1, value:"Mijn Gegevens"},
-    { key: 2, value:"Mijn Favorieten"},
-    { key: 3, value:"Mijn Items"},
+    { key: 1, value:"Accountoverzicht"},
+    { key: 2, value:"Mijn favorieten"},
+    { key: 3, value:"Mijn toegevoede items"},
     { key: 4, value:"Voeg een item toe"},
     { key: 5, value:"Instellingen"},
     { key: 6, value:"Uitloggen"},

@@ -2,11 +2,13 @@
 .container.top-nav {
     padding-left: 5%;
     padding-right: 5%;
-    min-height: 90px;
+    min-height: 65px;
     display:flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--back-color);
+    flex-wrap: wrap;
+    flex-direction: row;
     .logo{
       a{
       display: flex;
@@ -65,6 +67,10 @@
           font-size: 1rem;
           font-family: "montserrat-light";
           padding: 0.5rem;
+          transition: padding .3s ease-in;
+          &:focus{
+            padding-right: 10rem;
+          }
         }
         button{
           border:none;
@@ -106,6 +112,9 @@
               color: var(--primary-color);
             }
           }
+          p{
+            font-family: 'montserrat-light';
+          }
         }
       }
     }
@@ -129,10 +138,10 @@
   .accountDropdown{
     //background-color: red;
     position: absolute;
-    top: 80px;
+    top: 65px;
     left: 0;
     width: 100%;
-    z-index: 20;
+    z-index: 2000;
     .dropdown{
       //background-color: blue;
       margin-right: auto;
@@ -181,10 +190,10 @@
   .responsiveNav{
     // background-color: red;
     position: absolute;
-    top: 95px;
+    top: 65px;
     left: 0;
     width: 100%;
-    z-index: 20;
+    z-index: 2000;
     .responsiveNavDropdown{
       ul{
         background-color: var(--white-color);
@@ -242,6 +251,7 @@
       .menu{
         .menu-responsive-large{
           display: flex;
+          justify-content: flex-end;
           .links{
             margin-right: 0.5rem;
             ul{

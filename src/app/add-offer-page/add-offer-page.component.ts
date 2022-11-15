@@ -55,12 +55,12 @@ export class AddOfferPageComponent implements OnInit {
     ],
     'title': [
       { type: 'required', message: 'Title is required' },
-      { type: 'minlength', message: 'Title must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Title cannot be more than 100 characters long' },
+      { type: 'minlength', message: 'Title must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 150 characters long' },
     ],
     'description': [
       { type: 'required', message: 'Description is required' },
-      { type: 'minlength', message: 'Description must be at least 5 characters long' },
+      { type: 'minlength', message: 'Description must be at least 1 characters long' },
       { type: 'maxlength', message: 'Description cannot be more than 2000 characters long' },
     ],
     'materials': [
@@ -76,16 +76,16 @@ export class AddOfferPageComponent implements OnInit {
       { type: 'betweenLength', message: 'There can only be 20 new tags' },
     ],
     'street_number': [
-      { type: 'maxlength', message: 'Street and number cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Street and number cannot be more than 250 characters long' },
     ],
     'city': [
-      { type: 'maxlength', message: 'City cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'City cannot be more than 250 characters long' },
     ],
     'country': [
-      { type: 'maxlength', message: 'Country cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Country cannot be more than 250 characters long' },
     ],
     'url': [
-      { type: 'maxlength', message: 'Url cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Url cannot be more than 250 characters long' },
     ],
     'contact': [
       { type: 'maxlength', message: 'Contact cannot be more than 250 characters long' },
@@ -109,8 +109,8 @@ export class AddOfferPageComponent implements OnInit {
     ) {
 
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(100)]],
-      description: ['', [Validators.required, Validators.maxLength(2000)]],
+      title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(150)]],
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2000)]],
       material: [0, []],
       submaterial: [0, []],
       selectedmaterials:[[]],

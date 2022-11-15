@@ -42,7 +42,8 @@ export class EditOfferPageComponent implements OnInit {
 
   materials: {id: number, name: string}[] = [];
   submaterials: {id: number, name: string}[] = [];
-  selected_materials: {materialkey: number, materialname: string, submaterialkey: number, submaterialname: string}[] =[];
+  selected_materials_count: number = 1;
+  selected_materials: {key: number, materialkey: number, materialname: string, submaterialkey: number, submaterialname: string}[] =[];
 
   tags: {id: number, name: string}[] = [];
   tagtimeout = null;
@@ -55,12 +56,12 @@ export class EditOfferPageComponent implements OnInit {
     ],
     'title': [
       { type: 'required', message: 'Title is required' },
-      { type: 'minlength', message: 'Title must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Title cannot be more than 60 characters long' },
+      { type: 'minlength', message: 'Title must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 150 characters long' },
     ],
     'description': [
       { type: 'required', message: 'Description is required' },
-      { type: 'minlength', message: 'Description must be at least 5 characters long' },
+      { type: 'minlength', message: 'Description must be at least 1 characters long' },
       { type: 'maxlength', message: 'Description cannot be more than 2000 characters long' },
     ],
     'materials': [
@@ -76,16 +77,16 @@ export class EditOfferPageComponent implements OnInit {
       { type: 'betweenLength', message: 'There can only be 20 new tags' },
     ],
     'street_number': [
-      { type: 'maxlength', message: 'Street and number cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Street and number cannot be more than 250 characters long' },
     ],
     'city': [
-      { type: 'maxlength', message: 'City cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'City cannot be more than 250 characters long' },
     ],
     'country': [
-      { type: 'maxlength', message: 'Country cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Country cannot be more than 250 characters long' },
     ],
     'url': [
-      { type: 'maxlength', message: 'Url cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Url cannot be more than 250 characters long' },
     ],
     'contact': [
       { type: 'maxlength', message: 'Contact cannot be more than 250 characters long' },
@@ -110,14 +111,14 @@ export class EditOfferPageComponent implements OnInit {
     ) {
 
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(60)]],
-      description: ['', [Validators.required, Validators.maxLength(2000)]],
+      title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(150)]],
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2000)]],
       material: [0, []],
       submaterial: [0, []],
       selectedmaterials:[[]],
       selectedsubmaterials:[[]],
       tag: ['', []],
-      new_tag_input: ['', [Validators.maxLength(30)]],
+      new_tag_input: ['', []],
       new_tags: [[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
       selectedtags:[[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
       street_number: ['', [Validators.maxLength(250)]],
@@ -187,10 +188,11 @@ export class EditOfferPageComponent implements OnInit {
                   if(mat.id === submat.material_id){
                     const found = this.selected_materials.find(element => element.materialkey === parseInt(mat.id) &&  element.submaterialkey === parseInt(submat.id));
                     if(!found){
-                      this.selected_materials.push({materialkey: mat.id, materialname: mat.name, submaterialkey: submat.id, submaterialname: submat.name })
+                      this.selected_materials.push({key: this.selected_materials_count, materialkey: mat.id, materialname: mat.name, submaterialkey: submat.id, submaterialname: submat.name })
                       materialselected.push(parseInt(mat.id));
                       submaterialselected.push(parseInt(submat.id));
                       materialArray.push(mat.id);
+                      this.selected_materials_count++;
                     }
                   }
                 });
@@ -202,7 +204,8 @@ export class EditOfferPageComponent implements OnInit {
                   console.log(findinArray);
                   if(!findinArray){
                     materialselected.push(parseInt(mat.id));
-                    this.selected_materials.push({materialkey: mat.id, materialname: mat.name, submaterialkey: 0, submaterialname: "" })
+                    this.selected_materials.push({key: this.selected_materials_count, materialkey: mat.id, materialname: mat.name, submaterialkey: 0, submaterialname: "" })
+                    this.selected_materials_count++;
                   };
               });
 
@@ -354,30 +357,54 @@ export class EditOfferPageComponent implements OnInit {
     //verander formvalue
     const material = this.form.get('material').value;
     const submaterial = this.form.get('submaterial').value;
+
     const materialselected = this.form.get('selectedmaterials').value;
     const submaterialselected  = this.form.get('selectedsubmaterials').value;
-    materialselected.push(parseInt(material));
-    submaterialselected.push(parseInt(submaterial));
 
-    this.form.patchValue({
-      selectedmaterials: materialselected,
-      selectedsubmaterials: submaterialselected
-    })
+    var foundmaterial = {id: 0, name: ""};
+    var foundsubmaterial = {id: 0, name: ""};
+
+    if(material){
+      if(material != 0){
+        console.log("add material");
+         foundmaterial = this.materials.find(element => element.id === parseInt(material));
+         materialselected.push(parseInt(material));
+      }
+      if(submaterial){
+        console.log("add submaterial");
+        foundsubmaterial = this.submaterials.find(element => element.id === parseInt(submaterial));
+        console.log("foundsubmaterial",foundsubmaterial);
+        if(foundsubmaterial !== undefined){
+          submaterialselected.push(parseInt(submaterial));
+        }else{
+          foundsubmaterial = {id: 0, name: ""};
+        }
+      }
+      this.form.patchValue({
+        selectedmaterials: materialselected,
+        selectedsubmaterials: submaterialselected
+      });
+    }
 
     //maak pill met namen
-    const foundmaterial = this.materials.find(element => element.id === parseInt(material));
-    const foundsubmaterial = this.submaterials.find(element => element.id === parseInt(submaterial));
-    this.selected_materials.push({materialkey: foundmaterial.id, materialname: foundmaterial.name, submaterialkey: foundsubmaterial.id, submaterialname: foundsubmaterial.name })
+    this.selected_materials.push({key: this.selected_materials_count, materialkey: foundmaterial.id, materialname: foundmaterial.name, submaterialkey: foundsubmaterial.id, submaterialname: foundsubmaterial.name })
+    this.selected_materials_count ++;
+    console.log("materialselected",materialselected);
+    console.log("submaterialselected",submaterialselected);
   }
-  deleteFromSelectedMaterials(matkey: number, subkey: number){
-    const found = this.selected_materials.find(element => element.materialkey === matkey && element.submaterialkey === subkey);
+
+  deleteFromSelectedMaterials(key: number){
+    const found = this.selected_materials.find(element => element.key === key);
+    console.log("delete found", found)
 
     //delete from form array
     const materialselected = this.form.get('selectedmaterials').value;
     const submaterialselected  = this.form.get('selectedsubmaterials').value;
 
     materialselected.splice(materialselected.indexOf(found.materialkey, 0), 1);
-    submaterialselected.splice(submaterialselected.indexOf(found.submaterialkey,0), 1);
+    if(found.submaterialkey != 0){
+      submaterialselected.splice(submaterialselected.indexOf(found.submaterialkey,0), 1);
+    }
 
     this.form.patchValue({
       selectedmaterials: materialselected,
@@ -386,6 +413,9 @@ export class EditOfferPageComponent implements OnInit {
 
    //delete visible pil
     this.selected_materials.splice(this.selected_materials.indexOf(found), 1);
+    this.selected_materials_count --;
+    console.log("materialselected",materialselected);
+    console.log("submaterialselected",submaterialselected)
   }
 
   //  --------------------------------------- tags  --------------------------------------- //

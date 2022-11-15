@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, OnInit, Input, SimpleChanges, Output, EventEmitter  } from '@angular/core';
 import * as L from 'leaflet';
+import { environment } from 'src/environments/environment';
 import { OfferlocationService } from '../../../_services/offerlocation.service';
 
 import {wasteIcon,inspirationIcon,organisationIcon,humanIcon,technologyIcon,radiusCenterIcon,wasteIconRadius,
@@ -47,6 +48,8 @@ export class MapComponent implements OnInit  {
 
   zoomtimeout = null;
   pantimeout = null;
+
+  url = environment.apiUrl;
 
   constructor(private locationService: OfferlocationService) { }
 
@@ -184,7 +187,12 @@ export class MapComponent implements OnInit  {
 
       //does this feature have a property named popupContent?
       if (feature.properties && feature.properties.title) {
-          var content = popUpGenerator(feature.properties.title, feature.properties.image, feature.properties.category);
+        if(feature.properties.images[0]){
+          var content = popUpGenerator(feature.properties.title, feature.properties.images[0].filename, feature.properties.category);
+        }else{
+          var content = popUpGenerator(feature.properties.title, "images/resources/default.png", feature.properties.category);
+        }
+
           layer.bindPopup(content);
       }
 
@@ -294,6 +302,6 @@ export class MapComponent implements OnInit  {
 }
 
 function popUpGenerator(name: string, image: string, category: number){
-  return '<div><img src="https://backenduyw.yentlbekaert.be/images/'+ image + '" alt="" style="width: 50px; height:50px; object-fit: contain;"><p>'+ name +'</p></div>'
+  return '<div><img src="https://backend.upcycleyourwaste.be/' + image +'" alt="" style="width: 50px; height:50px; object-fit: contain;"><p>'+ name +'</p></div>'
 }
 

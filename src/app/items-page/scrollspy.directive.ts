@@ -19,11 +19,11 @@ export class ScrollSpyDirective {
       var scrollBottomPosition =  this.el.nativeElement.querySelector('#scrollBottom').offsetTop;
       //console.log(scrollPosition + window.innerHeight > scrollBottomPosition , scrollPosition + window.innerHeight  , scrollBottomPosition);
 
-      if(scrollPosition > 100 && scrollPosition + window.innerHeight + 1 < scrollBottomPosition){
+      if(scrollPosition > 0 && scrollPosition + window.innerHeight + 1 < scrollBottomPosition){
         filtersEl.classList.add('fixed');
           mapEl.classList.add('fixed');
           mapEl.classList.remove('bottom');
-          mapEl.style.top = (filtersEl.clientHeight + 20).toString() + "px";
+          mapEl.style.top = (filtersEl.clientHeight + 100).toString() + "px";
           listEl.style.marginTop = (filtersEl.clientHeight).toString() + "px";
       }
       else if(scrollPosition + window.innerHeight  > scrollBottomPosition){

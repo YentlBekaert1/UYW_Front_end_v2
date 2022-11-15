@@ -18,6 +18,7 @@ import { ForbiddenPageComponent } from './forbidden-page/forbidden-page.componen
 import { TermsofconditonsComponent } from './Auth/termsofconditons-page/termsofconditons.component';
 import { ForgetPasswordComponent } from './Auth/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './Auth/reset-password/reset-password.component';
+import { HomePagev2Component } from './home-page-v2/home-page.component';
 
 
 const routes: Routes = [
@@ -30,12 +31,21 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
+    path: "home4",
+    component: HomePagev2Component,
+  },
+  {
     path: "home2",
     component: HomeComponentV2,
   },
   {
     path: "home3",
     component: HomeComponentV3,
+  },
+  {
+    path: "items",
+    redirectTo: "/items/list",
+    pathMatch: 'full'
   },
   {
     path: "items/:tab",

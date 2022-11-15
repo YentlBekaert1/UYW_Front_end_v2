@@ -15,9 +15,14 @@
   </h3> -->
 
 <div class="categories" #categories>
-  <div *ngFor="let categorie of categories_array"  id="{{categorie.key}}" (click)="ButtonClick(categorie.key)">
+  <div class="tooltip" *ngFor="let categorie of categories_array"  id="{{categorie.key}}" (click)="ButtonClick(categorie.key)">
     <img src="{{categorie.image}}" alt="{{categorie.name}}">
-    <span>{{categorie.name}}</span>
+    <span class="tooltiptext tooptipCap">{{categorie.name}}</span>
+  </div>
+
+  <div class="tooltip" id="add" (click)="goToAdd()">
+    <i class="material-icons">add</i>
+    <span class="tooltiptext">Voeg toe aan de database</span>
   </div>
  </div>
 

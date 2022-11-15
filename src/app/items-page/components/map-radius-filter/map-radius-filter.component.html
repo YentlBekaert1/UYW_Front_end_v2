@@ -20,7 +20,7 @@
         <option value="0">materiaal</option>
         <option *ngFor="let material of materials" value="{{material.id}}">{{material.name}}</option>
       </select>
-      <button name="more_filters" id="more_filters" (click)="moreFiltersClicked()">Meer filters</button>
+      <!-- <button name="more_filters" id="more_filters" (click)="moreFiltersClicked()">Meer filters</button> -->
       <button id="zoek_button" (click)="searchButtonClicked()"><i class="material-icons">search</i>Zoeken</button>
     </div>
   </div>

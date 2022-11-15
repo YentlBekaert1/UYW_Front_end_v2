@@ -19,7 +19,7 @@
       </div>
       <div class="right-colum">
         <div class="mijn_gegevens" *ngIf="active_tab.key === 1">
-          <h1>Mijn gegevens</h1>
+          <h1>Accountoverzicht</h1>
           <app-my-profile></app-my-profile>
         </div>
 
@@ -34,7 +34,7 @@
 
         <div class="mijn-items" *ngIf="active_tab.key === 3">
           <div>
-            <h1>Mijn items</h1>
+            <h1>Mijn toegevoegde items</h1>
             <button (click)="voegtoeClicked()">Voeg toe</button>
           </div>
 
@@ -48,7 +48,7 @@
         </div>
 
         <div class="loguit" *ngIf="active_tab.key === 6">
-          <h1>Log uit</h1>
+          <h1>Uitloggen</h1>
           <app-logout></app-logout>
         </div>
 

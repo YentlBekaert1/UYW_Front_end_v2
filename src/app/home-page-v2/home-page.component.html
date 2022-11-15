@@ -1,0 +1,40 @@
+<div class="main" appHomeResize>
+  <div class="section1">
+    <div class="section1-text-content">
+      <h1>Een circulaire bron van inspiratie en expertise <span>rond het herbestemmen van</span><br><span>materialen</span></h1>
+      <p>
+        Welkom op de database van “let’s upcycle”. Een unieke applicatie die 5 thema’s met elkaar koppelt rond circulariteit.
+        <br>Ga eenvoudig op zoek en laat je inspireren. Of voeg zelf eenvoudig materialen of expertise toe. Je kan gebruik maken van filters of zoeken op de kaart.
+        <br>Zet je organisatie of reststroom in de kijker of vind de juiste businesspartner.
+        <br>De applicatie is zowel op desktop als op je mobieltje beschikbaar.
+      </p>
+      <div class="call-to-actions">
+        <a href="" class="call-to-actions-btn1">Bekijk de items</a>
+        <a href="" class="call-to-actions-btn2">Zoek in jouw regio</a>
+      </div>
+      <div class="discover-category">
+        <a href="" class="discover-category-btn">Ontdek de categorieën</a>
+
+      </div>
+    </div>
+    <div id="aarde_container" #aardbol>
+      <div id="aardbol_picture">
+        <img src="../../assets/aardbol_home/aarde_bg.svg" alt="">
+        <img src="../../assets/aardbol_home/aarde_bg_border.svg" alt="">
+        <img src="../../assets/aardbol_home/aarde_bg_blur.svg" alt="">
+        <div *ngFor="let item of categories_array; let i = index" class="categorie_logo logo{{i+1}}">
+          <img src="{{item.image}}" alt="{{item.image}}">
+          <p>{{item.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section2">
+
+  </div>
+</div>
+<app-footer></app-footer>
+
+<!-- <canvas #canvas id="canvas" width="500"></canvas> -->
+

@@ -7,20 +7,33 @@
     background-color: transparent;
     height: 30px;
     width: 100%;
-    border-radius: 15px;
+    border-radius: 15px 15px 0 0;
     text-align: center;
     padding: 5px 10px;
     color: var(--white-color);
-    font-family: montserrat-bold;
+    font-family: "montserrat-regular";
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     span{
       pointer-events: none;
     }
     &.active{
-      background-color: var(--secondary-color);
-      color: var(--white-color);
-   }
+      background-color: var(--back-color);
+      color: var(--primary-color);
+    }
+    &:nth-child(3){
+      visibility: hidden;
+    }
+
+ }
+}
+
+@media screen and (min-width: 100px) {
+ .tabs{
+  .tab:nth-child(3){
+    visibility: visible;
+  }
  }
 }
