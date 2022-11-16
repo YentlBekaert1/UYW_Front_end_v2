@@ -19,9 +19,6 @@
       height: 40px;
       width: 100%;
       border-bottom: 2px solid transparent;
-      i{
-        font-size: 2.3rem;
-      }
     }
     h5{
       padding-top: calc(.5rem - 2px);
@@ -36,8 +33,8 @@
         height: 40px;
         width: 100%;
         border-bottom: 2px solid transparent;
-        i{
-          font-size: 2.3rem;
+        img{
+          padding-top: .4rem;
         }
       }
       h5{
@@ -50,13 +47,23 @@
       }
     }
     &.small{
-      display: block;
+      background-color: transparent;
+      text-align: center;
+      color: var(--white-color);
+      font-family: "montserrat-regular";
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
       span{
         pointer-events: none;
         width: 100%;
         border-bottom: 2px solid transparent;
-        i{
-          font-size: 2rem;
+        height: 40px;
+        width: 40px;
+        img{
+          padding-top: .8rem;
         }
       }
       h5{
@@ -74,7 +81,7 @@
       }
      }
     &:nth-child(3){
-      display: none;
+     display: none;
     }
 
  }
@@ -84,7 +91,7 @@
  .tabs{
   grid-template-columns: 1fr 1fr 1fr;
   .tab:nth-child(3){
-    display: block;
+   display: flex;
   }
  }
 }

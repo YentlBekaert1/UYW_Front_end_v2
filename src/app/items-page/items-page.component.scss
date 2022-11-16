@@ -390,7 +390,7 @@ main{
       }
       app-tabs{
         display: block;
-        width: fit-content;
+        width: 100%;
       }
     }
   }
@@ -515,9 +515,12 @@ main{
           width: 40px;
           height: 40px;
           background-color: transparent;
-          border: 2px solid transparent;
+          border-bottom: 2px solid transparent;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
           i{
-            font-size: 2.3rem;
+            font-size: 2rem;
             color: var(--white-color);
           }
           &:hover{
