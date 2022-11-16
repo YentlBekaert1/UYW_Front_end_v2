@@ -25,6 +25,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
   ];
 
   active_categories: number[];
+  active_cat: number = 0;
 
   constructor(private route: ActivatedRoute, private store: Store<FilterState>, private router: Router) { }
 
@@ -43,33 +44,6 @@ export class CategoryButtonsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // const paramsub = this.route.paramMap.subscribe(params => {
-    //   const active_category = params.get('categories').split(',');
-    //   this.active_categories = [];
-    //   active_category.forEach(cat => {
-    //       console.log()
-    //       // if(cat === '0'){
-    //       //   this.categories_array.forEach(element => {
-    //       //       this.active_categories.push(element.key);
-    //       //       this.categories.nativeElement.children[element.key-1].classList.add('active');
-    //       //   });
-    //       // }else{
-    //       //   this.categories_array.forEach(element => {
-    //       //     if(parseInt(cat) === element.key){
-    //       //       this.active_categories.push(element.key);
-    //       //       this.categories.nativeElement.children[element.key-1].classList.add('active');
-    //       //     }
-    //       //   });
-    //       // }
-    //         this.categories_array.forEach(element => {
-    //           if(parseInt(cat) === element.key){
-    //             this.active_categories.push(element.key);
-    //             this.categories.nativeElement.children[element.key-1].classList.add('active');
-    //           }
-    //         });
-    //     });
-    //     //this.categoryFilterEvent.emit(this.active_categories);
-    // });
     this.categorieFilters.forEach(filter_el => {
        this.categories_array.forEach(categorie => {
           if(filter_el === categorie.key){
@@ -80,17 +54,30 @@ export class CategoryButtonsComponent implements AfterViewInit {
   }
 
   ButtonClick(category_id: any){
+    //voor filter met alleen 1 categorie
     var new_array = [];
     this.categorieFilters.forEach(el=>new_array.push(el));
     const found = new_array.find(element => element === category_id);
-    if(found !== undefined){
-      this.categories.nativeElement.children[category_id-1].classList.remove('active');
-      new_array.splice(new_array.indexOf(category_id), 1);
-    }
-    else{
-      this.categories.nativeElement.children[category_id-1].classList.add('active');
-      new_array.push(category_id);
-    }
+    new_array.pop();
+
+    this.categories_array.forEach(element => {
+      if(element.key == category_id && category_id != this.active_cat){
+        this.categories.nativeElement.children[element.key-1].classList.add('active');
+        new_array.push(category_id);
+        this.active_cat = category_id;
+      }else{
+        this.categories.nativeElement.children[element.key-1].classList.remove('active');
+      }
+    });
+    //voor filter met meerder categorieen
+    // if(found !== undefined){
+    //   this.categories.nativeElement.children[category_id-1].classList.remove('active');
+    //   new_array.splice(new_array.indexOf(category_id), 1);
+    // }
+    // else{
+    //   this.categories.nativeElement.children[category_id-1].classList.add('active');
+    //   new_array.push(category_id);
+    // }
     this.store.dispatch(updateCategories({categories: new_array}));
   }
   goToAdd(){

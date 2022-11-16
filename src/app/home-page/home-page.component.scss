@@ -11,7 +11,7 @@
 
 .section1{
     width: 100%;
-    min-height: calc(100vh - 90px);
+    min-height: calc(100vh - var(--nav-height));
     position: relative;
     z-index: 0;
   .intro{
@@ -619,7 +619,7 @@
     .intro{
       .main-intro{
         .earth-drawing.right{
-          display: none;
+          //display: none;
         }
       }
     }

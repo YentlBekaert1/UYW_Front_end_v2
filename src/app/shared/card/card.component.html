@@ -20,7 +20,7 @@
         <img src="../../../assets/category-logos/afval.svg" alt="">
       </div>
     </ng-template>
-    <h2>{{name}}</h2>
+    <h2 [routerLink]="['/offerdetail', id]">{{name}}</h2>
     <p>{{materials}}</p>
     <p>{{locatie_string}}</p>
     <a [routerLink]="['/offerdetail', id]" >Meer info</a>

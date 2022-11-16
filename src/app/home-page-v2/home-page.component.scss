@@ -8,6 +8,16 @@
 .main{
   position: relative;
 }
+
+h1{
+  font-family: "montserrat-bold";
+  // font-size: 3.5rem;
+  color: var(--black-color);
+  span{
+    color: var(--primary-color);
+  }
+}
+
 .section1{
   width: 100%;
   min-height: calc(100vh - var(--nav-height));
@@ -25,18 +35,9 @@
     width: 50%;
     height: 100%;
     margin-top: 1rem;
-    h1{
-      font-family: "montserrat-bold";
-      font-size: 3.5rem;
-      color: var(--black-color);
-      span{
-        color: var(--primary-color);
-      }
-    }
     p{
       margin-top: 2rem;
       max-width: 70%;
-      line-height: 1.6rem;
       font-family: "montserrat-light";
       color: #333333;
     }
@@ -177,7 +178,7 @@
   position: relative;
 }
 
-@media screen and (max-height: 800px) and (max-width: 680px) {
+@media screen and (max-width: 680px) {
 
 }
 
@@ -190,11 +191,66 @@
 }
 
 @media screen and (min-width: 1010px) {
-
+  h1{
+    font-size: 2.5rem;
+  }
+  .section1{
+    margin: 0 3rem;
+    p{
+      margin-top: 2rem;
+      max-width: 70%;
+      line-height: 1.2rem;
+      font-family: "montserrat-light";
+      color: #333333;
+      font-size: .8rem;
+    }
+  }
+  .call-to-actions{
+    max-width: 70%;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+    a.call-to-actions-btn1{
+      letter-spacing: .05rem;
+      padding: 1rem 2rem;
+      margin-right: 1rem;
+      border-radius: 1rem;
+      border: 3px solid var(--secondary-color);
+      &:hover{
+        background-color: var(--back-color);
+        text-decoration: underline;
+        color: var(--primary-color);
+      }
+    }
+    a.call-to-actions-btn2{
+      color: var(--primary-color);
+      font-family: "montserrat-bold";
+      text-decoration: none;
+      padding: 1rem 3rem;
+      letter-spacing: .05rem;
+      z-index: 0;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1340px) {
+  h1{
+    font-size: 3.5rem;
+  }
+  .section1{
+    margin: 0 auto;
+    p{
+      margin-top: 2rem;
+      max-width: 70%;
+      line-height: 1.6rem;
+      font-family: "montserrat-light";
+      color: #333333;
+    }
 
+  }
 }
 
 

@@ -49,6 +49,8 @@ export class MapComponent implements OnInit  {
   zoomtimeout = null;
   pantimeout = null;
 
+  canZoom = true;
+
   url = environment.apiUrl;
 
   constructor(private locationService: OfferlocationService) { }
@@ -137,26 +139,45 @@ export class MapComponent implements OnInit  {
      this.map.on('locationfound', onLocationFound);
 
      this.map.on('zoomend', (event: any)=>{
-        clearTimeout(this.zoomtimeout);
-        // Make a new timeout set to go off in 1000ms (1 second)
-        this.zoomtimeout = setTimeout(() => {
-          //console.log(event.target.value);
-          var bounds = event.target.getBounds();
-          this.removeAllMarkers();
-          this.getMarkerbyLocation(bounds);
-        }, 500);
+        if(this.canZoom == true){
+          clearTimeout(this.zoomtimeout);
+          // Make a new timeout set to go off in 1000ms (1 second)
+          this.zoomtimeout = setTimeout(() => {
+            //console.log(event.target.value);
+            var bounds = event.target.getBounds();
+            this.removeAllMarkers();
+            this.getMarkerbyLocation(bounds);
+          }, 500);
+        }
       });
 
       this.map.on('move', (event: any)=>{
-        clearTimeout(this.zoomtimeout);
-        // Make a new timeout set to go off in 1000ms (1 second)
-        this.zoomtimeout = setTimeout(() => {
-          //console.log(event.target.value);
-          var bounds = event.target.getBounds();
-          this.removeAllMarkers();
-          this.getMarkerbyLocation(bounds);
-        }, 500);
+        if(this.canZoom == true){
+          clearTimeout(this.zoomtimeout);
+          // Make a new timeout set to go off in 1000ms (1 second)
+          this.zoomtimeout = setTimeout(() => {
+            //console.log(event.target.value);
+            var bounds = event.target.getBounds();
+            this.removeAllMarkers();
+            this.getMarkerbyLocation(bounds);
+          }, 500);
+        }
       });
+
+      this.map.on('autopanstart', (event: any)=>{
+        this.canZoom = false;
+        clearTimeout(this.zoomtimeout);
+        this.zoomtimeout = setTimeout(() => {
+          this.canZoom = true;
+        }, 2000);
+      });
+      this.map.on('popupopen', (event: any)=>{
+        this.canZoom = false;
+      });
+      this.map.on('popupclose', (event: any)=>{
+        this.canZoom = true;
+      });
+
 
     //laat de map een event geven als er een overlay aangeklikt in de controller van de map
     // this.map.on('overlayadd', this.overlayControlClicked);
@@ -188,9 +209,9 @@ export class MapComponent implements OnInit  {
       //does this feature have a property named popupContent?
       if (feature.properties && feature.properties.title) {
         if(feature.properties.images[0]){
-          var content = popUpGenerator(feature.properties.title, feature.properties.images[0].filename, feature.properties.category);
+          var content = popUpGenerator(feature.properties.id,feature.properties.title, feature.properties.images[0].filename, feature.properties.category,feature.properties.materials);
         }else{
-          var content = popUpGenerator(feature.properties.title, "images/resources/default.png", feature.properties.category);
+          var content = popUpGenerator(feature.properties.id,feature.properties.title, "images/resources/default.png", feature.properties.category,feature.properties.materials);
         }
 
           layer.bindPopup(content);
@@ -225,6 +246,7 @@ export class MapComponent implements OnInit  {
     this.geoJSONData = L.geoJSON(data, {
             onEachFeature: onEachFeature,
             pointToLayer: function(feature, latlng) {
+              console.log(feature)
                if(zoom >= 10){
                     if(feature.properties.category === 1){
                       return L.marker(latlng, { icon: wasteIcon })
@@ -301,7 +323,30 @@ export class MapComponent implements OnInit  {
   //einde functie initMap
 }
 
-function popUpGenerator(name: string, image: string, category: number){
-  return '<div><img src="https://backend.upcycleyourwaste.be/' + image +'" alt="" style="width: 50px; height:50px; object-fit: contain;"><p>'+ name +'</p></div>'
+function popUpGenerator(id: number, name: string, image: string, category: number, material:any){
+  var categorienaam = ""
+  var materialnaam = ""
+  if(category == 1){
+    categorienaam = "Afval";
+  }else  if(category == 2){
+    categorienaam = "Inspiratie";
+  }else  if(category == 3){
+    categorienaam = "Persoon";
+  }else  if(category == 4){
+    categorienaam = "Organisatie";
+  }else  if(category == 1){
+    categorienaam = "Technologie";
+  }
+
+  if(material[0]){
+    materialnaam = material[0].name;
+  }
+  return '<a href="https://upcycleyourwaste.be/offerdetail/'+id+'"  style="max-width: 150px; text-decoration:none; display:block; color:black">'
+      +'<img src="https://backend.upcycleyourwaste.be/'+image+'" style="width: 100%; object-fit: contain;">'
+      +'<p style="font-family: montserrat-light; font-size: .8rem; font-weight: 600; margin:.3rem 0;" >'+name+'</p>'
+      +'<p style="font-family: montserrat-light; font-size: .8rem; color:#ffb048;  font-weight: 600; margin:.3rem 0;">'+categorienaam+'</p>'
+      +'<p style="font-family: montserrat-light; font-size: .8rem; margin:.3rem 0;">Materiaal: '+materialnaam+'</p>'
+    +'</a>'
 }
 
+//https://backend.upcycleyourwaste.be/'+image+'

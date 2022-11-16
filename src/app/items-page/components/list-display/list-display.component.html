@@ -1,6 +1,6 @@
 
 <div class="filters" *ngIf="(filters$ | async).query != ''">
-  <p>Gevonden reslutaten voor:</p>
+  <p>Gevonden resultaten voor:</p>
   <div class="chip" *ngIf="(filters$ | async).query != ''">
     <!-- {{(filters$ | async).query}} -->
     <span>{{(filters$ | async).query}}</span>
