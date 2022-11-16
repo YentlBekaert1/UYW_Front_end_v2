@@ -1,17 +1,19 @@
 
 <div class="search" [ngClass]="{'top': placement === 'top', 'filterbalk' : placement === 'filterbalk' }">
-  <input type="text" placeholder="Zoek in de database..." #searchInput (input)="searchItems($event)" (keyup.enter)="onEnter($event)">
+  <input type="text" placeholder="Zoek in de database..." #searchInput (input)="searchItems($event)" (change)="keyUp()" (keyup.enter)="onEnter($event)">
   <button (click)="buttonClick($event)"><i class="material-icons">search</i></button>
+  {{showResults}}
+  <!-- {{offers$ | async}} -->
 </div>
 
-<ng-container *ngIf="showResults && (offers$ | async) as Offers" >
-	<div class="searchterms-container">
+<ng-container>
+	<div class="searchterms-container" *ngIf="showResults == true" >
     <ul>
-      <li *ngFor="let offer of Offers">
-        <a *ngIf="offer.title" (click)="closeResults(offer.title)">{{offer.title | titlecase}}</a>
-        <a *ngIf="offer.name" (click)="closeResults(offer.name)">{{offer.name | titlecase}}</a>
-        <a *ngIf="offer.country && !offer.city" (click)="closeResults(offer.country)">{{offer.country} | titlecase}</a>
-        <a *ngIf="offer.city" (click)="closeResults(offer.city)">{{offer.city | titlecase}}</a>
+      <li *ngFor="let result of searchResults">
+        <a *ngIf="result.title" (click)="closeResults(result.title)">{{result.title | titlecase}}</a>
+        <a *ngIf="result.name" (click)="closeResults(result.name)">{{result.name | titlecase}}</a>
+        <a *ngIf="result.country && !result.city" (click)="closeResults(result.country)"> {{result.country} | titlecase}</a>
+        <a *ngIf="result.city" (click)="closeResults(result.city)">{{result.city | titlecase}}</a>
       </li>
     </ul>
   </div>

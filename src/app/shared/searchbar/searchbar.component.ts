@@ -23,9 +23,15 @@ export class SearchbarComponent {
   readonly offers$ = this.offerSubject.pipe(
     liveSearch(searchquery => this.offerservice.autocomplete(searchquery))
   );
+  
+  searchResults = [];
 
   constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router) {
-    this.offers$.subscribe(res=>console.log(res))
+    this.offers$.subscribe(res=>{
+      console.log(res);
+      this.searchResults = res
+      this.showResults = true;
+    })
 
   }
   // ngAfterViewChecked(): void {
@@ -33,12 +39,14 @@ export class SearchbarComponent {
   // }
 
   searchItems(event) {
+    console.log("searchItems")
     var searchquery = event.target.value
     this.offerSubject.next(searchquery);
-    this.showResults = true
+    this.showResults = true;
   }
 
   closeResults(query){
+    console.log("closeResults")
     this.showResults = false
     this.searchInput.nativeElement.value = query;
     this.store.dispatch(updateQuery({query:query }));
@@ -46,16 +54,23 @@ export class SearchbarComponent {
   }
 
   onEnter(event){
-    this.showResults = false
+    console.log("onEnter")
     this.store.dispatch(updateQuery({query:event.target.value }));
     this.router.navigate(['/items']);
+    this.showResults = false;
   }
 
   buttonClick($event){
-    this.showResults = false
+    console.log("buttonClick")
     this.store.dispatch(updateQuery({query: this.searchInput.nativeElement.value }));
     this.router.navigate(['/items']);
+    this.showResults = false;
   }
+
+  keyUp() {
+    console.log("keyUp")
+  }
+
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
