@@ -43,6 +43,7 @@
     <ul>
       <li (click)="responsiveNavitemClicked()" [routerLink]="['/home']" routerLinkActive="active"><a>Home</a></li>
       <li (click)="responsiveNavitemClicked()" [routerLink]="['/items','list']" routerLinkActive="active"><a>Database</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/search']" routerLinkActive="active"><a>Zoeken</a></li>
       <!-- <li (click)="responsiveNavitemClicked()" [routerLink]="['/addoffer']" [routerLinkActive]="['active']"><a>Voeg zelf toe</a></li>
       <li (click)="responsiveNavitemClicked()" [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li> -->
       <li *ngIf="!userLoggedIn" (click)="responsiveNavitemClicked()" [routerLink]="['/login']" [routerLinkActive]="['active']"><a >Log In</a></li>

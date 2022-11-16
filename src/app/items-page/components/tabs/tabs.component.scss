@@ -1,7 +1,7 @@
 .tabs{
   display: grid;
   width: fit-content;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap:10%;
   width: 100%;
   .tab{
@@ -30,6 +30,39 @@
       font-size: .7rem;
       font-weight: 100;
     }
+    &.large{
+      span{
+        pointer-events: none;
+        height: 40px;
+        width: 100%;
+        border-bottom: 2px solid transparent;
+        i{
+          font-size: 2.3rem;
+        }
+      }
+      h5{
+        padding-top: calc(.5rem - 2px);
+        font-family:'montserrat-light';
+        letter-spacing: .05rem;
+        font-size: .7rem;
+        font-weight: 100;
+
+      }
+    }
+    &.small{
+      display: block;
+      span{
+        pointer-events: none;
+        width: 100%;
+        border-bottom: 2px solid transparent;
+        i{
+          font-size: 2rem;
+        }
+      }
+      h5{
+        display: none;
+      }
+    }
     &.active{
      span{
       border-bottom: 2px solid var(--secondary-color);
@@ -41,7 +74,7 @@
       }
      }
     &:nth-child(3){
-      visibility: hidden;
+      display: none;
     }
 
  }
@@ -49,8 +82,9 @@
 
 @media screen and (min-width: 1000px) {
  .tabs{
+  grid-template-columns: 1fr 1fr 1fr;
   .tab:nth-child(3){
-    visibility: visible;
+    display: block;
   }
  }
 }

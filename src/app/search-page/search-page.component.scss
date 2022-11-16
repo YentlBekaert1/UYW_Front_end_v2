@@ -1,0 +1,46 @@
+.search{
+  display: flex;
+  align-items: center;
+  border-bottom: 0.5px solid #8B8B8B;
+  margin: 1rem;
+  input{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    font-family: "montserrat-light";
+    padding: 0.7rem 0.5rem;
+    outline: none;
+  }
+  button{
+    border:none;
+    background-color: transparent;
+    width: 40px;
+    height: 42px;
+    display: inline-block;
+    padding-top: 0.2rem;
+    i{
+      color: var(--black-color);
+    }
+    &:hover{
+      i{
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.searchterms-container{
+  overflow: hidden;
+  background-color: var(--back-color);
+  margin: 1rem;
+  ul{
+    li{
+      padding: 0.5rem 1rem ;
+      border-bottom: 0.5px solid var(--grey-border-color);
+      &:hover{
+        background-color: var(--primary-color);
+      }
+    }
+  }
+}

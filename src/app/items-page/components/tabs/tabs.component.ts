@@ -10,7 +10,8 @@ export class TabsComponent implements AfterViewInit {
   @ViewChild('tabs', { read: ElementRef }) tabs!: ElementRef<HTMLInputElement>;
   @Output() tabClickedEvent = new EventEmitter<string>();
   @Input() activeTab: string;
-
+  @Input() style: string;
+  
   category: string= "all"
 
   constructor(private route: ActivatedRoute, private router: Router) { }

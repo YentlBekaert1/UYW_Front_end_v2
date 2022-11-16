@@ -6,8 +6,8 @@ div.categories{
   div{
     background-color: var(--black-color);
     text-align: center;
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     padding: 10px;
     border-radius: 70px;
     cursor: pointer;
@@ -50,25 +50,35 @@ div.categories{
 }
 
 @media screen and (min-width: 680px) {
-  // div.categories{
-  //   div{
-  //     width: 50px;
-  //     height: 50px;
-  //     padding: 10px;
-  //     border-radius: 70px;
-  //     img{
-  //       padding-top: 15%;
-  //       padding-left: 2%;
-  //       width: 70%;
-  //     }
-  //     // span{
-  //     //   display: none;
-  //     //   font-size: 0.6rem;
-  //     //   padding-top: 5px;
-  //     //   color: var(--white-color);
-  //     // }
-  //   }
-  // }
+  div.categories{
+      display:  grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 5px;
+      div{
+        background-color: var(--black-color);
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+        border-radius: 70px;
+        cursor: pointer;
+        img{
+          padding-top: 1px;
+          width: 85%;
+        }
+        // span{
+        //   display: none;
+        //   padding-top: 2px;
+        //   font-size: 0.6rem;
+        //   color: var(--white-color);
+        //   text-transform: capitalize;
+        // }
+        &.active{
+          background-color: var(--secondary-color);
+        }
+
+      }
+    }
 }
 
 @media screen and (min-width: 850px) {

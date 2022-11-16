@@ -26,6 +26,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   active_tab:string = 'list';
   active_category!:string;
+  tabs_style = "large"
 
   items_per_page: number;
   getoffersurl = environment.apiUrl + 'api/offers?page=1'
@@ -49,6 +50,10 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store, private router: Router) { }
 
   ngOnInit(): void {
+    if(window.innerWidth < 680){
+      this.tabs_style = "small";
+    }
+
     this.items_per_page = 20;
     this.offerService.getMaterials().then((res: any) => {
       this.res_materials = res.data;
@@ -126,9 +131,20 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
    goToAdd(){
     this.router.navigate(['/addoffer']);
    }
-
+   goToSearch(){
+    this.router.navigate(['/search']);
+   }
 
    ngOnDestroy() {
     this.store.dispatch(updateQuery({query:"" }));
+  }
+
+  @HostListener("window:resize", ["$event"])
+  onResize(event: any) {
+    if(event.target.innerWidth < 680){
+      this.tabs_style = "small";
+    }else{
+      this.tabs_style = "large";
+    }
   }
 }

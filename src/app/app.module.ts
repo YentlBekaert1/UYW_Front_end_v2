@@ -33,6 +33,7 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { FilterReducer } from './store/filterstate/filter.reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePagev2Module } from './home-page-v2/home-page.module';
+import { SearchPageModule } from './search-page/search-page.module';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { HomePagev2Module } from './home-page-v2/home-page.module';
     AccountPageModule,
     AddOfferPageModule,
     OfferDetailPageModule,
+    SearchPageModule,
     EditOfferPageModule,
     ForgetPasswordModule,
     ResetPasswordModule,

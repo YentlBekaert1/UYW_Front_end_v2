@@ -31,26 +31,18 @@
             </div>
             <div class="tabs">
               <div>
+                <button (click)="goToSearch()"><i class="material-icons">search</i></button>
+                <h5>Search</h5>
+              </div>
+              <div>
                 <button (click)="moreFiltersClicked()"><i class="material-icons">filter_list</i></button>
                 <h5>Filter</h5>
               </div>
-              <app-tabs></app-tabs>
+              <app-tabs [style]="tabs_style"></app-tabs>
             </div>
-        </div>
-        <div class="filters-container-small container ">
-          <div class="categrory-buttons">
-            <app-category-buttons [categorieFilters]="filter_categories$ | async"></app-category-buttons>
-            <h5>Filter op categorie</h5>
-          </div>
-          <div class="tabs">
-            <div>
-              <button (click)="moreFiltersClicked()"><i class="material-icons">filter_list</i></button>
-              <h5>Filter</h5>
-            </div>
-            <app-tabs></app-tabs>
-          </div>
         </div>
     </section>
+
     <section class="container list-container" #listcontainer>
       <div class="property-map" #propertymap>
         <app-map [active_tab]="active_tab"></app-map>

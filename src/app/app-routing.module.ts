@@ -19,6 +19,7 @@ import { TermsofconditonsComponent } from './Auth/termsofconditons-page/termsofc
 import { ForgetPasswordComponent } from './Auth/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './Auth/reset-password/reset-password.component';
 import { HomePagev2Component } from './home-page-v2/home-page.component';
+import { SearchPageComponent } from './search-page/search-page.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
     path: "home3",
     component: HomeComponentV3,
   },
+  //items
   {
     path: "items",
     redirectTo: "/items/list",
@@ -50,6 +52,10 @@ const routes: Routes = [
   {
     path: "items/:tab",
     component: ItemsPageComponent,
+  },
+  {
+    path: "search",
+    component: SearchPageComponent,
   },
   //account
   {
