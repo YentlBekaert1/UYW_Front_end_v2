@@ -1,5 +1,7 @@
 <app-top-nav [profile]="profile$ | async" [userLoggedIn]="userLoggedIn$ | async"></app-top-nav>
+
 <div class="app-main">
+  <!-- {{userLoggedIn$ | async}} -->
   <router-outlet></router-outlet>
 </div>
 <!-- <app-loading-overlay-account></app-loading-overlay-account> -->

@@ -19,7 +19,7 @@ export class AuthEffects {
     switchMap(() => this.authservice.getuserdata()
       .pipe(
         map((profile: Profile) => AuthActions.ShowProfile({ profile: profile, isLoggedIn: true })),
-        catchError(() => EMPTY)
+        catchError(async (profile: Profile) => AuthActions.ShowProfile({ profile: profile, isLoggedIn: false }))
       ))
     )
   );

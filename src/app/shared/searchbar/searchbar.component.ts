@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -26,8 +26,11 @@ export class SearchbarComponent {
 
   constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router) {
     this.offers$.subscribe(res=>console.log(res))
-    this.store.select(selectQuery).subscribe(res=> this.searchInput.nativeElement.value =res);
+
   }
+  // ngAfterViewChecked(): void {
+  //   //this.store.select(selectQuery).subscribe(res=> this.searchInput.nativeElement.value =res);
+  // }
 
   searchItems(event) {
     var searchquery = event.target.value

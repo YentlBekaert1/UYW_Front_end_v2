@@ -14,22 +14,23 @@ export class AuthGuard implements CanActivate {
   ){}
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):| boolean | UrlTree| Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    console.log('hallo')
     return this.getuserData().pipe(
-      map((authenticate) => {
-        console.log(authenticate);
-        if (!authenticate) {
+      map((isLoggedIn) => {
+        console.log(isLoggedIn);
+        if (!isLoggedIn) {
           return this.router.createUrlTree(['/login']);
         }
         return true;
-      })
-    );
+      }));
   }
 
   private getuserData() {
     return this.authFacade.isLoggedIn$.pipe(
       tap(data => this.prefetch()),
-      filter(data => !!data),
-      take(1)
+      map(data => data),
+      take(1),
+      catchError(data => data)
     );
   }
 

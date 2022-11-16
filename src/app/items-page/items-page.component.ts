@@ -124,7 +124,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
    }
 
    goToAdd(){
-    this.router.navigateByUrl('/addoffer');
+    this.router.navigate(['/addoffer']);
    }
 
 
