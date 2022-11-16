@@ -38,6 +38,9 @@
     li{
       padding: 0.5rem 1rem ;
       border-bottom: 0.5px solid var(--grey-border-color);
+      a{
+        display: block;
+      }
       &:hover{
         background-color: var(--primary-color);
       }

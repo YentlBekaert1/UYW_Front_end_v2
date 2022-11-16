@@ -1,6 +1,6 @@
 
 <div class="search" [ngClass]="{'top': placement === 'top', 'filterbalk' : placement === 'filterbalk' }">
-  <input type="text" placeholder="Zoek in de database..." #searchInput (input)="searchItems($event)" (change)="keyUp()" (keyup.enter)="onEnter($event)">
+  <input type="text" placeholder="{{placeholderText}}" #searchInput (input)="searchItems($event)" (change)="keyUp()" (keyup.enter)="onEnter($event)">
   <button (click)="buttonClick($event)"><i class="material-icons">search</i></button>
 </div>
 

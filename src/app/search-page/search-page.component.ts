@@ -47,7 +47,7 @@ export class SearchPageComponent implements OnInit {
     this.showResults = true;
   }
 
-  closeResults(query){
+  closeResults(query: string){
     console.log("closeResults")
     this.showResults = false
     this.searchInput.nativeElement.value = query;
@@ -62,7 +62,7 @@ export class SearchPageComponent implements OnInit {
     this.showResults = false;
   }
 
-  buttonClick($event){
+  buttonClick(event){
     console.log("buttonClick")
     this.store.dispatch(updateQuery({query: this.searchInput.nativeElement.value }));
     this.router.navigate(['/items']);

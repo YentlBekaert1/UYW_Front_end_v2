@@ -13,7 +13,7 @@ import { liveSearch } from './livesearch.operator';
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.scss']
 })
-export class SearchbarComponent {
+export class SearchbarComponent implements OnInit{
   @Input() placement:string;
   @ViewChild('searchInput', { read: ElementRef }) searchInput!: ElementRef<HTMLInputElement>;
 
@@ -23,16 +23,25 @@ export class SearchbarComponent {
   readonly offers$ = this.offerSubject.pipe(
     liveSearch(searchquery => this.offerservice.autocomplete(searchquery))
   );
-  
+
   searchResults = [];
+  placeholderText: string = "Zoek op kernwoorden, locatie, materialen, ...."
 
   constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router) {
     this.offers$.subscribe(res=>{
       console.log(res);
       this.searchResults = res
       this.showResults = true;
-    })
+    });
 
+
+  }
+  ngOnInit(): void {
+    if(this.placement == 'top'){
+      this.placeholderText = "Zoek in de database...";
+    }else{
+      this.placeholderText = "Zoek op kernwoorden, locatie, materialen, ....";
+    }
   }
   // ngAfterViewChecked(): void {
   //   //this.store.select(selectQuery).subscribe(res=> this.searchInput.nativeElement.value =res);
@@ -48,23 +57,32 @@ export class SearchbarComponent {
   closeResults(query){
     console.log("closeResults")
     this.showResults = false
-    this.searchInput.nativeElement.value = query;
+    this.searchInput.nativeElement.blur();
+    this.searchInput.nativeElement.value = "";
+    this.searchInput.nativeElement.style.outline = "none"
     this.store.dispatch(updateQuery({query:query }));
     this.router.navigate(['/items']);
   }
 
   onEnter(event){
-    console.log("onEnter")
+    console.log("onEnter");
+    this.searchInput.nativeElement.blur();
     this.store.dispatch(updateQuery({query:event.target.value }));
+    this.searchInput.nativeElement.value = "";
     this.router.navigate(['/items']);
     this.showResults = false;
+
+
   }
 
   buttonClick($event){
     console.log("buttonClick")
+    this.searchInput.nativeElement.blur();
     this.store.dispatch(updateQuery({query: this.searchInput.nativeElement.value }));
+    this.searchInput.nativeElement.value = "";
     this.router.navigate(['/items']);
     this.showResults = false;
+
   }
 
   keyUp() {

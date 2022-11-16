@@ -1,3 +1,12 @@
+
+<div class="filters" *ngIf="(filters$ | async).query != ''">
+  <p>Gevonden reslutaten voor:</p>
+  <div class="chip" *ngIf="(filters$ | async).query != ''">
+    <!-- {{(filters$ | async).query}} -->
+    <span>{{(filters$ | async).query}}</span>
+    <button (click)="deleteFilter('query')"><i class="material-icons">close</i></button>
+  </div>
+</div>
 <p>{{start_items}}-{{stop_items}} van de {{total_items}} resultaten.</p>
 <div id="cards">
   <div *ngFor="let item of displayData" class="card">

@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { updateQuery } from 'src/app/store/filterstate/filter.actions';
+import { selectAllFilters } from 'src/app/store/filterstate/filter.selector';
 
 
 @Component({
@@ -10,22 +13,26 @@ import { Router } from '@angular/router';
 export class ListDisplayComponent implements OnInit {
   @Input() listdata: any;
   @Input() active_tab!: string;
-  @Output() clickOnItemEvent = new EventEmitter<any>();
+
 
   displayData: any = [];
   total_items: number = 0;
   start_items: number = 0;
   stop_items: number = 0;
-  constructor(private route: Router) { }
+
+  filters$ = this.store.select(selectAllFilters);
+
+  constructor(private route: Router, private store: Store) { }
 
   ngOnInit(): void {
-    //console.log(this.listdata);
+    this.filters$.subscribe(res => {
+
+    })
   }
 
   listItemClicked(item: number){
     console.log(item);
     this.route.navigate(['/offerdetail', item]);
-    //this.clickOnItemEvent.emit(item);
   }
    //als er een verandering gebeurt van een Input()
    ngOnChanges(changes: SimpleChanges) {
@@ -41,5 +48,7 @@ export class ListDisplayComponent implements OnInit {
       this.displayData = changes['listdata'].currentValue.data;
     }
   }
-
+  deleteFilter(type: string){
+    this.store.dispatch(updateQuery({query:"" }));
+  }
 }
