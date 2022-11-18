@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ,CAAA;EACN,OAAO,EAAE,QAAQ;CAOlB;;AARD,AAEE,QAFM,CAEN,OAAO,CAAC;EACN,KAAK,EAAE,IAAI;EACX,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,GAAG;CAEZ",
-    "sources": [
-        "map-view.component.scss"
-    ],
-    "names": [],
-    "file": "map-view.component.css"
-}
