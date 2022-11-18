@@ -35,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePagev2Module } from './home-page-v2/home-page.module';
 import { SearchPageModule } from './search-page/search-page.module';
 import { ProfileGuard } from './_helpers/profile.guard';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ProfileGuard } from './_helpers/profile.guard';
     StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer}, {}),
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuard,

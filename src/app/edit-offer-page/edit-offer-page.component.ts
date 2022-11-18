@@ -140,7 +140,7 @@ export class EditOfferPageComponent implements OnInit {
     const paramsub = this.route.paramMap.subscribe(params => {
       var id = params.get('id');
       if(id){
-        this.offerservice.getOfferById(id).then((res: any)=> {
+        this.offerservice.getEditOffer(id).then((res: any)=> {
           console.log(res);
           if(res.data.length > 0){
             //algemene info

@@ -63,8 +63,21 @@ export class OfferService {
     return lastValueFrom(
       this.http.get(requesturl, httpOptions)
     );
+  }
+
+  getEditOffer(id: string){
+
+    const requesturl = environment.apiUrl + "api/geteditoffer/" + id;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+    return lastValueFrom(
+      this.http.get(requesturl, httpOptions)
+    );
 
   }
+
 
   autocomplete(query: string): Observable<any[]> {
     const requesturl = environment.apiUrl + "api/offersearchterms?query=" + query;
@@ -204,6 +217,36 @@ export class OfferService {
     return this.http.post(requesturl, body, httpOptions);
 
   }
+
+  statusOfferById(id: string, status:number){
+
+    const requesturl = environment.apiUrl + "api/statusoffer/" + id;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+    var body = {
+      status: status
+    }
+    return lastValueFrom(
+      this.http.post(requesturl, body, httpOptions)
+    );
+
+  }
+
+  deleteOfferById(id: string){
+
+    const requesturl = environment.apiUrl + "api/offers/" + id;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+    return lastValueFrom(
+      this.http.delete(requesturl, httpOptions)
+    );
+
+  }
+
 
   getMaterials(){
 

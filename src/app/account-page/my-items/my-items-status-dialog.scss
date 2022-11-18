@@ -1,0 +1,35 @@
+h1{
+  margin: .5rem 0;
+  font-family: "montserrat-light";
+}
+.cancel,.yes{
+  border: none;
+  padding: .5rem 2rem;
+  margin-right: 1rem;
+  border-radius: 5px;
+  font-family: "montserrat-light";
+}
+.cancel{
+  &:hover{
+    background-color: rgb(204, 204, 204);
+  }
+}
+.yes{
+  background-color: var(--primary-color);
+  opacity: 0.8;
+  color:white;
+  &:hover{
+    opacity: 1;
+  }
+}
+
+.mat-dialog-content{
+  font-family: "montserrat-light";
+  margin: .5rem 0;
+  padding: 0;
+  line-height: 1.2rem;
+}
+
+.mat-dialog-actions{
+  font-family: "montserrat-light";
+}

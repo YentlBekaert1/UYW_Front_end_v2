@@ -34,8 +34,8 @@
               <ul>
                 <li><a [routerLink]="['/offerdetail', offer.id]">bekijk</a></li>
                 <li><a [routerLink]="['/editoffer', offer.id]">edit offer</a></li>
-                <li><a href="">edit status</a></li>
-                <li><a href="">delete</a></li>
+                <li><a (click)="openStatusDialog(offer.id, offer.title, offer.status)">edit status</a></li>
+                <li><a (click)="openDeleteDialog(offer.id, offer.title)">delete</a></li>
               </ul>
             </td>
           </tr>

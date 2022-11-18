@@ -5,13 +5,12 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
-import { MyItemsComponent } from './my-items/my-items.component';
+import { DeleteDialog, MyItemsComponent, StatusDialog } from './my-items/my-items.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AccountPageComponent,
@@ -19,15 +18,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MyFavoritesComponent,
     MyItemsComponent,
     SettingsComponent,
-    LogoutComponent
+    LogoutComponent,
+    DeleteDialog,
+    StatusDialog
   ],
   imports: [
     CommonModule,
     SharedModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule
   ]
 })
 export class AccountPageModule { }

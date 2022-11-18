@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Change status of Item</h1>
+<div mat-dialog-content class="mat-dialog-content">
+  <p>Would you like to delete {{data.name}} out of the database?</p>
+  <select name="" [(ngModel)]="data.status">
+    <option value="1">Online</option>
+    <option value="0">Offline</option>
+  </select>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button class="cancel" (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
+  <button class="yes" [mat-dialog-close]="[data.id, data.status]">Yes</button>
+</div>
