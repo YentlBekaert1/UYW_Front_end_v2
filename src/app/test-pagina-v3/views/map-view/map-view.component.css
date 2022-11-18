@@ -1,0 +1,10 @@
+#mapView {
+  display: contents;
+}
+
+#mapView app-map {
+  float: left;
+  width: 100%;
+  height: 90%;
+}
+/*# sourceMappingURL=map-view.component.css.map */

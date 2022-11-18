@@ -1,0 +1,334 @@
+.offerdetail-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 5vh 0;
+}
+
+.offerdetail-page app-loading-overlay-account {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.offerdetail-page .imageExpand {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.offerdetail-page .imageExpand .content {
+  background-color: var(--white-color);
+  height: 80vh;
+  margin-top: 5vh;
+  position: relative;
+}
+
+.offerdetail-page .imageExpand .content .left, .offerdetail-page .imageExpand .content .right {
+  position: absolute;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  top: 50%;
+  cursor: pointer;
+  background-color: var(--white-color);
+}
+
+.offerdetail-page .imageExpand .content .left:hover, .offerdetail-page .imageExpand .content .right:hover {
+  opacity: 0.6;
+}
+
+.offerdetail-page .imageExpand .content .left i, .offerdetail-page .imageExpand .content .right i {
+  font-size: 5rem;
+}
+
+.offerdetail-page .imageExpand .content .left {
+  left: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.offerdetail-page .imageExpand .content .right {
+  right: 0;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.offerdetail-page .imageExpand .content button {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  padding: 1rem;
+  background-color: var(--white-color);
+  border-bottom-left-radius: 15px;
+}
+
+.offerdetail-page .imageExpand .content button i {
+  font-size: 3rem;
+  color: var(--black-color);
+}
+
+.offerdetail-page .imageExpand .content button:hover {
+  opacity: 0.6;
+}
+
+.offerdetail-page .imageExpand .content img {
+  width: 100%;
+  height: 100%;
+}
+
+.offerdetail-page .top_curve {
+  width: 100%;
+  padding-bottom: 51%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../../assets/layered-waves-haikei2.svg);
+  position: absolute;
+  top: 0;
+  z-index: -10;
+}
+
+.offerdetail-page .offerdetail-page-container {
+  background-color: var(--white-color);
+  min-height: 100vh;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 1320px;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .image-container {
+  width: 100%;
+  display: block;
+  padding: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .image-container .head-image {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 100%;
+}
+
+.offerdetail-page .offerdetail-page-container .image-container .head-image img {
+  width: 100%;
+  height: 50vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.offerdetail-page .offerdetail-page-container .image-container .image-slider {
+  padding-top: 1rem;
+  border-radius: 15px;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container {
+  width: 100%;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container h1 {
+  font-family: montserrat-bold;
+  margin: 1rem;
+  color: var(--black-color);
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container p {
+  margin: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .inpsiratie-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .inpsiratie-row h3 {
+  font-family: montserrat-bold;
+  color: var(--secondary-color);
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .inpsiratie-row span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .inpsiratie-row span i {
+  margin-left: 0.5rem;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .inpsiratie-row span i.fill {
+  color: red;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .material-row h4 {
+  color: #676767;
+  font-family: montserrat-regular;
+  margin: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .material-row .materials {
+  margin: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .material-row .materials div {
+  border-right: 1px solid #676767;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .material-row .materials div:first-of-type {
+  border-left: 1px solid #676767;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .material-row .materials div p {
+  text-transform: capitalize;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .material-row .materials div ul {
+  -webkit-padding-start: 40px;
+          padding-inline-start: 40px;
+  margin: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .tag-row h4 {
+  color: #676767;
+  margin: 1rem;
+  font-family: montserrat-regular;
+  font-weight: 500;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .tag-row div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.offerdetail-page .offerdetail-page-container .primary-container .tag-row div div {
+  padding: 10px 20px;
+  border-radius: 15px;
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  margin: 0.5rem 0 0.5rem 1rem;
+  text-transform: capitalize;
+}
+
+.offerdetail-page .offerdetail-page-container .line {
+  width: 100%;
+  border-top: 1px solid #00000034;
+  height: 1px;
+  margin: 2rem 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .line .accent {
+  width: 117px;
+  height: 8px;
+  border-radius: 10px;
+  background: var(--secondary-color);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+}
+
+.offerdetail-page .offerdetail-page-container .info-container {
+  width: 100%;
+}
+
+.offerdetail-page .offerdetail-page-container .info-container h4 {
+  margin: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .info-container table {
+  margin: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .info-container table tr td {
+  padding-right: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .info-container a {
+  display: block;
+  margin-left: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .locatie-container {
+  width: 100%;
+}
+
+.offerdetail-page .offerdetail-page-container .locatie-container h4 {
+  margin: 1rem;
+}
+
+.offerdetail-page .offerdetail-page-container .locatie-container app-detail-map {
+  margin: 1rem;
+  display: block;
+}
+
+@media screen and (min-width: 680px) {
+  .offerdetail-page .offerdetail-page-container .image-container {
+    width: calc(50% - 2rem);
+  }
+  .offerdetail-page .offerdetail-page-container .primary-container {
+    width: 50%;
+  }
+  .offerdetail-page .offerdetail-page-container .info-container {
+    width: 50%;
+  }
+  .offerdetail-page .offerdetail-page-container .locatie-container {
+    width: 50%;
+  }
+}
+/*# sourceMappingURL=offer-detail-page.component.css.map */

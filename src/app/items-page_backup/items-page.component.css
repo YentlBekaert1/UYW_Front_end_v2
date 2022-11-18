@@ -1,0 +1,227 @@
+header {
+  height: 100%;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 1320px;
+}
+
+main {
+  position: relative;
+}
+
+main .filters {
+  position: relative;
+}
+
+main .filters .filter-background {
+  height: 120%;
+  background-color: var(--primary-color);
+  background: url(../../assets/items-top.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+main .filters.fixed {
+  -webkit-backface-visibility: hidden;
+  position: fixed;
+  margin-top: 0;
+  width: 100%;
+  top: 0;
+  z-index: 1006;
+}
+
+main .filters.fixed .list-container {
+  margin-top: 110px;
+}
+
+main .filters .filters-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto;
+      grid-template-rows: auto auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .filters .filters-container app-category-buttons {
+  height: 100%;
+}
+
+main .filters .filters-container app-map-radius-filter {
+  -ms-grid-column-align: end;
+      justify-self: end;
+  width: 80%;
+}
+
+main .filters .filters-container p {
+  -ms-grid-column-align: end;
+      justify-self: end;
+  color: var(--white-color);
+}
+
+main .filters .filters-container .moreFilters {
+  -ms-grid-column-align: end;
+      justify-self: end;
+  background-color: var(--white-color);
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  height: 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+
+main .filters .filters-container .moreFilters span {
+  -ms-grid-column-align: start;
+      justify-self: start;
+}
+
+main .filters .filters-container .moreFilters i {
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
+main .filters .filters-container .moreFilters span, main .filters .filters-container .moreFilters i {
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+main .list-container {
+  margin-top: 3%;
+  margin-bottom: 30px;
+}
+
+main .list-container .property-list {
+  margin-top: 0;
+}
+
+main .list-container .property-list p {
+  text-align: right;
+  color: var(--white-color);
+}
+
+main .list-container::after, main .list-container ::before {
+  content: " ";
+  display: table;
+}
+
+main .list-container::after {
+  clear: both;
+}
+
+main .list-container.property-list-combi {
+  margin-bottom: 100px;
+  min-height: 906px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 10px 0 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  min-height: 100vh;
+}
+
+main .list-container.property-list-combi .property-map {
+  float: left;
+  display: block;
+  width: 50%;
+  overflow: hidden !important;
+  z-index: 90;
+}
+
+main .list-container.property-list-combi .property-map.fixed {
+  -webkit-backface-visibility: hidden;
+  position: fixed !important;
+  left: 0;
+}
+
+main .list-container.property-list-combi .property-map.bottom {
+  bottom: 10px;
+  left: 0;
+  position: absolute !important;
+}
+
+main .list-container.property-list-combi .property-list {
+  float: right;
+  width: 300px;
+  padding-left: 10px;
+  margin-top: 0;
+  -webkit-animation: all 1s;
+          animation: all 1s;
+}
+
+main .list-container.property-list-full {
+  min-height: 906px;
+  position: relative;
+  min-width: none !important;
+  max-width: 100%;
+  width: 300px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+}
+
+main .list-container.property-list-full .property-map {
+  display: none;
+  position: relative;
+}
+
+main .list-container.property-list-map {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+}
+
+main .list-container.property-list-map .property-list {
+  display: none;
+}
+
+@media screen and (min-width: 680px) {
+  .container.list-container.property-list-full {
+    width: 660px !important;
+  }
+}
+
+@media screen and (min-width: 1010px) {
+  .container.list-container.property-list-full {
+    width: 990px !important;
+  }
+}
+
+@media screen and (min-width: 1340px) {
+  .container.list-container.property-list-full {
+    width: 1320px !important;
+  }
+  .container.list-container.property-list-combi .property-list {
+    width: 640px !important;
+  }
+}
+
+#scrollBottom {
+  float: left;
+  width: 100%;
+  height: 5px;
+  background-color: var(--secondary-color);
+}
+/*# sourceMappingURL=items-page.component.css.map */

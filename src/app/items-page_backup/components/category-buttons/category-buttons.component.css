@@ -1,0 +1,189 @@
+h3 {
+  padding-top: 10px;
+  color: var(--white-color);
+  font-weight: 400;
+}
+
+h3 a {
+  color: var(--white-color);
+}
+
+h3 a i {
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+.category-buttons {
+  padding: 10px 0 30px 0;
+  display: -ms-grid;
+  display: grid;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.category-buttons .button {
+  /* border: 3px solid var(--primary-color); */
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 15px;
+  width: 90px;
+  height: 80px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  color: var(--primary-color);
+  background-color: var(--white-color);
+  -webkit-filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+  font-size: 0.8rem;
+}
+
+.category-buttons .button.active {
+  color: var(--primary-light);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.category-buttons .button i {
+  padding-top: 10px;
+  font-size: 2.5rem;
+  pointer-events: none;
+}
+
+.category-buttons .button span {
+  pointer-events: none;
+}
+
+div.categories {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 2% 0;
+}
+
+div.categories div {
+  background-color: var(--black-color);
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 70px;
+}
+
+div.categories div img {
+  padding-top: 10px;
+  width: 50%;
+}
+
+div.categories div span {
+  display: none;
+  padding-top: 5px;
+  color: var(--white-color);
+}
+
+div.categories div.active {
+  background-color: var(--secondary-color);
+}
+
+@media screen and (min-width: 480px) {
+  div.categories {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  div.categories div {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 70px;
+  }
+  div.categories div img {
+    padding-top: 10px;
+    width: 50%;
+  }
+  div.categories div span {
+    font-size: 0.8rem;
+    padding-top: 5px;
+    color: var(--white-color);
+  }
+}
+
+@media screen and (min-width: 680px) {
+  div.categories div {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    border-radius: 70px;
+  }
+  div.categories div img {
+    padding-top: 5px;
+    width: 50%;
+  }
+  div.categories div span {
+    display: block;
+    font-size: 0.8rem;
+    padding-top: 5px;
+    color: var(--white-color);
+  }
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 100px;
+  margin-left: -60px;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  font-size: 1rem;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: -5px;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+/*# sourceMappingURL=category-buttons.component.css.map */

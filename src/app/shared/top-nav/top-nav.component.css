@@ -1,0 +1,346 @@
+.container.top-nav {
+  padding-left: 5%;
+  padding-right: 5%;
+  min-height: 65px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--back-color);
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.container.top-nav .logo a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: var(--black-color);
+}
+
+.container.top-nav .logo a h1 {
+  margin-left: 1rem;
+  font-family: "montserrat-bold";
+  font-size: 1.5rem;
+}
+
+.container.top-nav .logo a h1 span:last-of-type {
+  color: var(--primary-color);
+}
+
+.container.top-nav .menu .menu-responsive-large {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container.top-nav .menu .menu-responsive-large .links {
+  margin-right: 1rem;
+}
+
+.container.top-nav .menu .menu-responsive-large .links ul {
+  list-style: none;
+}
+
+.container.top-nav .menu .menu-responsive-large .links ul li {
+  display: inline;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+}
+
+.container.top-nav .menu .menu-responsive-large .links ul li a {
+  font-size: var(--nav-font-size);
+  font-family: "montserrat-light";
+  text-transform: capitalize;
+  text-decoration: none;
+  color: var(--black-color);
+}
+
+.container.top-nav .menu .menu-responsive-large .links ul li.active {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.container.top-nav .menu .menu-responsive-large .links ul li.active a {
+  font-size: var(--nav-font-size);
+  font-family: "montserrat-bold";
+}
+
+.container.top-nav .menu .menu-responsive-large .links ul li:hover {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.container.top-nav .menu .menu-responsive-large .account_container {
+  margin-left: 1rem;
+}
+
+.container.top-nav .menu .menu-responsive-large .account_container div.login .login_knop {
+  text-transform: capitalize;
+  text-decoration: none;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  height: 30px;
+  width: 140px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "montserrat-regular";
+  border-radius: 30px;
+  border: 2px solid var(--primary-color);
+  font-size: var(--nav-font-size);
+}
+
+.container.top-nav .menu .menu-responsive-large .account_container div.login .login_knop:hover {
+  background-color: var(--back-color);
+  color: var(--primary-color);
+}
+
+.container.top-nav .menu .menu-responsive-large .account_container div.login.user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0.5rem;
+  border-bottom: 2px solid var(--back-color);
+  cursor: pointer;
+}
+
+.container.top-nav .menu .menu-responsive-large .account_container div.login.user:hover {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.container.top-nav .menu .menu-responsive-large .account_container div.login.user p {
+  font-family: 'montserrat-light';
+  font-size: var(--nav-font-size);
+}
+
+.container.top-nav .menu .menu-responsive-small {
+  display: block;
+  cursor: pointer;
+}
+
+.container.top-nav .menu .menu-responsive-small a {
+  text-align: end;
+  padding-top: 15px;
+  text-decoration: none;
+}
+
+.container.top-nav .menu .menu-responsive-small a i {
+  font-size: 1.8rem;
+  color: var(--black-color);
+  text-align: center;
+  display: block;
+}
+
+.accountDropdown {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+}
+
+.accountDropdown .dropdown {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.accountDropdown .dropdown ul {
+  background-color: var(--white-color);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  list-style: none;
+  border-left: 1px solid var(--grey-border-color);
+  border-right: 1px solid var(--grey-border-color);
+  border-bottom: 5px solid var(--secondary-color);
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 1s ease-in-out;
+  transition: max-height 1s ease-in-out;
+}
+
+.accountDropdown .dropdown ul.visible {
+  max-height: 500px;
+  -webkit-transition: max-height 1s ease-in-out;
+  transition: max-height 1s ease-in-out;
+}
+
+.accountDropdown .dropdown ul li {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-border-color);
+  cursor: pointer;
+}
+
+.accountDropdown .dropdown ul li a {
+  padding: 0 1rem 0 1rem;
+  text-decoration: none;
+  display: block;
+  color: var(--black-color);
+}
+
+.accountDropdown .dropdown ul li:hover a {
+  color: var(--primary-darker);
+}
+
+.responsiveNav {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+}
+
+.responsiveNav .responsiveNavDropdown {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.responsiveNav .responsiveNavDropdown ul {
+  background-color: var(--white-color);
+  width: 100%;
+  list-style: none;
+  border-bottom: 5px solid var(--secondary-color);
+  height: 100%;
+  overflow: hidden;
+  -webkit-transition: max-height 1s ease-in-out;
+  transition: max-height 1s ease-in-out;
+}
+
+.responsiveNav .responsiveNavDropdown ul ul {
+  border-bottom: none;
+}
+
+.responsiveNav .responsiveNavDropdown ul li {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-border-color);
+  cursor: pointer;
+}
+
+.responsiveNav .responsiveNavDropdown ul li a {
+  padding: 0 1rem 0 1rem;
+  text-decoration: none;
+  display: block;
+  color: var(--primary-color);
+}
+
+.responsiveNav .responsiveNavDropdown ul li:hover a {
+  color: var(--primary-darker);
+  text-decoration: underline;
+}
+
+.responsiveNav .responsiveNavDropdown ul li.account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.responsiveNav .responsiveNavDropdown ul.responsiveAccount {
+  padding-left: 3rem;
+}
+
+@media screen and (min-width: 1250px) {
+  .container.top-nav {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .container.top-nav .menu .menu-responsive-large {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  .container.top-nav .menu .menu-responsive-large .links {
+    margin-right: 0.5rem;
+  }
+  .container.top-nav .menu .menu-responsive-large .links ul li {
+    padding: 0.2rem;
+    margin: 0 0.2rem;
+  }
+  .container.top-nav .menu .menu-responsive-large .account_container div.login .login_knop {
+    height: 30px;
+    width: 100px;
+  }
+  .container.top-nav .menu .menu-responsive-small {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1340px) {
+  .container.top-nav {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .container.top-nav .menu .menu-responsive-large {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .container.top-nav .menu .menu-responsive-large .links {
+    margin-right: 1rem;
+  }
+  .container.top-nav .menu .menu-responsive-large .links ul li {
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+  }
+  .container.top-nav .menu .menu-responsive-large .links ul li a {
+    font-size: var(--nav-font-size);
+  }
+  .container.top-nav .menu .menu-responsive-large .account_container div.login .login_knop {
+    height: 30px;
+    width: 100px;
+    font-size: var(--nav-font-size);
+  }
+}
+/*# sourceMappingURL=top-nav.component.css.map */

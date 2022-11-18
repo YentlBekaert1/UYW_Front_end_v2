@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, OnInit, Input, SimpleChanges, Output, EventEmitter  } from '@angular/core';
 import * as L from 'leaflet';
+import 'leaflet.markercluster';
 import { environment } from 'src/environments/environment';
 import { OfferlocationService } from '../../../_services/offerlocation.service';
 
@@ -100,13 +101,18 @@ export class MapComponent implements OnInit  {
       'Techonolgie': this.techonolgyLayer
     };
 
+
+    // var markers = L.markerClusterGroup({ chunkedLoading: true });
+
+    // markers.addLayers(this.wasteMarkers);
+    // markers.addLayers(this.inspirationMarkers);
+    // markers.addLayers(this.humanMarkers);
+    // markers.addLayers(this.organisationMarkers);
+
+    // this.map.addLayer(markers);
+
     //lagen toevoegen aan map
     this.map.addLayer(osm);
-    this.map.addLayer(this.wasteLayer);
-    this.map.addLayer(this.inspirationLayer);
-    this.map.addLayer(this.humanLayer);
-    this.map.addLayer(this.organisationLayer);
-    this.map.addLayer(this.techonolgyLayer);
 
     //controller toevoegen aan de map = rechtsboven knop om venster open te maken
     const layerControl = L.control.layers(baseLayers,overlays).addTo(this.map);
@@ -197,10 +203,26 @@ export class MapComponent implements OnInit  {
     });
   }
 
+  addMarkerCluster(data: any){
+    const markerCluster = new L.MarkerClusterGroup();
+		var markerList = [];
+    for (var i = 0; i < data.length; i++) {
+      console.log(data);
+			var a = data[i].geometry.coordinates;
+			var title = data[i].properties.title;
+			var marker = L.marker(L.latLng(a), { icon: wasteIcon });
+			marker.bindPopup(title);
+			markerCluster.addLayer(marker);
+		}
+    console.log(markerCluster);
+		this.map.addLayer(markerCluster);
+  }
+
   //functie die de markers op de kaartoevoegd.
   addMarkers(data: any){
     /* --------------------------------------- MARKERS TOEVOEGEN VANUIT GEOJSON -------------------------------------------------------------------*/
-    var zoom = this.map._zoom;
+    const markerCluster = new L.MarkerClusterGroup();
+    //var zoom = this.map._zoom;
     //oneachfuter functie om functies bij de geojson bij te voegen voor dat ze geladen worden in dit geval een popup waneer er op geklikt word.
     const onEachFeature = (feature: any, layer: any) => {
       //geef de naam weer als ID, belangrijk om later op in te zoomen bij klikken
@@ -217,67 +239,69 @@ export class MapComponent implements OnInit  {
           layer.bindPopup(content);
       }
 
-      //voeg de marker toe aan de juiste categorie
-      if(feature.properties.category === 1){
-          layer.addTo(this.wasteLayer);
-          this.wasteMarkers.push(layer._leaflet_id);
-      }
-      else if(feature.properties.category === 2){
-          layer.addTo(this.inspirationLayer);
-          this.inspirationMarkers.push(layer._leaflet_id);
-      }
-      else if(feature.properties.category === 3){
-          layer.addTo(this.humanLayer);
-          this.humanMarkers.push(layer._leaflet_id);
-      }
-      else if(feature.properties.category === 4){
-          layer.addTo(this.organisationLayer);
-          this.organisationMarkers.push(layer._leaflet_id);
-      }
-      else if(feature.properties.category === 5){
-          layer.addTo(this.techonolgyLayer);
-          this.techonolgyMarkers.push(layer._leaflet_id);
-      }
-      else{
-          layer.addTo(this.map);
-      }
+      markerCluster.addLayer(layer);
+      // //voeg de marker toe aan de juiste categorie
+      // if(feature.properties.category === 1){
+      //     layer.addTo(this.wasteLayer);
+      //     this.wasteMarkers.push(layer._leaflet_id);
+      // }
+      // else if(feature.properties.category === 2){
+      //     layer.addTo(this.inspirationLayer);
+      //     this.inspirationMarkers.push(layer._leaflet_id);
+      // }
+      // else if(feature.properties.category === 3){
+      //     layer.addTo(this.humanLayer);
+      //     this.humanMarkers.push(layer._leaflet_id);
+      // }
+      // else if(feature.properties.category === 4){
+      //     layer.addTo(this.organisationLayer);
+      //     this.organisationMarkers.push(layer._leaflet_id);
+      // }
+      // else if(feature.properties.category === 5){
+      //     layer.addTo(this.techonolgyLayer);
+      //     this.techonolgyMarkers.push(layer._leaflet_id);
+      // }
+      // else{
+      //     layer.addTo(this.map);
+      // }
     }
 
     this.geoJSONData = L.geoJSON(data, {
             onEachFeature: onEachFeature,
             pointToLayer: function(feature, latlng) {
               console.log(feature)
-               if(zoom >= 10){
+               //if(zoom >= 10){
                     if(feature.properties.category === 1){
-                      return L.marker(latlng, { icon: wasteIcon })
+                      return L.marker(L.latLng(latlng), { icon: wasteIcon })
                     }
                     else if(feature.properties.category === 2){
-                        return L.marker(latlng, { icon: inspirationIcon })
+                        return L.marker(L.latLng(latlng), { icon: inspirationIcon })
                     }
                     else if(feature.properties.category === 3){
-                        return L.marker(latlng, { icon: humanIcon })
+                        return L.marker(L.latLng(latlng), { icon: humanIcon })
                     }
                     else if(feature.properties.category === 4){
-                        return L.marker(latlng, { icon:  organisationIcon})
+                        return L.marker(L.latLng(latlng), { icon:  organisationIcon})
                     }
                     else if(feature.properties.category === 5){
-                        return L.marker(latlng, { icon: technologyIcon })
+                        return L.marker(L.latLng(latlng), { icon: technologyIcon })
                     }
                     else{
-                        return L.circleMarker(latlng, {
+                        return L.circleMarker(L.latLng(latlng), {
                             radius:6,
                             opacity: .5,
                             color: "#000",
                             fillOpacity: 0.8
                         });
                     }
-              }
-               else{
-                return L.circleMarker(latlng, {radius:6,opacity: 1,color: "#42998B",fillOpacity: 0.8});
-               }
+              //}
+               //else{
+               // return L.circleMarker(latlng, {radius:6,opacity: 1,color: "#42998B",fillOpacity: 0.8});
+              // }
             }
 
     });
+    this.map.addLayer(markerCluster);
     //console.log(this.map._zoom);
   }
 
