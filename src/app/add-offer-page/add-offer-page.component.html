@@ -1,5 +1,7 @@
 
+
 <div class="addoffer-page">
+  <app-loading-overlay *ngIf="isSubmitting == true"></app-loading-overlay>
   <div class="addoffer-page-container" (click)="containerClicked()">
     <div class="content">
       <div class="crumbs">

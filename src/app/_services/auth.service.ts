@@ -2,6 +2,11 @@ import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpRequest, HttpRespo
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, lastValueFrom, map, Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
+import { AuthState } from '../store/authstate/auth.state';
+import { deleteProfile, loadProfileFailure, loadProfileSucces } from '../store/authstate/auth.actions';
+import { Profile } from '../store/authstate/auth.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +18,7 @@ export class AuthService {
   public user: Observable<any>;
   userLoggedIn$: Observable<Boolean>;
 
-  constructor(private http: HttpClient, private cookieExtractor:HttpXsrfTokenExtractor) {
+  constructor(private http: HttpClient, private cookieExtractor:HttpXsrfTokenExtractor,private store: Store<AuthState>) {
     this.userAccountSubject = new BehaviorSubject<any>({} as any);
     this.user = this.userAccountSubject.asObservable();
     this.userLoggedIn$ = this.user.pipe(map(user => { return !!user.name;}));
@@ -47,11 +52,6 @@ export class AuthService {
     };
 
     return this.http.post<any>(requesturl, loginData, httpOptions)
-    // .pipe(map(user => {
-    //   this.userAccountSubject.next(user);
-    //   sessionStorage.setItem("_user", JSON.stringify(true));
-    //   return user;
-    // }))
   }
 
   public register(registerData: any){
@@ -117,7 +117,22 @@ export class AuthService {
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 
-    return this.http.post<any>(requesturl, {}, httpOptions)
+    return lastValueFrom(
+      this.http.post<any>(requesturl, {}, httpOptions)
+      .pipe(
+        map((res:Profile) => {
+          this.store.dispatch(deleteProfile());
+        }),
+        catchError(err => {
+          this.store.dispatch(loadProfileFailure());
+          return err;
+        }),
+        catchError(err => {
+          this.store.dispatch(loadProfileFailure());
+          return err;
+        })
+      )
+    );
   }
 
   // get userdata
@@ -130,7 +145,21 @@ export class AuthService {
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 
-    return this.http.get(requesturl, httpOptions);
+    return lastValueFrom(
+      this.http.get(requesturl, httpOptions)
+      .pipe(
+        map((res:Profile) => {
+          this.store.dispatch(loadProfileSucces({profile:res}));
+          return res
+        }),
+        catchError(err => {
+          return err;
+        }),
+        catchError(err => {
+          return err;
+        })
+    )
+    );
   }
 
   public updateuserdata(Formdata: any){

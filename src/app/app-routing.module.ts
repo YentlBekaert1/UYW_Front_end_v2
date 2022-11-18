@@ -20,28 +20,34 @@ import { ForgetPasswordComponent } from './Auth/forget-password/forget-password.
 import { ResetPasswordComponent } from './Auth/reset-password/reset-password.component';
 import { HomePagev2Component } from './home-page-v2/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
+import { ProfileGuard } from './_helpers/profile.guard';
 
 
 const routes: Routes = [
   {
     path: "forbidden",
-    component: ForbiddenPageComponent
+    component: ForbiddenPageComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "home",
     component: HomePageComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "home4",
     component: HomePagev2Component,
+    canActivate: [ProfileGuard],
   },
   {
     path: "home2",
     component: HomeComponentV2,
+    canActivate: [ProfileGuard],
   },
   {
     path: "home3",
     component: HomeComponentV3,
+    canActivate: [ProfileGuard],
   },
   //items
   {
@@ -52,10 +58,12 @@ const routes: Routes = [
   {
     path: "items/:tab",
     component: ItemsPageComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "search",
     component: SearchPageComponent,
+    canActivate: [ProfileGuard],
   },
   //account
   {
@@ -65,6 +73,7 @@ const routes: Routes = [
   },
   {
     path: "addoffer",
+    pathMatch: 'full',
     component: AddOfferPageComponent,
     canActivate: [AuthGuard]
   },
@@ -76,36 +85,44 @@ const routes: Routes = [
   {
     path: "offerdetail/:id",
     component: OfferDetailPageComponent,
+    canActivate: [ProfileGuard],
 
   },
   //auth
   {
     path: "login",
     component: LoginPageComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "register",
     component: RegisterPageComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "forgetpassword",
     component: ForgetPasswordComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "password_reset/:token",
-    component: ResetPasswordComponent
+    component: ResetPasswordComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "termsofcondition",
     component: TermsofconditonsComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "email/verify",
-    component: EmailVerfiyPageComponent
+    component: EmailVerfiyPageComponent,
+    canActivate: [ProfileGuard],
   },
   {
     path: "email/verify/:url",
-    component: VerifyControlComponent
+    component: VerifyControlComponent,
+    canActivate: [ProfileGuard],
   },
   {
       path: "**",

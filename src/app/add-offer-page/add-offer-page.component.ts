@@ -21,6 +21,7 @@ export class AddOfferPageComponent implements OnInit {
   @ViewChild('taglist', { read: ElementRef }) taglist!: ElementRef<HTMLInputElement>;
 
   form!: FormGroup;
+  isSubmitting = false;
 
   categories_array: {key: number, name: string, image: string}[] = [
     { key: 1, name:"Afval", image:"../../assets/category-logos/afval.svg"},
@@ -137,7 +138,8 @@ export class AddOfferPageComponent implements OnInit {
 
   onSubmit(){
     if(this.form.status === 'VALID'){
-      if(this.form.get('terms').value == true){
+      if(this.form.get('terms').value == true && this.isSubmitting == false){
+        this.isSubmitting = true;
         const searchTerm = (this.form.value.street_number + '+' + this.form.value.city + '+' + this.form.value.country).toLowerCase();
         this.geoservice.searchWordPhoton(searchTerm)
         .subscribe((features: any) => {
@@ -148,15 +150,20 @@ export class AddOfferPageComponent implements OnInit {
               lon: features[0].lon
             })
           }
-          this.offerservice.addOffer(this.form.value).subscribe(res => {
-            console.log(res)
-            this.router.navigate(['account', 'items']);
+          this.offerservice.addOffer(this.form.value).subscribe({
+            next: data => {
+              console.log(data);
+              this.router.navigate(['account', 'items']);
+              this.isSubmitting = false;
+              },
+            error: err_res => {
+              this.isSubmitting = false;
+              alert('Item kon niet worden toegevoegd');
+              window.scrollTo(0,0);
+            }
+
           });
         });
-      }
-      else{
-        //show message terms
-
       }
     }
     else{

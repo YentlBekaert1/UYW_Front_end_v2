@@ -21,6 +21,7 @@ export class EditOfferPageComponent implements OnInit {
   offerId: number;
 
   form!: FormGroup;
+  isSubmitting = false;
 
   categories_array: {key: number, name: string, image: string}[] = [
     { key: 1, name:"Afval", image:"../../assets/category-logos/afval.svg"},
@@ -236,7 +237,8 @@ export class EditOfferPageComponent implements OnInit {
 
   onSubmit(){
     if(this.form.status === 'VALID'){
-      if(this.form.get('terms').value == true){
+      if(this.form.get('terms').value == true && this.isSubmitting == false){
+        this.isSubmitting = true;
         console.log(this.form.value);
         //afbeeldingen de positie juist plaatsen
         var count = 1;
@@ -260,9 +262,17 @@ export class EditOfferPageComponent implements OnInit {
               lon: features[0].lon
             })
           }
-          this.offerservice.editOffer(this.form.value, this.offerId).subscribe(res => {
-            console.log(res);
-            this.router.navigate(['account', 'items']);
+          this.offerservice.editOffer(this.form.value, this.offerId).subscribe({
+            next: data => {
+              console.log(data);
+              this.router.navigate(['account', 'items']);
+              this.isSubmitting = false;
+              },
+            error: err_res => {
+              this.isSubmitting = false;
+              alert('Item kon niet worden toegevoegd');
+            }
+
           });
         });
       }

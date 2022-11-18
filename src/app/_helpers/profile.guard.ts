@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-
-import {Observable} from 'rxjs';
-
+import { Observable } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class AuthGuard implements CanActivate {
+export class ProfileGuard implements CanActivate {
   constructor(
     private router: Router,
     private auth: AuthService
   ){}
 
-  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):| boolean | UrlTree| Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.checkLoggedIn();
   }
-
 
   private async checkLoggedIn(){
     try {
@@ -26,7 +24,7 @@ export class AuthGuard implements CanActivate {
       console.log(res);
       return true;
     } catch (error) {
-      return this.router.parseUrl('/login');
+      return true;
     }
   }
 }

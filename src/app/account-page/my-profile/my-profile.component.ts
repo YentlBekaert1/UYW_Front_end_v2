@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { UpdateProfile } from 'src/app/store/authstate/auth.actions';
 import { Profile } from 'src/app/store/authstate/auth.model';
 import { selectProfile } from 'src/app/store/authstate/auth.selector';
 import { AuthState } from 'src/app/store/authstate/auth.state';

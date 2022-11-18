@@ -14,8 +14,8 @@
   top: 0;
   left:0;
   width: 100%;
-  height: calc(100% + 95px);
-    background: rgba( 0, 0, 0, 0.65 );
+  height: calc(100%);
+  background: rgba( 0, 0, 0, 0.65 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 2px );
   -webkit-backdrop-filter: blur( 2px );
@@ -23,6 +23,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: 10;
   p{
     color: var(--secondary-color);
     padding-top: 0.5rem;

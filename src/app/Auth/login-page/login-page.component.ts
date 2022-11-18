@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { first } from 'rxjs';
-import { GetProfile } from 'src/app/store/authstate/auth.actions';
 import { selectisLoggedIn } from 'src/app/store/authstate/auth.selector';
 import { AuthService } from '../../_services/auth.service';
 
@@ -50,12 +49,8 @@ export class LoginPageComponent implements OnInit {
         next: data => {
           this.auth.login(this.loginForm.value).pipe(first()).subscribe({
             next: data => {
-              console.log(data);
-              this.store.dispatch(GetProfile())
-              this.store.select(selectisLoggedIn).subscribe((res)=>{
-                this.isLoading = false;
-                this.router.navigate(['/account', 'profile'])
-              })
+              this.isLoading = false;
+              this.router.navigate(['/account', 'profile']);
             },
             error: err_res => {
               this.isLoading = false;

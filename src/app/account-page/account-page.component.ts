@@ -30,6 +30,7 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
     this.active_tab$ = this.activeTabSubject.asObservable();
   }
   ngOnInit(): void {
+    window.scrollTo(0,0);
     const paramsub = this.route.paramMap.subscribe(params => {
       var tab = params.get('tab');
       var number = 0;

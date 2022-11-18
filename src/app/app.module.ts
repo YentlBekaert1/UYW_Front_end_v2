@@ -34,6 +34,7 @@ import { FilterReducer } from './store/filterstate/filter.reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePagev2Module } from './home-page-v2/home-page.module';
 import { SearchPageModule } from './search-page/search-page.module';
+import { ProfileGuard } from './_helpers/profile.guard';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { SearchPageModule } from './search-page/search-page.module';
   ],
   providers: [
     AuthGuard,
+    ProfileGuard,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: XsrfInterceptor,
