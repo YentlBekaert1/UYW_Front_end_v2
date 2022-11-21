@@ -1,5 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 
+export const setinitialPageURL = createAction(
+  '[filters] setinitialPageURL',
+);
+
 export const updatePageURL = createAction(
   '[filters] updatePageURL',
    props<{  pageURL: string}>()
@@ -36,6 +40,7 @@ export const updateFiltersFromFilterComponent = createAction(
 
 
 export const AuthActions = {
+  setinitialPageURL: setinitialPageURL,
   updateFiltersFromFilterComponent:updateFiltersFromFilterComponent,
   updatePageURL:updatePageURL,
   updateCategories:updateCategories,

@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { updateQuery } from 'src/app/store/filterstate/filter.actions';
+import { setinitialPageURL, updateQuery } from 'src/app/store/filterstate/filter.actions';
 import { selectQuery } from 'src/app/store/filterstate/filter.selector';
 import { OfferService } from 'src/app/_services/offer.service';
 import { liveSearch } from './livesearch.operator';
@@ -52,12 +52,14 @@ export class SearchPageComponent implements OnInit {
     this.showResults = false
     this.searchInput.nativeElement.value = query;
     this.store.dispatch(updateQuery({query:query }));
+    this.store.dispatch(setinitialPageURL());
     this.router.navigate(['/items']);
   }
 
   onEnter(event){
     console.log("onEnter")
     this.store.dispatch(updateQuery({query:event.target.value }));
+    this.store.dispatch(setinitialPageURL());
     this.router.navigate(['/items']);
     this.showResults = false;
   }
@@ -65,6 +67,7 @@ export class SearchPageComponent implements OnInit {
   buttonClick(event){
     console.log("buttonClick")
     this.store.dispatch(updateQuery({query: this.searchInput.nativeElement.value }));
+    this.store.dispatch(setinitialPageURL());
     this.router.navigate(['/items']);
     this.showResults = false;
   }

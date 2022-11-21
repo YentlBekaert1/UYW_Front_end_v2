@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input,SimpleChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { updateCategories } from 'src/app/store/filterstate/filter.actions';
+import { setinitialPageURL, updateCategories } from 'src/app/store/filterstate/filter.actions';
 import { FilterState } from 'src/app/store/filterstate/filter.state';
 import { Categories } from 'src/app/_models/categories';
 
@@ -84,6 +84,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
     //   new_array.push(category_id);
     // }
     this.store.dispatch(updateCategories({categories: new_array}));
+    this.store.dispatch(setinitialPageURL());
   }
   goToAdd(){
       this.router.navigate(['/addoffer'])

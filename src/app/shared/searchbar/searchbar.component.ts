@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { updateQuery } from 'src/app/store/filterstate/filter.actions';
+import { setinitialPageURL, updateQuery } from 'src/app/store/filterstate/filter.actions';
 import { selectQuery } from 'src/app/store/filterstate/filter.selector';
 import { OfferService } from 'src/app/_services/offer.service';
 import { liveSearch } from './livesearch.operator';
@@ -61,6 +61,7 @@ export class SearchbarComponent implements OnInit{
     this.searchInput.nativeElement.value = "";
     this.searchInput.nativeElement.style.outline = "none"
     this.store.dispatch(updateQuery({query:query }));
+    this.store.dispatch(setinitialPageURL());
     this.router.navigate(['/items']);
   }
 
@@ -68,6 +69,7 @@ export class SearchbarComponent implements OnInit{
     console.log("onEnter");
     this.searchInput.nativeElement.blur();
     this.store.dispatch(updateQuery({query:event.target.value }));
+    this.store.dispatch(setinitialPageURL());
     this.searchInput.nativeElement.value = "";
     this.router.navigate(['/items']);
     this.showResults = false;
@@ -79,6 +81,7 @@ export class SearchbarComponent implements OnInit{
     console.log("buttonClick")
     this.searchInput.nativeElement.blur();
     this.store.dispatch(updateQuery({query: this.searchInput.nativeElement.value }));
+    this.store.dispatch(setinitialPageURL());
     this.searchInput.nativeElement.value = "";
     this.router.navigate(['/items']);
     this.showResults = false;
