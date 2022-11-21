@@ -1,0 +1,17 @@
+<div class="filters" *ngIf="(filters$ | async).query != '' || (filters$ | async).categories.length > 0">
+  <p>Gevonden resultaten voor:</p>
+  <div class="chip" *ngIf="(filters$ | async).query != ''">
+    <!-- {{(filters$ | async).query}} -->
+    <span>{{(filters$ | async).query}}</span>
+    <button (click)="deleteFilter('query')"><i class="material-icons">close</i></button>
+  </div>
+  <div class="chip" *ngIf="(filters$ | async).categories.length > 0">
+    <!-- {{(filters$ | async).query}} -->
+    <span *ngIf="(filters$ | async).categories[0] == 1">Afval</span>
+    <span *ngIf="(filters$ | async).categories[0] == 2">Inspiratie</span>
+    <span *ngIf="(filters$ | async).categories[0] == 3">Persoon</span>
+    <span *ngIf="(filters$ | async).categories[0] == 4">Organisatie</span>
+    <span *ngIf="(filters$ | async).categories[0] == 5">Technologie</span>
+    <button (click)="deleteFilter('categories')"><i class="material-icons">close</i></button>
+  </div>
+</div>

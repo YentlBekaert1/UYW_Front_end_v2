@@ -33,7 +33,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
     if(changes['categorieFilters']){
       const active_categories = changes['categorieFilters'].currentValue;
       active_categories.forEach(cat => {
-        //console.log(cat);
+        console.log(cat);
         this.categories_array.forEach(element => {
           if(parseInt(cat) === element.key){
            //this.categories.nativeElement.children[element.key-1].classList.add('active');
@@ -56,16 +56,21 @@ export class CategoryButtonsComponent implements AfterViewInit {
   ButtonClick(category_id: any){
     //voor filter met alleen 1 categorie
     var new_array = [];
-    this.categorieFilters.forEach(el=>new_array.push(el));
-    const found = new_array.find(element => element === category_id);
-    new_array.pop();
-
+    // this.categorieFilters.forEach(el=>new_array.push(el));
+    // const found = new_array.find(element => element === category_id);
+    // console.log(new_array);
+    // new_array.pop();
+    console.log(this.active_cat)
     this.categories_array.forEach(element => {
       if(element.key == category_id && category_id != this.active_cat){
         this.categories.nativeElement.children[element.key-1].classList.add('active');
         new_array.push(category_id);
         this.active_cat = category_id;
-      }else{
+      }else if(element.key == category_id && category_id == this.active_cat){
+        this.categories.nativeElement.children[element.key-1].classList.remove('active');
+        this.active_cat = 0
+      }
+      else{
         this.categories.nativeElement.children[element.key-1].classList.remove('active');
       }
     });

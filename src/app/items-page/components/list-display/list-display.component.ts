@@ -48,7 +48,5 @@ export class ListDisplayComponent implements OnInit {
       this.displayData = changes['listdata'].currentValue.data;
     }
   }
-  deleteFilter(type: string){
-    this.store.dispatch(updateQuery({query:"" }));
-  }
+
 }

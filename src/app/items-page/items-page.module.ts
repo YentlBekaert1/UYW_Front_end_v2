@@ -14,6 +14,7 @@ import { ResizeDirective } from './resize.directive';
 import { LinksComponent } from './components/links/links.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
+import { ActiveFiltersComponent } from './components/active-filters/active-filters.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
     ScrollSpyDirective,
     ResizeDirective,
     LinksComponent,
+    ActiveFiltersComponent,
   ],
   imports: [
     CommonModule,
