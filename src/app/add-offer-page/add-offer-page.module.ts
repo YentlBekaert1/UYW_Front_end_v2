@@ -6,7 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { DragDropFileUploadDirective } from './drag-drop-file-upload.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    AngularEditorModule
   ]
 })
 export class AddOfferPageModule { }

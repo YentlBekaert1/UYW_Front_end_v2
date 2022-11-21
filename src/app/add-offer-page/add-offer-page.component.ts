@@ -1,14 +1,13 @@
-import { hasLifecycleHook } from '@angular/compiler/src/lifecycle_reflector';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { find } from 'rxjs';
 import { GeosearchService } from '../_services/geosearch.service';
 import { OfferService } from '../_services/offer.service';
 import { TagserviceService } from '../_services/tagservice.service';
 import { cutomValidators } from './customvalidators';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add-offer-page',
@@ -62,7 +61,7 @@ export class AddOfferPageComponent implements OnInit {
     'description': [
       { type: 'required', message: 'Description is required' },
       { type: 'minlength', message: 'Description must be at least 1 characters long' },
-      { type: 'maxlength', message: 'Description cannot be more than 2000 characters long' },
+      { type: 'maxlength', message: 'Description is to long' },
     ],
     'materials': [
       { type: 'betweenLength', message: 'There can only be 20 materials' },
@@ -100,6 +99,56 @@ export class AddOfferPageComponent implements OnInit {
     ]
   }
 
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'montserrat', name: 'Montserrat'},
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    toolbarHiddenButtons: [
+      [
+      ],
+      [
+        'customClasses',
+        'insertImage',
+        'insertVideo',
+        'removeFormat',
+        'toggleEditorMode'
+      ]
+    ]
+};
+
   constructor(
     private fb: FormBuilder,
     private sanitizer: DomSanitizer,
@@ -111,7 +160,7 @@ export class AddOfferPageComponent implements OnInit {
 
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(150)]],
-      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(2000)]],
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10000)]],
       material: [0, []],
       submaterial: [0, []],
       selectedmaterials:[[]],

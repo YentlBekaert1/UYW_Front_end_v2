@@ -37,6 +37,7 @@ import { SearchPageModule } from './search-page/search-page.module';
 import { ProfileGuard } from './_helpers/profile.guard';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer}, {}),
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     AuthGuard,

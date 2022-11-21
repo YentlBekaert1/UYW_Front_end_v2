@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
@@ -10,7 +10,9 @@ import { OfferService } from '../_services/offer.service';
   templateUrl: './offer-detail-page.component.html',
   styleUrls: ['./offer-detail-page.component.scss']
 })
-export class OfferDetailPageComponent implements OnInit {
+export class OfferDetailPageComponent implements OnInit, AfterViewChecked {
+  @ViewChild('descriptionEl', { read: ElementRef }) descriptionEl!: ElementRef<HTMLInputElement>;
+
   offer: any;
   imageArr = [];
   activeImage: any = "";
@@ -21,7 +23,7 @@ export class OfferDetailPageComponent implements OnInit {
   contact: string = "";
   url: string = "";
   title: string = "";
-  description:string = "";
+  description: any;
   category_name:string = "";
   materials = [];
   submaterials = [];
@@ -38,6 +40,12 @@ export class OfferDetailPageComponent implements OnInit {
   isLoggedIn: Boolean = false;
   constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store) { }
 
+  ngAfterViewChecked(): void {
+    if(this.descriptionEl !== undefined && this.descriptionEl.nativeElement.innerHTML == ""){
+        this.descriptionEl.nativeElement.innerHTML = this.description;
+    }
+  }
+
   ngOnInit(): void {
     this.isLoggedIn$.subscribe(res => this.isLoggedIn = res);
 
@@ -47,9 +55,8 @@ export class OfferDetailPageComponent implements OnInit {
       this.offerservice.getOfferById(id).then((res: any)=> {
         //console.log(res);
         this.offer = res.data[0];
-
-        this.title = this.offer.title;
         this.description = this.offer.description;
+        this.title = this.offer.title;
         this.category_name = this.offer.category.name
         this.likes = this.offer.total_likes;
         if(this.offer.images.length > 0){
@@ -108,11 +115,12 @@ export class OfferDetailPageComponent implements OnInit {
             }
           });
         });
+
         this.isLoaded = true;
         // Make a new timeout set to go off in 1000ms (1 second)
         this.viewTimeOut = setTimeout(() => {
           //console.log('item viewed');
-          this.offerservice.incrementOfferViews(this.offer.id)
+          this.offerservice.incrementOfferViews(this.offer.id);
         }, 5000);
 
       })

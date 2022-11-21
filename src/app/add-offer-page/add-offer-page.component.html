@@ -26,7 +26,8 @@
         </div>
 
         <label for="description">Beschrijving</label>
-        <textarea class="form-control" formControlName="description" name="description" rows="10" cols="50"  [ngClass]="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched) ? 'alert-danger' : ''"></textarea>
+        <!-- <textarea class="form-control" formControlName="description" name="description" rows="10" cols="50"  [ngClass]="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched) ? 'alert-danger' : ''"></textarea> -->
+        <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
         <div *ngFor="let validation of offer_validation_messages.description">
           <div *ngIf="form.get('description').hasError(validation.type) && (form.get('description').dirty || form.get('description').touched)" class="alert alert-danger">
             {{validation.message}}
