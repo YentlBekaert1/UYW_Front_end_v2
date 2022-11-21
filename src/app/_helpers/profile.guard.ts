@@ -21,7 +21,7 @@ export class ProfileGuard implements CanActivate {
   private async checkLoggedIn(){
     try {
       const res = await this.auth.getuserdata();
-      console.log(res);
+      //console.log(res);
       return true;
     } catch (error) {
       return true;

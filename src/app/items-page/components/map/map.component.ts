@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, OnInit, Input, SimpleChanges, Output, EventEmitter  } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+import { selectAllFilters } from 'src/app/store/filterstate/filter.selector';
 import { environment } from 'src/environments/environment';
 import { OfferlocationService } from '../../../_services/offerlocation.service';
 
@@ -27,18 +29,6 @@ export class MapComponent implements OnInit  {
   private userLocationLat: any;
   private userLocationLng: any;
 
-  private wasteLayer: any;
-  private inspirationLayer: any;
-  private humanLayer: any ;
-  private organisationLayer: any;
-  private techonolgyLayer: any;
-
-  private wasteMarkers: any[] = new Array();
-  private inspirationMarkers = new Array();
-  private humanMarkers = new Array();
-  private organisationMarkers = new Array();
-  private techonolgyMarkers = new Array();
-
   private geoJSONData!: L.GeoJSON;
 
   private theCircle: any; //cirkel die de range aanduid
@@ -53,8 +43,17 @@ export class MapComponent implements OnInit  {
   canZoom = true;
 
   url = environment.apiUrl;
+  storeFilters:any;
 
-  constructor(private locationService: OfferlocationService) { }
+  markerCluster = new L.MarkerClusterGroup();
+
+  constructor(private locationService: OfferlocationService, private store: Store) {
+    this.store.select(selectAllFilters).subscribe( res => {
+      this.storeFilters = res;
+      const bounds = this.map.getBounds();
+      this.getMarkerbyLocation(bounds);
+    })
+  }
 
   private initMap(): void {
     //kaart op pagina plaatsen
@@ -84,42 +83,15 @@ export class MapComponent implements OnInit  {
       'Satellite' :satellite
     };
 
-    //marker lagen
-    //verschillende lagen aanmaken voor ieder categorie
-    this.wasteLayer = L.layerGroup();
-    this.inspirationLayer = L.layerGroup();
-    this.humanLayer = L.layerGroup();
-    this.organisationLayer = L.layerGroup();
-    this.techonolgyLayer = L.layerGroup();
-
-    //bepalen markers lagen
-    const overlays = {
-      'Afval': this.wasteLayer,
-      'Inspiratie': this.inspirationLayer,
-      'Mens': this.humanLayer,
-      'Organisatie': this.organisationLayer,
-      'Techonolgie': this.techonolgyLayer
-    };
-
-
-    // var markers = L.markerClusterGroup({ chunkedLoading: true });
-
-    // markers.addLayers(this.wasteMarkers);
-    // markers.addLayers(this.inspirationMarkers);
-    // markers.addLayers(this.humanMarkers);
-    // markers.addLayers(this.organisationMarkers);
-
-    // this.map.addLayer(markers);
-
     //lagen toevoegen aan map
     this.map.addLayer(osm);
 
     //controller toevoegen aan de map = rechtsboven knop om venster open te maken
-    const layerControl = L.control.layers(baseLayers,overlays).addTo(this.map);
+    const layerControl = L.control.layers(baseLayers).addTo(this.map);
 
     /* --------------------------------------- KAART LATEN INZOOMEN OP GEBRUIKER -------------------------------------------------------------------*/
     //vraag de gebruiker om zijn locatie
-    this.map.locate({setView: true, maxZoom: 16});
+    this.map.locate({setView: true, maxZoom:16});
 
    //functie die een cirkel rond de locatie plaatst en er een marker toevoegd.
     const onLocationFound = (e: any) => {
@@ -151,7 +123,6 @@ export class MapComponent implements OnInit  {
           this.zoomtimeout = setTimeout(() => {
             //console.log(event.target.value);
             var bounds = event.target.getBounds();
-            this.removeAllMarkers();
             this.getMarkerbyLocation(bounds);
           }, 500);
         }
@@ -164,7 +135,6 @@ export class MapComponent implements OnInit  {
           this.zoomtimeout = setTimeout(() => {
             //console.log(event.target.value);
             var bounds = event.target.getBounds();
-            this.removeAllMarkers();
             this.getMarkerbyLocation(bounds);
           }, 500);
         }
@@ -198,31 +168,38 @@ export class MapComponent implements OnInit  {
       latSE: bounds._southWest.lat,
       lonNW: bounds._northEast.lng,
       lonSE: bounds._southWest.lng
-    }).subscribe(data=>{
+      },
+      {
+        categories: this.storeFilters.categories.toString(),
+        materials:this.storeFilters.materials.toString(),
+        query:this.storeFilters.query
+      }).subscribe(data=>{
       this.addMarkers(data);
     });
   }
 
-  addMarkerCluster(data: any){
-    const markerCluster = new L.MarkerClusterGroup();
-		var markerList = [];
-    for (var i = 0; i < data.length; i++) {
-      console.log(data);
-			var a = data[i].geometry.coordinates;
-			var title = data[i].properties.title;
-			var marker = L.marker(L.latLng(a), { icon: wasteIcon });
-			marker.bindPopup(title);
-			markerCluster.addLayer(marker);
-		}
-    console.log(markerCluster);
-		this.map.addLayer(markerCluster);
-  }
+  //------test marker cluster--------
+  // addMarkerCluster(data: any){
+  //   const markerCluster = new L.MarkerClusterGroup();
+	// 	var markerList = [];
+  //   for (var i = 0; i < data.length; i++) {
+  //     console.log(data);
+	// 		var a = data[i].geometry.coordinates;
+	// 		var title = data[i].properties.title;
+	// 		var marker = L.marker(L.latLng(a), { icon: wasteIcon });
+	// 		marker.bindPopup(title);
+	// 		markerCluster.addLayer(marker);
+	// 	}
+  //   console.log(markerCluster);
+	// 	this.map.addLayer(markerCluster);
+  // }
 
   //functie die de markers op de kaartoevoegd.
+
   addMarkers(data: any){
+    this.removeAllMarkers();
+    this.markerCluster = new L.MarkerClusterGroup();
     /* --------------------------------------- MARKERS TOEVOEGEN VANUIT GEOJSON -------------------------------------------------------------------*/
-    const markerCluster = new L.MarkerClusterGroup();
-    //var zoom = this.map._zoom;
     //oneachfuter functie om functies bij de geojson bij te voegen voor dat ze geladen worden in dit geval een popup waneer er op geklikt word.
     const onEachFeature = (feature: any, layer: any) => {
       //geef de naam weer als ID, belangrijk om later op in te zoomen bij klikken
@@ -239,38 +216,13 @@ export class MapComponent implements OnInit  {
           layer.bindPopup(content);
       }
 
-      markerCluster.addLayer(layer);
-      // //voeg de marker toe aan de juiste categorie
-      // if(feature.properties.category === 1){
-      //     layer.addTo(this.wasteLayer);
-      //     this.wasteMarkers.push(layer._leaflet_id);
-      // }
-      // else if(feature.properties.category === 2){
-      //     layer.addTo(this.inspirationLayer);
-      //     this.inspirationMarkers.push(layer._leaflet_id);
-      // }
-      // else if(feature.properties.category === 3){
-      //     layer.addTo(this.humanLayer);
-      //     this.humanMarkers.push(layer._leaflet_id);
-      // }
-      // else if(feature.properties.category === 4){
-      //     layer.addTo(this.organisationLayer);
-      //     this.organisationMarkers.push(layer._leaflet_id);
-      // }
-      // else if(feature.properties.category === 5){
-      //     layer.addTo(this.techonolgyLayer);
-      //     this.techonolgyMarkers.push(layer._leaflet_id);
-      // }
-      // else{
-      //     layer.addTo(this.map);
-      // }
+      this.markerCluster.addLayer(layer);
     }
 
     this.geoJSONData = L.geoJSON(data, {
             onEachFeature: onEachFeature,
             pointToLayer: function(feature, latlng) {
-              console.log(feature)
-               //if(zoom >= 10){
+
                     if(feature.properties.category === 1){
                       return L.marker(L.latLng(latlng), { icon: wasteIcon })
                     }
@@ -294,38 +246,16 @@ export class MapComponent implements OnInit  {
                             fillOpacity: 0.8
                         });
                     }
-              //}
-               //else{
-               // return L.circleMarker(latlng, {radius:6,opacity: 1,color: "#42998B",fillOpacity: 0.8});
-              // }
             }
 
     });
-    this.map.addLayer(markerCluster);
-    //console.log(this.map._zoom);
+    //this.map.removeLayer(markerCluster);
+    this.map.addLayer(this.markerCluster);
   }
 
   removeAllMarkers(){
-    for(var i=0;i<this.wasteMarkers.length;i++){
-      this.wasteLayer.removeLayer(this.wasteMarkers[i]);
-    }
-    for(var i=0;i<this.inspirationMarkers.length;i++){
-      this.inspirationLayer.removeLayer(this.inspirationMarkers[i]);
-    }
-    for(var i=0;i<this.humanMarkers.length;i++){
-      this.humanLayer.removeLayer(this.humanMarkers[i]);
-    }
-    for(var i=0;i<this.organisationMarkers.length;i++){
-      this.organisationLayer.removeLayer(this.organisationMarkers[i]);
-    }
-    for(var i=0;i<this.techonolgyMarkers.length;i++){
-      this.techonolgyLayer.removeLayer(this.techonolgyMarkers[i]);
-    }
-    this.wasteMarkers = [];
-    this.inspirationMarkers = [];
-    this.humanMarkers = [];
-    this.organisationMarkers = [];
-    this.techonolgyMarkers = [];
+    console.log(this.markerCluster);
+    this.map.removeLayer(this.markerCluster);
   }
 
   //functie uitgevoerd bij initialiseren component

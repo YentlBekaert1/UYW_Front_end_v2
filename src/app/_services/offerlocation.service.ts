@@ -10,9 +10,9 @@ export class OfferlocationService {
 
   constructor(private http: HttpClient) { }
 
-  public getLocations(bounds: {latNW: any, latSE: any, lonNW: any, lonSE: any}){
+  public getLocations(bounds: {latNW: any, latSE: any, lonNW: any, lonSE: any}, filters: {categories: any, materials:any, query:any}){
     //console.log("getLoc", bounds);
-    const requesturl = environment.apiUrl + 'api/locationsmap?latNW='+bounds.latNW+ '&latSE='+bounds.latSE+ '&lonNW='+bounds.lonNW+ '&lonSE=' +bounds.lonSE;
+    const requesturl = environment.apiUrl + 'api/locationsmap?latNW='+bounds.latNW+ '&latSE='+bounds.latSE+ '&lonNW='+bounds.lonNW+ '&lonSE=' +bounds.lonSE +'&categories='+ filters.categories +'&materials=' + filters.materials + '&query=' + filters.query;
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),

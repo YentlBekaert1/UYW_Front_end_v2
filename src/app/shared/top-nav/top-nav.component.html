@@ -26,8 +26,8 @@
           <div class="login" *ngIf="!userLoggedIn">
             <a [routerLink]="['/login']" class="login_knop">login</a>
           </div>
-          <div class="login user" *ngIf="userLoggedIn">
-            <p (click)="accountButtonClicked()">Welkom {{profile.name}}</p>
+          <div class="login user" *ngIf="userLoggedIn"  (click)="accountButtonClicked()">
+            <p>Welkom {{profile.name}}</p>
             <i class="material-icons">arrow_drop_down </i>
           </div>
         </div>

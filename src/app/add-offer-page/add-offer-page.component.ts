@@ -374,7 +374,7 @@ export class AddOfferPageComponent implements OnInit {
       this.tagtimeout = setTimeout(() => {
         //console.log(event.target.value);
         this.tagservice.tagsTypeAhead(event.target.value).subscribe((res:any) => {this.tags = res.data});
-      }, 1000);
+      }, 50);
     }
   }
   //als er naast de dropdown geklikt word.
