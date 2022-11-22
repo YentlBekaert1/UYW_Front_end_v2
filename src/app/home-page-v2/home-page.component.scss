@@ -32,10 +32,10 @@ h1{
   .section1-text-content{
     position: fixed;
    // background-color: aqua;
-    width: 50%;
+    width: 100%;
     height: 100%;
     margin-top: 1rem;
-    p{
+    p#hero-description{
       margin-top: 2rem;
       max-width: 70%;
       font-family: "montserrat-light";
@@ -91,8 +91,8 @@ h1{
   #aarde_container{
     z-index: -6;
     position: fixed;
-    bottom: -120vh;
-    right:-60vw;
+    top: 60%;
+    left:0;
     // transform: translate(-50%,-50%);
     #aardbol_picture{
      width: 100%;
@@ -118,8 +118,8 @@ h1{
       z-index: -5;
      }
      .categorie_logo{
-      width: 8%;
-      height: 8%;
+      width: 40px;
+      height: 40px;
       background-color: var(--secondary-color);
       border-radius: 50%;
       position: absolute;
@@ -141,8 +141,7 @@ h1{
         padding-bottom: 5%;
       }
       p{
-        color:white;
-        font-size: 0.8rem;
+        display: none;
       }
       &.logo1{
         top:46%;
@@ -170,6 +169,7 @@ h1{
   }
 
 }
+
 .section2{
   background-color: red;
   z-index: 1;
@@ -196,7 +196,7 @@ h1{
   }
   .section1{
     margin: 0 3rem;
-    p{
+    p#hero-description{
       margin-top: 2rem;
       max-width: 70%;
       line-height: 1.2rem;
@@ -236,22 +236,120 @@ h1{
   }
 }
 
+
 @media screen and (min-width: 1340px) {
   h1{
     font-size: 3.5rem;
   }
   .section1{
-    margin: 0 auto;
-    p{
-      margin-top: 2rem;
-      max-width: 70%;
-      line-height: 1.6rem;
-      font-family: "montserrat-light";
-      color: #333333;
+    margin-left: 0 auto;
+    .section1-text-content{
+      width: 70%;
+      p#hero-description{
+        margin-top: 2rem;
+        max-width: 70%;
+        line-height: 1.6rem;
+        font-family: "montserrat-light";
+        color: #333333;
+      }
     }
+    #aarde_container{
+      z-index: -6;
+      position: fixed;
+      height: 60vw;
+      width: 60vw;
+      top: 20vh;
+      left: 53vw;
+      // transform: translate(-50%,-50%);
+      #aardbol_picture{
+       width: 100%;
+       height: 100%;
+       position: relative;
+       z-index: -6;
+       img{
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top:50%;
+        left:50%;
+       }
+       img:nth-of-type(1){
+        width: 70%;
+        z-index: -4;
+       }
+       img:nth-of-type(2){
+        width: 90%;
+        z-index: -4;
+       }
+       img:nth-of-type(3){
+        width: 90%;
+        z-index: -5;
+       }
+       .categorie_logo{
+        width: 8%;
+        height: 8%;
+        background-color: var(--secondary-color);
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        align-content: center;
+        flex-direction: column;
+        img{
+          position: relative;
+          transform: translate(0%,0%);
+          top:0%;
+          left:0%;
+          width: 40%;
+          height: 40%;
+          display: block;
+          z-index: 0;
+          padding-top: 15%;
+          padding-bottom: 5%;
+        }
+        p{
+          color:white;
+          font-size: 0.8rem;
+          display: block;
+        }
+        &.logo1{
+          top:46%;
+          left:1%;
+        }
+        &.logo2{
+          top:26%;
+          left:6%;
+        }
+        &.logo3{
+          top:10%;
+          left:19%;
+        }
+        &.logo4{
+          top:2%;
+          left:39%;
+        }
+        &.logo5{
+          top:4%;
+          left:61%;
+        }
+       }
+      }
 
+    }
   }
 }
+
+@media screen and (min-width: 1480px) {
+  h1{
+    font-size: 3.5rem;
+  }
+  .section1{
+    .section1-text-content{
+      width: 50%;
+    }
+  }
+}
+
 
 
 .arrows {

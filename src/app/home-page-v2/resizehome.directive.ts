@@ -9,16 +9,26 @@ export class ResizeHomeDirective {
 
     @HostListener("window:resize", ["$event"])
     onResize(event: any) {
-      console.log(this.el.nativeElement.querySelector('#aarde_container'), event.target.innerWidth, event.target.innerHeight);
-      var aardbol = this.el.nativeElement.querySelector('#aarde_container');
-      var aspectratio = (window.innerWidth/window.innerHeight);
-      var width = (event.target.innerWidth * 1.2)/aspectratio;
-      var height = width;
+      //console.log(this.el.nativeElement.querySelector('#aarde_container'), event.target.innerWidth, event.target.innerHeight);
+      if(window.innerWidth > 1340){
+        console.log('resize');
+        var aardbol = this.el.nativeElement.querySelector('#aarde_container');
+        var aspectratio = (window.innerWidth/window.innerHeight);
+        var width = (event.target.innerWidth * 1.2)/aspectratio;
+        var height = width;
 
-      aardbol.style.width = ((width).toFixed()).toString() + "px";
-      aardbol.style.height = ((height).toFixed()).toString() + "px";
-      // aardbol.style.top = ((window.innerHeight - (width/1.6) ).toFixed()).toString() + "px";
-      // aardbol.style.right = "-" + ((window.innerWidth*0.5 - (width/2)).toFixed()).toString() + "px";
+        aardbol.style.width = ((width).toFixed()).toString() + "px";
+        aardbol.style.height = ((height).toFixed()).toString() + "px";
+      }else{
+          var aardbol = this.el.nativeElement.querySelector('#aarde_container');
+          var aspectratio = (window.innerWidth/window.innerHeight);
+          var width = (event.target.innerWidth * 0.5)/aspectratio;
+          var height = width;
+
+          aardbol.style.width = ((width).toFixed()).toString() + "px";
+          aardbol.style.height = ((height).toFixed()).toString() + "px";
+      }
+
     }
 
 }

@@ -41,17 +41,24 @@ export class HomePagev2Component implements AfterViewInit {
   }
 
   ngAfterViewInit (): void {
-    var width = (window.innerWidth*1.2);
-    var height = width;
-    var aspectratio = (window.innerWidth/window.innerHeight);
-    this.aardbol.nativeElement.style.width = ((width/aspectratio).toFixed()).toString() + "px";
-    this.aardbol.nativeElement.style.height = ((height/aspectratio).toFixed()).toString() + "px";
-    this.aardbol.nativeElement.style.top = ((window.innerHeight - (width/3) ).toFixed()).toString() + "px";
-    this.aardbol.nativeElement.style.right = "-" + ((window.innerWidth*0.5 -((window.innerWidth*0.7)/2)).toFixed()).toString() + "px";
-    console.log(aspectratio);
-
+  //   if(window.innerWidth > 1340){
+  //   var width = (window.innerWidth*1.2);
+  //   var height = width;
+  //   var aspectratio = (window.innerWidth/window.innerHeight);
+  //   this.aardbol.nativeElement.style.width = ((width/aspectratio).toFixed()).toString() + "px";
+  //   this.aardbol.nativeElement.style.height = ((height/aspectratio).toFixed()).toString() + "px";
+  //   this.aardbol.nativeElement.style.top = ((window.innerHeight - (width/3) ).toFixed()).toString() + "px";
+  //   this.aardbol.nativeElement.style.left = (window.innerWidth - width/aspectratio).toString() + "px";
+  //   console.log(aspectratio);
+  //   }else{
+  //     var width = (window.innerWidth*0.8);
+  //     var height = width;
+  //     var aspectratio = (window.innerWidth/window.innerHeight);
+  //     this.aardbol.nativeElement.style.width = "100vw";
+  //     this.aardbol.nativeElement.style.height = ((height/aspectratio).toFixed()).toString() + "px";
+  //   }
+  // }
   }
-
   infoCategoryClicked(evkey: any){
     this.active_category_info = this.categories_array.find(element => element.key == evkey);
     this.category_info_visible = true;
