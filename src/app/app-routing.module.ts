@@ -31,12 +31,12 @@ const routes: Routes = [
   },
   {
     path: "home",
-    component: HomePageComponent,
+    component: HomePagev2Component,
     canActivate: [ProfileGuard],
   },
   {
     path: "home4",
-    component: HomePagev2Component,
+    component: HomePageComponent,
     canActivate: [ProfileGuard],
   },
   {

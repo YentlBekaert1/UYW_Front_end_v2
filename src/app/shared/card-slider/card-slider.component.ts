@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-slider',
@@ -17,6 +17,8 @@ export class CardSliderComponent implements OnInit {
   containerWidth: number;
 
   @ViewChild("container", { static: true, read: ElementRef }) container: ElementRef;
+  
+  @Input() data!: any;
 
   constructor() { }
 

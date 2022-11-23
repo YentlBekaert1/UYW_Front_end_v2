@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Filters } from '../_models/filters';
 import { AuthService } from '../_services/auth.service';
 import { GeosearchService } from '../_services/geosearch.service';
+import { OfferService } from '../_services/offer.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -26,7 +27,7 @@ export class HomePagev2Component implements AfterViewInit {
   active_category_info:  {key: number, name: string, description: string, image: string};
 
   categories_array: {key: number, name: string, description: string, image: string}[] = [
-    { key: 1, name:"Afval", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words', image:"../../assets/category-logos/afval.svg"},
+    { key: 1, name:"Afval", description: 'There are many variations of passages of Lorem Ipsum available', image:"../../assets/category-logos/afval.svg"},
     { key: 2, name:"Inspiratie", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words', image:"../../assets/category-logos/inspiratie.svg"},
     { key: 3, name:"Persoon", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words',image:"../../assets/category-logos/mens.svg"},
     { key: 4, name:"Organisatie", description: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words',image:"../../assets/category-logos/organisatie.svg"},
@@ -35,30 +36,35 @@ export class HomePagev2Component implements AfterViewInit {
 
   materials: any;
   selectedFitlers: Filters = {category:'', distance: 0, lat:0, lon:0, userLocation:false, material: 0};
+  latest_offers: any;
 
-  constructor(private auth: AuthService, private router: Router, private geoSearch: GeosearchService) {
+  constructor(private auth: AuthService, private router: Router, private geoSearch: GeosearchService, private offerservice: OfferService) {
     this.active_category_info = this.categories_array[0];
+    this.offerservice.getOffersDesc(9).then((res: any) => {
+      console.log(res);
+      this.latest_offers = res.data;
+    })
   }
 
   ngAfterViewInit (): void {
-  //   if(window.innerWidth > 1340){
-  //   var width = (window.innerWidth*1.2);
-  //   var height = width;
-  //   var aspectratio = (window.innerWidth/window.innerHeight);
-  //   this.aardbol.nativeElement.style.width = ((width/aspectratio).toFixed()).toString() + "px";
-  //   this.aardbol.nativeElement.style.height = ((height/aspectratio).toFixed()).toString() + "px";
-  //   this.aardbol.nativeElement.style.top = ((window.innerHeight - (width/3) ).toFixed()).toString() + "px";
-  //   this.aardbol.nativeElement.style.left = (window.innerWidth - width/aspectratio).toString() + "px";
-  //   console.log(aspectratio);
-  //   }else{
-  //     var width = (window.innerWidth*0.8);
-  //     var height = width;
-  //     var aspectratio = (window.innerWidth/window.innerHeight);
-  //     this.aardbol.nativeElement.style.width = "100vw";
-  //     this.aardbol.nativeElement.style.height = ((height/aspectratio).toFixed()).toString() + "px";
-  //   }
-  // }
+
+    // if(window.innerWidth < 600){
+    //   this.aardbol.nativeElement.style.top = ((window.innerHeight-300).toFixed()).toString() + "px";
+    // }
+    // else if(window.innerWidth > 600 && window.innerWidth < 1340){
+    //   this.aardbol.nativeElement.style.top = ((window.innerHeight-300).toFixed()).toString() + "px";
+    // }
+    // else if(window.innerWidth > 1340 && window.innerWidth < 1450){
+    //   this.aardbol.nativeElement.style.top = "25vh";
+    // }
+    // else if(window.innerWidth > 1450 && window.innerWidth < 1600){
+    //   this.aardbol.nativeElement.style.top = "20vh";
+    // }
+    // else if(window.innerWidth > 1600){
+    //   this.aardbol.nativeElement.style.top = "10vh";
+    // }
   }
+
   infoCategoryClicked(evkey: any){
     this.active_category_info = this.categories_array.find(element => element.key == evkey);
     this.category_info_visible = true;

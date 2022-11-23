@@ -49,6 +49,17 @@ export class OfferService {
 
   }
 
+  getOffersDesc(page_size: number){
+    const requesturl = environment.apiUrl + "api/offersall" +'?page_size=' + page_size +"&date=desc"
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+    return lastValueFrom(
+      this.http.get(requesturl, httpOptions)
+    );
+  }
+
   onlySpaces(str: string) {
     return str.trim().length === 0;
   }

@@ -42,8 +42,8 @@ $LeafLetMapTest-theme: mat.define-light-theme((
   --primary-light: #4abeab;
   --primary-dark: #478E83;
   --primary-darker: #2F8678;
-  --secondary-color: #ffb048;
-  --secondary-light: rgb(255, 193, 111);
+  --secondary-color: rgb(255, 176, 72);
+  --secondary-light: rgba(255, 176, 72, 0.664);
   --secondary-dark: rgb(233, 134, 4);
   --yellow-gradient: linear-gradient(135deg, rgba(255,252,159,1) 0%, #fcd15c 0%, rgba(255,176,72,1) 100%);
   --yellow-gradient-color: rgba(255,176,72,1);
@@ -54,7 +54,7 @@ $LeafLetMapTest-theme: mat.define-light-theme((
   --grey-text-color:#AEABAB;
 
   --nav-height: 65px;
-  --nav-font-size: .9rem;
+  --nav-font-size: 1rem;
 }
 
 @font-face {
