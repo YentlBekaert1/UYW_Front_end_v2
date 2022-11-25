@@ -60,6 +60,9 @@
 
       .account_container{
         margin-left: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         div.login{
           .login_knop{
             text-transform: capitalize;
@@ -86,7 +89,7 @@
             align-content: center;
             flex-wrap: nowrap;
             flex-direction: row;
-            padding: 0.5rem;
+            padding: 0.7rem;
             border-bottom: 2px solid var(--back-color);
             cursor: pointer;
             &:hover{
@@ -97,17 +100,53 @@
               font-size: var(--nav-font-size);
             }
           }
-
+          &.language{
+            margin-left: 1rem;
+            display: flex;
+            align-items: center;
+            .flag{
+              height: 15px;
+            }
+            select{
+              width: 100%;
+              background-color: transparent;
+              border: none;
+              font-size: var(--nav-font-size);
+              font-family: "montserrat-light";
+              padding: 0.7rem 0.5rem;
+              outline: none;
+            }
+          }
         }
       }
     }
     .menu-responsive-small{
       display: block;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      div.language{
+        margin-left: 1rem;
+        display: flex;
+        align-items: center;
+        .flag{
+          height: 15px;
+        }
+        select{
+          width: 100%;
+          background-color: transparent;
+          border: none;
+          font-size: var(--nav-font-size);
+          font-family: "montserrat-light";
+          padding: 0.7rem 0.5rem;
+          outline: none;
+        }
+      }
       a{
         text-align: end;
-        padding-top: 15px;
         text-decoration: none;
+        margin-left: 1rem;
         i{
           font-size: 1.8rem;
           color: var(--black-color);

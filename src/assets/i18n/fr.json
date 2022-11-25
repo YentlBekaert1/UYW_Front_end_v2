@@ -1,0 +1,38 @@
+{
+  "HOMEPAGE":{
+    "TITLE_BLACK" : "Une source circulaire d'inspiration et d'expertise",
+    "TITLE_GREEN" : "autour de la réutilisation des matériaux",
+    "INTRO_1" : "Bienvenue dans la base de données de 'let's upcycle'. Une application unique qui relie 5 thèmes autour de la circularité",
+    "INTRO_2" : "Cherchez et inspirez-vous facilement. Vous pouvez aussi ajouter facilement des matériaux ou des compétences vous-même. Vous pouvez utiliser des filtres ou effectuer une recherche sur la carte. Mettez en avant votre organisation ou votre flux résiduel ou trouvez le bon partenaire commercial",
+    "INTRO_3" : "L'application est disponible à la fois sur le bureau et sur votre mobile.",
+    "INTRO_BUTTON_1" : "Voir la base de données",
+    "INTRO_BUTTON_2" : "Recherche dans votre région",
+    "INTRO_BUTTON_3" : "Explorez les catégories",
+    "SECTION2_TITLE" : "Les catégories",
+    "SECTION2_INTRO" : "Il y a beaucoup de choses à découvrir dans les différentes catégories. Appuyez sur l'un des boutons de catégorie pour découvrir leur signification.",
+    "SECTION2_BUTTON" : "Découvrir",
+    "SECTION3_TITLE" : "Comment cela fonctionne-t-il ?",
+    "SECTION3_CARD1_TITLE" : "Choisissez une catégorie",
+    "SECTION3_CARD1_DESCRIPTION" : "En sélectionnant une catégorie, vous obtiendrez les données qui y correspondent. Ainsi, vous trouverez plus rapidement ce que vous cherchez",
+    "SECTION3_CARD2_TITLE" : "Recherche par lieu",
+    "SECTION3_CARD2_DESCRIPTION" : "Si vous souhaitez trouver des articles à proximité, effectuez une recherche par lieu. Vous pouvez saisir un emplacement ou utiliser votre emplacement actuel.",
+    "SECTION3_CARD3_TITLE" : "Filtrer plus loin",
+    "SECTION3_CARD3_DESCRIPTION" : "Utilisez les filtres supplémentaires pour affiner davantage les résultats de votre recherche à votre convenance.",
+    "SECTION4_TITLE" : "Récemment ajouté",
+    "SECTION4_BUTTON" : "Plus d'articles",
+    "SECTION5_TITLE" : "Ajoutez vous-même les articles excédentaires",
+    "SECTION5_INTRO" : "Souhaitez-vous contribuer vous-même en offrant vos déchets excédentaires, ou en donnant de l'inspiration aux autres. Ensuite, créez un compte et commencez à ajouter.",
+    "SECTION5_BUTTON" : "Commencer à ajouter",
+    "SECTION6_TITLE" : "Projet en collaboration avec",
+    "SECTION6_CARD1_TITLE" : "Upcycle Your Waste",
+    "SECTION6_CARD1_DESCRIPTION" : "Vous souhaitez améliorer la gestion des déchets dans votre entreprise, réduire les coûts et polluer moins ? Upcycle Your Waste vous propose un programme gratuit et personnalisé, étape par étape. Pour y apporter des améliorations, ce site/application a été créé",
+    "SECTION6_CARD2_TITLE" : "Maison de l'économie d'Ostende",
+    "SECTION6_CARD2_DESCRIPTION" : "Ostende dispose d'une Maison de l'économie depuis le 1er février 2008. Elle devient ainsi la première ville ou municipalité de Flandre à offrir ce service gratuit à ses entrepreneurs. La Maison de l'économie fait office de point de contact pour chaque entreprise. En outre, l'organisation à but non lucratif met en place des projets créatifs avec les administrations publiques, les organisations d'employeurs et de salariés afin de promouvoir la vie économique dans le district d'Ostende.",
+    "SECTION6_CARD3_TITLE" : "Hogeschool Vives",
+    "SECTION6_CARD3_DESCRIPTION" : "VIVES a des campus à Bruges, Courtrai, Ostende, Roeselare et Torhout. En outre, Vives est forte dans la recherche et les services basés sur la pratique, fournissant aux entreprises et aux organisations des solutions à diverses questions complexes.",
+    "SECTION6_BUTTON" : "Plus d'informations"
+  }
+}
+
+
+

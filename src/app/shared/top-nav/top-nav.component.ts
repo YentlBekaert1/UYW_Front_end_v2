@@ -1,9 +1,9 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { fromEvent } from 'rxjs';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { Profile } from 'src/app/store/authstate/auth.model';
-
-
+import { TranslateService } from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
+import { changeLang } from 'src/app/store/languagestate/load.actions';
+import { BehaviorSubject, catchError, lastValueFrom, map, Observable, of, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-top-nav',
@@ -21,8 +21,11 @@ export class TopNavComponent implements OnInit {
 
   @Input() profile: Profile;
   @Input() userLoggedIn: Boolean;
+  @Input() languageSelected: string;
 
-  constructor(private eRef: ElementRef) { }
+  @ViewChild('flag', { read: ElementRef }) flag!: ElementRef<HTMLInputElement>;
+
+  constructor(private eRef: ElementRef, public translate: TranslateService, private store: Store) {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
@@ -71,6 +74,13 @@ export class TopNavComponent implements OnInit {
       this.fullNavState = true;
       this.responsiveNavState = false;
     }
+  }
+
+  switchLang(event) {
+    console.log(event.target.value);
+    this.translate.use(event.target.value);
+    this.flag.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
+    this.store.dispatch(changeLang({lang: event.target.value}));
   }
 
 }

@@ -6,8 +6,6 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild, Input } from '@
   styleUrls: ['./card-slider.component.scss']
 })
 export class CardSliderComponent implements OnInit {
-  arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  totalCards: number = this.arr.length;
   currentPage: number = 1;
   pagePosition: string = "0%";
   cardsPerPage: number;
@@ -17,8 +15,9 @@ export class CardSliderComponent implements OnInit {
   containerWidth: number;
 
   @ViewChild("container", { static: true, read: ElementRef }) container: ElementRef;
-  
+
   @Input() data!: any;
+  @Input() totalCards!: number;
 
   constructor() { }
 

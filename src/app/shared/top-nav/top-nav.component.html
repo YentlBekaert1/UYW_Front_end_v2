@@ -30,10 +30,22 @@
             <p>Welkom {{profile.name}}</p>
             <i class="material-icons">arrow_drop_down </i>
           </div>
+          <div class="login language">
+            <img src="../../../assets/flags/{{languageSelected}}.svg" alt="" class="flag" #flag>
+            <select name="" (change)="switchLang($event)">
+              <option *ngFor="let language of translate.getLangs()" value="{{language}}" [selected]="language == languageSelected">{{ language }}</option>
+            </select>
+          </div>
         </div>
       </div>
-      <div class="menu-responsive-small" (click)="toggleResponsiveNav()">
-        <a><i class="material-icons">menu</i></a>
+      <div class="menu-responsive-small" >
+        <div class="login language">
+          <img src="../../../assets/flags/{{languageSelected}}.svg" alt="" class="flag" #flag>
+          <select name="" (change)="switchLang($event)">
+            <option *ngFor="let language of translate.getLangs()" value="{{language}}" [selected]="language == languageSelected">{{ language }}</option>
+          </select>
+        </div>
+        <a (click)="toggleResponsiveNav()"><i class="material-icons">menu</i></a>
       </div>
     </div>
   </div>

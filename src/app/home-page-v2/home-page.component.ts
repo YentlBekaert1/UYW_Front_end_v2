@@ -40,14 +40,13 @@ export class HomePagev2Component implements AfterViewInit {
 
   constructor(private auth: AuthService, private router: Router, private geoSearch: GeosearchService, private offerservice: OfferService) {
     this.active_category_info = this.categories_array[0];
-    this.offerservice.getOffersDesc(9).then((res: any) => {
+    this.offerservice.getOffersDesc(20).then((res: any) => {
       console.log(res);
       this.latest_offers = res.data;
     })
   }
 
   ngAfterViewInit (): void {
-
     // if(window.innerWidth < 600){
     //   this.aardbol.nativeElement.style.top = ((window.innerHeight-300).toFixed()).toString() + "px";
     // }
@@ -64,7 +63,6 @@ export class HomePagev2Component implements AfterViewInit {
     //   this.aardbol.nativeElement.style.top = "10vh";
     // }
   }
-
   infoCategoryClicked(evkey: any){
     this.active_category_info = this.categories_array.find(element => element.key == evkey);
     this.category_info_visible = true;

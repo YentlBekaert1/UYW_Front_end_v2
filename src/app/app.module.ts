@@ -8,7 +8,7 @@ import { TestPaginaModuleV2 } from './test-pagina-v2/test-pagina.module';
 import { TestPaginaModuleV3 } from './test-pagina-v3/test-pagina.module';
 import { ItemsPageModule } from './items-page/items-page.module';
 import { HomePageModule } from './home-page/home-page.module';
-import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { XsrfInterceptor } from './_helpers/http.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginPageModule } from './Auth/login-page/login-page.module';
@@ -36,7 +36,9 @@ import { HomePagev2Module } from './home-page-v2/home-page.module';
 import { SearchPageModule } from './search-page/search-page.module';
 import { ProfileGuard } from './_helpers/profile.guard';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { LanguageReducer } from './store/languagestate/lang.reducer';
 
 @NgModule({
   declarations: [
@@ -68,10 +70,18 @@ import { MatDialogModule } from '@angular/material/dialog';
     VerifyControlPageModule,
     ForbiddenPageModule,
     TermsofconditonsPageModule,
-    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer}, {}),
+    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer, LangData: LanguageReducer}, {}),
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
     MatDialogModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+          provide: TranslateLoader,
+          useFactory: httpTranslateLoader,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [
     AuthGuard,
@@ -84,3 +94,9 @@ import { MatDialogModule } from '@angular/material/dialog';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// AOT compilation support
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

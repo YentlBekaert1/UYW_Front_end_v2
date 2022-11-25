@@ -4,6 +4,7 @@ import { HomePagev2Component } from './home-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { ResizeHomeDirective } from './resizehome.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ResizeHomeDirective } from './resizehome.directive';
     CommonModule,
     SharedModule,
     AppRoutingModule,
+    TranslateModule
   ]
 })
 export class HomePagev2Module { }

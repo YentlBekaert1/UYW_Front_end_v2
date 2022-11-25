@@ -261,7 +261,7 @@ export class OfferService {
 
   getMaterials(){
 
-    const requesturl = environment.apiUrl + 'api/materials';
+    const requesturl = environment.apiUrl + 'api/fr/materials';
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
@@ -276,7 +276,7 @@ export class OfferService {
 
   getSubMaterials(id: number){
 
-    const requesturl = environment.apiUrl + 'api/materialsubmaterials/' + id;
+    const requesturl = environment.apiUrl + 'api/fr/materialsubmaterials/' + id;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
       withCredentials: true,

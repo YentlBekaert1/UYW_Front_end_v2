@@ -4,9 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:fr": "ng serve --configuration=fr",
+    "start:en": "ng serve --configuration=en",
     "build": "ng build",
+    "build:fr": "ng build --configuration=fr",
+    "build:en": "ng build --configuration=en",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "i18n:extract": "ng extract-i18n --output-path src/locale"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +28,8 @@
     "@kolkov/angular-editor": "^3.0.0-beta.0",
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.2.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "@types/leaflet": "^1.8.0",
     "@types/leaflet.markercluster": "^1.5.1",
     "@types/three": "^0.144.0",
@@ -41,6 +48,7 @@
     "@angular-devkit/build-angular": "^13.3.9",
     "@angular/cli": "~13.0.3",
     "@angular/compiler-cli": "~13.0.0",
+    "@angular/localize": "^13.0.3",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.10.0",
