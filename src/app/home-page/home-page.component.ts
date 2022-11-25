@@ -1,8 +1,10 @@
 import { Component, Input, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Filters } from '../_models/filters';
 import { AuthService } from '../_services/auth.service';
 import { GeosearchService } from '../_services/geosearch.service';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',

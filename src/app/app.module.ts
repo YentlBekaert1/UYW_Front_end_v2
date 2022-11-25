@@ -39,6 +39,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LanguageReducer } from './store/languagestate/lang.reducer';
+import { CategoryReducer } from './store/categorystate/category.reducer';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import { LanguageReducer } from './store/languagestate/lang.reducer';
     VerifyControlPageModule,
     ForbiddenPageModule,
     TermsofconditonsPageModule,
-    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer, LangData: LanguageReducer}, {}),
+    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer, LangData: LanguageReducer, CategoryData: CategoryReducer}, {}),
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
     MatDialogModule,

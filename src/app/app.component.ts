@@ -6,6 +6,7 @@ import { UserAccount } from './_models/user';
 import { TranslateService } from '@ngx-translate/core';
 import { changeLang } from './store/languagestate/load.actions';
 import { selectedLang } from './store/languagestate/lang.selector';
+import { CategoryService } from './_services/category.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class AppComponent{
   lang = this.store.select(selectedLang);
 
   selectedlanguage: string = "fr";
-  constructor(private store: Store, public translate: TranslateService){
+  constructor(private store: Store, public translate: TranslateService, private category_service: CategoryService){
     this.translate.addLangs(['en', 'nl', 'fr']);
 
     this.getUsersLocale("en").then((res) => {
@@ -45,6 +46,7 @@ export class AppComponent{
         this.store.dispatch(changeLang({lang: 'en'}));
       }
     });
+    this.category_service.getCategories();
   }
 
   async getUsersLocale(defaultValue: string) {

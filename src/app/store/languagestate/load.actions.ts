@@ -1,7 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 
-
-
 export const changeLang = createAction(
   '[lang] changeLang',
    props<{ lang: string}>()

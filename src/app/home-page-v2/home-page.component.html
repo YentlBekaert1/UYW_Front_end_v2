@@ -28,9 +28,11 @@
         <img src="../../assets/aardbol_home/aarde_bg.svg" alt="">
         <img src="../../assets/aardbol_home/aarde_bg_border.svg" alt="">
         <img src="../../assets/aardbol_home/aarde_bg_blur.svg" alt="">
-        <div *ngFor="let item of categories_array; let i = index" class="categorie_logo logo{{i+1}}">
-          <img src="{{item.image}}" alt="{{item.image}}">
-          <p>{{item.name}}</p>
+        <div *ngFor="let categorie of categories_array; let i = index" class="categorie_logo logo{{i+1}}">
+          <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
+          <p *ngIf="lang == 'nl'">{{categorie.name_nl}}</p>
+          <p *ngIf="lang == 'fr'">{{categorie.name_fr}}</p>
+          <p *ngIf="lang == 'en'">{{categorie.name_en}}</p>
         </div>
       </div>
     </div>
@@ -60,12 +62,16 @@
      <h2>{{'HOMEPAGE.SECTION2_TITLE' | translate}}</h2>
      <p>{{'HOMEPAGE.SECTION2_INTRO' | translate}}</p>
      <div class="categories">
-        <div *ngFor="let categorie of categories_array; let i = index" class="categorie" id="categorie{{i+1}}" (click)="infoCategoryClicked(categorie.key)">
+        <div *ngFor="let categorie of categories_array; let i = index" class="categorie" id="categorie{{i+1}}">
           <div>
-            <img src="{{categorie.image}}" alt="{{categorie.name}}">
+            <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
           </div>
-          <span>{{categorie.name}}</span>
-          <p>{{categorie.description}}</p>
+          <span *ngIf="lang == 'nl'">{{categorie.name_nl}}</span>
+          <span *ngIf="lang == 'fr'">{{categorie.name_fr}}</span>
+          <span *ngIf="lang == 'en'">{{categorie.name_en}}</span>
+          <p *ngIf="lang == 'nl'">{{categorie.description_nl}}</p>
+          <p *ngIf="lang == 'fr'">{{categorie.description_fr}}</p>
+          <p *ngIf="lang == 'en'">{{categorie.description_en}}</p>
           <button [routerLink]="['/items']">{{'HOMEPAGE.SECTION2_BUTTON' | translate}}</button>
         </div>
     </div>

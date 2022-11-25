@@ -24,6 +24,7 @@ export class TopNavComponent implements OnInit {
   @Input() languageSelected: string;
 
   @ViewChild('flag', { read: ElementRef }) flag!: ElementRef<HTMLInputElement>;
+  @ViewChild('flagres', { read: ElementRef }) flagres!: ElementRef<HTMLInputElement>;
 
   constructor(private eRef: ElementRef, public translate: TranslateService, private store: Store) {}
 
@@ -80,6 +81,7 @@ export class TopNavComponent implements OnInit {
     console.log(event.target.value);
     this.translate.use(event.target.value);
     this.flag.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
+    this.flagres.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
     this.store.dispatch(changeLang({lang: event.target.value}));
   }
 

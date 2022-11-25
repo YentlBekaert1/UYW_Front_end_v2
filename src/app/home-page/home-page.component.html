@@ -68,6 +68,7 @@
         <div *ngFor="let categorie of categories_array; let i = index" class="categorie" id="categorie{{i+1}}" (click)="infoCategoryClicked(categorie.key)">
           <img src="{{categorie.image}}" alt="{{categorie.name}}">
           <span>{{categorie.name}}</span>
+  
         </div>
       </div>
      </div>

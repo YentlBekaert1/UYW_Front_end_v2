@@ -40,7 +40,7 @@
       </div>
       <div class="menu-responsive-small" >
         <div class="login language">
-          <img src="../../../assets/flags/{{languageSelected}}.svg" alt="" class="flag" #flag>
+          <img src="../../../assets/flags/{{languageSelected}}.svg" alt="" class="flag" #flagres>
           <select name="" (change)="switchLang($event)">
             <option *ngFor="let language of translate.getLangs()" value="{{language}}" [selected]="language == languageSelected">{{ language }}</option>
           </select>
