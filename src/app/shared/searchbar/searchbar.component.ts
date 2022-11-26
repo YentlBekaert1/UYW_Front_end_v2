@@ -7,6 +7,9 @@ import { setinitialPageURL, updateQuery } from 'src/app/store/filterstate/filter
 import { selectQuery } from 'src/app/store/filterstate/filter.selector';
 import { OfferService } from 'src/app/_services/offer.service';
 import { liveSearch } from './livesearch.operator';
+import { TranslateService } from '@ngx-translate/core';
+import { changeLang } from 'src/app/store/languagestate/load.actions';
+import { selectLang } from 'src/app/store/languagestate/lang.selector';
 
 @Component({
   selector: 'app-searchbar',
@@ -25,23 +28,32 @@ export class SearchbarComponent implements OnInit{
   );
 
   searchResults = [];
-  placeholderText: string = "Zoek op kernwoorden, locatie, materialen, ...."
+  placeholderText: string = "";
 
-  constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router) {
+
+  constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router, private translate: TranslateService) {
     this.offers$.subscribe(res=>{
       console.log(res);
       this.searchResults = res
       this.showResults = true;
     });
+    this.store.select(selectLang).subscribe(res => {
+      if(this.placement == 'top'){
+        const getTrans = this.translate.get('SEARCHBAR.PLACEHOLDER1').subscribe((res: string) => {
+          console.log(res);
+          this.placeholderText = res;
+        });
+       ;
+      }else{
+        const getTrans =  this.translate.get('SEARCHBAR.PLACEHOLDER2').subscribe((res: string) => {
+          console.log(res);
+          this.placeholderText = res;
+        });
 
-
+      }
+    });
   }
   ngOnInit(): void {
-    if(this.placement == 'top'){
-      this.placeholderText = "Zoek in de database...";
-    }else{
-      this.placeholderText = "Zoek op kernwoorden, locatie, materialen, ....";
-    }
   }
   // ngAfterViewChecked(): void {
   //   //this.store.select(selectQuery).subscribe(res=> this.searchInput.nativeElement.value =res);

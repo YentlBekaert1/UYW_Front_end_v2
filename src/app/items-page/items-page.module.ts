@@ -15,6 +15,7 @@ import { LinksComponent } from './components/links/links.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import { ActiveFiltersComponent } from './components/active-filters/active-filters.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ActiveFiltersComponent } from './components/active-filters/active-filte
     BrowserModule,
     SharedModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    TranslateModule
   ]
 })
 export class ItemsPageModule { }

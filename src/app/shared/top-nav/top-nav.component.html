@@ -13,8 +13,8 @@
       <div class="menu-responsive-large">
         <div class="links">
           <ul>
-            <li [routerLink]="['/home']" routerLinkActive="active"><a>Home</a></li>
-            <li [routerLink]="['/items']" routerLinkActive="active"><a>Database</a></li>
+            <li [routerLink]="['/home']" routerLinkActive="active"><a>{{'NAV.HOME' | translate}}</a></li>
+            <li [routerLink]="['/items']" routerLinkActive="active"><a>{{'NAV.DATABASE' | translate}}</a></li>
             <!-- <li [routerLink]="['/addoffer']" [routerLinkActive]="['active']"><a>Voeg zelf toe</a></li>
             <li [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li> -->
           </ul>
@@ -24,10 +24,10 @@
 
         <div class="account_container">
           <div class="login" *ngIf="!userLoggedIn">
-            <a [routerLink]="['/login']" class="login_knop">login</a>
+            <a [routerLink]="['/login']" class="login_knop">{{'NAV.LOGIN' | translate}}</a>
           </div>
           <div class="login user" *ngIf="userLoggedIn"  (click)="accountButtonClicked()">
-            <p>Welkom {{profile.name}}</p>
+            <p>{{'NAV.WELCOME' | translate}} {{profile.name}}</p>
             <i class="material-icons">arrow_drop_down </i>
           </div>
           <div class="login language">
@@ -53,20 +53,20 @@
 <div class="responsiveNav" *ngIf="responsiveNavState == true && fullNavState == false">
   <div class="responsiveNavDropdown">
     <ul>
-      <li (click)="responsiveNavitemClicked()" [routerLink]="['/home']" routerLinkActive="active"><a>Home</a></li>
-      <li (click)="responsiveNavitemClicked()" [routerLink]="['/items','list']" routerLinkActive="active"><a>Database</a></li>
-      <li (click)="responsiveNavitemClicked()" [routerLink]="['/search']" routerLinkActive="active"><a>Zoeken</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/home']" routerLinkActive="active"><a>{{'NAV.HOME' | translate}}</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/items','list']" routerLinkActive="active"><a>{{'NAV.DATABASE' | translate}}</a></li>
+      <li (click)="responsiveNavitemClicked()" [routerLink]="['/search']" routerLinkActive="active"><a>{{'NAV.SEARCH' | translate}}</a></li>
       <!-- <li (click)="responsiveNavitemClicked()" [routerLink]="['/addoffer']" [routerLinkActive]="['active']"><a>Voeg zelf toe</a></li>
       <li (click)="responsiveNavitemClicked()" [routerLink]="['/account','favorites']" [routerLinkActive]="['active']"><a >Favorieten</a></li> -->
-      <li *ngIf="!userLoggedIn" (click)="responsiveNavitemClicked()" [routerLink]="['/login']" [routerLinkActive]="['active']"><a >Log In</a></li>
-      <li class="account" (click)="responsiveAccountButtonClicked()" *ngIf="userLoggedIn"><a>Account</a><i class="material-icons">add</i></li>
+      <li *ngIf="!userLoggedIn" (click)="responsiveNavitemClicked()" [routerLink]="['/login']" [routerLinkActive]="['active']"><a >{{'NAV.LOGIN' | translate}}</a></li>
+      <li class="account" (click)="responsiveAccountButtonClicked()" *ngIf="userLoggedIn"><a>{{'NAV.ACCOUNT' | translate}}</a><i class="material-icons">add</i></li>
       <ul *ngIf="userLoggedIn && accountresponsiveState == true" class="responsiveAccount">
-        <li routerLink="/account/profile" (click)="responsiveNavitemClicked()"><a>Accountoverzicht</a></li>
-        <li routerLink="/account/favorites" (click)="responsiveNavitemClicked()"><a>Mijn favorieten</a></li>
-        <li routerLink="/account/items" (click)="responsiveNavitemClicked()"><a>Mijn toegevoegde items</a></li>
-        <li routerLink="/addoffer" (click)="responsiveNavitemClicked()"><a >Voeg een item toe</a></li>
-        <li routerLink="/account/settings" (click)="responsiveNavitemClicked()"><a>Instellingen</a></li>
-        <li routerLink="/account/logout" (click)="responsiveNavitemClicked()"><a>Uitloggen</a></li>
+        <li routerLink="/account/profile" (click)="responsiveNavitemClicked()"><a>{{'NAV.ACCOUNT_INFO' | translate}}</a></li>
+        <li routerLink="/account/favorites" (click)="responsiveNavitemClicked()"><a>{{'NAV.MY_FAVORITES' | translate}}</a></li>
+        <li routerLink="/account/items" (click)="responsiveNavitemClicked()"><a>{{'NAV.MY_ITEMS' | translate}}</a></li>
+        <li routerLink="/addoffer" (click)="responsiveNavitemClicked()"><a >{{'NAV.ADD_ITEM' | translate}}</a></li>
+        <li routerLink="/account/settings" (click)="responsiveNavitemClicked()"><a>{{'NAV.SETTINGS' | translate}}</a></li>
+        <li routerLink="/account/logout" (click)="responsiveNavitemClicked()"><a>{{'NAV.LOG_OUT' | translate}}</a></li>
       </ul>
     </ul>
   </div>
@@ -76,12 +76,12 @@
 <div class="accountDropdown" *ngIf="accountDropdownState == true && fullNavState == true" (click)="dropdowncontainerClicked()">
 <div class="dropdown">
   <ul [ngClass]="accountDropdownState == true && fullNavState == true ? 'visible' : ''">
-    <li routerLink="/account/profile"><a>Accountoverzicht</a></li>
-    <li routerLink="/account/favorites"><a>Mijn favorieten</a></li>
-    <li routerLink="/account/items"><a>Mijn toegevoegde items</a></li>
-    <li routerLink="/addoffer"><a>Voeg een item toe</a></li>
-    <li routerLink="/account/settings"><a>Instellingen</a></li>
-    <li routerLink="/account/logout"><a>Uitloggen</a></li>
+    <li routerLink="/account/profile"><a>{{'NAV.ACCOUNT_INFO' | translate}}</a></li>
+    <li routerLink="/account/favorites"><a>{{'NAV.MY_FAVORITES' | translate}}</a></li>
+    <li routerLink="/account/items"><a>{{'NAV.MY_ITEMS' | translate}}</a></li>
+    <li routerLink="/addoffer"><a>{{'NAV.ADD_ITEM' | translate}}</a></li>
+    <li routerLink="/account/settings"><a>{{'NAV.SETTINGS' | translate}}</a></li>
+    <li routerLink="/account/logout"><a>{{'NAV.LOG_OUT' | translate}}</a></li>
   </ul>
 </div>
 </div>

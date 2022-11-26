@@ -1,4 +1,18 @@
 {
+  "NAV":{
+    "HOME" : "Home",
+    "DATABASE" : "Database",
+    "LOGIN" : "Login",
+    "WELCOME" : "Welcome",
+    "SEARCH" : "Search",
+    "ACCOUNT" : "Account",
+    "ACCOUNT_INFO" : "My Account",
+    "MY_FAVORITES": "My favourites",
+    "MY_ITEMS": "My added items",
+    "ADD_ITEM": "Add an item",
+    "SETTINGS": "Settings",
+    "LOG_OUT": "Logout"
+  },
   "HOMEPAGE":{
     "TITLE_BLACK": "A circular source of inspiration and expertise",
     "TITLE_GREEN": "around repurposing materials",
@@ -31,5 +45,49 @@
     "SECTION6_CARD3_TITLE": "Hogeschool Vives",
     "SECTION6_CARD3_DESCRIPTION": "VIVES has campuses in Bruges, Kortrijk, Ostend, Roeselare and Torhout. In addition, Vives is strong in practice-based research and services, providing companies and organisations with solutions to various complex issues.",
     "SECTION6_BUTTON": "More info"
+  },
+  "FOOTER":{
+    "TITLE1": "My upcycle your waste",
+    "LOG_IN": "Login",
+    "REGISTER": "Register",
+    "MY_ITEMS": "My items",
+    "MY_FAVORTITES": "My favourites",
+    "SETTINGS": "Settings",
+    "TITLE2": "About upcycle your waste",
+    "INFO": "General info",
+    "QUESTIONS": "Frequently asked questions",
+    "CONTACT_US": "Contact us",
+    "FEEDBACK": "Please give your feedback",
+    "TITLE3": "Upcycle your waste app",
+    "DOWNLOAD": "Download the app from the Playstore or Appstore.",
+    "CONDITIONS": "Terms of use",
+    "COOKIE": "Cookie policy",
+    "PRIVACY": "Privacy policy",
+    "PRIVACY_CONDITIONS": "Manage privacy preferences"
+  },
+  "SEARCHBAR":{
+    "PLACEHOLDER1": "Search the database...",
+    "PLACEHOLDER2": "Search by keywords, location, materials, ...."
+  },
+  "ITEMS_PAGE":{
+    "CATEGORY_FILTER_TITLE": "Filter by category",
+    "ADD_ITEM": "Add",
+    "USE_MY_LOCATION": "Use my location",
+    "FILTER": "Filter",
+    "LIST": "List",
+    "MAP": "Map",
+    "COMBI": "Map/List"
+  },
+  "CARD":{
+    "MORE_INFO":"More Info"
+  },
+  "ITEM_DETAIL_PAGE":{
+    "SHOW_ON_MAP": "Location on map",
+    "MORE_INFO": "More info & contact",
+    "ADRESS": "Address",
+    "CONTACT": "Contact",
+    "LINK": "Find out more here",
+    "MATERIALS": "Materials",
+    "TAGS": "Tags"
   }
 }

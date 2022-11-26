@@ -30,12 +30,12 @@
         <h3>{{category_name}}</h3>
         <span>
           {{likes}}
-          <i class="material-icons fill" (click)="likeClicked()" *ngIf="isFavorite == true">favorite</i>
-          <i class="material-icons out" (click)="likeClicked()" *ngIf="isFavorite == false">favorite_outline</i>
+          <i class="material-icons fill" (click)="likeClicked()" *ngIf="isFavorite == true">bookmark</i>
+          <i class="material-icons out" (click)="likeClicked()" *ngIf="isFavorite == false">bookmark_border</i>
         </span>
       </div>
       <div class="material-row" *ngIf="materials.length > 0">
-        <h4>Materialen</h4>
+        <h4>{{"ITEM_DETAIL_PAGE.MATERIALS" | translate}}</h4>
         <div class="materials">
           <div *ngFor="let material of materials">
             <p>{{material.name}}</p>
@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="tag-row" *ngIf="tags.length > 0">
-        <h4>Tags</h4>
+        <h4>{{"ITEM_DETAIL_PAGE.TAGS" | translate}}</h4>
         <div>
           <div class="tag-pil" *ngFor="let tag of tags">{{tag.name}}</div>
         </div>
@@ -57,21 +57,21 @@
       <div class="accent"></div>
     </div>
     <div class="info-container" *ngIf="location || contact || url">
-      <h4>Meer info & contact</h4>
+      <h4>{{"ITEM_DETAIL_PAGE.MORE_INFO" | translate}}</h4>
       <table>
         <tr *ngIf="location">
-          <td>Adres:</td>
+          <td>{{"ITEM_DETAIL_PAGE.ADRES" | translate}}:</td>
           <td>{{location}}</td>
         </tr>
         <tr *ngIf="contact">
-          <td>Contact:</td>
+          <td>{{"ITEM_DETAIL_PAGE.CONTACT" | translate}}:</td>
           <td>{{contact}}</td>
         </tr>
       </table>
-      <a *ngIf="url" href="{{url}}" target="_blank">Kom hier meer te weten.</a>
+      <a *ngIf="url" href="{{url}}" target="_blank">{{"ITEM_DETAIL_PAGE.LINK" | translate}}</a>
     </div>
     <div class="locatie-container" *ngIf="location">
-      <h4>Locatie op de kaart</h4>
+      <h4>{{"ITEM_DETAIL_PAGE.SHOW_ON_MAP" | translate}}</h4>
       <app-detail-map [lat_lan] = "Latlan"></app-detail-map>
     </div>
   </div>

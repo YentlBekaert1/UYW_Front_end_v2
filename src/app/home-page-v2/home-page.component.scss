@@ -1349,3 +1349,72 @@ h1{
   animation-delay:0s;
   -webkit-animation-delay:0s; /* Safari 和 Chrome */
 }
+
+.categorie{
+  &.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 0.5s;
+  }
+
+  &.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+}
+
+.HW-card{
+  &.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 1.5s;
+  }
+
+  &.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+}
+
+app-card-slider{
+  &.hidden{
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 1s;
+  }
+  &.show{
+    opacity: 1;
+    filter: blur(0px);
+    width: 100%;
+  }
+}
+
+.categorie:nth-of-type(2){
+  transition-delay: 200ms;
+}
+.categorie:nth-of-type(3){
+  transition-delay: 400ms;
+}
+.categorie:nth-of-type(4){
+  transition-delay: 600ms;
+}
+.categorie:nth-of-type(5){
+  transition-delay: 800ms;
+}
+
+HW-card:nth-of-type(2){
+  transition-delay: 200ms;
+}
+HW-card:nth-of-type(3){
+  transition-delay: 400ms;
+}
+
+@media(prefers-reduced-motion){
+  .hidden {
+    transition: none;
+  }
+}

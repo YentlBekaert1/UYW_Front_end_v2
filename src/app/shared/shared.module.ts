@@ -14,6 +14,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   declarations: [
     TopNavComponent,
@@ -40,7 +42,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatNativeDateModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    TranslateModule
   ]
 })
 export class SharedModule { }

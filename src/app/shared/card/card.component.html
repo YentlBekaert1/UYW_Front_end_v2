@@ -1,6 +1,6 @@
 <div id="card">
   <div class="likes">
-    <i class="material-icons out">favorite_outline</i>
+    <i class="material-icons out">bookmark</i>
     {{likes}}
   </div>
   <img *ngIf="image;else defaultImage" src="{{env_url  + image}}" alt="{{name}}">
@@ -23,6 +23,6 @@
     <h2 [routerLink]="['/offerdetail', id]">{{name}}</h2>
     <p>{{materials}}</p>
     <p>{{locatie_string}}</p>
-    <a [routerLink]="['/offerdetail', id]" >Meer info</a>
+    <a [routerLink]="['/offerdetail', id]">{{"CARD.MORE_INFO" | translate}}</a>
   </div>
 </div>

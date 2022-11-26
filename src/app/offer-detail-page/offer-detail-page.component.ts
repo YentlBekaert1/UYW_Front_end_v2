@@ -1,8 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 import { selectisLoggedIn } from '../store/authstate/auth.selector';
+import { Category } from '../store/categorystate/category.model';
+import { selectCategories } from '../store/categorystate/category.selector';
+import { selectedLang } from '../store/languagestate/lang.selector';
 import { OfferService } from '../_services/offer.service';
 
 @Component({
@@ -10,7 +13,7 @@ import { OfferService } from '../_services/offer.service';
   templateUrl: './offer-detail-page.component.html',
   styleUrls: ['./offer-detail-page.component.scss']
 })
-export class OfferDetailPageComponent implements OnInit, AfterViewChecked {
+export class OfferDetailPageComponent implements AfterViewInit, AfterViewChecked {
   @ViewChild('descriptionEl', { read: ElementRef }) descriptionEl!: ElementRef<HTMLInputElement>;
 
   offer: any;
@@ -38,7 +41,28 @@ export class OfferDetailPageComponent implements OnInit, AfterViewChecked {
 
   isLoggedIn$ = this.store.select(selectisLoggedIn);
   isLoggedIn: Boolean = false;
-  constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store) { }
+
+  lang$ = this.store.select(selectedLang);
+  lang: string;
+
+  constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store) {
+    this.lang$.subscribe(res => {
+      this.lang =  res
+      console.log(res)
+      if(this.lang == "nl"){
+        this.category_name = this.offer.category.name_nl
+      }
+      else if(this.lang == "fr"){
+        this.category_name = this.offer.category.name_fr
+      }
+      else if(this.lang == "en"){
+        this.category_name = this.offer.category.name_en
+      }
+      else{
+        this.category_name = this.offer.category.name_en
+      }
+    });
+   }
 
   ngAfterViewChecked(): void {
     if(this.descriptionEl !== undefined && this.descriptionEl.nativeElement.innerHTML == ""){
@@ -46,7 +70,8 @@ export class OfferDetailPageComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  ngOnInit(): void {
+
+  ngAfterViewInit(): void {
     this.isLoggedIn$.subscribe(res => this.isLoggedIn = res);
 
     const paramsub = this.route.paramMap.subscribe(params => {
@@ -57,7 +82,18 @@ export class OfferDetailPageComponent implements OnInit, AfterViewChecked {
         this.offer = res.data[0];
         this.description = this.offer.description;
         this.title = this.offer.title;
-        this.category_name = this.offer.category.name
+        if(this.lang == "nl"){
+          this.category_name = this.offer.category.name_nl
+        }
+        else if(this.lang == "fr"){
+          this.category_name = this.offer.category.name_fr
+        }
+        else if(this.lang == "en"){
+          this.category_name = this.offer.category.name_en
+        }
+        else{
+          this.category_name = this.offer.category.name_en
+        }
         this.likes = this.offer.total_likes;
         if(this.offer.images.length > 0){
           this.imageArr = this.offer.images

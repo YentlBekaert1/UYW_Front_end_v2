@@ -195,6 +195,10 @@ main{
       }
       .gb-locatie{
         display: none;
+        h5{
+          min-width: 56px;
+          text-align: center;
+        }
       }
     }
   }

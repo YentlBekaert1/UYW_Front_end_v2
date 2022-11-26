@@ -1,4 +1,18 @@
 {
+  "NAV":{
+    "HOME":"Home",
+    "DATABASE":"Database",
+    "LOGIN":"Login",
+    "WELCOME":"Welkom",
+    "SEARCH":"Zoeken",
+    "ACCOUNT":"Account",
+    "ACCOUNT_INFO":"Accountoverzicht",
+    "MY_FAVORITES":"Mijn favorieten",
+    "MY_ITEMS":"Mijn toegevoegde items",
+    "ADD_ITEM":"Voeg een item toe",
+    "SETTINGS":"Instellingen",
+    "LOG_OUT":"Uitloggen"
+  },
   "HOMEPAGE":{
     "TITLE_BLACK": "Een circulaire bron van inspiratie en expertise",
     "TITLE_GREEN": "rond het herbestemmen van materialen",
@@ -31,5 +45,49 @@
     "SECTION6_CARD3_TITLE":"Hogeschool Vives",
     "SECTION6_CARD3_DESCRIPTION":"VIVES heeft campussen in Brugge, Kortrijk, Oostende, Roeselare en Torhout. Daarnaast is Vives sterk in praktijkgericht onderzoek en dienstverlening, waarbij het bedrijven en organisaties oplossingen aanreikt voor diverse complexe vraagstukken.",
     "SECTION6_BUTTON":"Meer info"
+  },
+  "FOOTER":{
+    "TITLE1":"Mijn upcycle your waste",
+    "LOG_IN":"Inloggen",
+    "REGISTER":"Registreren",
+    "MY_ITEMS":"Mijn items",
+    "MY_FAVORTITES":"Mijn favorieten",
+    "SETTINGS":"Instellingen",
+    "TITLE2":"Over upcycle your waste",
+    "INFO":"Algememe info",
+    "QUESTIONS":"Veel gestelde vragen",
+    "CONTACT_US": "Contacteer ons",
+    "FEEDBACK":"Geef je feedback",
+    "TITLE3":"Upcycle your waste app",
+    "DOWNLOAD":"Download de app uit de Playstore of Appstore.",
+    "CONDITIONS":"Gebruiksvoorwaarden",
+    "COOKIE":"Cookiebeleid",
+    "PRIVACY":"Privacy beleid",
+    "PRIVACY_CONDITIONS":"Privacy voorkeuren beheren"
+  },
+  "SEARCHBAR":{
+    "PLACEHOLDER1":"Zoek in de database...",
+    "PLACEHOLDER2":"Zoek op kernwoorden, locatie, materialen, ...."
+  },
+  "ITEMS_PAGE":{
+    "CATEGORY_FILTER_TITLE":"Filter op categorie",
+    "ADD_ITEM":"Voeg toe",
+    "USE_MY_LOCATION":"Gebruik mijn locatie",
+    "FILTER":"Filter",
+    "LIST":"Lijst",
+    "MAP":"Kaart",
+    "COMBI":"Kaart/lijst"
+  },
+  "CARD":{
+    "MORE_INFO":"Meer Info"
+  },
+  "ITEM_DETAIL_PAGE":{
+    "SHOW_ON_MAP":"Locatie op de kaart",
+    "MORE_INFO":"Meer info & contact",
+    "ADRES":"Adres",
+    "CONTACT":"Contact",
+    "LINK":"Kom hier meer te weten",
+    "MATERIALS":"Materialen",
+    "TAGS":"Tags"
   }
 }

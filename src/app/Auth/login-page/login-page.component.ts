@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { first } from 'rxjs';
 import { selectisLoggedIn } from 'src/app/store/authstate/auth.selector';
@@ -16,6 +16,7 @@ export class LoginPageComponent implements OnInit {
 
   errorMessage = '';
   isLoading = false;
+  url:string = "";
 
   offer_validation_messages = {
     'email': [
@@ -27,11 +28,18 @@ export class LoginPageComponent implements OnInit {
     ]
   }
 
-  constructor(private auth: AuthService, private fb: FormBuilder, private router: Router, private store: Store) {
+  constructor(private auth: AuthService, private fb: FormBuilder, private router: Router, private store: Store, private route: ActivatedRoute) {
       this.loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
         remember: [false]
+      });
+      const paramsub = this.route.paramMap.subscribe(params => {
+        var url = params.get('url');
+        if(url){
+          this.url = url;
+          console.log(url)
+        }
       });
    }
 
@@ -50,10 +58,26 @@ export class LoginPageComponent implements OnInit {
           this.auth.login(this.loginForm.value).pipe(first()).subscribe({
             next: data => {
               this.isLoading = false;
-              this.router.navigate(['/account', 'profile']);
+
+              if(this.url != ""){
+                this.auth.verfiyaccount(this.url).pipe(first()).subscribe({
+                  next: data => {
+                    this.router.navigate(['/account','profile']);
+                  },
+                  error: err => {
+                    console.log(err)
+                  }
+                });
+              }else{
+                this.router.navigate(['/account', 'profile']);
+              }
             },
             error: err_res => {
               this.isLoading = false;
+              console.log(err_res);
+              if(err_res.error.message){
+                this.errorMessage = err_res.error.message
+              }
               if(err_res.error.errors.email){
                 this.errorMessage = err_res.error.errors.email;
               }

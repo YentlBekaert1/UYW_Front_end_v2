@@ -27,7 +27,6 @@ const routes: Routes = [
   {
     path: "forbidden",
     component: ForbiddenPageComponent,
-    canActivate: [ProfileGuard],
   },
   {
     path: "home",
@@ -95,6 +94,10 @@ const routes: Routes = [
     canActivate: [ProfileGuard],
   },
   {
+    path: "login/:url",
+    component: LoginPageComponent,
+  },
+  {
     path: "register",
     component: RegisterPageComponent,
     canActivate: [ProfileGuard],
@@ -112,17 +115,14 @@ const routes: Routes = [
   {
     path: "termsofcondition",
     component: TermsofconditonsComponent,
-    canActivate: [ProfileGuard],
   },
   {
     path: "email/verify",
     component: EmailVerfiyPageComponent,
-    canActivate: [ProfileGuard],
   },
   {
     path: "email/verify/:url",
     component: VerifyControlComponent,
-    canActivate: [ProfileGuard],
   },
   {
       path: "**",

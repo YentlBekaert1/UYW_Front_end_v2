@@ -1,9 +1,12 @@
 import { Component, EventEmitter, OnInit, Output, Input,SimpleChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Category } from 'src/app/store/categorystate/category.model';
+import { selectCategories } from 'src/app/store/categorystate/category.selector';
 import { setinitialPageURL, updateCategories } from 'src/app/store/filterstate/filter.actions';
 import { FilterState } from 'src/app/store/filterstate/filter.state';
-import { Categories } from 'src/app/_models/categories';
+import { selectedLang } from 'src/app/store/languagestate/lang.selector';
+
 
 @Component({
   selector: 'app-category-buttons',
@@ -15,19 +18,32 @@ export class CategoryButtonsComponent implements AfterViewInit {
 
   @ViewChild('categories', { read: ElementRef }) categories!: ElementRef<HTMLInputElement>;
 
-  categories_array: Categories[] = [
-    { key: 1, name:"afval", image:"../../assets/category-logos/afval.svg"},
-    { key: 2, name:"inspiratie", image:"../../assets/category-logos/inspiratie.svg"},
-    { key: 3, name:"persoon", image:"../../assets/category-logos/mens.svg"},
-    { key: 4, name:"organisatie", image:"../../assets/category-logos/organisatie.svg"},
-    { key: 5, name:"technologie", image:"../../assets/category-logos/technologie.svg"},
-    // { key: 6, name:"events", image:"../../assets/category-logos/technologie.svg"},
-  ];
+  // categories_array: Categories[] = [
+  //   { key: 1, name:"afval", image:"../../assets/category-logos/afval.svg"},
+  //   { key: 2, name:"inspiratie", image:"../../assets/category-logos/inspiratie.svg"},
+  //   { key: 3, name:"persoon", image:"../../assets/category-logos/mens.svg"},
+  //   { key: 4, name:"organisatie", image:"../../assets/category-logos/organisatie.svg"},
+  //   { key: 5, name:"technologie", image:"../../assets/category-logos/technologie.svg"},
+  // ];
 
   active_categories: number[];
   active_cat: number = 0;
 
-  constructor(private route: ActivatedRoute, private store: Store<FilterState>, private router: Router) { }
+  categories_array: Category[];
+  categories_array$ = this.store.select(selectCategories);
+
+  lang$ = this.store.select(selectedLang);
+  lang: string;
+
+  constructor(private route: ActivatedRoute, private store: Store, private router: Router) {
+    this.lang$.subscribe(res => {
+      this.lang =  res
+    });
+    
+    this.categories_array$.subscribe(res => {
+      this.categories_array =  res
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['categorieFilters']){
@@ -35,7 +51,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
       active_categories.forEach(cat => {
         console.log(cat);
         this.categories_array.forEach(element => {
-          if(parseInt(cat) === element.key){
+          if(parseInt(cat) === element.id){
            //this.categories.nativeElement.children[element.key-1].classList.add('active');
           }
         });
@@ -46,7 +62,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.categorieFilters.forEach(filter_el => {
        this.categories_array.forEach(categorie => {
-          if(filter_el === categorie.key){
+          if(filter_el === categorie.id){
             this.categories.nativeElement.children[filter_el-1].classList.add('active');
           }
       });
@@ -62,16 +78,16 @@ export class CategoryButtonsComponent implements AfterViewInit {
     // new_array.pop();
     console.log(this.active_cat)
     this.categories_array.forEach(element => {
-      if(element.key == category_id && category_id != this.active_cat){
-        this.categories.nativeElement.children[element.key-1].classList.add('active');
+      if(element.id == category_id && category_id != this.active_cat){
+        this.categories.nativeElement.children[element.id-1].classList.add('active');
         new_array.push(category_id);
         this.active_cat = category_id;
-      }else if(element.key == category_id && category_id == this.active_cat){
-        this.categories.nativeElement.children[element.key-1].classList.remove('active');
+      }else if(element.id == category_id && category_id == this.active_cat){
+        this.categories.nativeElement.children[element.id-1].classList.remove('active');
         this.active_cat = 0
       }
       else{
-        this.categories.nativeElement.children[element.key-1].classList.remove('active');
+        this.categories.nativeElement.children[element.id-1].classList.remove('active');
       }
     });
     //voor filter met meerder categorieen

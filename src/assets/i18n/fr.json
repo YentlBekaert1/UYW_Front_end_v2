@@ -1,4 +1,18 @@
 {
+  "NAV":{
+    "HOME" : "Home",
+    "DATABASE" : "Base de données",
+    "LOGIN" : "Login",
+    "WELCOME" : "Bienvenue",
+    "SEARCH" : "Search",
+    "ACCOUNT" : "Compte",
+    "ACCOUNT_INFO" : "Aperçu du compte",
+    "MY_FAVORITES" : "Mes favoris",
+    "MY_ITEMS" : "Mes articles ajoutés",
+    "ADD_ITEM" : "Ajouter un élément",
+    "SETTINGS" : "Paramètres",
+    "LOG_OUT" : "Déconnexion"
+  },
   "HOMEPAGE":{
     "TITLE_BLACK" : "Une source circulaire d'inspiration et d'expertise",
     "TITLE_GREEN" : "autour de la réutilisation des matériaux",
@@ -31,6 +45,50 @@
     "SECTION6_CARD3_TITLE" : "Hogeschool Vives",
     "SECTION6_CARD3_DESCRIPTION" : "VIVES a des campus à Bruges, Courtrai, Ostende, Roeselare et Torhout. En outre, Vives est forte dans la recherche et les services basés sur la pratique, fournissant aux entreprises et aux organisations des solutions à diverses questions complexes.",
     "SECTION6_BUTTON" : "Plus d'informations"
+  },
+  "FOOTER":{
+    "TITLE1" : "Mon upcycle vos déchets",
+    "LOG_IN" : "Login",
+    "REGISTER" : "Register",
+    "MY_ITEMS" : "Mes articles",
+    "MY_FAVORTITES" : "Mes favoris",
+    "SETTINGS" : "Paramètres",
+    "TITLE2" : "A propos de upcycler vos déchets",
+    "INFO" : "Info générale",
+    "QUESTIONS" : "Questions fréquemment posées",
+    "CONTACT_US" : "Nous contacter",
+    "FEEDBACK" : "Veuillez donner votre avis",
+    "TITLE3" : "Application Upcycle your waste",
+    "DOWNLOAD" : "Téléchargez l'application depuis le Playstore ou l'Appstore.",
+    "CONDITIONS" : "Conditions d'utilisation",
+    "COOKIE" : "Politique en matière de cookies",
+    "PRIVACY" : "Politique de confidentialité",
+    "PRIVACY_CONDITIONS" : "Gérer les préférences en matière de confidentialité"
+  },
+  "SEARCHBAR":{
+    "PLACEHOLDER1" : "Rechercher dans la base de données...",
+    "PLACEHOLDER2" : "Recherche par mots-clés, emplacement, matériaux, ...."
+  },
+  "ITEMS_PAGE":{
+    "CATEGORY_FILTER_TITLE" : "Filtrer par catégorie",
+    "ADD_ITEM" : "Ajouter",
+    "USE_MY_LOCATION" : "Utilisez mon emplacement",
+    "FILTRE" : "Filtre",
+    "LISTE" : "Liste",
+    "MAP" : "Carte",
+    "COMBI" : "Carte/Liste"
+  },
+  "CARD":{
+    "MORE_INFO":"Plus d'info"
+  },
+  "ITEM_DETAIL_PAGE":{
+    "SHOW_ON_MAP" : "Localisation sur la carte",
+    "MORE_INFO" : "Plus d'infos et contact",
+    "ADRES" : "Adresse",
+    "CONTACT" : "Contact",
+    "LINK" : "Pour en savoir plus, cliquez ici",
+    "MATERIALS" : "Matériaux",
+    "TAGS" : "Tags"
   }
 }
 

@@ -4,7 +4,7 @@ import { OfferDetailPageComponent } from './offer-detail-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { ImageSliderComponent } from './image-slider/image-slider.component';
 import { DetailMapComponent } from './detail-map/detail-map.component';
-
+import { TranslateModule } from '@ngx-translate/core'
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { DetailMapComponent } from './detail-map/detail-map.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class OfferDetailPageModule { }
