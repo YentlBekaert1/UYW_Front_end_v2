@@ -7,6 +7,7 @@ import { DragDropFileUploadDirective } from './drag-drop-file-upload.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    AngularEditorModule
+    AngularEditorModule,
+    TranslateModule
   ]
 })
 export class EditOfferPageModule { }

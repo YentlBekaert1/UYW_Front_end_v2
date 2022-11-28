@@ -5,18 +5,18 @@
   <div class="addoffer-page-container" (click)="containerClicked()">
     <div class="content">
       <div class="crumbs">
-        <span><a [routerLink]="['/home']">Home</a></span>
+        <span><a [routerLink]="['/home']">{{"ADD_OFFER_PAGE.CRUMB1" | translate}}</a></span>
         <span>-</span>
-        <span><a [routerLink]="['/account/items']">Mijn Items</a></span>
+        <span><a [routerLink]="['/account/items']">{{"ADD_OFFER_PAGE.CRUMB2" | translate}}</a></span>
         <span>-</span>
-        <span>Voeg offer toe</span>
+        <span>{{"ADD_OFFER_PAGE.CRUMB3" | translate}}</span>
        </div>
-       <h1>Voeg een nieuw item toe.</h1>
-       <p>Hier kun je een item toevoegen.</p>
+       <h1>{{"ADD_OFFER_PAGE.TITLE" | translate}}</h1>
+       <p>{{"ADD_OFFER_PAGE.DESCRIPTION" | translate}}</p>
        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-        <h2>Algemene info</h2>
-        <label for="title">Titel</label>
+        <h2>{{"ADD_OFFER_PAGE.TITLE_AG_INFO" | translate}}</h2>
+        <label for="title">{{"ADD_OFFER_PAGE.LABEL_NAME" | translate}}</label>
         <input type="text" class="form-control" formControlName="title" name="title" [ngClass]="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched) ? 'alert-danger' : ''"/>
 
         <div *ngFor="let validation of offer_validation_messages.title">
@@ -25,7 +25,7 @@
           </div>
         </div>
 
-        <label for="description">Beschrijving</label>
+        <label for="description">{{"ADD_OFFER_PAGE.LABEL_DESCRIPTION" | translate}}</label>
         <!-- <textarea class="form-control" formControlName="description" name="description" rows="10" cols="50"  [ngClass]="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched) ? 'alert-danger' : ''"></textarea> -->
         <angular-editor formControlName="description" [config]="editorConfig"></angular-editor>
         <div *ngFor="let validation of offer_validation_messages.description">
@@ -34,15 +34,18 @@
           </div>
         </div>
 
-        <h2>Categorie</h2>
+        <h2>{{"ADD_OFFER_PAGE.TITLE_CATEGORY" | translate}}</h2>
         <div class="categories" #categories>
-          <div *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.key)">
-            <img src="{{categorie.image}}" alt="{{categorie.name}}">
+          <div *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.id)">
+            <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
             <span>{{categorie.name}}</span>
           </div>
          </div>
-         <p>
-          Gekozen categorie: <span>{{selectedCategory.name}}</span>
+         <p  *ngIf="selectedCategory">
+          {{"ADD_OFFER_PAGE.CHOOSED_CATEGORY" | translate}}:
+          <span *ngIf="lang == 'nl'">{{selectedCategory.name_nl}}</span>
+          <span *ngIf="lang == 'fr'">{{selectedCategory.name_fr}}</span>
+          <span *ngIf="lang == 'en'">{{selectedCategory.name_en}}</span>
          </p>
          <div *ngFor="let validation of offer_validation_messages.category_id">
             <div *ngIf="form.get('category_id').hasError(validation.type) && (form.get('category_id').dirty || form.get('category_id').touched)" class="alert alert-danger">
@@ -50,25 +53,25 @@
             </div>
         </div>
 
-        <h2>Materialen</h2>
-        <p>Je kunt meerdere materialen selecteren. Selecteer een materiaal en/of submateriaal en druk op de knop om deze toe te voegen.</p>
+        <h2>{{"ADD_OFFER_PAGE.TITLE_MATERIALS" | translate}}</h2>
+        <p>{{"ADD_OFFER_PAGE.DESCRIPTION_MATERIALS" | translate}}</p>
         <div class="inputs-select">
           <div>
-            <label for="material">Materiaal</label>
+            <label for="material">{{"ADD_OFFER_PAGE.LABEL_MATERIALS" | translate}}</label>
             <select name="material" formControlName="material" class="form-control" (change)="getSubMaterials($event)">
-              <option value="0">Selecteer</option>
+              <option value="0">{{"ADD_OFFER_PAGE.SELECT" | translate}}</option>
               <option *ngFor="let material of materials" value="{{material.id}}">{{material.name}}</option>
             </select>
           </div>
          <div>
-          <label for="submaterial">Submateriaal</label>
+          <label for="submaterial">{{"ADD_OFFER_PAGE.LABEL_SUBMATERIALS" | translate}}</label>
           <select name="submaterial" formControlName="submaterial" class="form-control">
-            <option value="0">Selecteer</option>
+            <option value="0">{{"ADD_OFFER_PAGE.SELECT" | translate}}</option>
             <option *ngFor="let submaterial of submaterials" value="{{submaterial.id}}">{{submaterial.name}}</option>
           </select>
          </div>
          <div>
-          <button type="button" (click)="addToSelectedMaterials()">toevoegen</button>
+          <button type="button" (click)="addToSelectedMaterials()">{{"ADD_OFFER_PAGE.ADD_BUTTON" | translate}}</button>
          </div>
         </div>
         <div *ngFor="let validation of offer_validation_messages.materials">
@@ -91,18 +94,18 @@
           </div>
         </div>
 
-        <h2>Tags</h2>
-        <p>Je kunt meerdere tags selecteren of zelf één toevoegen. Met deze tags kunnen later de zoekresultaten verfijnd worden.</p>
+        <h2>{{"ADD_OFFER_PAGE.TITLE_TAGS" | translate}}</h2>
+        <p>{{"ADD_OFFER_PAGE.DESCRIPTION_TAGS" | translate}}</p>
         <div class="inputs-select tag">
           <div>
-            <label for="tag">Tag</label>
+            <label for="tag">{{"ADD_OFFER_PAGE.LABEL_TAGS" | translate}}</label>
             <input type="text" name="tag" formControlName="tag" class="form-control" (keyup)="autocompleteTag($event)">
             <div class="taglist" #taglist>
               <div class="taglistitem" *ngFor="let tag of tags" (click)="taglistitemclicked(tag.id, tag.name)">{{tag.name}}</div>
             </div>
           </div>
           <div>
-            <button type="button" (click)="addToSelectedTags()">toevoegen</button>
+            <button type="button" (click)="addToSelectedTags()">{{"ADD_OFFER_PAGE.ADD_BUTTON" | translate}}</button>
           </div>
         </div>
         <div *ngFor="let validation of offer_validation_messages.tags">
@@ -122,12 +125,12 @@
         </div>
 
 
-        <h2>Locatie</h2>
-        <label for="street_number">Straat en nummer</label>
+        <h2>{{"ADD_OFFER_PAGE.TITLE_LOCATION" | translate}}</h2>
+        <label for="street_number">{{"ADD_OFFER_PAGE.LABEL_STREET" | translate}}</label>
         <input type="text" class="form-control" formControlName="street_number" name="street_number" [ngClass]="form.controls['street_number'].invalid && (form.controls['street_number'].dirty || form.controls['street_number'].touched) ? 'alert-danger' : ''"/>
-        <label for="city">Gemeente</label>
+        <label for="city">{{"ADD_OFFER_PAGE.LABEL_CITY" | translate}}</label>
         <input type="text" class="form-control" formControlName="city" name="city" [ngClass]="form.controls['city'].invalid && (form.controls['city'].dirty || form.controls['city'].touched) ? 'alert-danger' : ''"/>
-        <label for="country">Land</label>
+        <label for="country">{{"ADD_OFFER_PAGE.LABEL_COUNTRY" | translate}}</label>
         <input type="text" class="form-control" formControlName="country" name="country" [ngClass]="form.controls['country'].invalid && (form.controls['country'].dirty || form.controls['country'].touched) ? 'alert-danger' : ''"/>
         <div *ngFor="let validation of offer_validation_messages.street_number">
           <div *ngIf="form.get('street_number').hasError(validation.type) && (form.get('street_number').dirty || form.get('street_number').touched)" class="alert alert-danger">
@@ -145,8 +148,8 @@
           </div>
         </div>
 
-        <h2>Contact gegevens (optioneel)</h2>
-        <label for="contact">Contact</label>
+        <h2>{{"ADD_OFFER_PAGE.TITLE_CONTACT" | translate}}</h2>
+        <label for="contact">{{"ADD_OFFER_PAGE.LABEL_CONTACT" | translate}}</label>
         <input type="text" class="form-control" formControlName="contact" name="contact" [ngClass]="form.controls['contact'].invalid && (form.controls['contact'].dirty || form.controls['contact'].touched) ? 'alert-danger' : ''"/>
         <div *ngFor="let validation of offer_validation_messages.contact">
           <div *ngIf="form.get('contact').hasError(validation.type) && (form.get('contact').dirty || form.get('contact').touched)" class="alert alert-danger">
@@ -154,7 +157,7 @@
           </div>
         </div>
 
-        <label for="url">URL naar eigen site</label>
+        <label for="url">{{"ADD_OFFER_PAGE.LABEL_URL_TO_SITE" | translate}}</label>
         <input type="text" class="form-control" formControlName="url" name="url" [ngClass]="form.controls['url'].invalid && (form.controls['url'].dirty || form.controls['url'].touched) ? 'alert-danger' : ''"/>
         <div *ngFor="let validation of offer_validation_messages.url">
           <div *ngIf="form.get('url').hasError(validation.type) && (form.get('url').dirty || form.get('url').touched)" class="alert alert-danger">
@@ -162,10 +165,10 @@
           </div>
         </div>
 
-        <h2>Afbeeldingen</h2>
+        <h2>{{"ADD_OFFER_PAGE.TITLE_PICTURES" | translate}}</h2>
           <div class="image-inputs">
             <div class="fileupload" appDragDropFileUpload (click)="fileField.click()" (fileDropped)="fileupload($event)">
-                <span class="ddinfo">Choose a file or drag here</span>
+                <span class="ddinfo">{{"ADD_OFFER_PAGE.LABEL_PICTURES" | translate}}</span>
                 <input
                   type="file"
                   name="image"
@@ -196,9 +199,9 @@
         <div class="from-bottom">
           <div>
             <input type="checkbox" name="terms" id="" formControlName="terms">
-            <label for="terms">Ik ga akkoord met de <a href="">algemene vooraarden</a></label>
+            <label for="terms">{{"ADD_OFFER_PAGE.LABEL_TOC" | translate}} <a href="">{{"ADD_OFFER_PAGE.LINK_TOC" | translate}}</a></label>
           </div>
-          <button type="submit">Item toevoegen</button>
+          <button type="submit">{{"ADD_OFFER_PAGE.SUBMIT_BUTTON" | translate}}</button>
         </div>
         <div *ngFor="let validation of offer_validation_messages.terms">
           <div *ngIf="form.get('terms').hasError(validation.type) && (form.get('terms').touched)" class="alert alert-danger">

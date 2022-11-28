@@ -11,6 +11,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {TranslateModule} from '@ngx-translate/core';
+
 @NgModule({
   declarations: [
     AccountPageComponent,
@@ -29,7 +31,8 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule
   ]
 })
 export class AccountPageModule { }

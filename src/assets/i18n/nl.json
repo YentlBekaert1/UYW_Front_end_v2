@@ -89,5 +89,78 @@
     "LINK":"Kom hier meer te weten",
     "MATERIALS":"Materialen",
     "TAGS":"Tags"
+  },
+  "FORBIDDEN_PAGE":{
+    "TITLE": "Forbidden",
+    "DESCRIPTION":"De pagina die je wilt bezoeken is buiten bereik of bestaat niet.",
+    "BUTTON":"Ga terug naar de home pagina"
+  },
+  "ADD_OFFER_PAGE":{
+    "CRUMB1":"Home",
+    "CRUMB2":"Mijn Items",
+    "CRUMB3":"Voeg offer toe",
+    "TITLE":"Voeg een nieuw item toe aan onze database.",
+    "DESCRIPTION":"Via deze pagina kunt u jouw data op de site plaatsen.",
+    "TITLE_AG_INFO":"Algemene info",
+    "LABEL_NAME":"Titel van het item",
+    "LABEL_DESCRIPTION":"Beschrijving van het item",
+    "TITLE_CATEGORY":"Categorie",
+    "NOT_SELECTED":"Geen categorie geselcteerd",
+    "CHOOSED_CATEGORY":"Gekozen categorie",
+    "TITLE_MATERIALS":"Materialen",
+    "DESCRIPTION_MATERIALS":"Je kunt meerdere materialen selecteren. Selecteer een materiaal en/of submateriaal en druk op de knop om deze toe te voegen.",
+    "LABEL_MATERIALS":"Materiaal",
+    "LABEL_SUBMATERIALS":"Submateriaal",
+    "SELECT":"Selecteer",
+    "ADD_BUTTON":"Voeg toe",
+    "TITLE_TAGS":"Tags",
+    "DESCRIPTION_TAGS":"Je kunt meerdere tags selecteren of zelf één toevoegen. Met deze tags kunnen later de zoekresultaten verfijnd worden.",
+    "LABEL_TAGS":"Tag naam",
+    "TITLE_LOCATION":"Locatie van het item",
+    "LABEL_STREET":"Straat en nummer",
+    "LABEL_CITY":"Gemeente",
+    "LABEL_COUNTRY":"Land",
+    "TITLE_CONTACT":"Contact gegevens (optioneel)",
+    "LABEL_CONTACT":"Contact",
+    "LABEL_URL_TO_SITE":"URL link naar eigen site (start met https://)",
+    "TITLE_PICTURES":"Afbeeldingen",
+    "LABEL_PICTURES":"Kies een bestand of sleep u foto naar hier",
+    "LABEL_TOC":"Ik ga akkoord met de",
+    "LINK_TOC":"Algemene voorwaarden",
+    "SUBMIT_BUTTON":"Item toevoegen"
+  },
+  "EDIT_OFFER_PAGE":{
+    "CRUMB3":"Wijzig item",
+    "TITLE":"Pas je item aan",
+    "DESCRIPTION":"Hier kun je jouw item aanpassen.",
+    "ADDED_PICTURS":"Toegevoegde afbeeldingen",
+    "SUBMIT_BUTTON":"Item wijzigen"
+  },
+  "MESSAGES":{
+    "CATEGORY1":"Categorie is vereist",
+    "TITLE1":"Titel is verplicht",
+    "TITLE2":"Titel moet minimaal 1 karakters lang zijn",
+    "TITLE3":"Titel mag niet meer dan 150 tekens lang zijn",
+    "DESCRIPTION1":"Beschrijving is verplicht",
+    "DESCRIPTION2":"Beschrijving moet minimaal 1 karakters lang zijn",
+    "DESCRIPTION3":"Beschrijving is te lang",
+    "MATERIALS":"Er kunnen maar 20 materialen zijn",
+    "SUBMATERIALS":"Er kunnen maar 20 submaterialen zijn",
+    "TAGS":"Er kunnen maar 20 tags zijn",
+    "NEW_TAGS":"Er kunnen maar 20 tags zijn",
+    "STREET_NUMBER":"Straat en nummer kunnen niet meer dan 250 tekens lang zijn",
+    "CITY":"Stad kan niet meer dan 250 tekens lang zijn",
+    "COUNTRY":"Land kan niet meer dan 250 tekens lang zijn",
+    "URL":"Url kan niet langer zijn dan 250 tekens",
+    "CONTACT":"Contact kan niet langer zijn dan 250 tekens",
+    "TERMS":"U moet de voorwaarden accepteren",
+    "IMAGES1":"De maximale grootte in 2MB",
+    "IMAGES2":"U dient akkoord te gaan met de voorwaarden"
+  },
+  "LOGIN_PAGE":{
+
+  },
+  "REGISTER_PAGE":{
+
   }
 }

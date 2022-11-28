@@ -9,6 +9,11 @@ import { TagserviceService } from '../_services/tagservice.service';
 import { cutomValidators } from './customvalidators';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
+import { selectedLang } from '../store/languagestate/lang.selector';
+import { Category } from '../store/categorystate/category.model';
+import { selectCategories } from '../store/categorystate/category.selector';
 
 @Component({
   selector: 'app-edit-offer-page',
@@ -24,13 +29,15 @@ export class EditOfferPageComponent implements OnInit {
   form!: FormGroup;
   isSubmitting = false;
 
-  categories_array: {key: number, name: string, image: string}[] = [
-    { key: 1, name:"Afval", image:"../../assets/category-logos/afval.svg"},
-    { key: 2, name:"Inspiratie", image:"../../assets/category-logos/inspiratie.svg"},
-    { key: 3, name:"Persoon", image:"../../assets/category-logos/mens.svg"},
-    { key: 4, name:"Organisatie", image:"../../assets/category-logos/organisatie.svg"},
-    { key: 5, name:"Technologie", image:"../../assets/category-logos/technologie.svg"},
-  ];
+  // categories_array: {key: number, name: string, image: string}[] = [
+  //   { key: 1, name:"Afval", image:"../../assets/category-logos/afval.svg"},
+  //   { key: 2, name:"Inspiratie", image:"../../assets/category-logos/inspiratie.svg"},
+  //   { key: 3, name:"Persoon", image:"../../assets/category-logos/mens.svg"},
+  //   { key: 4, name:"Organisatie", image:"../../assets/category-logos/organisatie.svg"},
+  //   { key: 5, name:"Technologie", image:"../../assets/category-logos/technologie.svg"},
+  // ];
+  categories_array: Category[];
+  categories_array$ = this.store.select(selectCategories);
 
   iArr = [];
   fileArr = [];
@@ -40,7 +47,18 @@ export class EditOfferPageComponent implements OnInit {
   image_error = '';
   startfileArr = [];
   positionCount = 0;
-  selectedCategory: {key: number, name: string, image: string} = {key: 0, name: 'Geen categorie geselecteerd', image: ''};
+  selectedCategory: Category = {
+    id: 1,
+    name: "",
+    name_nl: "",
+    name_en: "",
+    name_fr: "",
+    description: "",
+    description_nl: "",
+    description_en: "",
+    description_fr: "",
+    category_image: "",
+  };
 
   materials: {id: number, name: string}[] = [];
   submaterials: {id: number, name: string}[] = [];
@@ -51,6 +69,9 @@ export class EditOfferPageComponent implements OnInit {
   tagtimeout = null;
   selected_tags_count: number = 1;
   selected_tags: {key: number, tagname: string, new: boolean}[] = [];
+
+  lang$ = this.store.select(selectedLang);
+  lang: string;
 
   offer_validation_messages = {
     'category_id': [
@@ -151,8 +172,18 @@ export class EditOfferPageComponent implements OnInit {
     private tagservice: TagserviceService,
     private geoservice: GeosearchService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService,
+    private store: Store
     ) {
+
+    this.lang$.subscribe(res => {
+      this.lang =  res
+    });
+
+    this.categories_array$.subscribe(res => {
+      this.categories_array =  res
+    });
 
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(150)]],
@@ -176,7 +207,111 @@ export class EditOfferPageComponent implements OnInit {
       newimages: [],
       editimages: [],
       category_id:['',Validators.required]
+    });
+
+    this.translate.get('MESSAGES').subscribe((res)=>{
+      this.offer_validation_messages = {
+        'category_id': [
+          { type: 'required', message: res.CATEGORY1 }
+        ],
+        'title': [
+          { type: 'required', message: res.TITLE1 },
+          { type: 'minlength', message: res.TITLE2 },
+          { type: 'maxlength', message: res.TITLE3 },
+        ],
+        'description': [
+          { type: 'required', message: res.DESCRIPTION2 },
+          { type: 'minlength', message: res.DESCRIPTION2 },
+          { type: 'maxlength', message: res.DESCRIPTION3},
+        ],
+        'materials': [
+          { type: 'betweenLength', message: res.MATERIALS},
+        ],
+        'submaterials': [
+          { type: 'betweenLength', message: res.SUBMATERIALS },
+        ],
+        'tags': [
+          { type: 'betweenLength', message: res.TAGS},
+        ],
+        'new_tags': [
+          { type: 'betweenLength', message: res.NEW_TAGS },
+        ],
+        'street_number': [
+          { type: 'maxlength', message: res.STREET_NUMBER },
+        ],
+        'city': [
+          { type: 'maxlength', message: res.CITY },
+        ],
+        'country': [
+          { type: 'maxlength', message: res.COUNTRY },
+        ],
+        'url': [
+          { type: 'maxlength', message: res.URL},
+        ],
+        'contact': [
+          { type: 'maxlength', message: res.CONTACT },
+        ],
+        'terms': [
+          { type: 'required', message: res.TERMS }
+        ],
+        'images': [
+          { type: 'size', message: res.IMAGES2 },
+          { type: 'extention', message: res.IMAGES2 }
+        ]
+      }
     })
+
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.offer_validation_messages = {
+        'category_id': [
+          { type: 'required', message: event.translations.MESSAGES.CATEGORY1 }
+        ],
+        'title': [
+          { type: 'required', message: event.translations.MESSAGES.TITLE1 },
+          { type: 'minlength', message: event.translations.MESSAGES.TITLE2 },
+          { type: 'maxlength', message: event.translations.MESSAGES.TITLE3 },
+        ],
+        'description': [
+          { type: 'required', message: event.translations.MESSAGES.DESCRIPTION2 },
+          { type: 'minlength', message: event.translations.MESSAGES.DESCRIPTION2 },
+          { type: 'maxlength', message: event.translations.MESSAGES.DESCRIPTION3},
+        ],
+        'materials': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.MATERIALS},
+        ],
+        'submaterials': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.SUBMATERIALS },
+        ],
+        'tags': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.TAGS},
+        ],
+        'new_tags': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.NEW_TAGS },
+        ],
+        'street_number': [
+          { type: 'maxlength', message: event.translations.MESSAGES.STREET_NUMBER },
+        ],
+        'city': [
+          { type: 'maxlength', message: event.translations.MESSAGES.CITY },
+        ],
+        'country': [
+          { type: 'maxlength', message: event.translations.MESSAGES.COUNTRY },
+        ],
+        'url': [
+          { type: 'maxlength', message: event.translations.MESSAGES.URL},
+        ],
+        'contact': [
+          { type: 'maxlength', message: event.translations.MESSAGES.CONTACT },
+        ],
+        'terms': [
+          { type: 'required', message: event.translations.MESSAGES.TERMS }
+        ],
+        'images': [
+          { type: 'size', message: event.translations.MESSAGES.IMAGES2 },
+          { type: 'extention', message: event.translations.MESSAGES.IMAGES2 }
+        ]
+      }
+    });
    }
 
   ngOnInit(): void {
@@ -387,11 +522,11 @@ export class EditOfferPageComponent implements OnInit {
 
  //  --------------------------------------- category  --------------------------------------- //
   categoryClicked(category_key: number){
-    const found = this.categories_array.find(element => element.key === category_key);
+    const found = this.categories_array.find(element => element.id === category_key);
     this.selectedCategory = found;
     this.setCategoryActive(category_key);
     this.form.patchValue({
-      category_id: this.selectedCategory.key
+      category_id: this.selectedCategory.id
     })
   }
   setCategoryActive(category_number: number){
