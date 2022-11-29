@@ -226,6 +226,18 @@
     "CARDTITLE2": "Total Views",
     "CARDTITLE3": "Total Likes",
     "SUBTITLE2": "My added items:",
-    "SUBTITLE3": "Graph likes and views:"
+    "SUBTITLE3": "Graph likes and views:",
+    "TABLE_LABEL1": "Actions",
+    "TABLE_LABEL2": "Image",
+    "TABLE_LABEL3": "Title",
+    "TABLE_LABEL4": "Category",
+    "TABLE_LABEL5": "Likes",
+    "TABLE_LABEL6": "Views",
+    "TABLE_LABEL7": "Status",
+    "TABLE_LABEL8": "Created on",
+    "TABLE_ACTION1": "View",
+    "TABLE_ACTION2": "Edit item",
+    "TABLE_ACTION3": "Change status",
+    "TABLE_ACTION4": "Delete item"
   }
 }

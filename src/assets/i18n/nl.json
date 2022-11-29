@@ -226,6 +226,18 @@
     "CARDTITLE2":"Total Views",
     "CARDTITLE3":"Total Likes",
     "SUBTITLE2":"Mijn toegevoegde items:",
-    "SUBTITLE3":"Grafiek likes en views:"
+    "SUBTITLE3":"Grafiek likes en views:",
+    "TABLE_LABEL1":"Acties",
+    "TABLE_LABEL2":"Afbeelding",
+    "TABLE_LABEL3":"Titel",
+    "TABLE_LABEL4":"Categorie",
+    "TABLE_LABEL5":"Likes",
+    "TABLE_LABEL6":"Views",
+    "TABLE_LABEL7":"Status",
+    "TABLE_LABEL8":"Aangemaakt op",
+    "TABLE_ACTION1":"Bekijk",
+    "TABLE_ACTION2":"Wijzig item",
+    "TABLE_ACTION3":"Wijzig status",
+    "TABLE_ACTION4":"Verwijder item"
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, lastValueFrom, of, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
+import { SortDirection } from '@angular/material/sort';
 
 @Injectable({
   providedIn: 'root'
@@ -340,15 +341,17 @@ export class OfferService {
       );
    }
 
-  getUserOffers(){
-    const requesturl = environment.apiUrl + 'api/useroffers';
+  getUserOffers(sort: string, order: SortDirection, page: number){
+    console.log(sort, order, page)
+    const href = environment.apiUrl + 'api/useroffers';
+    const requestUrl = `${href}?sort=${sort}&order=${order}&page=${page + 1}`;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
       withCredentials: true,
     };
 
     return lastValueFrom(
-      this.http.get(requesturl, httpOptions)
+      this.http.get(requestUrl, httpOptions)
     );
   }
 }

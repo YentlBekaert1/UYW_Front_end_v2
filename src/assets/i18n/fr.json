@@ -226,7 +226,19 @@
     "CARDTITLE2" : "Total des vues",
     "CARDTITLE3" : "Total des appréciations",
     "SUBTITLE2" : "Mes articles ajoutés :",
-    "SUBTITLE3" : "Graphique des goûts et des opinions :"
+    "SUBTITLE3" : "Graphique des goûts et des opinions :",
+    "TABLE_LABEL1" : "Actions",
+    "TABLE_LABEL2" : "Image",
+    "TABLE_LABEL3" : "Titre",
+    "TABLE_LABEL4" : "Catégorie",
+    "TABLE_LABEL5" : "Aime",
+    "TABLE_LABEL6" : "Views",
+    "TABLE_LABEL7" : "Statut",
+    "TABLE_LABEL8" : "Créé le",
+    "TABLE_ACTION1" : "Vue",
+    "TABLE_ACTION2" : "Editer l'article",
+    "TABLE_ACTION3" : "Changement d'état",
+    "TABLE_ACTION4" : "Supprimer un élément"
   }
 }
 

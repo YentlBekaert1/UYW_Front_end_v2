@@ -14,6 +14,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatTableModule} from '@angular/material/table';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSortModule} from '@angular/material/sort';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatButtonModule,
     TranslateModule,
     MatTableModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatMenuModule
   ]
 })
 export class AccountPageModule { }

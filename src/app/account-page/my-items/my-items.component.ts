@@ -1,8 +1,12 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { OfferService } from 'src/app/_services/offer.service';
 import { environment } from 'src/environments/environment';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 export interface deleteDialogData {
   id: string;
@@ -21,27 +25,63 @@ export interface statusDialogData {
 })
 export class MyItemsComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('deleteContainer', { read: ElementRef }) deleteContainer!: ElementRef<HTMLInputElement>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   userOffers: any = [];
   url = environment.apiUrl;
 
-  isLoaded = false;
+  isLoaded = true;
   viewDelete = false;
 
+  displayedColumns: string[] = ['actions','image', 'title', 'category', 'likes', 'views', 'status', 'created'];
+  data: any = [];
 
-  deleteTop = 0;
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
 
   constructor(private offerservice: OfferService, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.offerservice.getUserOffers().then((res: any) =>{
-      this.userOffers = res.data;
-      this.isLoaded = true;
-    });
+  ngOnInit(): void {;
   }
 
   ngAfterViewInit(): void {
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+    this.getUserItems();
+  }
+
+  getUserItems(){
+    merge(this.sort.sortChange, this.paginator.page)
+    .pipe(
+      startWith({}),
+      switchMap(() => {
+        this.isLoadingResults = true;
+        return this.offerservice!.getUserOffers(
+          this.sort.active,
+          this.sort.direction,
+          this.paginator.pageIndex,
+        )
+      }),
+      map((data : any) => {
+        // Flip flag to show that loading has finished.
+        this.isLoadingResults = false;
+        this.isRateLimitReached = data === null;
+
+        if (data === null) {
+          return [];
+        }
+
+        // Only refresh the result length if there is new data. In case of rate
+        // limit errors, we do not want to reset the paginator to zero, as that
+        // would prevent users from re-triggering requests.
+
+        this.resultsLength = data.meta.total;
+        return data;
+      }),
+    )
+    .subscribe(data => (this.data = data.data));
   }
 
   showActions(event){
@@ -61,11 +101,7 @@ export class MyItemsComponent implements OnInit, AfterViewInit {
     deleteDialog.afterClosed().subscribe(result => {
       if(result != undefined){
         this.offerservice.deleteOfferById(result).then(res => {
-          this.isLoaded = false;
-          this.offerservice.getUserOffers().then((res: any) =>{
-            this.userOffers = res.data;
-            this.isLoaded = true;
-          });
+          this.getUserItems();
           }
         )
       }
@@ -79,11 +115,7 @@ export class MyItemsComponent implements OnInit, AfterViewInit {
       if(result != undefined){
         console.log(result)
         this.offerservice.statusOfferById(result[0], result[1]).then(res => {
-          this.isLoaded = false;
-          this.offerservice.getUserOffers().then((res: any) =>{
-            this.userOffers = res.data;
-            this.isLoaded = true;
-          });
+          this.getUserItems();
           }
         )
       }
