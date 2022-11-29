@@ -259,9 +259,9 @@ export class OfferService {
   }
 
 
-  getMaterials(){
+  getMaterials(lang: string){
 
-    const requesturl = environment.apiUrl + 'api/fr/materials';
+    const requesturl = environment.apiUrl + 'api/'+ lang +'/materials';
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),

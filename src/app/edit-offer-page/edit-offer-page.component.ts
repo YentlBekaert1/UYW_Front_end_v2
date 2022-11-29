@@ -311,6 +311,7 @@ export class EditOfferPageComponent implements OnInit {
           { type: 'extention', message: event.translations.MESSAGES.IMAGES2 }
         ]
       }
+      this.offerservice.getMaterials(event.lang).then(res => {this.materials = res['data']});
     });
    }
 
@@ -410,7 +411,7 @@ export class EditOfferPageComponent implements OnInit {
         });
       }
     });
-    this.offerservice.getMaterials().then(res => {this.materials = res['data']});
+    this.offerservice.getMaterials(this.lang).then(res => {this.materials = res['data']});
   }
 
   onSubmit(){

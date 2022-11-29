@@ -1,12 +1,34 @@
-
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
-  <label for="name">naam</label>
-  <input type="text" class="form-control" formControlName="name" name="name"/>
-  <label for="email">email</label>
-  <input type="text" class="form-control" formControlName="email" name="email"/>
-  <div class="btns">
-    <button type="submit">Sla op</button>
+<p>{{"ACCOUNT_PAGE.WELCOME1" | translate}} {{userData.name}}. {{"ACCOUNT_PAGE.WELCOME2" | translate}}</p>
+<h3>{{"ACCOUNT_PAGE.SUBTITLE1" | translate}}</h3>
+<div class="top-cards">
+  <div>
+    <span>{{dashbaordData.totalOffers}}</span>
+    <span>{{"ACCOUNT_PAGE.CARDTITLE1" | translate}}</span>
   </div>
-  <span>Opslaan werkt nog niet.</span>
-</form>
+  <div>
+    <span>{{dashbaordData.totalViews}}</span>
+    <span>{{"ACCOUNT_PAGE.CARDTITLE2" | translate}}</span>
+  </div>
+  <div>
+    <span>{{dashbaordData.totalLikes}}</span>
+    <span>{{"ACCOUNT_PAGE.CARDTITLE3" | translate}}</span>
+  </div>
+</div>
+<div class="myitems">
+  <h3>{{"ACCOUNT_PAGE.SUBTITLE2" | translate}}</h3>
+  <app-card-slider *ngIf="dashbaordData.useroffers.length > 0" [data]="dashbaordData.useroffers" [totalCards]="cardLength" class=""></app-card-slider>
+</div>
+<div class="graph">
+  <h3>{{"ACCOUNT_PAGE.SUBTITLE3" | translate}}</h3>
+  <ngx-charts-bar-vertical-2d
+    [scheme]="colorScheme"
+    [results]="multi"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel">
+  </ngx-charts-bar-vertical-2d>
+</div>
 

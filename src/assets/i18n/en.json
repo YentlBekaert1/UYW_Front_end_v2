@@ -129,6 +129,13 @@
     "LINK_TOC": "Terms and conditions",
     "SUBMIT_BUTTON": "Add item"
   },
+  "EDIT_OFFER_PAGE":{
+    "CRUMB3": "edit item",
+    "TITLE": "Customise your item",
+    "DESCRIPTION": "Here you can customise your item.",
+    "ADDED_PICTURS": "Added images",
+    "SUBMIT_BUTTON": "Edit item"
+  },
   "MESSAGES":{
     "CATEGORY1":"Category is required",
     "TITLE1":"Title is required",
@@ -149,5 +156,76 @@
     "TERMS":"You must accept terms and conditions",
     "IMAGES1":"The max size in 2MB",
     "IMAGES2":"You must accept terms and conditions"
+  },
+  "LOGIN_PAGE":{
+    "TITLE": "login",
+    "lABEL_EMAIL": "email",
+    "LABEL_PASSWORD": "password",
+    "LABEL_REMEBER": "remember me",
+    "LINK_FORGET_PASSWORD": "Forgot password",
+    "BUTTON": "log in",
+    "OR": "or",
+    "NEW_USER_LABEL": "New user",
+    "CREATE_ACCOUNT_LABEL": "Create an account here"
+  },
+  "REGISTER_PAGE":{
+    "TITLE": "Create an account",
+    "LABEL_NAME": "Name",
+    "lABEL_EMAIL": "email",
+    "LABEL_PASSWORD": "password",
+    "LABEL_PASSWORD_CONFIRM": "CONFIRM PASSWORD",
+    "LABEL_TOC": "I agree with the ",
+    "LINK_TOC": "general terms and conditions",
+    "BUTTON": "create",
+    "OR": "or",
+    "TO_LOGIN": "Log back in"
+  },
+  "FORGET_PASSWORD_PAGE":{
+    "TITLE": "Forgot password",
+    "lABEL_EMAIL": "email",
+    "BUTTON": "email password reset link",
+    "OR": "or",
+    "TO_LOGIN": "Return to Login"
+  },
+  "RESET_PASSWORD_PAGE":{
+    "TITLE": "Reset your password",
+    "lABEL_EMAIL": "email",
+    "LABEL_PASSWORD": "password",
+    "LABEL_PASSWORD_CONFIRM": "CONFIRM PASSWORD",
+    "BUTTON": "reset password",
+    "TO_LOGIN": "return to Login"
+  },
+  "EMAIL_VERIFY_PAGE":{
+    "TITLE": "Verify you account.",
+    "DESCRIPTION": "Before proceeding, Do you need to verify your email address by clicking on the link we just emailed you? If you did not receive the email, we will gladly send you a new one.",
+    "LOGOUT": "log out",
+    "OR": "or",
+    "SEND_CODE": "send code",
+    "AGAIN": "again",
+    "TO_LOGIN": "return to Login"
+  },
+  "ACCOUNT_PAGE":{
+    "CRUMB1": "Home",
+    "CRUMB2": "Items",
+    "CRUMB3": "Account",
+    "TITLE": "My Account",
+    "NO_FAVORITES": "Nothing has been added to your favourites yet. Please explore the different items and add them to you favourites.",
+    "NO_ITEMS": "You have not yet added any items yourself.",
+    "ACCOUNT_INFO": "Account overview",
+    "MY_FAVORITES": "My favourites",
+    "MY_ITEMS": "My added items",
+    "ADD_ITEM": "Add an item",
+    "SETTINGS": "Settings",
+    "LOG_OUT": "Logout",
+    "EXPLORE_BUTTON": "Explore items",
+    "ADD_BUTTON": "Add",
+    "WELCOME1": "Hello,",
+    "WELCOME2": "Welcome to your account. Here you can find or edit your favourites and added items. You can also change the settings of your account here.",
+    "SUBTITILE1": "Statistics:",
+    "CARDTITLE1": "Number of items added",
+    "CARDTITLE2": "Total Views",
+    "CARDTITLE3": "Total Likes",
+    "SUBTITLE2": "My added items:",
+    "SUBTITLE3": "Graph likes and views:"
   }
 }

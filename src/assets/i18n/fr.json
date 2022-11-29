@@ -129,6 +129,13 @@
     "LINK_TOC" : "Termes et conditions",
     "SUBMIT_BUTTON" : "Ajouter un élément"
   },
+  "EDIT_OFFER_PAGE":{
+    "CRUMB3" : "modifier l'article",
+    "TITLE" : "Personnalisez votre article",
+    "DESCRIPTION" : "Ici, vous pouvez personnaliser votre article.",
+    "ADDED_PICTURS" : "Images ajoutées",
+    "SUBMIT_BUTTON" : "Edit item"
+  },
   "MESSAGES":{
     "CATEGORY1" : "La catégorie est requise",
     "TITLE1" : "Le titre est obligatoire",
@@ -137,7 +144,7 @@
     "DESCRIPTION1" : "La description est obligatoire",
     "DESCRIPTION2" : "La description doit comporter au moins 1 caractère",
     "DESCRIPTION3" : "La description est trop longue",
-    "MATERIAls" : "Il ne peut y avoir que 20 matériaux",
+    "MATERIALS" : "Il ne peut y avoir que 20 matériaux",
     "SUBMATERIALS" : "Il ne peut y avoir que 20 sous-matériaux",
     "TAGS" : "Il ne peut y avoir que 20 tags",
     "NEW_TAGS" : "Il ne peut y avoir que 20 étiquettes",
@@ -149,6 +156,77 @@
     "TERMS" : "Vous devez accepter les termes et conditions",
     "IMAGES1" : "La taille maximale est de 2MB",
     "IMAGES2" : "Vous devez accepter les termes et conditions"
+  },
+  "LOGIN_PAGE":{
+    "TITLE" : "login",
+    "lABEL_EMAIL" : "email",
+    "LABEL_PASSWORD" : "password",
+    "LABEL_REMEBER" : "souviens-toi de moi",
+    "LINK_FORGET_PASSWORD" : "Mot de passe oublié",
+    "BUTTON" : "log in",
+    "OR" : "ou",
+    "NEW_USER_LABEL" : "Nouvel utilisateur",
+    "CREATE_ACCOUNT_LABEL" : "Créez un compte ici"
+  },
+  "REGISTER_PAGE":{
+    "TITLE" : "Créer un compte",
+    "LABEL_NAME" : "Nom",
+    "lABEL_EMAIL" : "email",
+    "LABEL_PASSWORD" : "password",
+    "LABEL_PASSWORD_CONFIRM" : "CONFIRMER LE MOT DE PASSE",
+    "LABEL_TOC" : "Je suis d'accord avec les ",
+    "LINK_TOC" : "conditions générales",
+    "BUTTON" : "créer",
+    "OR" : "ou",
+    "TO_LOGIN" : "Se reconnecter"
+  },
+  "FORGET_PASSWORD_PAGE":{
+    "TITLE" : "Mot de passe oublié",
+    "lABEL_EMAIL" : "email",
+    "BUTTON" : "lien de réinitialisation du mot de passe par courriel",
+    "OR" : "ou",
+    "TO_LOGIN" : "Retour à la connexion"
+  },
+  "RESET_PASSWORD_PAGE":{
+    "TITLE" : "Réinitialiser votre mot de passe",
+    "lABEL_EMAIL": "email",
+    "LABEL_PASSWORD" : "password",
+    "LABEL_PASSWORD_CONFIRM" : "CONFIRMER LE MOT DE PASSE",
+    "BUTTON" : "reset password",
+    "TO_LOGIN" : "retour au login"
+  },
+  "EMAIL_VERIFY_PAGE":{
+    "TITLE" : "Vérifier votre compte.",
+    "DESCRIPTION" : "Avant de continuer, devez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu l'e-mail, nous nous ferons un plaisir de vous en envoyer un nouveau",
+    "LOGOUT" : "déconnexion",
+    "OR" : "ou",
+    "SEND_CODE" : "code d'envoi",
+    "AGIAN" : "encore",
+    "TO_LOGIN" : "retour au login"
+  },
+  "ACCOUNT_PAGE":{
+    "CRUMB1" : "Accueil",
+    "CRUMB2" : "Articles",
+    "CRUMB3" : "Compte",
+    "TITLE" : "Mon compte",
+    "NO_FAVORITES" : "Rien n'a encore été ajouté à vos favoris. Veuillez explorer les différents articles et les ajouter à vos favoris.",
+    "NO_ITEMS" : "Vous n'avez pas encore ajouté d'éléments vous-même.",
+    "ACCOUNT_INFO" : "Aperçu du compte",
+    "MY_FAVORITES" : "Mes favoris",
+    "MY_ITEMS" : "Mes articles ajoutés",
+    "ADD_ITEM" : "Ajouter un élément",
+    "SETTINGS" : "Paramètres",
+    "LOG_OUT" : "Déconnexion",
+    "EXPLORE_BUTTON" : "Explorer les éléments",
+    "ADD_BUTTON" : "Ajouter",
+    "WELCOME1" : "Bonjour,",
+    "WELCOME2" : "Bienvenue sur votre compte. Vous pouvez y trouver ou modifier vos favoris et les éléments ajoutés. Vous pouvez également modifier les paramètres de votre compte ici.",
+    "SUBTITILE1" : "Statistiques :",
+    "CARDTITLE1" : "Nombre d'articles ajoutés",
+    "CARDTITLE2" : "Total des vues",
+    "CARDTITLE3" : "Total des appréciations",
+    "SUBTITLE2" : "Mes articles ajoutés :",
+    "SUBTITLE3" : "Graphique des goûts et des opinions :"
   }
 }
 

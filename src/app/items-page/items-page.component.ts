@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { updatePageURL, updateQuery } from '../store/filterstate/filter.actions';
 import { selectAllFilters, selectCategories, selectMaterials, selectQuery } from '../store/filterstate/filter.selector';
+import { selectedLang } from '../store/languagestate/lang.selector';
 import { Filters } from '../_models/filters';
 import { OfferService } from '../_services/offer.service';
 import { OfferlocationService } from '../_services/offerlocation.service';
@@ -47,7 +48,15 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showMoreFiltes = false;
 
-  constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store, private router: Router) { }
+
+  lang$ = this.store.select(selectedLang);
+  lang: string;
+
+  constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store, private router: Router) {
+    this.lang$.subscribe(res => {
+      this.lang =  res
+    });
+  }
 
   ngOnInit(): void {
     if(window.innerWidth < 680){
@@ -55,7 +64,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.items_per_page = 20;
-    this.offerService.getMaterials().then((res: any) => {
+    this.offerService.getMaterials(this.lang).then((res: any) => {
       this.res_materials = res.data;
     });
     this.filters$.subscribe(res => {

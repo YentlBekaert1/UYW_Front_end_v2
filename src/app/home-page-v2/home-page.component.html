@@ -28,7 +28,7 @@
         <img src="../../assets/aardbol_home/aarde_bg.svg" alt="">
         <img src="../../assets/aardbol_home/aarde_bg_border.svg" alt="">
         <img src="../../assets/aardbol_home/aarde_bg_blur.svg" alt="">
-        <div *ngFor="let categorie of categories_array; let i = index" class="categorie_logo logo{{i+1}}">
+        <div *ngFor="let categorie of categories_array; let i = index" class="categorie_logo logo{{i+1}}" class="">
           <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
           <p *ngIf="lang == 'nl'">{{categorie.name_nl}}</p>
           <p *ngIf="lang == 'fr'">{{categorie.name_fr}}</p>

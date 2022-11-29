@@ -20,7 +20,7 @@
         border-collapse: collapse;
         border-radius: 15px;
         thead{
-          background-color: var(--table-head-color);
+          background-color: var(--primary-light);
           border-radius: 15px;
           tr{
             th{
@@ -133,14 +133,18 @@
 .online, .offline{
   border-radius: 15px;
   padding: 0.3rem 0.8rem;
-  color: var(--white-color);
+
 }
 .online{
-  background-color: rgba(0, 131, 0, 0.425);
+  background-color: rgba(62, 175, 62, 0.425);
+  color: rgb(0, 131, 0);
+  font-weight: 500;
 }
 
 .offline{
-  background-color: rgba(255, 0, 0, 0.548);
+  background-color: rgba(252, 118, 118, 0.548);
+  color: rgb(255, 0, 0);
+  font-weight: 500;
 }
 
 

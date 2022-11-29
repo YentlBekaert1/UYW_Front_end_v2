@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestPaginaModule } from './test-pagina/test-pagina.module';
@@ -40,6 +39,8 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LanguageReducer } from './store/languagestate/lang.reducer';
 import { CategoryReducer } from './store/categorystate/category.reducer';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { CategoryReducer } from './store/categorystate/category.reducer';
           useFactory: httpTranslateLoader,
           deps: [HttpClient]
       }
-  })
+    }),
+    NgxChartsModule
   ],
   providers: [
     AuthGuard,

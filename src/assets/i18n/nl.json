@@ -158,9 +158,74 @@
     "IMAGES2":"U dient akkoord te gaan met de voorwaarden"
   },
   "LOGIN_PAGE":{
-
+    "TITLE":"Aanmelden",
+    "lABEL_EMAIL":"email",
+    "LABEL_PASSWORD":"wachtwoord",
+    "LABEL_REMEBER":"Onthoud mij",
+    "LINK_FORGET_PASSWORD":"Wachtwoord vergeten",
+    "BUTTON":"Meld aan",
+    "OR":"of",
+    "NEW_USER_LABEL":"Nieuwe gebruiker",
+    "CREATE_ACCOUNT_LABEL":"Creëer hier een account"
   },
   "REGISTER_PAGE":{
-
+    "TITLE":"Maak een account aan",
+    "LABEL_NAME":"Naam",
+    "lABEL_EMAIL":"email",
+    "LABEL_PASSWORD":"wachtwoord",
+    "LABEL_PASSWORD_CONFIRM":"BEVESTIG WACHTWOORD",
+    "LABEL_TOC":"Ik ga akkoord met de ",
+    "LINK_TOC":"algemene vooraarden",
+    "BUTTON":"Maak aan",
+    "OR":"of",
+    "TO_LOGIN":"Log terug in"
+  },
+  "FORGET_PASSWORD_PAGE":{
+    "TITLE":"Wachtwoord vergeten",
+    "lABEL_EMAIL":"email",
+    "BUTTON":"Email wachtwoord reset link",
+    "OR":"of",
+    "TO_LOGIN":"Keer terug naar Login"
+  },
+  "RESET_PASSWORD_PAGE":{
+    "TITLE":"Stel je wachtwoord  opnieuw in.",
+    "lABEL_EMAIL":"email",
+    "LABEL_PASSWORD":"wachtwoord",
+    "LABEL_PASSWORD_CONFIRM":"BEVESTIG WACHTWOORD",
+    "BUTTON":"Reset wachtwoord",
+    "TO_LOGIN":"Keer terug naar Login"
+  },
+  "EMAIL_VERIFY_PAGE":{
+    "TITLE":"Verificeer u account.",
+    "DESCRIPTION":"Voordat u verdergaat, Moet u uw e-mailadres verifiëren door op de link te klikken die we u zojuist hebben gemaild? Als u de e-mail niet hebt ontvangen, sturen we u graag een nieuwe.",
+    "LOGOUT":"Log uit",
+    "OR":"of",
+    "SEND_CODE":"Zend code",
+    "AGAIN":"opnieuw",
+    "TO_LOGIN":"Keer terug naar Login"
+  },
+  "ACCOUNT_PAGE":{
+    "CRUMB1":"Home",
+    "CRUMB2":"Items",
+    "CRUMB3":"Account",
+    "TITLE":"Mijn Account",
+    "NO_FAVORITES":"Er is nog niets aan u favorieten toegevoegd. Ontdek de verschillende items en voeg ze aan u favorieten toe.",
+    "NO_ITEMS":"U heeft nog zelf geen items toegevoegd.",
+    "ACCOUNT_INFO":"Accountoverzicht",
+    "MY_FAVORITES":"Mijn favorieten",
+    "MY_ITEMS":"Mijn toegevoegde items",
+    "ADD_ITEM":"Voeg een item toe",
+    "SETTINGS":"Instellingen",
+    "LOG_OUT":"Uitloggen",
+    "EXPLORE_BUTTON":"Ontdek de items",
+    "ADD_BUTTON":"Voeg toe",
+    "WELCOME1":"Hallo,",
+    "WELCOME2":"Welkom op u account. Hier vind kun je u favorieten en toegevoegde items terug vinden of bewerken. Ook kun je hier de instellingen van u account wijzigen.",
+    "SUBTITILE1":"Statistieken:",
+    "CARDTITLE1":"Aantal toegevoegd items",
+    "CARDTITLE2":"Total Views",
+    "CARDTITLE3":"Total Likes",
+    "SUBTITLE2":"Mijn toegevoegde items:",
+    "SUBTITLE3":"Grafiek likes en views:"
   }
 }

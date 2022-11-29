@@ -303,12 +303,13 @@ export class AddOfferPageComponent implements OnInit {
           { type: 'extention', message: event.translations.MESSAGES.IMAGES2 }
         ]
       }
+      this.offerservice.getMaterials(event.lang).then(res => {this.materials = res['data']});
     });
 
    }
 
   ngOnInit(): void {
-    this.offerservice.getMaterials().then(res => {console.log(res['data']); this.materials = res['data']});
+    this.offerservice.getMaterials(this.lang).then(res => {console.log(res['data']); this.materials = res['data']});
   }
 
   onSubmit(){

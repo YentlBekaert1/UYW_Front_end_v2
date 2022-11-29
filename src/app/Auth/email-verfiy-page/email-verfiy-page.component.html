@@ -7,17 +7,17 @@
   <div class="email-verify">
     <div class="form-container">
       <!-- <a [routerLink]="['/home']" class="home"><i class="material-icons">home</i><span>Home</span></a> -->
-      <h1>Verificeer u account.</h1>
-      <p>Voordat u verdergaat, Moet u uw e-mailadres verifiëren door op de link te klikken die we u zojuist hebben gemaild? Als u de e-mail niet hebt ontvangen, sturen we u graag een nieuwe.</p>
+      <h1>{{"EMAIL_VERIFY_PAGE.TITLE" | translate}}</h1>
+      <p>{{"EMAIL_VERIFY_PAGE.DESCRIPTION" | translate}}</p>
       <div class="btns">
-        <button (click)="logoutClicked()">Log uit</button>
+        <button (click)="logoutClicked()">{{"EMAIL_VERIFY_PAGE.LOGOUT" | translate}}</button>
       </div>
       <div class="or">
         <div class="line"></div>
-        <span>of</span>
+        <span>{{"EMAIL_VERIFY_PAGE.OR" | translate}}</span>
       </div>
       <div class="register_container">
-        <span>Zend code  <a routerLink="#" (click)="resendVerification()">opnieuw</a></span>
+        <span>{{"EMAIL_VERIFY_PAGE.SEND_CODE" | translate}} <a routerLink="#" (click)="resendVerification()">{{"EMAIL_VERIFY_PAGE.AGAIN" | translate}}</a></span>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
       <button (click)="closeClicked()"><i class="material-icons">close</i></button>
     </div>
     <p>{{responseMessage}}</p>
-    <a routerLink="/login">Ga naar login</a>
+    <a routerLink="/login">{{"EMAIL_VERIFY_PAGE.TO_LOGIN" | translate}}</a>
   </div>
 </div>
 <app-loading-overlay *ngIf="isLoading == true"></app-loading-overlay>

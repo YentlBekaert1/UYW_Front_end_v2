@@ -45,7 +45,7 @@
     max-width: 1340px;
     z-index: 10;
     position: relative;
-    padding: 0 10px;
+    padding: 2rem;
     margin-top: 5vh;
     margin-bottom: 5vh;
     min-height: 50vh;
@@ -53,5 +53,28 @@
   }
 
 }
+h1{
+  padding: 2rem 0;
+  font-family: 'montserrat-regular';
+}
 
+h3{
+  padding: 1rem 0;
+  font-size: 1.1rem;
+  font-family: 'montserrat-regular';
+}
+p{
+  padding: 0.5rem 0;
+  font-family: 'montserrat-light';
+  font-size: .9rem;
+  line-height: 1.2rem;
+}
+ul{
+  padding: 0 2rem;
+  li{
+    font-family: 'montserrat-light';
+    font-size: .9rem;
+    line-height: 1.2rem;
+  }
+}
 

@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {TranslateModule} from '@ngx-translate/core';
+import {MatTableModule} from '@angular/material/table';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import {TranslateModule} from '@ngx-translate/core';
     SettingsComponent,
     LogoutComponent,
     DeleteDialog,
-    StatusDialog
+    StatusDialog,
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,9 @@ import {TranslateModule} from '@ngx-translate/core';
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
-    TranslateModule
+    TranslateModule,
+    MatTableModule,
+    NgxChartsModule
   ]
 })
 export class AccountPageModule { }
