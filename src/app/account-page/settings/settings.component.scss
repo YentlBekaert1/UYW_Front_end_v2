@@ -1,14 +1,16 @@
+h3{
+  margin: 2rem 0;
+  font-family: "montserrat-light";
+  font-size: 1.1rem;
+}
+
 .form{
   box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-  border-color: #e5e7eb;
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
-  border-radius: 15px;
- padding-top: 1rem;
- background-color: var(--white-color);
+  border: 1px solid var(--surface-border);
+    border-radius: 15px;
+    padding-top: 1rem;
+    background-color: var(--white-color);
+    margin: 2rem 0;
   label{
     text-transform: uppercase;
     color: #AEABAB;
@@ -27,31 +29,46 @@
     margin: 1rem;
     margin-bottom: 2rem;
   }
-  .btns{
-    background-color: rgb(249 250 251 / 1);
-    width: calc(100% - 2rem);
-    padding: 1rem;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    button{
-      height: 40px;
-      padding: 10px 20px;
-      background-color: var(--primary-color);
-      color:var(--white-color);
-      border-radius: 15px;
+
+}
+.btns{
+  background-color: rgb(249 250 251 / 1);
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+  justify-content: flex-end;
+  button{
+    padding: 5px 20px;
+    background-color: var(--primary-color);
+    color:var(--white-color);
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    font-size: .8rem;
+    font-family: montserrat-bold;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    &:hover{
+      background-color: var(--white-color);
+      color:var(--primary-color);
+      border-radius: 5px;
       border: 3px solid var(--primary-color);
-      font-size: 1rem;
-      font-family: montserrat-bold;
-      transition: all 0.3s ease-in-out;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      &:hover{
-        background-color: var(--white-color);
-        color:var(--primary-color);
-        border-radius: 5px;
-        border: 3px solid var(--primary-color);
-      }
     }
+  }
+}
+.btns.deletecont{
+  border-radius: 15px;
+  button{
+    background-color: red;
+    border-color: red;
+  }
+  &:hover{
+    background-color: var(--white-color);
+    color:red;
+    border-radius: 5px;
+    border: 3px solid red;
   }
 }

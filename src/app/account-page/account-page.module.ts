@@ -6,7 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 import { DeleteDialog, MyItemsComponent, StatusDialog } from './my-items/my-items.component';
-import { SettingsComponent } from './settings/settings.component';
+import { DeleteUserDialog, SettingsComponent } from './settings/settings.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -29,6 +29,7 @@ import {MatMenuModule} from '@angular/material/menu';
     LogoutComponent,
     DeleteDialog,
     StatusDialog,
+    DeleteUserDialog
   ],
   imports: [
     CommonModule,
@@ -44,7 +45,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatMenuModule
+    MatMenuModule,
   ]
 })
 export class AccountPageModule { }

@@ -40,6 +40,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { LanguageReducer } from './store/languagestate/lang.reducer';
 import { CategoryReducer } from './store/categorystate/category.reducer';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HotToastModule } from '@ngneat/hot-toast'; //https://ngneat.github.io/hot-toast/
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
           deps: [HttpClient]
       }
     }),
-    NgxChartsModule
+    NgxChartsModule,
+    HotToastModule.forRoot()
   ],
   providers: [
     AuthGuard,

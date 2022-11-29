@@ -7,6 +7,7 @@ import { AuthState } from '../store/authstate/auth.state';
 import { deleteProfile, loadProfileFailure, loadProfileSucces } from '../store/authstate/auth.actions';
 import { Profile } from '../store/authstate/auth.model';
 import { Router } from '@angular/router';
+import { id } from '@swimlane/ngx-charts';
 
 @Injectable({
   providedIn: 'root'
@@ -162,16 +163,16 @@ export class AuthService {
     );
   }
 
-  public updateuserdata(Formdata: any){
+  public updateuserdata(Formdata: any, id:number){
     console.log(Formdata);
-    const requesturl = environment.apiUrl + 'user/profile-information';
+    const requesturl = environment.apiUrl + 'api/users/' + id;
 
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json',  'accept': 'application/json'}),
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
 
-    return this.http.put(requesturl, Formdata, httpOptions);
+    return this.http.patch(requesturl, Formdata, httpOptions);
   }
 
   // get userdata
@@ -187,6 +188,28 @@ export class AuthService {
     return lastValueFrom(
       this.http.get(requesturl, httpOptions)
     );
+  }
+
+  public updatepassword(Formdata: any){
+    const requesturl = environment.apiUrl + 'user/password '
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
+    };
+
+    return this.http.put<any>(requesturl, Formdata, httpOptions)
+  }
+
+  public deleteuser(id:number){
+    const requesturl = environment.apiUrl + 'api/users/' + id;
+
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json',  'accept': 'application/json'}),
+      withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
+    };
+
+    return this.http.delete(requesturl, httpOptions);
   }
 
 

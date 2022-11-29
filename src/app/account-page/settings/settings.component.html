@@ -1,13 +1,28 @@
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+<h3>Wijzig profiel informatie:</h3>
+<form [formGroup]="updateInfoForm" (ngSubmit)="onSubmit()" class="form">
   <label for="name">naam</label>
   <input type="text" class="form-control" formControlName="name" name="name"/>
   <label for="email">email</label>
   <input type="text" class="form-control" formControlName="email" name="email"/>
-  <div class="btns">
+  <div class="btns" >
     <button type="submit">Sla op</button>
   </div>
-  <span>Opslaan werkt nog niet.</span>
 </form>
 
-<p>Hier komt wachtwoord wijzigen en account verwijderen</p>
+<h3>Wijzig wachtwoord:</h3>
+<form [formGroup]="updatePassword" (ngSubmit)="onSubmitPassword()" class="form">
+  <label for="current_password">Oud wachtwoord</label>
+  <input type="password" class="form-control" formControlName="current_password" name="current_password"/>
+  <label for="email">Nieuw wachtwoord</label>
+  <input type="password" class="form-control" formControlName="password" name="password"/>
+  <label for="password_confirmation">Bevestig nieuw wachtwoord</label>
+  <input type="password" class="form-control" formControlName="password_confirmation" name="password_confirmation"/>
+  <div class="btns" >
+    <button type="submit">Sla op</button>
+  </div>
+</form>
+<h3>Verwijder account:</h3>
+<div class="btns deletecont" >
+  <button (click)="openDeleteDialog(userData.id)">Verwijder</button>
+</div>

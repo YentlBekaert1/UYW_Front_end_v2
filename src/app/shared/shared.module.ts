@@ -25,7 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
     LoadingOverlayComponent,
     LoadingOverlayAccountComponent,
     Filter1Component,
-    SearchbarComponent
+    SearchbarComponent,
   ],
   exports:[
     TopNavComponent,
@@ -34,7 +34,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CardSliderComponent,
     LoadingOverlayComponent,
     LoadingOverlayAccountComponent,
-    SearchbarComponent
+    SearchbarComponent,
   ],
   imports: [
     CommonModule,

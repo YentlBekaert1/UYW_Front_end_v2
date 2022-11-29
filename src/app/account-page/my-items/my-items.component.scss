@@ -13,8 +13,6 @@
   div#wrapper{
     margin-top: 2rem;
     div{
-      width:100%;
-      overflow-x: auto;
       .myitemsEmpty{
         p{
           margin: 2rem 0;
@@ -50,13 +48,13 @@
 
 .example-table-container {
   position: relative;
-  min-height: 200px;
   overflow: auto;
 }
 
 table {
   width: 100%;
 }
+
 tr{
   position: relative;
 }

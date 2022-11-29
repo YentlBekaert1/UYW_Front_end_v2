@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Account</h1>
+<div mat-dialog-content class="mat-dialog-content">
+ Ben je zeker dat je u account wilt verwijderen? Als u dit verwijderd word ook al u data inclusief toegevoegde items verwijderd. Deze actie is onomkeerbaar.
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button class="cancel" (click)="onCancelClick()" cdkFocusInitial>Annuleer</button>
+  <button class="yes"  [mat-dialog-close]="data.id">Ja verwijder</button>
+</div>
