@@ -1,0 +1,311 @@
+#register-page {
+  background-color: var(--primary-color);
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#register-page #background_line {
+  background-image: url(../../../assets/login-line.png);
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+#register-page #background_circle1 {
+  border-radius: 50%;
+  background-color: var(--primary-dark);
+  width: 40%;
+  padding-top: 40%;
+  /* 1:1 Aspect Ratio */
+  position: absolute;
+  top: -25%;
+  left: -15%;
+  z-index: 1;
+}
+
+#register-page #background_circle2 {
+  border-radius: 50%;
+  background-color: var(--primary-darker);
+  width: 60%;
+  padding-top: 60%;
+  /* 1:1 Aspect Ratio */
+  position: absolute;
+  bottom: -35%;
+  right: -15%;
+  z-index: 1;
+}
+
+#register-page .login {
+  background-color: var(--white-color);
+  z-index: 10;
+  position: relative;
+  width: 90%;
+  min-height: 90vh;
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  border-radius: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#register-page .login .form-container {
+  padding: 0 2rem 0 2rem;
+}
+
+#register-page .login .form-container .home {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--grey-text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+}
+
+#register-page .login .form-container .home i {
+  font-size: 1.2rem;
+}
+
+#register-page .login .form-container .home:hover {
+  color: var(--secondary-color);
+}
+
+#register-page .login .form-container h1 {
+  margin: 2rem 0;
+  color: #373737;
+  font-family: "montserrat-bold";
+  font-size: 2rem;
+}
+
+#register-page .login .form-container .form .validators {
+  margin-bottom: 2rem;
+}
+
+#register-page .login .form-container .form .validators ul {
+  padding-left: 1rem;
+}
+
+#register-page .login .form-container .form .validators ul li.alert.alert-danger {
+  color: red;
+  font-size: 0.9rem;
+}
+
+#register-page .login .form-container .form label {
+  text-transform: uppercase;
+  color: #AEABAB;
+  font-size: 1rem;
+}
+
+#register-page .login .form-container .form input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5%;
+  border: none;
+  border-bottom: 1px solid #AEABAB;
+  outline: none;
+}
+
+#register-page .login .form-container .form .terms {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 5%;
+}
+
+#register-page .login .form-container .form .terms .terms_input {
+  height: 20px;
+  width: 20px;
+  border: 1px solid #AEABAB;
+  margin: 0;
+  margin-right: 5px;
+}
+
+#register-page .login .form-container .form .terms .terms_label {
+  font-size: 14px;
+  text-transform: none;
+  color: #AEABAB;
+}
+
+#register-page .login .form-container .form .btns {
+  padding: 1rem 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+#register-page .login .form-container .form .btns button {
+  border: none;
+  height: 50px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-family: "montserrat-regular";
+}
+
+#register-page .login .form-container .form .btns button:first-child {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+#register-page .login .form-container .form .btns button:first-child:hover {
+  color: var(--secondary-color);
+  background-color: var(--white-color);
+  border: 2px solid var(--secondary-color);
+}
+
+#register-page .login .form-container div.or {
+  padding: 2rem 0 2rem 0;
+  position: relative;
+}
+
+#register-page .login .form-container div.or .line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid var(--grey-border-color);
+}
+
+#register-page .login .form-container div.or span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: var(--white-color);
+  padding: 0 1rem;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #AEABAB;
+  font-size: 0.9rem;
+}
+
+#register-page .login .form-container div.back_container {
+  padding: 1rem 0 2rem 0;
+  text-align: center;
+  color: #AEABAB;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#register-page .login .form-container div.back_container a {
+  color: #AEABAB;
+  text-decoration: underline;
+}
+
+#register-page .login .image {
+  display: none;
+}
+
+#register-page .login .image .bol-image {
+  width: 100%;
+  height: 100%;
+  background-image: url(../../../assets/logos/logo-upcycle-your-waste-white.svg);
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#register-page .login .image .logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  -webkit-filter: contrast(100%);
+          filter: contrast(100%);
+}
+
+@media screen and (min-width: 680px) {
+  #register-page .login {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 2fr 1fr;
+        grid-template-columns: 2fr 1fr;
+    min-height: 75vh;
+    width: 90%;
+    margin: auto;
+    margin-top: 10vh;
+  }
+  #register-page .login .form-container {
+    padding: 0 20% 0 20%;
+  }
+  #register-page .login .image {
+    display: block;
+    border-radius: 0 15px 15px 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-dark);
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #register-page .login {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 2fr 1fr;
+        grid-template-columns: 2fr 1fr;
+    min-height: 75vh;
+    width: 80%;
+    margin: auto;
+    margin-top: 10vh;
+  }
+  #register-page .login .form-container {
+    padding: 0 20% 0 20%;
+  }
+  #register-page .login .image {
+    display: block;
+    border-radius: 0 15px 15px 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-dark);
+  }
+}
+
+@media screen and (min-width: 1230px) {
+  #register-page .login {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    min-height: 75vh;
+    width: 70%;
+    margin: auto;
+    margin-top: 10vh;
+  }
+  #register-page .login .form-container {
+    padding: 0 20% 0 20%;
+  }
+  #register-page .login .image {
+    display: block;
+    border-radius: 0 15px 15px 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-dark);
+  }
+}
+/*# sourceMappingURL=register-page.component.css.map */

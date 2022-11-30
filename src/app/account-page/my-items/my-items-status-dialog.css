@@ -1,0 +1,50 @@
+h1 {
+  margin: .5rem 0;
+  font-family: "montserrat-light";
+}
+
+.cancel, .yes {
+  border: none;
+  padding: .5rem 2rem;
+  margin-right: 1rem;
+  border-radius: 5px;
+  font-family: "montserrat-light";
+}
+
+.cancel:hover {
+  background-color: #cccccc;
+}
+
+.yes {
+  background-color: var(--primary-color);
+  opacity: 0.8;
+  color: white;
+}
+
+.yes:hover {
+  opacity: 1;
+}
+
+.mat-dialog-content {
+  font-family: "montserrat-light";
+  margin: .5rem 0;
+  padding: 0;
+  line-height: 1.2rem;
+}
+
+.mat-dialog-actions {
+  font-family: "montserrat-light";
+}
+
+select {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 2rem 0;
+  border: none;
+  border-bottom: 1px solid #AEABAB;
+  outline: none;
+  font-size: 1rem;
+  font-family: montserrat-light;
+}
+/*# sourceMappingURL=my-items-status-dialog.css.map */

@@ -1,0 +1,524 @@
+.addoffer-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 5vh 0;
+}
+
+.addoffer-page .top_curve {
+  width: 100%;
+  padding-bottom: 51%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../../assets/layered-waves-haikei2.svg);
+  position: absolute;
+  top: 0;
+  z-index: -10;
+}
+
+.addoffer-page .addoffer-page-container {
+  background-color: var(--white-color);
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 1320px;
+  border-radius: 15px;
+}
+
+.addoffer-page .addoffer-page-container .content {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.addoffer-page .addoffer-page-container .content .crumbs {
+  padding: 15px 0;
+}
+
+.addoffer-page .addoffer-page-container .content .crumbs span {
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.addoffer-page .addoffer-page-container .content .crumbs span a {
+  color: inherit;
+}
+
+.addoffer-page .addoffer-page-container .content .crumbs span:first-of-type {
+  padding-left: 0px;
+}
+
+.addoffer-page .addoffer-page-container .content .crumbs span:last-of-type {
+  color: var(--secondary-color);
+}
+
+.addoffer-page .addoffer-page-container .content h1 {
+  font-family: montserrat-bold;
+  margin: 2% 0;
+}
+
+.addoffer-page .addoffer-page-container .content p span {
+  color: var(--secondary-color);
+}
+
+.addoffer-page .addoffer-page-container .content div.categories {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 3% 0;
+}
+
+.addoffer-page .addoffer-page-container .content div.categories div {
+  background-color: var(--black-color);
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 70px;
+}
+
+.addoffer-page .addoffer-page-container .content div.categories div img {
+  padding-top: 10px;
+  width: 50%;
+}
+
+.addoffer-page .addoffer-page-container .content div.categories div span {
+  display: none;
+  padding-top: 5px;
+  color: var(--white-color);
+}
+
+.addoffer-page .addoffer-page-container .content div.categories div.active {
+  background-color: var(--secondary-color);
+}
+
+.addoffer-page .addoffer-page-container .content div.alert-danger {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.082);
+  margin: 2% 0;
+  border-radius: 5px;
+  padding: 10px 5px;
+  font-size: 14px;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form {
+  margin: 5% 0;
+}
+
+.addoffer-page .addoffer-page-container .content .form h2 {
+  font-family: montserrat-bold;
+  margin: 2% 0;
+}
+
+.addoffer-page .addoffer-page-container .content .form p {
+  margin: 0 0 5% 0;
+}
+
+.addoffer-page .addoffer-page-container .content .form label {
+  text-transform: uppercase;
+  color: #AEABAB;
+  font-size: 14px;
+}
+
+.addoffer-page .addoffer-page-container .content .form input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5%;
+  border: none;
+  border-bottom: 1px solid #AEABAB;
+  outline: none;
+  font-size: 1rem;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form input.alert-danger {
+  border-bottom: 1px solid red;
+  margin-bottom: 2%;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form div.alert-danger {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.082);
+  margin-bottom: 2%;
+  border-radius: 5px;
+  padding: 10px 5px;
+  font-size: 14px;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 5%;
+  border: none;
+  border-bottom: 1px solid #AEABAB;
+  outline: none;
+  font-size: 1rem;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form textarea.alert-danger {
+  border-bottom: 1px solid red;
+  margin-bottom: 2%;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select {
+  margin: 0 0 2% 0;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select.tag {
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select div {
+  position: relative;
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select div select {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5%;
+  border: none;
+  border-bottom: 1px solid #AEABAB;
+  outline: none;
+  font-size: 1rem;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select div button {
+  width: 100%;
+  max-width: 240px;
+  border: none;
+  height: 50px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-family: "montserrat-regular";
+  color: var(--secondary-color);
+  background-color: var(--white-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select div button:hover {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select div .taglist {
+  position: absolute;
+  background-color: #dfdfdf;
+  padding: 10px;
+  z-index: 1;
+  width: 100%;
+  display: none;
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select div .taglist .taglistitem {
+  padding: 10px;
+  border-bottom: 1px solid var(--grey-border-color);
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form .inputs-select div .taglist .taglistitem:hover {
+  background-color: var(--primary-light);
+}
+
+.addoffer-page .addoffer-page-container .content .form .chosed-select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 0 3% 0;
+}
+
+.addoffer-page .addoffer-page-container .content .form .chosed-select div {
+  margin: 0 10px 10px 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px 20px;
+  border-radius: 30px;
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+}
+
+.addoffer-page .addoffer-page-container .content .form .chosed-select div span {
+  padding-right: 10px;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form .chosed-select div i:hover {
+  color: red;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .fileupload {
+  background-image: url("../../assets/upload-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  background-color: #ffffff;
+  height: 200px;
+  width: 100%;
+  cursor: pointer;
+  border: 2px dashed var(--primary-color);
+  border-radius: 6px;
+  margin-bottom: 25px;
+  background-position: center 28px;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .fileupload input {
+  display: none;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .fileupload .ddinfo {
+  display: block;
+  text-align: center;
+  padding-top: 130px;
+  color: #a0a1a2;
+  font-family: montserrat-light;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list {
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list .image-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: var(--black-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list .image-box button {
+  background-color: var(--white-color);
+  border: 0.1px solid var(--grey-border-color);
+  outline: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list .image-box button:hover {
+  color: red;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list .image-box img {
+  width: 100px;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list .image-box p {
+  line-height: normal;
+  padding: 0;
+  margin: 0 0 0 14px;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  color: var(--black-color);
+  font-size: 14px;
+  text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list .image-box:last-child {
+  border: none;
+}
+
+.addoffer-page .addoffer-page-container .content .form .image-inputs .image-list .image-box:not(.cdk-drag-placeholder) {
+  -webkit-transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.addoffer-page .addoffer-page-container .content .form .from-bottom {
+  margin-top: 5%;
+  background-color: var(--secondary-color);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+  padding: 2% 2%;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  border-radius: 15px;
+}
+
+.addoffer-page .addoffer-page-container .content .form .from-bottom div input {
+  display: inline;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.addoffer-page .addoffer-page-container .content .form .from-bottom div label {
+  color: var(--white-color);
+}
+
+.addoffer-page .addoffer-page-container .content .form .from-bottom div label a {
+  color: inherit;
+}
+
+.addoffer-page .addoffer-page-container .content .form .from-bottom button {
+  -ms-grid-column-align: end;
+      justify-self: end;
+  width: 100%;
+  max-width: 240px;
+  border: none;
+  height: 50px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-family: "montserrat-regular";
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+  border: 2px solid var(--white-color);
+}
+
+.addoffer-page .addoffer-page-container .content .form .from-bottom button:hover {
+  color: var(--secondary-color);
+  background-color: var(--white-color);
+  border: 2px solid var(--secondary-color);
+}
+
+.example-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  -webkit-transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-preview {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.cdk-drag-preview button {
+  background-color: var(--white-color);
+  border: 0.1px solid var(--grey-border-color);
+  outline: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.cdk-drag-preview button:hover {
+  color: red;
+}
+
+.cdk-drag-preview img {
+  width: 100px;
+}
+
+.cdk-drag-preview p {
+  line-height: normal;
+  padding: 0;
+  margin: 0 0 0 14px;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  color: var(--black-color);
+  font-size: 14px;
+  text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.cdk-drag-animating {
+  -webkit-transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media screen and (min-width: 480px) {
+  .addoffer-page .addoffer-page-container .content div.categories {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .addoffer-page .addoffer-page-container .content div.categories div {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 70px;
+  }
+  .addoffer-page .addoffer-page-container .content div.categories div img {
+    padding-top: 10px;
+    width: 50%;
+  }
+  .addoffer-page .addoffer-page-container .content div.categories div span {
+    font-size: 0.8rem;
+    padding-top: 5px;
+    color: var(--white-color);
+  }
+}
+/*# sourceMappingURL=add-offer-page.component.css.map */

@@ -1,0 +1,49 @@
+@supports (display: grid) {
+  #cards {
+    display: -ms-grid;
+    display: grid;
+    grid-column-gap: 20px;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 680px) {
+  @supports (display: grid) {
+    #cards.listV, #cards .mapv {
+      -ms-grid-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1fr;
+    }
+    #cards.maplistV {
+      -ms-grid-columns: 1fr;
+          grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 1010px) {
+  @supports (display: grid) {
+    #cards.listV, #cards .mapv {
+      -ms-grid-columns: 1fr 1fr 1fr;
+          grid-template-columns: 1fr 1fr 1fr;
+    }
+    #cards.maplistV {
+      -ms-grid-columns: 1fr;
+          grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 1340px) {
+  @supports (display: grid) {
+    #cards.listV, #cards .mapv {
+      -ms-grid-columns: 1fr 1fr 1fr 1fr;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    #cards.maplistV {
+      -ms-grid-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+/*# sourceMappingURL=list-display.component.css.map */

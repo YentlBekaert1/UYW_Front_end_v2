@@ -1,0 +1,22 @@
+#home {
+  background-color: red;
+  width: 100%;
+  height: 100%;
+}
+
+#filters {
+  width: 100%;
+  height: 50px;
+  background-color: #42998B;
+}
+
+.items_view {
+  width: 100%;
+  height: 100%;
+}
+
+app-footer {
+  height: 50px;
+  width: 100%;
+}
+/*# sourceMappingURL=home.component.css.map */

@@ -1,0 +1,130 @@
+footer {
+  height: 100%;
+  width: 100%;
+  background: var(--primary-color);
+  /* fallback for old browsers */
+  background: linear-gradient(94.81deg, #42998aDD -114.67%, #42998aDD 56.69%), url(../../../assets/image-1.jpg);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+footer .footer-container {
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 1320px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-bottom: 30px;
+}
+
+footer .footer-container div h3 {
+  color: var(--white-color);
+  font-family: 'montserrat-bold';
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 30px 0 10px 0;
+}
+
+footer .footer-container div ul {
+  list-style: none;
+}
+
+footer .footer-container div ul li {
+  padding: 2px 0;
+}
+
+footer .footer-container div ul li a {
+  color: var(--white-color);
+  font-size: 12px;
+  text-decoration: none;
+  font-family: 'montserrat-light';
+}
+
+footer .footer-container div.col-1 p {
+  color: var(--white-color);
+  font-size: 12px;
+  text-decoration: none;
+  font-family: 'montserrat-light';
+  padding-bottom: 5px;
+}
+
+footer .footer-container div.col-1 p:first-of-type {
+  padding-top: 30px;
+}
+
+footer .footer-container div.col-3 p {
+  color: var(--white-color);
+  font-size: 12px;
+  text-decoration: none;
+  font-family: 'montserrat-light';
+  padding-bottom: 20px;
+}
+
+footer .footer-container div .logos {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer .footer-container div .logos .applogo img {
+  width: 70px;
+  height: 70px;
+}
+
+footer .footer-container div .logos .storelogos {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+}
+
+footer .footer-container div .logos .storelogos img {
+  width: 120px;
+  height: 35px;
+}
+
+footer .footer_bottom {
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 1320px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+footer .footer_bottom p {
+  color: var(--white-color);
+  font-size: 12px;
+  text-decoration: none;
+  font-family: 'montserrat-light';
+  padding-bottom: 5px;
+}
+
+footer .footer_bottom p a {
+  color: var(--white-color);
+}
+/*# sourceMappingURL=footer.component.css.map */

@@ -103,7 +103,7 @@ export class OfferService {
     );
   }
 
-  addOffer(formData: any){
+  addOffer(formData: any, langformData: any, selectlang: any){
 
     const requesturl = environment.apiUrl + 'api/offers';
     const httpOptions = {
@@ -155,8 +155,47 @@ export class OfferService {
     body.append('category', formData.category_id);
     body.append('approach', '1');
     body.append('status', '1');
+
+    if(selectlang !== 'nl'){
+      if(langformData.title_nl){
+        body.append('title_nl', langformData.title_nl);
+      }
+      if(langformData.selectedtags_nl){
+        body.append('description_nl', langformData.description_nl);
+      }
+    }
+    else{
+      body.append('title_nl', formData.title);
+      body.append('description_nl', formData.description);
+    }
+
+    if(selectlang !== 'en'){
+      if(langformData.title_en){
+        body.append('title_en', langformData.title_en);
+      }
+      if(langformData.description_en){
+        body.append('description_en', langformData.description_en);
+      }
+    }else{
+      body.append('title_en', formData.title);
+      body.append('description_en', formData.description);
+    }
+
+    if(selectlang !== 'fr'){
+      if(langformData.title_fr){
+        body.append('title_fr', langformData.title_fr);
+      }
+      if(langformData.description_fr){
+        body.append('description_fr', langformData.description_fr);
+      }
+    }
+    else{
+      body.append('title_fr', formData.title);
+      body.append('description_fr', formData.description);
+    }
+
     console.log(body);
-//this.http.post(requesturl, body, httpOptions);
+
     return this.http.post(requesturl, body, httpOptions);
 
   }
