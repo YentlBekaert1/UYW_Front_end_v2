@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Delete Item</h1>
+<h1 mat-dialog-title>{{"ACCOUNT_PAGE.MY_ITEMS_DELETE_MODAL_TITLE" | translate}}</h1>
 <div mat-dialog-content class="mat-dialog-content">
-  Would you like to delete {{data.name}} out of the database?
+  {{"ACCOUNT_PAGE.MY_ITEMS_DELETE_MODAL_DESCRIPTION1" | translate}}{{data.name}}{{"ACCOUNT_PAGE.MY_ITEMS_DELETE_MODAL_DESCRIPTION2" | translate}}
 </div>
 <div mat-dialog-actions class="mat-dialog-actions">
-  <button class="cancel" (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
-  <button class="yes" [mat-dialog-close]="data.id">Yes</button>
+  <button class="cancel" (click)="onCancelClick()" cdkFocusInitial>{{"ACCOUNT_PAGE.MY_ITEMS_DELETE_MODAL_CANCEL" | translate}}</button>
+  <button class="yes" [mat-dialog-close]="data.id">{{"ACCOUNT_PAGE.MY_ITEMS_DELETE_MODAL_YES" | translate}}</button>
 </div>

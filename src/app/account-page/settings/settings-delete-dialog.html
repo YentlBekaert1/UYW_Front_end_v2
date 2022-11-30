@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Delete Account</h1>
+<h1 mat-dialog-title>{{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_TITLE" | translate}}</h1>
 <div mat-dialog-content class="mat-dialog-content">
- Ben je zeker dat je u account wilt verwijderen? Als u dit verwijderd word ook al u data inclusief toegevoegde items verwijderd. Deze actie is onomkeerbaar.
+  {{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_DESCRIPTION" | translate}}
 </div>
 <div mat-dialog-actions class="mat-dialog-actions">
-  <button class="cancel" (click)="onCancelClick()" cdkFocusInitial>Annuleer</button>
-  <button class="yes"  [mat-dialog-close]="data.id">Ja verwijder</button>
+  <button class="cancel" (click)="onCancelClick()" cdkFocusInitial>{{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_CANCEL" | translate}}</button>
+  <button class="yes"  [mat-dialog-close]="data.id">{{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_YES" | translate}}</button>
 </div>

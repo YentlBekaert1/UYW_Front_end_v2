@@ -7,6 +7,7 @@ import { OfferService } from 'src/app/_services/offer.service';
 import { environment } from 'src/environments/environment';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { HotToastService } from '@ngneat/hot-toast';
 
 export interface deleteDialogData {
   id: string;
@@ -41,7 +42,7 @@ export class MyItemsComponent implements OnInit, AfterViewInit {
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  constructor(private offerservice: OfferService, public dialog: MatDialog) { }
+  constructor(private offerservice: OfferService, public dialog: MatDialog,private toastService: HotToastService) { }
 
   ngOnInit(): void {;
   }
@@ -102,7 +103,34 @@ export class MyItemsComponent implements OnInit, AfterViewInit {
       if(result != undefined){
         this.offerservice.deleteOfferById(result).then(res => {
           this.getUserItems();
+          this.toastService.success('Item status succefully deleted', {
+            position: 'top-right',
+            style: {
+              border: '2px solid #33b188',
+              padding: '16px',
+              color: '#33b188',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#33b188',
+              secondary: '#fff',
+            },
+          });
           }
+        ).catch( err =>
+          this.toastService.error('Error, There whent something wrong', {
+            position: 'top-right',
+            style: {
+              border: '2px solid #EF4444',
+              padding: '16px',
+              color: '#EF4444',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#EF4444',
+              secondary: '#fff',
+            },
+          })
         )
       }
     });
@@ -116,7 +144,34 @@ export class MyItemsComponent implements OnInit, AfterViewInit {
         console.log(result)
         this.offerservice.statusOfferById(result[0], result[1]).then(res => {
           this.getUserItems();
+          this.toastService.success('Item status succefully updated', {
+            position: 'top-right',
+            style: {
+              border: '2px solid #33b188',
+              padding: '16px',
+              color: '#33b188',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#33b188',
+              secondary: '#fff',
+            },
+          });
           }
+        ).catch( err =>
+          this.toastService.error('Error, There whent something wrong', {
+            position: 'top-right',
+            style: {
+              border: '2px solid #EF4444',
+              padding: '16px',
+              color: '#EF4444',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#EF4444',
+              secondary: '#fff',
+            },
+          })
         )
       }
     });

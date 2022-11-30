@@ -239,7 +239,32 @@
     "TABLE_ACTION1" : "Vue",
     "TABLE_ACTION2" : "Editer l'article",
     "TABLE_ACTION3" : "Changement d'état",
-    "TABLE_ACTION4" : "Supprimer un élément"
+    "TABLE_ACTION4" : "Supprimer un élément",
+    "SETTINGS_SUBTITLE1" : "Modifier les informations du profil:",
+    "SETTINGS_SUBTITLE2" : "Changez le mot de passe:",
+    "SETTINGS_SUBTITLE3" : "Supprimer le compte:",
+    "SAVE_BUTTON" : "Save",
+    "DELETE_BUTTON" : "Supprimer",
+    "LABEL_EMAIL" : "email",
+    "LABEL_NAME" : "nom",
+    "LABEL_CURRENT_PASSWORD" : "ancien mot de passe",
+    "LABEL_NEW_PASSWORD" : "nouveau mot de passe",
+    "LABEL_PASSWORD_COMFIRM" : "confirmer le mot de passe",
+    "DELETE_ACCOUNT_MODAL_TITLE" : "Supprimer le compte",
+    "DELETE_ACCOUNT_MODAL_DESCRIPTION" : "Êtes-vous sûr de vouloir supprimer votre compte ? Si vous le supprimez, toutes vos données, y compris les éléments ajoutés, seront également supprimées. Cette action est irréversible.",
+    "DELETE_ACCOUNT_MODAL_CANCEL" : "Annuler",
+    "DELETE_ACCOUNT_MODAL_YES" : "Oui supprimer",
+    "MY_ITEMS_STATUS_MODAL_TITLE" : "Modifier le statut de l'article",
+    "MY_ITEMS_STATUS_MODAL_DESCRIPTION" : "Vous pouvez modifier la visibilité pour les autres en plaçant l'article en ligne ou hors ligne",
+    "MY_ITEMS_STATUS_MODAL_CANCEL" : "Annuler",
+    "MY_ITEMS_STATUS_MODAL_YES" : "Ok",
+    "MY_ITEMS_DELETE_MODAL_TITLE" : "Supprimer l'article",
+    "MY_ITEMS_DELETE_MODAL_DESCRIPTION1" : "Êtes-vous sûr que vous ",
+    "MY_ITEMS_DELETE_MODAL_DESCRIPTION2" : " voulez-vous supprimer ? Cette action est irréversible",
+    "MY_ITEMS_DELETE_MODAL_CANCEL" : "Annuler",
+    "MY_ITEMS_DELETE_MODAL_YES" : "Oui, supprimer",
+    "LOGOUT_DESCRIPTION" : "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "LOGOUT_BUTTON" : "Déconnexion"
   }
 }
 
