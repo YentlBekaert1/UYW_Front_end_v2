@@ -200,20 +200,20 @@ export class OfferService {
 
   }
 
-  editOffer(formData: any, id: number){
+  editOffer(formData: any, id: number, langformData: any, selectlang: any){
 
     const requesturl = environment.apiUrl + 'api/offers/' + id + '?_method=PATCH';
     const httpOptions = {
       headers: new HttpHeaders({'Accept': 'application/json'}),
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
-    console.log(formData);
+    console.log(formData,langformData, selectlang);
     //create formdata
     var body = new FormData();
 
     var newimagespositions = [];
     if(formData.newimages){
-      console.log(formData.newimages)
+      //console.log(formData.newimages)
       Array.from(formData.newimages).forEach((file: Blob, i) => {
         console.log('newimages['+i+']',file)
         body.append('newimages['+i+']', file);
@@ -263,7 +263,45 @@ export class OfferService {
     body.append('category', formData.category_id);
     body.append('approach', '1');
 
-    //console.log(body);
+    if(selectlang !== 'nl'){
+      if(langformData.title_nl){
+        body.append('title_nl', langformData.title_nl);
+      }
+      if(langformData.selectedtags_nl){
+        body.append('description_nl', langformData.description_nl);
+      }
+    }
+    else{
+      body.append('title_nl', formData.title);
+      body.append('description_nl', formData.description);
+    }
+
+    if(selectlang !== 'en'){
+      if(langformData.title_en){
+        body.append('title_en', langformData.title_en);
+      }
+      if(langformData.description_en){
+        body.append('description_en', langformData.description_en);
+      }
+    }else{
+      body.append('title_en', formData.title);
+      body.append('description_en', formData.description);
+    }
+
+    if(selectlang !== 'fr'){
+      if(langformData.title_fr){
+        body.append('title_fr', langformData.title_fr);
+      }
+      if(langformData.description_fr){
+        body.append('description_fr', langformData.description_fr);
+      }
+    }
+    else{
+      body.append('title_fr', formData.title);
+      body.append('description_fr', formData.description);
+    }
+
+    console.log(body.getAll('title_en'));
 
     return this.http.post(requesturl, body, httpOptions);
 

@@ -15,6 +15,7 @@ import { selectedLang } from '../store/languagestate/lang.selector';
 import { Category } from '../store/categorystate/category.model';
 import { selectCategories } from '../store/categorystate/category.selector';
 import { HotToastService } from '@ngneat/hot-toast';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 
 @Component({
   selector: 'app-edit-offer-page',
@@ -27,6 +28,7 @@ export class EditOfferPageComponent implements OnInit {
 
   environment_url = environment.apiUrl;
   offerId: number;
+  offer:any;
   form!: FormGroup;
   langForm!: FormGroup;
   isSubmitting = false;
@@ -210,6 +212,45 @@ export class EditOfferPageComponent implements OnInit {
 
     this.lang$.subscribe(res => {
       this.lang =  res
+      if(this.lang == 'nl'){
+        this.addNL = false;
+        if(this.offer.title_en || this.offer.description_en){
+          this.addEN = true;
+          this.langForm.controls['title_en'].setValue(this.offer.title_en);
+          this.langForm.controls['description_en'].setValue(this.offer.description_en);
+        }
+        if(this.offer.title_fr || this.offer.description_fr){
+          this.addFR = true;
+          this.langForm.controls['title_fr'].setValue(this.offer.title_fr);
+          this.langForm.controls['description_fr'].setValue(this.offer.description_fr);
+        }
+      }
+      if(this.lang == 'en'){
+        this.addEN = false;
+        if(this.offer.title_nl || this.offer.description_nl){
+          this.addNL = true;
+          this.langForm.controls['title_nl'].setValue(this.offer.title_nl);
+          this.langForm.controls['description_nl'].setValue(this.offer.description_nl);
+        }
+        if(this.offer.title_fr || this.offer.description_fr){
+          this.addFR = true;
+          this.langForm.controls['title_fr'].setValue(this.offer.title_fr);
+          this.langForm.controls['description_fr'].setValue(this.offer.description_fr);
+        }
+      }
+      if(this.lang == 'fr'){
+        this.addFR = false;
+        if(this.offer.title_en || this.offer.description_en){
+          this.addEN = true;
+          this.langForm.controls['title_en'].setValue(this.offer.title_en);
+          this.langForm.controls['description_en'].setValue(this.offer.description_en);
+        }
+        if(this.offer.title_nl || this.offer.description_nl){
+          this.addNL = true;
+          this.langForm.controls['title_nl'].setValue(this.offer.title_nl);
+          this.langForm.controls['description_nl'].setValue(this.offer.description_nl);
+        }
+      }
     });
 
     this.categories_array$.subscribe(res => {
@@ -411,9 +452,51 @@ export class EditOfferPageComponent implements OnInit {
           console.log(res);
           if(res.data.length > 0){
             //algemene info
+            this.offer = res.data[0];
             this.offerId = res.data[0].id;
             this.form.controls['title'].setValue(res.data[0].title);
             this.form.controls['description'].setValue(res.data[0].description);
+
+            if(this.lang == 'nl'){
+              this.addNL = false;
+              if(res.data[0].title_en || res.data[0].description_en){
+                this.addEN = true;
+                this.langForm.controls['title_en'].setValue(res.data[0].title_en);
+                this.langForm.controls['description_en'].setValue(res.data[0].description_en);
+              }
+              if(res.data[0].title_fr || res.data[0].description_fr){
+                this.addFR = true;
+                this.langForm.controls['title_fr'].setValue(res.data[0].title_fr);
+                this.langForm.controls['description_fr'].setValue(res.data[0].description_fr);
+              }
+            }
+            if(this.lang == 'en'){
+              this.addEN = false;
+              if(res.data[0].title_nl || res.data[0].description_nl){
+                this.addNL = true;
+                this.langForm.controls['title_nl'].setValue(res.data[0].title_nl);
+                this.langForm.controls['description_nl'].setValue(res.data[0].description_nl);
+              }
+              if(res.data[0].title_fr || res.data[0].description_fr){
+                this.addFR = true;
+                this.langForm.controls['title_fr'].setValue(res.data[0].title_fr);
+                this.langForm.controls['description_fr'].setValue(res.data[0].description_fr);
+              }
+            }
+            if(this.lang == 'fr'){
+              this.addFR = false;
+              if(res.data[0].title_en || res.date[0].description_en){
+                this.addEN = true;
+                this.langForm.controls['title_en'].setValue(res.data[0].title_en);
+                this.langForm.controls['description_en'].setValue(res.data[0].description_en);
+              }
+              if(res.data[0].title_nl || res.data[0].description_nl){
+                this.addNL = true;
+                this.langForm.controls['title_nl'].setValue(res.data[0].title_nl);
+                this.langForm.controls['description_nl'].setValue(res.data[0].description_nl);
+              }
+            }
+
             this.categoryClicked(res.data[0].category.id);
 
             if(res.data[0].location && res.data[0].location.street){
@@ -529,7 +612,7 @@ export class EditOfferPageComponent implements OnInit {
               lon: features[0].lon
             })
           }
-          this.offerservice.editOffer(this.form.value, this.offerId).subscribe({
+          this.offerservice.editOffer(this.form.value, this.offerId, this.langForm.value, this.lang).subscribe({
             next: data => {
               console.log(data);
               this.router.navigate(['account', 'items']);
