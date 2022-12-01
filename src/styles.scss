@@ -125,3 +125,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 1rem;
     font-family: montserrat-light;
 }
+
+.mat-step-label{
+  display: none !important;
+}
+
+@media screen and (min-width: 680px) {
+  .mat-step-label{
+    display: inline-block !important;
+  }
+}

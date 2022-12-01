@@ -14,7 +14,7 @@
       <mat-stepper linear #stepper>
         <!-- [stepControl]="form" -->
         <mat-step [stepControl]="form">
-          <ng-template matStepLabel>Fill out the data of your item</ng-template>
+          <ng-template matStepLabel>{{"ADD_OFFER_PAGE.STEPPER_LABEL1" | translate}}</ng-template>
           <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <h2>{{"ADD_OFFER_PAGE.TITLE_AG_INFO" | translate}}</h2>
             <label for="title">{{"ADD_OFFER_PAGE.LABEL_NAME" | translate}}</label>
@@ -229,24 +229,24 @@
             </div>
           </form>
           <div class="stepper_buttons">
-            <p>Als u klaar bent met invullen kan je doorgaan naar de volgende stap.</p>
-            <button mat-button matStepperNext (click)="stepperButtonClicked()">Next</button>
+            <p>{{"ADD_OFFER_PAGE.READY_LABEL" | translate}}</p>
+            <button mat-button matStepperNext (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.NEXT_BUTTON" | translate}}</button>
           </div>
         </mat-step>
         <mat-step [stepControl]="langForm">
-          <ng-template matStepLabel>Add languages</ng-template>
+          <ng-template matStepLabel class="stepLabel">{{"ADD_OFFER_PAGE.STEPPER_LABEL2" | translate}}</ng-template>
           <div class="lang-selector">
-            <h2>Voeg talen toe.</h2>
-            <p>Hier kun je eventueel een titel en/of beschrijving toeveogen in een andere taal. je kunt deze stap ook eventueel overslaan.</p>
-            <p>Welke taal wil je toeveoegen?</p>
-            <mat-slide-toggle *ngIf="lang !== 'nl'" [(ngModel)]="addNL">Nederlands</mat-slide-toggle>
-            <mat-slide-toggle *ngIf="lang !== 'en'" [(ngModel)]="addEN">Engels</mat-slide-toggle>
-            <mat-slide-toggle *ngIf="lang !== 'fr'" [(ngModel)]="addFR">Frans</mat-slide-toggle>
+            <h2>{{"ADD_OFFER_PAGE.ADD_LANG_TITLE" | translate}}</h2>
+            <p>{{"ADD_OFFER_PAGE.ADD_LANG_DESCRIPTION1" | translate}}</p>
+            <p>{{"ADD_OFFER_PAGE.ADD_LANG_DESCRIPTION2" | translate}}</p>
+            <mat-slide-toggle *ngIf="lang !== 'nl'" [(ngModel)]="addNL">{{"ADD_OFFER_PAGE.NL" | translate}}</mat-slide-toggle>
+            <mat-slide-toggle *ngIf="lang !== 'en'" [(ngModel)]="addEN">{{"ADD_OFFER_PAGE.EN" | translate}}</mat-slide-toggle>
+            <mat-slide-toggle *ngIf="lang !== 'fr'" [(ngModel)]="addFR">{{"ADD_OFFER_PAGE.FR" | translate}}</mat-slide-toggle>
           </div>
             <form class="form" [formGroup]="langForm" (ngSubmit)="onSubmit()">
               <!-- nl -->
               <div *ngIf="addNL">
-                <h2>Nedelands</h2>
+                <h2>{{"ADD_OFFER_PAGE.NL" | translate}}</h2>
                 <label for="title_nl">{{"ADD_OFFER_PAGE.LABEL_NAME" | translate}}</label>
                 <input type="text" class="form-control" formControlName="title_nl" name="title_nl"/>
                 <div *ngFor="let validation of offer_validation_messages.title_nl">
@@ -267,7 +267,7 @@
                 </div>
               </div>
               <div *ngIf="addEN">
-                <h2>Engels</h2>
+                <h2>{{"ADD_OFFER_PAGE.EN" | translate}}</h2>
                 <label for="title_en">{{"ADD_OFFER_PAGE.LABEL_NAME" | translate}}</label>
                 <input type="text" class="form-control" formControlName="title_en" name="title_en"/>
                 <div *ngFor="let validation of offer_validation_messages.title_en">
@@ -288,7 +288,7 @@
                 </div>
               </div>
               <div *ngIf="addFR">
-                <h2>Frans</h2>
+                <h2>{{"ADD_OFFER_PAGE.FR" | translate}}</h2>
                 <label for="title_fr">{{"ADD_OFFER_PAGE.LABEL_NAME" | translate}}</label>
                 <input type="text" class="form-control" formControlName="title_fr" name="title_fr"/>
                 <div *ngFor="let validation of offer_validation_messages.title_fr">
@@ -310,16 +310,16 @@
               </div>
             </form>
             <div class="stepper_buttons">
-              <p>Als u klaar bent met invullen kan je doorgaan naar de volgende stap.</p>
+              <p>{{"ADD_OFFER_PAGE.READY_LABEL" | translate}}</p>
               <div>
-                <button mat-button matStepperPrevious (click)="stepperButtonClicked()">Back</button>
-                <button mat-button matStepperNext (click)="stepperButtonClicked()">Next</button>
+                <button mat-button matStepperPrevious (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.BACK_BUTTON" | translate}}</button>
+                <button mat-button matStepperNext (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.NEXT_BUTTON" | translate}}</button>
               </div>
             </div>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Overview</ng-template>
-          <p>Dit is een overzicht van de data die u heeft ingevoerd. Als u niet meer wilt aanpassen kun je nadat je de algemene voorwaarden goedkeurde het item toevoegen.</p>
+          <ng-template matStepLabel>{{"ADD_OFFER_PAGE.OVERVIEW_TITLE" | translate}}</ng-template>
+          <p>{{"ADD_OFFER_PAGE.STEPPER_LABEL3" | translate}}</p>
           <div class="formOverview">
             <h1 *ngIf="form.controls['title'].value">{{form.controls['title'].value}}</h1>
             <p *ngIf="form.controls['description'].value" [innerHTML]="form.controls['description'].value"></p>
@@ -332,7 +332,7 @@
                     routerLink="/termsofcondition">{{"ADD_OFFER_PAGE.LINK_TOC" | translate}}</a></label>
               </div>
               <div>
-                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperPrevious>{{"ADD_OFFER_PAGE.BACK_BUTTON" | translate}}</button>
                 <button type="submit">{{"ADD_OFFER_PAGE.SUBMIT_BUTTON" | translate}}</button>
               </div>
             </div>

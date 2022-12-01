@@ -127,7 +127,20 @@
     "LABEL_PICTURES" : "Choisissez un fichier ou faites glisser votre image ici",
     "LABEL_TOC" : "Je suis d'accord avec le",
     "LINK_TOC" : "Termes et conditions",
-    "SUBMIT_BUTTON" : "Ajouter un élément"
+    "SUBMIT_BUTTON" : "Ajouter un élément",
+    "STEPPER_LABEL1" : "Entrez les données",
+    "STEPPER_LABEL2" : "Ajouter des langues",
+    "STEPPER_LABEL3" : "Aperçu",
+    "READY_LABEL" : "Lorsque vous avez fini de remplir le formulaire, vous pouvez passer à l'étape suivante",
+    "NEXT_BUTTON" : "Suivant",
+    "BACK_BUTTON" : "Back",
+    "ADD_LANG_TITLE" : "Ajouter des langues",
+    "ADD_LANG_DESCRIPTION1" : "Ici, vous pouvez éventuellement ajouter un titre et/ou une description dans une autre langue. Vous pouvez également sauter cette étape.",
+    "ADD_LANG_DESCRIPTION2" : "Quelle langue voulez-vous ajouter ?",
+    "NL" : "Néerlandais",
+    "EN" : "Anglais",
+    "FR" : "Français",
+    "OVERVIEW_TITLE" : "Aperçu"
   },
   "EDIT_OFFER_PAGE":{
     "CRUMB3" : "modifier l'article",

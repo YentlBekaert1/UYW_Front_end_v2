@@ -26,7 +26,7 @@
     max-width: 1320px;
     border-radius: 15px;
     .content{
-      padding: 2rem 5rem;
+      padding: 5px;
       margin: 0 auto;
       .crumbs{
         padding: 15px 24px;
@@ -422,10 +422,15 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+.mat-step-label{
+  display: none ;
+}
+
 @media screen and (min-width: 480px) {
   .addoffer-page{
     .addoffer-page-container{
       .content{
+        padding: 20px;
         div.categories{
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
           div{
@@ -544,5 +549,4 @@ mat-stepper{
     margin: .5rem 0;
     display: block;
   }
-
 }

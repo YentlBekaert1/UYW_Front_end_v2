@@ -127,7 +127,20 @@
     "LABEL_PICTURES":"Kies een bestand of sleep u foto naar hier",
     "LABEL_TOC":"Ik ga akkoord met de",
     "LINK_TOC":"Algemene voorwaarden",
-    "SUBMIT_BUTTON":"Item toevoegen"
+    "SUBMIT_BUTTON":"Item toevoegen",
+    "STEPPER_LABEL1":"Vul de data in",
+    "STEPPER_LABEL2":"Voeg talen toe",
+    "STEPPER_LABEL3":"Overzicht",
+    "READY_LABEL":"Als u klaar bent met invullen kan je doorgaan naar de volgende stap.",
+    "NEXT_BUTTON":"Volgende",
+    "BACK_BUTTON":"Terug",
+    "ADD_LANG_TITLE":"Voeg talen toe.",
+    "ADD_LANG_DESCRIPTION1":"Hier kun je eventueel een titel en/of beschrijving toeveogen in een andere taal. je kunt deze stap ook eventueel overslaan.",
+    "ADD_LANG_DESCRIPTION2":"Welke taal wil je toeveoegen?",
+    "NL":"Nedelands",
+    "EN":"Engels",
+    "FR":"Frans",
+    "OVERVIEW_TITLE":"Overzicht"
   },
   "EDIT_OFFER_PAGE":{
     "CRUMB3":"Wijzig item",

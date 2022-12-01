@@ -7,13 +7,14 @@ import { Category } from '../store/categorystate/category.model';
 import { selectCategories } from '../store/categorystate/category.selector';
 import { selectedLang } from '../store/languagestate/lang.selector';
 import { OfferService } from '../_services/offer.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-offer-detail-page',
   templateUrl: './offer-detail-page.component.html',
   styleUrls: ['./offer-detail-page.component.scss']
 })
-export class OfferDetailPageComponent implements AfterViewInit, AfterViewChecked {
+export class OfferDetailPageComponent implements AfterViewInit {
   @ViewChild('descriptionEl', { read: ElementRef }) descriptionEl!: ElementRef<HTMLInputElement>;
 
   offer: any;
@@ -45,30 +46,78 @@ export class OfferDetailPageComponent implements AfterViewInit, AfterViewChecked
   lang$ = this.store.select(selectedLang);
   lang: string;
 
-  constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store) {
+  constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store, private toastService: HotToastService) {
     this.lang$.subscribe(res => {
       this.lang =  res
       console.log(res)
       if(this.lang == "nl"){
         this.category_name = this.offer.category.name_nl
+        if(this.offer.title_nl){
+          this.title = this.offer.title_nl;
+        }
+        else{
+          this.title = this.offer.title;
+        }
+        if(this.offer.description_nl){
+          this.description = this.offer.description_nl;
+        }
+        else{
+          this.description = this.offer.description;
+        }
       }
       else if(this.lang == "fr"){
         this.category_name = this.offer.category.name_fr
+        if(this.offer.title_fr){
+          this.title = this.offer.title_fr;
+        }
+        else{
+          this.title = this.offer.title;
+        }
+        if(this.offer.description_fr){
+          this.description = this.offer.description_fr;
+        }
+        else{
+          this.description = this.offer.description;
+        }
       }
       else if(this.lang == "en"){
         this.category_name = this.offer.category.name_en
+        if(this.offer.title_en){
+          this.title = this.offer.title_en;
+        }
+        else{
+          this.title = this.offer.title;
+        }
+        if(this.offer.description_en){
+          this.description = this.offer.description_en;
+        }
+        else{
+          this.description = this.offer.description;
+        }
       }
       else{
         this.category_name = this.offer.category.name_en
+        if(this.offer.title_en){
+          this.title = this.offer.title_en;
+        }
+        else{
+          this.title = this.offer.title;
+        }
+        if(this.offer.description_en){
+          this.description = this.offer.description_en;
+        }
+        else{
+          this.description = this.offer.description;
+        }
       }
     });
    }
 
-  ngAfterViewChecked(): void {
-    if(this.descriptionEl !== undefined && this.descriptionEl.nativeElement.innerHTML == ""){
-        this.descriptionEl.nativeElement.innerHTML = this.description;
-    }
-  }
+  // ngAfterViewChecked(): void {
+  //   if(this.descriptionEl !== undefined && this.descriptionEl.nativeElement.innerHTML == ""){
+  //       this.descriptionEl.nativeElement.innerHTML = this.description;
+  //   }
+  // }
 
 
   ngAfterViewInit(): void {
@@ -78,21 +127,69 @@ export class OfferDetailPageComponent implements AfterViewInit, AfterViewChecked
       //get activetab
       var id = params.get('id');
       this.offerservice.getOfferById(id).then((res: any)=> {
-        //console.log(res);
+        console.log(res);
         this.offer = res.data[0];
-        this.description = this.offer.description;
-        this.title = this.offer.title;
+
+
         if(this.lang == "nl"){
           this.category_name = this.offer.category.name_nl
+          if(this.offer.title_nl){
+            this.title = this.offer.title_nl;
+          }
+          else{
+            this.title = this.offer.title;
+          }
+          if(this.offer.description_nl){
+            this.description = this.offer.description_nl;
+          }
+          else{
+            this.description = this.offer.description;
+          }
         }
         else if(this.lang == "fr"){
           this.category_name = this.offer.category.name_fr
+          if(this.offer.title_fr){
+            this.title = this.offer.title_fr;
+          }
+          else{
+            this.title = this.offer.title;
+          }
+          if(this.offer.description_fr){
+            this.description = this.offer.description_fr;
+          }
+          else{
+            this.description = this.offer.description;
+          }
         }
         else if(this.lang == "en"){
           this.category_name = this.offer.category.name_en
+          if(this.offer.title_en){
+            this.title = this.offer.title_en;
+          }
+          else{
+            this.title = this.offer.title;
+          }
+          if(this.offer.description_en){
+            this.description = this.offer.description_en;
+          }
+          else{
+            this.description = this.offer.description;
+          }
         }
         else{
           this.category_name = this.offer.category.name_en
+          if(this.offer.title_en){
+            this.title = this.offer.title_en;
+          }
+          else{
+            this.title = this.offer.title;
+          }
+          if(this.offer.description_en){
+            this.description = this.offer.description_en;
+          }
+          else{
+            this.description = this.offer.description;
+          }
         }
         this.likes = this.offer.total_likes;
         if(this.offer.images.length > 0){
@@ -183,11 +280,70 @@ export class OfferDetailPageComponent implements AfterViewInit, AfterViewChecked
     console.log('clicked' + this.offer.id);
     if(this.isLoggedIn == true){
       if(this.isFavorite == false){
-        this.offerservice.addToFavorites(this.offer.id).then((res) => console.log(res));
+        this.offerservice.addToFavorites(this.offer.id)
+        .then((res) =>
+          this.toastService.success("Succesfull", {
+            position: 'top-right',
+            style: {
+              border: '2px solid #33b188',
+              padding: '16px',
+              color: '#33b188',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#33b188',
+              secondary: '#fff',
+            },
+          })
+        )
+        .catch(()=>
+          this.toastService.error("You have tobe logged in to add an item to your favorites", {
+            position: 'top-right',
+            style: {
+              border: '2px solid #EF4444',
+              padding: '16px',
+              color: '#EF4444',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#EF4444',
+              secondary: '#fff',
+            },
+          })
+        );
         this.isFavorite = true;
         this.likes ++;
       }else if(this.isFavorite == true){
-        this.offerservice.removerFromFavorites(this.offer.id).then((res) => console.log(res));
+        this.offerservice.removerFromFavorites(this.offer.id)
+        .then((res) =>
+        this.toastService.success("Succesfull", {
+          position: 'top-right',
+          style: {
+            border: '2px solid #33b188',
+            padding: '16px',
+            color: '#33b188',
+            background: '#fff'
+          },
+          iconTheme: {
+            primary: '#33b188',
+            secondary: '#fff',
+          },
+        })
+      )
+      .catch(()=>
+        this.toastService.error("You have tobe logged in to add an item to your favorites", {
+          position: 'top-right',
+          style: {
+            border: '2px solid #EF4444',
+            padding: '16px',
+            color: '#EF4444',
+            background: '#fff'
+          },
+          iconTheme: {
+            primary: '#EF4444',
+            secondary: '#fff',
+          },
+        }))
         this.isFavorite = false;
         this.likes --;
       }

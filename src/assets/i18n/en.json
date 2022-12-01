@@ -127,7 +127,20 @@
     "LABEL_PICTURES": "Choose a file or drag u picture here",
     "LABEL_TOC": "I agree with the",
     "LINK_TOC": "Terms and conditions",
-    "SUBMIT_BUTTON": "Add item"
+    "SUBMIT_BUTTON": "Add item",
+    "STEPPER_LABEL1": "Enter data",
+    "STEPPER_LABEL2": "Add languages",
+    "STEPPER_LABEL3": "Overview",
+    "READY_LABEL": "When you have finished filling in you can proceed to the next step.",
+    "NEXT_BUTTON": "Next",
+    "BACK_BUTTON": "Back",
+    "ADD_LANG_TITLE": "Add languages",
+    "ADD_LANG_DESCRIPTION1": "Here you can optionally add a title and/or description in another language. you can also optionally skip this step.",
+    "ADD_LANG_DESCRIPTION2": "Which language would you like to add?",
+    "NL": "Dutch",
+    "EN": "English",
+    "FR": "French",
+    "OVERVIEW_TITLE": "Overview"
   },
   "EDIT_OFFER_PAGE":{
     "CRUMB3": "edit item",

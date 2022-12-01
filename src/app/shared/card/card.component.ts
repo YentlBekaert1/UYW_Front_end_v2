@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectedLang } from 'src/app/store/languagestate/lang.selector';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,6 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class CardComponent implements OnInit {
   @Input() name!: string;
+  @Input() name_nl!: string;
+  @Input() name_en!: string;
+  @Input() name_fr!: string;
   @Input() images!: any;
   @Input() category!: any;
   @Input() locatie!: any;
@@ -15,13 +20,22 @@ export class CardComponent implements OnInit {
   @Input() id!: any;
   @Input() likes!: any;
   @Output() likeButtonClicked = new EventEmitter();
+
   image: any;
   materials: any
   locatie_string: string;
   env_url: string = environment.apiUrl;
-  constructor() { }
+
+  title:any;
+
+  lang$ = this.store.select(selectedLang);
+  lang: string;
+
+  constructor(private store: Store) {
+  }
 
   ngOnInit(): void {
+
     if(this.images){
       if(this.images.length > 0){
         this.image = this.images[0].filename
@@ -47,6 +61,42 @@ export class CardComponent implements OnInit {
       }
       this.locatie_string =  city + country
     }
+
+    this.lang$.subscribe(res => {
+      this.lang =  res
+      if(this.lang == "nl"){
+        if(this.name_nl){
+          this.title = this.name_nl;
+        }
+        else{
+          this.title = this.name;
+        }
+      }
+      else if(this.lang == "fr"){
+        if(this.name_fr){
+          this.title = this.name_fr;
+        }
+        else{
+          this.title = this.name;
+        }
+      }
+      else if(this.lang == "en"){
+        if(this.name_en){
+          this.title = this.name_en;
+        }
+        else{
+          this.title = this.name;
+        }
+      }
+      else{
+        if(this.name_en){
+          this.title = this.name_en;
+        }
+        else{
+          this.title = this.name;
+        }
+      }
+    });
   }
 
 }
