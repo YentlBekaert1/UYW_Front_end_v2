@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import {TranslateModule} from '@ngx-translate/core';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {TranslateModule} from '@ngx-translate/core';
     ReactiveFormsModule,
     DragDropModule,
     AngularEditorModule,
-    TranslateModule
+    TranslateModule,
+    MatStepperModule,
+    MatSlideToggleModule
   ]
 })
 export class EditOfferPageModule { }
