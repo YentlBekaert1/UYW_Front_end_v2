@@ -15,7 +15,7 @@ import { selectedLang } from '../store/languagestate/lang.selector';
 import { Category } from '../store/categorystate/category.model';
 import { selectCategories } from '../store/categorystate/category.selector';
 import { HotToastService } from '@ngneat/hot-toast';
-import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
+
 
 @Component({
   selector: 'app-edit-offer-page',

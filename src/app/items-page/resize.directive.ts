@@ -21,11 +21,11 @@ export class ResizeDirective {
       mapEl.style.height = (event.target.innerHeight - 250).toString() + "px";
       if(this.active_tab === 'list'){
         listEl.style.minHeight = "906px";
-        //window.scrollTo(0, 0);
+       // window.scrollTo(0, 0);
       }
       else if(this.active_tab === 'map'){
         mapEl.style.width = ((window.innerWidth - 20).toFixed()).toString() + "px";
-        //window.scrollTo(0, 0);
+       // window.scrollTo(0, 0);
       }
       else if(this.active_tab === 'combi'){
 

@@ -44,9 +44,14 @@ export class MapRadiusFilterComponent implements OnInit {
     var lon: any;
     var distance: number;
     var materialsArray: number[] = [];
-
+    var selectedMaterialName: "";
+    var selectedlocationName: "";
     //material select value
-    materialsArray.push(parseInt(this.materialInput.nativeElement.value));
+
+    if(this.materialInput.nativeElement.value > 0){
+      materialsArray.push(parseInt(this.materialInput.nativeElement.value));
+      selectedMaterialName = this.materialInput.nativeElement.selectedOptions[0].innerText;
+    }
 
       //plaats distance
       distance = parseInt(this.distanceSeletor.nativeElement.value) * 1000 //*1000 om in kilometer te plaatsen
@@ -61,7 +66,9 @@ export class MapRadiusFilterComponent implements OnInit {
             this.store.dispatch(updateFiltersFromFilterComponent({
               materials:materialsArray,
               coordinates:[parseInt(lat),parseInt(lon)],
-              distance:distance
+              distance:distance,
+              material_name:selectedMaterialName,
+              location_name:selectedlocationName
             }))
           });
            }else {
@@ -76,6 +83,8 @@ export class MapRadiusFilterComponent implements OnInit {
             this.geoSearch
             .searchWordPhoton(searchTerm)
             .subscribe((features: any) => {
+              console.log(features)
+              selectedlocationName = features[0].display_name;
               if(features[0].lat && features[0].lon){
                 lat = features[0].lat;
                 lon = features[0].lon;
@@ -87,7 +96,9 @@ export class MapRadiusFilterComponent implements OnInit {
               this.store.dispatch(updateFiltersFromFilterComponent({
                 materials:materialsArray,
                 coordinates:[parseFloat(lat),parseFloat(lon)],
-                distance:distance
+                distance:distance,
+                material_name:selectedMaterialName,
+                location_name:selectedlocationName
               }))
             });
         }
@@ -98,7 +109,9 @@ export class MapRadiusFilterComponent implements OnInit {
           this.store.dispatch(updateFiltersFromFilterComponent({
             materials:materialsArray,
             coordinates:[lat,lon],
-            distance:distance
+            distance:distance,
+            material_name:selectedMaterialName,
+            location_name:selectedlocationName
           }))
         }
       }

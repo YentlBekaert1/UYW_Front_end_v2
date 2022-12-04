@@ -1,16 +1,34 @@
-
-<div class="search" [ngClass]="{'top': placement === 'top', 'filterbalk' : placement === 'filterbalk' }">
-  <input type="text" placeholder="{{placeholderText}}" #searchInput (input)="searchItems($event)" (change)="keyUp()" (keyup.enter)="onEnter($event)">
-  <button (click)="buttonClick($event)"><i class="material-icons">search</i></button>
+<div class="container">
+  <div class="bar">
+    <div class="search" [ngClass]="{'top': placement === 'top', 'filterbalk' : placement === 'filterbalk' }">
+      <input type="text" placeholder="{{placeholderText}}" #searchInput (input)="searchItems($event)" (change)="keyUp()"
+        (keyup.enter)="onEnter($event)">
+      <button (click)="buttonClick($event)"><i class="material-icons">search</i></button>
+    </div>
+    <div class="distance-select" *ngIf="placement === 'filterbalk'" >
+      <select name="material" #distance_selector>
+        <option value="300">+300km</option>
+        <option value="150">+150km</option>
+        <option value="100">+100km</option>
+        <option value="70">+70km</option>
+        <option value="20">+20km</option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="placement === 'filterbalk'" class="checkbox-location">
+    <input type="checkbox" #use_my_locatiom_checkbox>
+    <h5>{{"ITEMS_PAGE.USE_MY_LOCATION" | translate}}</h5>
+  </div>
 </div>
 
 <ng-container>
-	<div class="searchterms-container" *ngIf="showResults == true" >
+  <div class="searchterms-container" *ngIf="showResults == true">
     <ul>
       <li *ngFor="let result of searchResults">
         <a *ngIf="result.title" (click)="closeResults(result.title)">{{result.title | titlecase}}</a>
         <a *ngIf="result.name" (click)="closeResults(result.name)">{{result.name | titlecase}}</a>
-        <a *ngIf="result.country && !result.city" (click)="closeResults(result.country)"> {{result.country} | titlecase}</a>
+        <a *ngIf="result.country && !result.city" (click)="closeResults(result.country)"> {{result.country} |
+          titlecase}</a>
         <a *ngIf="result.city" (click)="closeResults(result.city)">{{result.city | titlecase}}</a>
       </li>
     </ul>

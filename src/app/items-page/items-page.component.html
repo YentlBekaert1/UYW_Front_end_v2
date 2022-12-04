@@ -9,24 +9,27 @@
             </div>
             <div class="search">
               <div class="search-top">
-                <div class="add" (click)="goToAdd()" >
-                  <i class="material-icons">add</i>
+                <div class="add-container">
+                  <div class="add" (click)="goToAdd()" >
+                    <i class="material-icons">add</i>
+                  </div>
+                  <h5>{{"ITEMS_PAGE.ADD_ITEM" | translate}}</h5>
                 </div>
                 <app-searchbar [placement]="'filterbalk'"></app-searchbar>
-                <select name="material" formControlName="material" class="form-control">
+                <!-- <select name="material" formControlName="material" class="form-control">
                   <option value="300">+300km</option>
                   <option value="150">+150km</option>
                   <option value="100">+100km</option>
                   <option value="70">+70km</option>
                   <option value="20">+20km</option>
-                </select>
+                </select> -->
               </div>
               <div class="gb-locatie">
-                <h5>{{"ITEMS_PAGE.ADD_ITEM" | translate}}</h5>
-                <div>
+
+                <!-- <div>
                   <input type="checkbox">
                   <h5>{{"ITEMS_PAGE.USE_MY_LOCATION" | translate}}</h5>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="tabs">
@@ -36,7 +39,7 @@
               </div>
               <div>
                 <button (click)="goToAdd()"><i class="material-icons">add</i></button>
-                <h5>{{"ITEMS_PAGE.ADD_ITEM" | translate}</h5>
+                <h5>{{"ITEMS_PAGE.ADD_ITEM" | translate}}</h5>
               </div>
               <div>
                 <button (click)="moreFiltersClicked()"><i class="material-icons">filter_list</i></button>
@@ -46,15 +49,20 @@
             </div>
         </div>
     </section>
-    <section class="container list-container" #listcontainer>
+    <section class="container list-container" #listcontainer >
       <app-active-filters></app-active-filters>
-      <div class="property-map" #propertymap>
-        <app-map [active_tab]="active_tab"></app-map>
-      </div>
-      <div class="property-list" #propertylist>
-        <app-list-display [listdata]="listdata" [active_tab]="active_tab"></app-list-display>
-        <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
-      </div>
+        <div class="property-map" #propertymap>
+          <app-map [active_tab]="active_tab"></app-map>
+        </div>
+        <div class="property-list" #propertylist>
+          <div *ngIf="isLoading == false; else showLoading">
+            <app-list-display [listdata]="listdata" [active_tab]="active_tab"></app-list-display>
+            <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
+          </div>
+          <ng-template #showLoading>
+            <app-loading-overlay-account></app-loading-overlay-account>
+          </ng-template>
+        </div>
     </section>
   </main>
   <div id="scrollBottom"></div>

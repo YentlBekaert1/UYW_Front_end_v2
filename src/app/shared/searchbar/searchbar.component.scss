@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   border-bottom: 2px solid var(--back-color);
+  width: 70%;
   input{
     width: 100%;
     background-color: transparent;
@@ -90,3 +91,44 @@
     }
   }
 }
+.bar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.distance-select{
+  width: 20%;
+  select{
+    width:100%;
+    background-color: transparent;
+    display: block;
+    height: 43px;
+    border: none;
+    border-bottom: 2px solid var(--back-color);
+    color: var(--white-color);
+    text-align: end;
+    outline: none;
+    font-size: .8rem;
+    font-family: montserrat-light;
+    option:not(:first-of-type) {
+      color: var(--black-color);
+    }
+  }
+}
+div.checkbox-location{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: .5rem 0 0 0;
+  gap: 10px;
+  h5{
+    padding: 0;
+    font-family:'montserrat-light';
+    letter-spacing: .05rem;
+    font-size: .7rem;
+    font-weight: 100;
+    color: var(--white-color);
+  }
+ }

@@ -1,9 +1,10 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { Profile } from 'src/app/store/authstate/auth.model';
 import { TranslateService } from '@ngx-translate/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { changeLang } from 'src/app/store/languagestate/load.actions';
 import { BehaviorSubject, catchError, lastValueFrom, map, Observable, of, throwError } from 'rxjs';
+import { selectProfile } from '../../store/authstate/auth.selector';
 
 @Component({
   selector: 'app-top-nav',
@@ -25,6 +26,7 @@ export class TopNavComponent implements OnInit {
 
   @ViewChild('flag', { read: ElementRef }) flag!: ElementRef<HTMLInputElement>;
   @ViewChild('flagres', { read: ElementRef }) flagres!: ElementRef<HTMLInputElement>;
+
 
   constructor(private eRef: ElementRef, public translate: TranslateService, private store: Store) {}
 

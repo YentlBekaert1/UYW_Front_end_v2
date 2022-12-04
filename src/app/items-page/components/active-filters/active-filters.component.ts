@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { updateCategories, updateQuery } from 'src/app/store/filterstate/filter.actions';
+import { updateCategories, updateLocation, updateMaterials, updateQuery } from 'src/app/store/filterstate/filter.actions';
 import { selectAllFilters } from 'src/app/store/filterstate/filter.selector';
 
 @Component({
@@ -16,7 +16,7 @@ export class ActiveFiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.filters$.subscribe(res => {
-
+      console.log(res)
     })
   }
 
@@ -26,6 +26,12 @@ export class ActiveFiltersComponent implements OnInit {
     }
     if(type == 'categories'){
       this.store.dispatch(updateCategories({categories: []}));
+    }
+    if(type == 'materials'){
+      this.store.dispatch(updateMaterials({materials: [], material_name:""}));
+    }
+    if(type == 'coordinates'){
+      this.store.dispatch(updateLocation({coordinates: [null, null], distance: 0, location_name: ""}));
     }
   }
 }

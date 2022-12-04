@@ -1,4 +1,4 @@
-<div class="filters" *ngIf="(filters$ | async).query != '' || (filters$ | async).categories.length > 0">
+<div class="filters" *ngIf="(filters$ | async).query != '' || (filters$ | async).categories.length > 0 || (filters$ | async).materials.length || ((filters$ | async).coordinates[0] !== null && (filters$ | async).coordinates[1] !== null)">
   <p>Gevonden resultaten voor:</p>
   <div class="chip" *ngIf="(filters$ | async).query != ''">
     <!-- {{(filters$ | async).query}} -->
@@ -13,5 +13,15 @@
     <span *ngIf="(filters$ | async).categories[0] == 4">Organisatie</span>
     <span *ngIf="(filters$ | async).categories[0] == 5">Technologie</span>
     <button (click)="deleteFilter('categories')"><i class="material-icons">close</i></button>
+  </div>
+  <div class="chip" *ngIf="(filters$ | async).materials.length > 0">
+    <!-- {{(filters$ | async).query}} -->
+    <span>{{(filters$ | async).material_name}}</span>
+    <button (click)="deleteFilter('materials')"><i class="material-icons">close</i></button>
+  </div>
+  <div class="chip" *ngIf="(filters$ | async).coordinates[0] !== null && (filters$ | async).coordinates[1] !== null">
+    <!-- {{(filters$ | async).query}} -->
+    <span>{{(filters$ | async).location_name}}</span>
+    <button (click)="deleteFilter('coordinates')"><i class="material-icons">close</i></button>
   </div>
 </div>

@@ -12,6 +12,8 @@ export const initialFilterState: FilterState = {
   categories: [],
   materials: [],
   coordinates:[null,null],
+  material_name: "",
+  location_name: "",
   distance: 0
 };
 
@@ -21,12 +23,14 @@ export const FilterReducer = createReducer(
   on(setinitialPageURL, ((state) => ({...state, pageUrl: environment.apiUrl + "api/offers?page=1"}))),
   on(updateQuery, ((state, {query}) => ({...state, query:query}))),
   on(updateCategories, ((state, {categories}) => ({...state, categories:categories}))),
-  on(updateMaterials, ((state, {materials}) => ({...state, materials:materials}))),
-  on(updateLocation, ((state, {coordinates, distance}) => ({...state, coordinates:coordinates, distance:distance}))),
+  on(updateMaterials, ((state, {materials, material_name}) => ({...state, materials:materials, material_name:material_name}))),
+  on(updateLocation, ((state, {coordinates, distance, location_name}) => ({...state, coordinates:coordinates, distance:distance, location_name:location_name}))),
   on(updatePageURL, ((state, {pageURL}) => ({...state, pageUrl:pageURL}))),
-  on(updateFiltersFromFilterComponent, ((state, {materials ,coordinates, distance }) => ({
+  on(updateFiltersFromFilterComponent, ((state, {materials ,coordinates, distance, material_name, location_name}) => ({
     ...state,
     materials:materials,
+    material_name:material_name,
+    location_name:location_name,
     coordinates:coordinates,
     distance:distance
   }))),

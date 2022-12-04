@@ -43,6 +43,7 @@
               text-transform: capitalize;
               text-decoration: none;
               color: var(--black-color);
+              cursor: pointer;
             }
             &.active{
               border-bottom: 2px solid var(--primary-color);

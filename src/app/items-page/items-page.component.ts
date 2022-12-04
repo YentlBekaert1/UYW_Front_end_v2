@@ -48,9 +48,10 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showMoreFiltes = false;
 
-
   lang$ = this.store.select(selectedLang);
   lang: string;
+
+  isLoading = false;
 
   constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store, private router: Router) {
     this.lang$.subscribe(res => {
@@ -125,8 +126,12 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   getOffers(url: string, pagesize:number, query:string, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
+    this.isLoading = true;
     this.offerService.getOffers(url, pagesize, query, categorieFilter, materialFilter, coordinatesFilter, distanceFilter)
-    .then((res: {data: [], links:[], meta:[]})=> { this.listdata = res });
+    .then((res: {data: [], links:[], meta:[]})=> {
+      this.listdata = res;
+      this.isLoading = false;
+    });
   }
 
   moreFiltersClicked(){

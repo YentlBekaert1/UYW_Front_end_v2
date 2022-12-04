@@ -21,12 +21,12 @@ export const updateCategories = createAction(
 
 export const updateMaterials = createAction(
   '[filters] updateMaterials',
-  props<{ materials: number[]}>()
+  props<{ materials: number[], material_name: string}>()
 );
 
 export const updateLocation = createAction(
   '[filters] updateLocation',
-  props<{ coordinates: [any, any], distance: number}>()
+  props<{ coordinates: [any, any], distance: number, location_name: string}>()
 );
 
 export const updateFiltersFromFilterComponent = createAction(
@@ -34,7 +34,9 @@ export const updateFiltersFromFilterComponent = createAction(
   props<{
     materials: number[],
     coordinates: [any, any],
-    distance: number
+    distance: number,
+    location_name: string,
+    material_name: string
   }>()
 );
 

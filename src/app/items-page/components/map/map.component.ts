@@ -14,7 +14,7 @@ import {wasteIcon,inspirationIcon,organisationIcon,humanIcon,technologyIcon,radi
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit  {
+export class MapComponent implements AfterViewInit  {
   @Input() jsonData!: any
   @Input() categoryFilter!: [number,number];
   @Input() radiusFilterValues!: [number,number,number,boolean];
@@ -50,8 +50,10 @@ export class MapComponent implements OnInit  {
   constructor(private locationService: OfferlocationService, private store: Store) {
     this.store.select(selectAllFilters).subscribe( res => {
       this.storeFilters = res;
-      const bounds = this.map.getBounds();
-      this.getMarkerbyLocation(bounds);
+      if(this.map){
+        const bounds = this.map.getBounds();
+        this.getMarkerbyLocation(bounds);
+      }
     })
   }
 
@@ -59,7 +61,7 @@ export class MapComponent implements OnInit  {
     //kaart op pagina plaatsen
       this.map = L.map('map', {
         center: [50.85, 3.6],
-        zoom: 10,
+        zoom: 8,
         minZoom: 4,
         maxZoom: 17
     });
@@ -91,9 +93,9 @@ export class MapComponent implements OnInit  {
 
     /* --------------------------------------- KAART LATEN INZOOMEN OP GEBRUIKER -------------------------------------------------------------------*/
     //vraag de gebruiker om zijn locatie
-    this.map.locate({setView: true, maxZoom:16});
+    this.map.locate({setView: false, maxZoom:8});
 
-   //functie die een cirkel rond de locatie plaatst en er een marker toevoegd.
+    //functie die een cirkel rond de locatie plaatst en er een marker toevoegd.
     const onLocationFound = (e: any) => {
       //radius is in meter
       //var radius = e.accuracy;
@@ -111,7 +113,7 @@ export class MapComponent implements OnInit  {
       });
        // create marker
        var marker = L.marker(e.latlng, {icon: icon,title: 'user location'});
-       marker.addTo(this.map);
+       this.map.addLayer(marker);
      }
 
      this.map.on('locationfound', onLocationFound);
@@ -259,9 +261,9 @@ export class MapComponent implements OnInit  {
   }
 
   //functie uitgevoerd bij initialiseren component
-  ngOnInit(): void {
-      this.initMap();
-  }
+  ngAfterViewInit(): void {
+        this.initMap();
+    }
 
   //als er een verandering gebeurt van een Input()
   ngOnChanges(changes: SimpleChanges) {
@@ -269,7 +271,7 @@ export class MapComponent implements OnInit  {
       if(changes['active_tab'].currentValue != undefined && this.map != undefined){
           console.log('changeMapSize')
           this.map.invalidateSize()
-          this.map.locate({setView: true, maxZoom: 16});
+          //this.map.locate({setView: true, maxZoom: 16});
       }
     }
   }

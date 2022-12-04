@@ -130,6 +130,11 @@ main{
   }
 }
 
+app-loading-overlay-account{
+  position: absolute;
+    top: 30%;
+    left: 50%;
+}
 
 .more_filters{
   display: none;
@@ -462,23 +467,7 @@ main{
             }
           }
           app-searchbar{
-            width: 60%;
-          }
-          select{
-            background-color: transparent;
-            display: block;
-            width: 20%;
-            height: 43px;
-            border: none;
-            border-bottom: 2px solid var(--back-color);
-            color: var(--white-color);
-            text-align: end;
-            outline: none;
-            font-size: .8rem;
-            font-family: montserrat-light;
-            option:not(:first-of-type) {
-              color: var(--black-color);
-            }
+            width: 100%;
           }
         }
         .gb-locatie{
@@ -486,20 +475,6 @@ main{
           flex-direction: row;
           justify-content: space-between;
           width: 100%;
-         div{
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          padding: .5rem 0 0 0;
-          gap: 10px;
-          h5{
-            padding: 0;
-            font-family:'montserrat-light';
-            letter-spacing: .05rem;
-            font-size: .7rem;
-            font-weight: 100;
-          }
-         }
         }
       }
     }
