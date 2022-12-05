@@ -331,7 +331,7 @@ export class OfferDetailPageComponent implements AfterViewInit {
         })
       )
       .catch(()=>
-        this.toastService.error("You have tobe logged in to add an item to your favorites", {
+        this.toastService.error("You have to be logged in to add an item to your favorites", {
           position: 'top-right',
           style: {
             border: '2px solid #EF4444',
@@ -349,7 +349,19 @@ export class OfferDetailPageComponent implements AfterViewInit {
       }
     }
     else{
-      alert("Je moet aangemeld zijn om een bericht leuk te vinden")
+      this.toastService.error("You have to be logged in to add an item to your favorites", {
+        position: 'top-right',
+        style: {
+          border: '2px solid #EF4444',
+          padding: '16px',
+          color: '#EF4444',
+          background: '#fff'
+        },
+        iconTheme: {
+          primary: '#EF4444',
+          secondary: '#fff',
+        },
+      })
     }
 
   }

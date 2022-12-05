@@ -76,6 +76,7 @@
 .searchterms-container{
   max-height: 51vh;
   overflow: hidden;
+  overflow-y: scroll;
   background-color: var(--back-color);
   position: absolute;
   width: fit-content;
@@ -117,12 +118,17 @@
     }
   }
 }
+.checkboxes{
+  display: flex;
+  justify-content: flex-end;
+}
 div.checkbox-location{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   padding: .5rem 0 0 0;
   gap: 10px;
+  margin-right: 10px;
   h5{
     padding: 0;
     font-family:'montserrat-light';
@@ -130,5 +136,8 @@ div.checkbox-location{
     font-size: .7rem;
     font-weight: 100;
     color: var(--white-color);
+  }
+  &:last-child{
+    margin-right: 0;
   }
  }

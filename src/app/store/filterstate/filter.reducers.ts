@@ -26,8 +26,9 @@ export const FilterReducer = createReducer(
   on(updateMaterials, ((state, {materials, material_name}) => ({...state, materials:materials, material_name:material_name}))),
   on(updateLocation, ((state, {coordinates, distance, location_name}) => ({...state, coordinates:coordinates, distance:distance, location_name:location_name}))),
   on(updatePageURL, ((state, {pageURL}) => ({...state, pageUrl:pageURL}))),
-  on(updateFiltersFromFilterComponent, ((state, {materials ,coordinates, distance, material_name, location_name}) => ({
+  on(updateFiltersFromFilterComponent, ((state, {materials ,coordinates, distance, material_name, location_name, query}) => ({
     ...state,
+    query:query,
     materials:materials,
     material_name:material_name,
     location_name:location_name,

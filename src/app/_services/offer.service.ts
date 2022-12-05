@@ -91,8 +91,8 @@ export class OfferService {
   }
 
 
-  autocomplete(query: string): Observable<any[]> {
-    const requesturl = environment.apiUrl + "api/offersearchterms?query=" + query;
+  autocomplete(query: string, lang:string): Observable<any[]> {
+    const requesturl = environment.apiUrl + "api/"+lang+"/offersearchterms?query=" + query;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
       withCredentials: true,
@@ -352,9 +352,9 @@ export class OfferService {
 
   }
 
-  getSubMaterials(id: number){
+  getSubMaterials(id: number, lang: string){
 
-    const requesturl = environment.apiUrl + 'api/fr/materialsubmaterials/' + id;
+    const requesturl = environment.apiUrl + 'api/'+lang+'/materialsubmaterials/' + id;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
       withCredentials: true,

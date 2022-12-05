@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { changeLang } from 'src/app/store/languagestate/load.actions';
 import { selectLang } from 'src/app/store/languagestate/lang.selector';
 import { GeosearchService } from 'src/app/_services/geosearch.service';
+import { FactoryTarget } from '@angular/compiler';
 
 @Component({
   selector: 'app-searchbar',
@@ -22,17 +23,17 @@ export class SearchbarComponent implements OnInit{
   @ViewChild('searchInput', { read: ElementRef }) searchInput!: ElementRef<HTMLInputElement>;
   @ViewChild('distance_selector', { read: ElementRef }) distanceSelector!: ElementRef<HTMLInputElement>;
   @ViewChild('use_my_locatiom_checkbox', { read: ElementRef }) useMyLocationCheckbox!: ElementRef<HTMLInputElement>;
-
+  @ViewChild('use_location', { read: ElementRef }) useLocation!: ElementRef<HTMLInputElement>;
   private offerSubject = new Subject<string>();
   showResults = false;
 
   readonly offers$ = this.offerSubject.pipe(
-    liveSearch(searchquery => this.offerservice.autocomplete(searchquery))
+    liveSearch(searchquery => this.offerservice.autocomplete(searchquery, this.lang))
   );
 
   searchResults = [];
   placeholderText: string = "";
-
+  lang: string;
 
   constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router,
     private translate: TranslateService, private geoSearch: GeosearchService) {
@@ -42,6 +43,7 @@ export class SearchbarComponent implements OnInit{
       this.showResults = true;
     });
     this.store.select(selectLang).subscribe(res => {
+      this.lang = res.lang;
       if(this.placement == 'top'){
         const getTrans = this.translate.get('SEARCHBAR.PLACEHOLDER1').subscribe((res: string) => {
           console.log(res);
@@ -68,36 +70,102 @@ export class SearchbarComponent implements OnInit{
     var lat: any;
     var lon: any;
     var distance: number;
-    var selectedlocationName: "";
-
-    console.log(this.distanceSelector);
-    distance = parseInt(this.distanceSelector.nativeElement.value);
-
-    if(query && query.length > 0) {
-      this.geoSearch
-        .searchWordPhoton(query)
-        .subscribe((features: any) => {
-          console.log(features)
-          selectedlocationName = features[0].display_name;
-          if(features[0].lat && features[0].lon){
-            lat = features[0].lat;
-            lon = features[0].lon;
-            this.store.dispatch(updateFiltersFromFilterComponent({
-              materials:[],
-              coordinates:[parseFloat(lat),parseFloat(lon)],
-              distance:distance,
-              material_name:"",
-              location_name:selectedlocationName
-            }));
-            this.store.dispatch(setinitialPageURL());
-          }
-          else {
-            lat = null;
-            lon = null;
-            this.store.dispatch(updateQuery({query:query}));
-            this.store.dispatch(setinitialPageURL());
-          }
-      });
+    console.log(this.useMyLocationCheckbox);
+    if(this.placement == 'top'){
+      this.store.dispatch(updateQuery({query:query}));
+      this.store.dispatch(setinitialPageURL());
+    }else if(this.placement == 'filterbalk'){
+      console.log('filerbalk')
+      if(this.useLocation.nativeElement.checked == true && this.useMyLocationCheckbox.nativeElement.checked == false){
+        console.log('uselocation')
+        if(query && query.length > 0) {
+          this.geoSearch
+            .searchWordPhoton(query)
+            .subscribe((features: any) => {
+              console.log(features)
+              var selectedlocationName = "";
+              if(features[0].display_name){
+                selectedlocationName = features[0].display_name;
+              }else{
+                selectedlocationName = "Location";
+              }
+              if(features[0].lat && features[0].lon){
+                lat = features[0].lat;
+                lon = features[0].lon;
+                distance = parseInt(this.distanceSelector.nativeElement.value)  * 1000 //*1000 om in kilometer te plaatsen;
+                this.store.dispatch(updateFiltersFromFilterComponent({
+                  query:"",
+                  materials:[],
+                  coordinates:[parseFloat(lat),parseFloat(lon)],
+                  distance:distance,
+                  material_name:"",
+                  location_name:selectedlocationName
+                }));
+                this.store.dispatch(setinitialPageURL());
+              }
+              else {
+                lat = null;
+                lon = null;
+                this.store.dispatch(updateQuery({query:query}));
+                this.store.dispatch(setinitialPageURL());
+              }
+          });
+        }
+      }
+      else if(this.useMyLocationCheckbox.nativeElement.checked == true){
+        console.log('mylocation');
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+              // Success function
+             (position)=>{
+              console.log(position);
+              this.geoSearch
+              .searchWordPhotonbbCoordinates(position.coords.latitude,position.coords.longitude)
+              .subscribe((features: any) => {
+                console.log(features)
+                var selectedlocationName = "";
+                if(features.display_name){
+                  selectedlocationName = features.display_name;
+                }else{
+                  selectedlocationName = "Location";
+                }
+                if(features.lat && features.lon){
+                  distance = parseInt(this.distanceSelector.nativeElement.value)  * 1000 //*1000 om in kilometer te plaatsen;
+                  this.store.dispatch(updateFiltersFromFilterComponent({
+                    query:query,
+                    materials:[],
+                    coordinates:[position.coords.latitude,position.coords.longitude],
+                    distance:distance,
+                    material_name:"",
+                    location_name:selectedlocationName
+                  }));
+                  this.store.dispatch(setinitialPageURL());
+                }
+                else {
+                  this.store.dispatch(updateQuery({query:query}));
+                  this.store.dispatch(setinitialPageURL());
+                }
+              });
+             },
+              // Error function
+              ()=>{
+                alert("oeps somthing went wrong");
+              },
+              // Options. See MDN for details.
+              {
+                 enableHighAccuracy: true,
+                 timeout: 5000,
+                 maximumAge: 0
+              });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+      }
+      else{
+        console.log('query')
+        this.store.dispatch(updateQuery({query:query}));
+        this.store.dispatch(setinitialPageURL());
+      }
     }
 
     //na acties

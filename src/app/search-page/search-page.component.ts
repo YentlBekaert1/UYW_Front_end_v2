@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { setinitialPageURL, updateQuery } from 'src/app/store/filterstate/filter.actions';
 import { selectQuery } from 'src/app/store/filterstate/filter.selector';
 import { OfferService } from 'src/app/_services/offer.service';
+import { selectLang } from '../store/languagestate/lang.selector';
 import { liveSearch } from './livesearch.operator';
 
 
@@ -23,10 +24,11 @@ export class SearchPageComponent implements OnInit {
   showResults = false;
 
   readonly offers$ = this.offerSubject.pipe(
-    liveSearch(searchquery => this.offerservice.autocomplete(searchquery))
+    liveSearch(searchquery => this.offerservice.autocomplete(searchquery, this.lang))
   );
 
   searchResults = [];
+  lang:string;
 
   constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router) {
     this.offers$.subscribe(res=>{
@@ -34,6 +36,9 @@ export class SearchPageComponent implements OnInit {
       this.searchResults = res
       this.showResults = true;
     })
+    this.store.select(selectLang).subscribe(res => {
+      this.lang = res.lang;
+    });
 
   }
 

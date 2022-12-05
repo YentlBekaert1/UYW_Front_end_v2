@@ -18,6 +18,7 @@ export class CardSliderComponent implements OnInit {
 
   @Input() data!: any;
   @Input() totalCards!: number;
+  @Input() card_view!:string;
 
   constructor() { }
 

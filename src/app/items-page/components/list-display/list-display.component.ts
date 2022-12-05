@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { updateQuery } from 'src/app/store/filterstate/filter.actions';
 import { selectAllFilters } from 'src/app/store/filterstate/filter.selector';
+import { OfferService } from 'src/app/_services/offer.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { selectAllFilters } from 'src/app/store/filterstate/filter.selector';
 export class ListDisplayComponent implements OnInit {
   @Input() listdata: any;
   @Input() active_tab!: string;
-
+  @Input() userFav!: string;
 
   displayData: any = [];
   total_items: number = 0;
@@ -21,6 +22,7 @@ export class ListDisplayComponent implements OnInit {
   stop_items: number = 0;
 
   filters$ = this.store.select(selectAllFilters);
+
 
   constructor(private route: Router, private store: Store) { }
 

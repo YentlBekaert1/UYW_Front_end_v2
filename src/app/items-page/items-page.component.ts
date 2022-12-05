@@ -53,6 +53,8 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isLoading = false;
 
+  userofferfavorites:any;
+
   constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store, private router: Router) {
     this.lang$.subscribe(res => {
       this.lang =  res
@@ -72,6 +74,13 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log(res)
       //this.filtersCategorieEvent(res.categories)
       this.getOffers(res.pageUrl,  this.items_per_page, res.query, res.categories, res.materials, res.coordinates, res.distance)
+    });
+    this.offerService.getUserFavorites().then((res: any) => {
+      //console.log(res)
+      this.userofferfavorites = [];
+      res.data.forEach((element: any) => {
+        this.userofferfavorites.push(element.id);
+      });
     })
   }
 

@@ -33,5 +33,8 @@ export class ActiveFiltersComponent implements OnInit {
     if(type == 'coordinates'){
       this.store.dispatch(updateLocation({coordinates: [null, null], distance: 0, location_name: ""}));
     }
+    if(type == 'distance'){
+      this.store.dispatch(updateLocation({coordinates: [null, null], distance: 0, location_name: ""}));
+    }
   }
 }

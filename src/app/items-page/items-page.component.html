@@ -56,7 +56,7 @@
         </div>
         <div class="property-list" #propertylist>
           <div *ngIf="isLoading == false; else showLoading">
-            <app-list-display [listdata]="listdata" [active_tab]="active_tab"></app-list-display>
+            <app-list-display [listdata]="listdata" [active_tab]="active_tab" [userFav]="userofferfavorites"></app-list-display>
             <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
           </div>
           <ng-template #showLoading>

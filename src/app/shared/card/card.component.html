@@ -1,6 +1,14 @@
 <div id="card">
-  <div class="likes">
-    <i class="material-icons out">bookmark</i>
+  <div class="likes" (click)="likeClicked()" *ngIf="view == 'database'">
+    <i *ngIf="isLikedbyUser != undefined" class="material-icons out">bookmark</i>
+    <i *ngIf="isLikedbyUser == undefined" class="material-icons out">bookmark_outline</i>
+    <!-- {{likes}} -->
+  </div>
+  <div class="likes" *ngIf="view == 'account'">
+    <i class="material-icons out">visibility</i>
+    {{total_views}}
+    <i *ngIf="isLikedbyUser != undefined" class="material-icons out">bookmark</i>
+    <i *ngIf="isLikedbyUser == undefined" class="material-icons out">bookmark_outline</i>
     {{likes}}
   </div>
   <img *ngIf="image;else defaultImage" src="{{env_url  + image}}" alt="{{name}}">

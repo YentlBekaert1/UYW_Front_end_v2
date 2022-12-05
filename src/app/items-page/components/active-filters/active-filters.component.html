@@ -24,4 +24,8 @@
     <span>{{(filters$ | async).location_name}}</span>
     <button (click)="deleteFilter('coordinates')"><i class="material-icons">close</i></button>
   </div>
+  <div class="chip" *ngIf="(filters$ | async).distance !== null && (filters$ | async).distance > 0">
+    <span>Radius: {{(filters$ | async).distance / 1000}} km</span>
+    <button (click)="deleteFilter('distance')"><i class="material-icons">close</i></button>
+  </div>
 </div>

@@ -724,7 +724,7 @@ export class EditOfferPageComponent implements OnInit {
   //  --------------------------------------- materials  --------------------------------------- //
   getSubMaterials(event: any){
     //console.log(event);
-    this.offerservice.getSubMaterials(event.target.value).then(res => {console.log(res); this.submaterials = res['data']});
+    this.offerservice.getSubMaterials(event.target.value, this.lang).then(res => {console.log(res); this.submaterials = res['data']});
   }
   addToSelectedMaterials(){
     //verander formvalue

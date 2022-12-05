@@ -15,9 +15,15 @@
       </select>
     </div>
   </div>
-  <div *ngIf="placement === 'filterbalk'" class="checkbox-location">
-    <input type="checkbox" #use_my_locatiom_checkbox>
-    <h5>{{"ITEMS_PAGE.USE_MY_LOCATION" | translate}}</h5>
+  <div class="checkboxes">
+    <div *ngIf="placement === 'filterbalk'" class="checkbox-location">
+      <input type="checkbox" #use_location>
+      <h5>{{"ITEMS_PAGE.SEARCH_LOCATION" | translate}}</h5>
+    </div>
+    <div *ngIf="placement === 'filterbalk'" class="checkbox-location">
+      <input type="checkbox" #use_my_locatiom_checkbox>
+      <h5>{{"ITEMS_PAGE.USE_MY_LOCATION" | translate}}</h5>
+    </div>
   </div>
 </div>
 
@@ -27,6 +33,9 @@
       <li *ngFor="let result of searchResults">
         <a *ngIf="result.title" (click)="closeResults(result.title)">{{result.title | titlecase}}</a>
         <a *ngIf="result.name" (click)="closeResults(result.name)">{{result.name | titlecase}}</a>
+        <a *ngIf="result.name_nl" (click)="closeResults(result.name_nl)">{{result.name_nl | titlecase}}</a>
+        <a *ngIf="result.name_fr" (click)="closeResults(result.name_fr)">{{result.name_fr | titlecase}}</a>
+        <a *ngIf="result.name_en" (click)="closeResults(result.name_en)">{{result.name_en | titlecase}}</a>
         <a *ngIf="result.country && !result.city" (click)="closeResults(result.country)"> {{result.country} |
           titlecase}</a>
         <a *ngIf="result.city" (click)="closeResults(result.city)">{{result.city | titlecase}}</a>

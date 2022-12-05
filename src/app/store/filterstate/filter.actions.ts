@@ -32,6 +32,7 @@ export const updateLocation = createAction(
 export const updateFiltersFromFilterComponent = createAction(
   '[filters] updateFiltersFromFilterComponent',
   props<{
+    query:string
     materials: number[],
     coordinates: [any, any],
     distance: number,

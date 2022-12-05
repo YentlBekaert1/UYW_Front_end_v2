@@ -64,6 +64,7 @@ export class MapRadiusFilterComponent implements OnInit {
             lat = position.coords.latitude;
 
             this.store.dispatch(updateFiltersFromFilterComponent({
+              query:"",
               materials:materialsArray,
               coordinates:[parseInt(lat),parseInt(lon)],
               distance:distance,
@@ -94,6 +95,7 @@ export class MapRadiusFilterComponent implements OnInit {
                 lon = null;
               }
               this.store.dispatch(updateFiltersFromFilterComponent({
+                query:"",
                 materials:materialsArray,
                 coordinates:[parseFloat(lat),parseFloat(lon)],
                 distance:distance,
@@ -107,6 +109,7 @@ export class MapRadiusFilterComponent implements OnInit {
           lon = null;
 
           this.store.dispatch(updateFiltersFromFilterComponent({
+            query:"",
             materials:materialsArray,
             coordinates:[lat,lon],
             distance:distance,
