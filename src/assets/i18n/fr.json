@@ -277,7 +277,8 @@
     "MY_ITEMS_DELETE_MODAL_CANCEL" : "Annuler",
     "MY_ITEMS_DELETE_MODAL_YES" : "Oui, supprimer",
     "LOGOUT_DESCRIPTION" : "Êtes-vous sûr de vouloir vous déconnecter ?",
-    "LOGOUT_BUTTON" : "Déconnexion"
+    "LOGOUT_BUTTON" : "Déconnexion",
+    "EDIT_BUTTON":"Modifier"
   }
 }
 

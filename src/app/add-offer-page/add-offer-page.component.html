@@ -42,9 +42,12 @@
 
             <h2>{{"ADD_OFFER_PAGE.TITLE_CATEGORY" | translate}}</h2>
             <div class="categories" #categories>
-              <div *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.id)">
+              <div class="tooltip" *ngFor="let categorie of categories_array" (click)="categoryClicked(categorie.id)">
                 <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
-                <span>{{categorie.name}}</span>
+                <!-- <span>{{categorie.name}}</span> -->
+                <span class="tooltiptext tooptipCap"*ngIf="lang == 'nl'">{{categorie.name_nl}}</span>
+                <span class="tooltiptext tooptipCap" *ngIf="lang == 'fr'">{{categorie.name_fr}}</span>
+                <span class="tooltiptext tooptipCap" *ngIf="lang == 'en'">{{categorie.name_en}}</span>
               </div>
             </div>
             <p *ngIf="selectedCategory">

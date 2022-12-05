@@ -1,28 +1,87 @@
 
-<h3>{{"ACCOUNT_PAGE.SETTINGS_SUBTITLE1" | translate}}</h3>
-<form [formGroup]="updateInfoForm" (ngSubmit)="onSubmit()" class="form">
-  <label for="name">{{"ACCOUNT_PAGE.LABEL_NAME" | translate}}</label>
-  <input type="text" class="form-control" formControlName="name" name="name"/>
-  <label for="email">{{"ACCOUNT_PAGE.LABEL_EMAIL" | translate}}</label>
-  <input type="text" class="form-control" formControlName="email" name="email"/>
-  <div class="btns" >
-    <button type="submit">{{"ACCOUNT_PAGE.SAVE_BUTTON" | translate}}</button>
-  </div>
-</form>
+<mat-accordion class="example-headers-align" multi>
 
-<h3>{{"ACCOUNT_PAGE.SETTINGS_SUBTITLE2" | translate}}</h3>
-<form [formGroup]="updatePassword" (ngSubmit)="onSubmitPassword()" class="form">
-  <label for="current_password">{{"ACCOUNT_PAGE.LABEL_CURRENT_PASSWORD" | translate}}</label>
-  <input type="password" class="form-control" formControlName="current_password" name="current_password"/>
-  <label for="email">{{"ACCOUNT_PAGE.LABEL_NEW_PASSWORD" | translate}}</label>
-  <input type="password" class="form-control" formControlName="password" name="password"/>
-  <label for="password_confirmation">{{"ACCOUNT_PAGE.LABEL_PASSWORD_COMFIRM" | translate}}</label>
-  <input type="password" class="form-control" formControlName="password_confirmation" name="password_confirmation"/>
-  <div class="btns" >
-    <button type="submit">{{"ACCOUNT_PAGE.SAVE_BUTTON" | translate}}</button>
-  </div>
-</form>
-<h3>{{"ACCOUNT_PAGE.SETTINGS_SUBTITLE3" | translate}}</h3>
-<div class="btns deletecont" >
-  <button (click)="openDeleteDialog(userData.id)">{{"ACCOUNT_PAGE.DELETE_BUTTON" | translate}}</button>
-</div>
+  <mat-expansion-panel  [disabled]="true" hideToggle #mep1="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <div class="custom-panel-header">
+        <div class="info">
+          <h4>{{"ACCOUNT_PAGE.LABEL_NAME" | translate}}:</h4>
+          <p>{{userData.name}}</p>
+        </div>
+        <div class="button">
+          <button (click)="mep1.expanded = !mep1.expanded">{{"ACCOUNT_PAGE.EDIT_BUTTON" | translate}}</button>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <form [formGroup]="updateInfoForm" (ngSubmit)="onSubmit()" class="form">
+      <label for="name">{{"ACCOUNT_PAGE.LABEL_NAME" | translate}}</label>
+      <input type="text" class="form-control" formControlName="name" name="name"/>
+      <div class="btns" >
+        <button type="submit">{{"ACCOUNT_PAGE.SAVE_BUTTON" | translate}}</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [disabled]="true" hideToggle #mep2="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <div class="custom-panel-header">
+        <div class="info">
+          <h4>{{"ACCOUNT_PAGE.LABEL_EMAIL" | translate}}:</h4>
+          <p>{{userData.email}}</p>
+        </div>
+        <div class="button">
+          <button (click)="mep2.expanded = !mep2.expanded">{{"ACCOUNT_PAGE.EDIT_BUTTON" | translate}}</button>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <form [formGroup]="updateInfoForm" (ngSubmit)="onSubmit()" class="form">
+      <label for="email">{{"ACCOUNT_PAGE.LABEL_EMAIL" | translate}}</label>
+      <input type="text" class="form-control" formControlName="email" name="email"/>
+      <div class="btns" >
+        <button type="submit">{{"ACCOUNT_PAGE.SAVE_BUTTON" | translate}}</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [disabled]="true" hideToggle #mep3="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <div class="custom-panel-header">
+        <div class="info">
+          <h4>{{"LOGIN_PAGE.LABEL_PASSWORD" | translate}}:</h4>
+
+        </div>
+        <div class="button">
+          <button (click)="mep3.expanded = !mep3.expanded">{{"ACCOUNT_PAGE.EDIT_BUTTON" | translate}}</button>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <form [formGroup]="updatePassword" (ngSubmit)="onSubmitPassword()" class="form">
+      <label for="current_password">{{"ACCOUNT_PAGE.LABEL_CURRENT_PASSWORD" | translate}}</label>
+      <input type="password" class="form-control" formControlName="current_password" name="current_password"/>
+      <label for="email">{{"ACCOUNT_PAGE.LABEL_NEW_PASSWORD" | translate}}</label>
+      <input type="password" class="form-control" formControlName="password" name="password"/>
+      <label for="password_confirmation">{{"ACCOUNT_PAGE.LABEL_PASSWORD_COMFIRM" | translate}}</label>
+      <input type="password" class="form-control" formControlName="password_confirmation" name="password_confirmation"/>
+      <div class="btns" >
+        <button type="submit">{{"ACCOUNT_PAGE.SAVE_BUTTON" | translate}}</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [disabled]="true" hideToggle #mep4="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <div class="custom-panel-header">
+        <div class="info">
+          <h4>{{"ACCOUNT_PAGE.SETTINGS_SUBTITLE3" | translate}}</h4>
+        </div>
+        <div class="button">
+          <button (click)="mep4.expanded = !mep4.expanded">{{"ACCOUNT_PAGE.EDIT_BUTTON" | translate}}</button>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <div class="btns deletecont" >
+      <button (click)="openDeleteDialog(userData.id)">{{"ACCOUNT_PAGE.DELETE_BUTTON" | translate}}</button>
+    </div>
+  </mat-expansion-panel>
+
+</mat-accordion>

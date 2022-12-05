@@ -278,6 +278,7 @@
     "MY_ITEMS_DELETE_MODAL_CANCEL":"Annuleer",
     "MY_ITEMS_DELETE_MODAL_YES":"Ja verwijder",
     "LOGOUT_DESCRIPTION":"Weet u zeker dat u wilt uitloggen?",
-    "LOGOUT_BUTTON":"Log uit"
+    "LOGOUT_BUTTON":"Log uit",
+    "EDIT_BUTTON":"Bewerken"
   }
 }

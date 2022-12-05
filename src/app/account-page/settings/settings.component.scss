@@ -72,3 +72,45 @@ h3{
   }
 }
 }
+.custom-panel-header{
+  width: 100%;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-family: "montserrat-light";
+  h4{
+    text-transform: capitalize;
+    margin: 1rem 0;
+  }
+  button{
+    margin-top: 1rem;
+    padding: 5px 20px;
+    background-color: var(--primary-color);
+    color:var(--white-color);
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    font-size: .8rem;
+    font-family: montserrat-bold;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    &:hover{
+      background-color: var(--white-color);
+      color:var(--primary-color);
+      border-radius: 5px;
+      border: 3px solid var(--primary-color);
+    }
+  }
+}
+.mat-expansion-panel-header[aria-disabled=true] {
+  color: var(--black-color);
+}
+mat-expansion-panel-header{
+  height: fit-content;
+}
+
+mat-expansion-panel{
+  min-height: 8rem;
+}

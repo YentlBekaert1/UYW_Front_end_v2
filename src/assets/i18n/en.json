@@ -278,6 +278,7 @@
     "MY_ITEMS_DELETE_MODAL_CANCEL": "Cancel",
     "MY_ITEMS_DELETE_MODAL_YES": "Yes delete",
     "LOGOUT_DESCRIPTION": "Are you sure you want to log out?",
-    "LOGOUT_BUTTON": "Log out"
+    "LOGOUT_BUTTON": "Log out",
+    "EDIT_BUTTON":"Edit"
   }
 }
