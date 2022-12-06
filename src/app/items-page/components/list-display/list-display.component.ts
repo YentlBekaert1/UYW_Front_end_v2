@@ -33,7 +33,7 @@ export class ListDisplayComponent implements OnInit {
   }
 
   listItemClicked(item: number){
-    console.log(item);
+    //console.log(item);
     this.route.navigate(['/offerdetail', item]);
   }
    //als er een verandering gebeurt van een Input()
@@ -43,7 +43,7 @@ export class ListDisplayComponent implements OnInit {
       cards[0].className = changes['active_tab'].currentValue;
     }
     if(changes['listdata']){
-      console.log(changes['listdata'].currentValue);
+      //console.log(changes['listdata'].currentValue);
       this.total_items = changes['listdata'].currentValue.meta.total;
       this.start_items = changes['listdata'].currentValue.meta.from;
       this.stop_items = changes['listdata'].currentValue.meta.to;

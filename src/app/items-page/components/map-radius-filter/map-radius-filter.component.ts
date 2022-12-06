@@ -73,7 +73,7 @@ export class MapRadiusFilterComponent implements OnInit {
             }))
           });
            }else {
-            console.log("No support for geolocation");
+            //console.log("No support for geolocation");
           }
       }
       else{
@@ -84,7 +84,7 @@ export class MapRadiusFilterComponent implements OnInit {
             this.geoSearch
             .searchWordPhoton(searchTerm)
             .subscribe((features: any) => {
-              console.log(features)
+              //console.log(features)
               selectedlocationName = features[0].display_name;
               if(features[0].lat && features[0].lon){
                 lat = features[0].lat;

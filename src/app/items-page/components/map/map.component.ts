@@ -46,7 +46,7 @@ export class MapComponent implements AfterViewInit  {
       this.storeFilters = res;
       if(this.map){
         const bounds = this.map.getBounds();
-        console.log(this.storeFilters);
+        //console.log(this.storeFilters);
         if (this.theCircle != undefined) {
           this.map.removeLayer(this.theCircle);
         };
@@ -316,7 +316,7 @@ export class MapComponent implements AfterViewInit  {
   }
 
   removeAllMarkers(){
-    console.log(this.markerCluster);
+    //console.log(this.markerCluster);
     this.map.removeLayer(this.markerCluster);
   }
 
@@ -329,7 +329,7 @@ export class MapComponent implements AfterViewInit  {
   ngOnChanges(changes: SimpleChanges) {
     if(changes['active_tab']){
       if(changes['active_tab'].currentValue != undefined && this.map != undefined){
-          console.log('changeMapSize')
+          //console.log('changeMapSize')
           this.map.invalidateSize()
           //this.map.locate({setView: true, maxZoom: 16});
       }

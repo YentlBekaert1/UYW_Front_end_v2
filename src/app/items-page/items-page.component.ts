@@ -71,7 +71,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
       this.res_materials = res.data;
     });
     this.filters$.subscribe(res => {
-      console.log(res)
+      //console.log(res)
       //this.filtersCategorieEvent(res.categories)
       this.getOffers(res.pageUrl,  this.items_per_page, res.query, res.categories, res.materials, res.coordinates, res.distance)
     });
@@ -115,7 +115,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
         dataView[0].classList.add('property-list-combi');
         dataView[0].classList.remove('property-list-map');
         dataView[0].classList.remove('property-list-full');
-        console.log(((window.innerWidth - this.propertylist.nativeElement.clientWidth - 50).toFixed()).toString(), window.innerWidth,  this.propertylist.nativeElement.clientWidth)
+        //console.log(((window.innerWidth - this.propertylist.nativeElement.clientWidth - 50).toFixed()).toString(), window.innerWidth,  this.propertylist.nativeElement.clientWidth)
         this.propertymap.nativeElement.style.width = ((window.innerWidth - this.propertylist.nativeElement.clientWidth - 50).toFixed()).toString() + "px";
         window.scrollTo(0, 0);
       }

@@ -26,7 +26,7 @@ export class AppComponent{
     this.translate.addLangs(['en', 'nl', 'fr']);
 
     this.getUsersLocale("en").then((res) => {
-      console.log(res)
+      //console.log(res)
       if(res == 'nl'){
         this.translate.setDefaultLang('nl');
         this.selectedlanguage = 'nl'

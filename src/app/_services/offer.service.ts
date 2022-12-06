@@ -17,7 +17,7 @@ export class OfferService {
     var materialFilterString: string;
     var locationFilterString: string;
     var queryFilterString: string = "";
-    console.log(query);
+    //console.log(query);
     if(this.onlySpaces(query) !== true){
       queryFilterString = query
     }
@@ -115,9 +115,9 @@ export class OfferService {
     var body = new FormData();
 
     if(formData.images){
-      console.log(formData.images)
+      //console.log(formData.images)
       Array.from(formData.images).forEach((file: Blob, i) => {
-        console.log('images['+i+']',file)
+        //console.log('images['+i+']',file)
         body.append('images['+i+']', file);
        });
     }
@@ -194,7 +194,7 @@ export class OfferService {
       body.append('description_fr', formData.description);
     }
 
-    console.log(body);
+    //console.log(body);
 
     return this.http.post(requesturl, body, httpOptions);
 
@@ -207,7 +207,7 @@ export class OfferService {
       headers: new HttpHeaders({'Accept': 'application/json'}),
       withCredentials: true, //this is required so that Angular returns the Cookies received from the server. The server sends cookies in Set-Cookie header. Without this, Angular will ignore the Set-Cookie header
     };
-    console.log(formData,langformData, selectlang);
+    //console.log(formData,langformData, selectlang);
     //create formdata
     var body = new FormData();
 
@@ -215,7 +215,7 @@ export class OfferService {
     if(formData.newimages){
       //console.log(formData.newimages)
       Array.from(formData.newimages).forEach((file: Blob, i) => {
-        console.log('newimages['+i+']',file)
+        //console.log('newimages['+i+']',file)
         body.append('newimages['+i+']', file);
         var index = formData.editimages.indexOf(formData.editimages.find(el => el.image == file), 0);
         newimagespositions.push(formData.editimages[index].position);
@@ -225,7 +225,7 @@ export class OfferService {
       body.append('newimagepositions', JSON.stringify(newimagespositions));
     }
     if(formData.editimages){
-      console.log(formData.editimages)
+      //console.log(formData.editimages)
       body.append('editimages', JSON.stringify(formData.editimages));
 
     }
@@ -301,7 +301,7 @@ export class OfferService {
       body.append('description_fr', formData.description);
     }
 
-    console.log(body.getAll('title_en'));
+    //console.log(body.getAll('title_en'));
 
     return this.http.post(requesturl, body, httpOptions);
 
@@ -419,7 +419,7 @@ export class OfferService {
    }
 
   getUserOffers(sort: string, order: SortDirection, page: number){
-    console.log(sort, order, page)
+    //console.log(sort, order, page)
     const href = environment.apiUrl + 'api/useroffers';
     const requestUrl = `${href}?sort=${sort}&order=${order}&page=${page + 1}`;
     const httpOptions = {

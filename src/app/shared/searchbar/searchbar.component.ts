@@ -38,7 +38,7 @@ export class SearchbarComponent implements OnInit{
   constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router,
     private translate: TranslateService, private geoSearch: GeosearchService, private route: ActivatedRoute) {
     this.offers$.subscribe(res=>{
-      console.log(res);
+      //console.log(res);
       this.searchResults = res
       this.showResults = true;
     });
@@ -46,13 +46,13 @@ export class SearchbarComponent implements OnInit{
       this.lang = res.lang;
       if(this.placement == 'top'){
         const getTrans = this.translate.get('SEARCHBAR.PLACEHOLDER1').subscribe((res: string) => {
-          console.log(res);
+          //console.log(res);
           this.placeholderText = res;
         });
        ;
       }else{
         const getTrans =  this.translate.get('SEARCHBAR.PLACEHOLDER2').subscribe((res: string) => {
-          console.log(res);
+          //console.log(res);
           this.placeholderText = res;
         });
 
@@ -70,19 +70,19 @@ export class SearchbarComponent implements OnInit{
     var lat: any;
     var lon: any;
     var distance: number;
-    console.log(this.useMyLocationCheckbox);
+    //console.log(this.useMyLocationCheckbox);
     if(this.placement == 'top'){
       this.store.dispatch(updateQuery({query:query}));
       this.store.dispatch(setinitialPageURL());
     }else if(this.placement == 'filterbalk'){
-      console.log('filerbalk')
+      //console.log('filerbalk')
       if(this.useLocation.nativeElement.checked == true && this.useMyLocationCheckbox.nativeElement.checked == false){
-        console.log('uselocation')
+        //console.log('uselocation')
         if(query && query.length > 0) {
           this.geoSearch
             .searchWordPhoton(query)
             .subscribe((features: any) => {
-              console.log(features)
+              //console.log(features)
               var selectedlocationName = "";
               if(features[0].display_name){
                 selectedlocationName = features[0].display_name;
@@ -113,16 +113,16 @@ export class SearchbarComponent implements OnInit{
         }
       }
       else if(this.useMyLocationCheckbox.nativeElement.checked == true){
-        console.log('mylocation');
+        //console.log('mylocation');
         if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
               // Success function
              (position)=>{
-              console.log(position);
+              //console.log(position);
               this.geoSearch
               .searchWordPhotonbbCoordinates(position.coords.latitude,position.coords.longitude)
               .subscribe((features: any) => {
-                console.log(features)
+                //console.log(features)
                 var selectedlocationName = "";
                 if(features.display_name){
                   selectedlocationName = features.display_name;
@@ -162,7 +162,7 @@ export class SearchbarComponent implements OnInit{
         }
       }
       else{
-        console.log('query')
+        //console.log('query')
         this.store.dispatch(updateQuery({query:query}));
         this.store.dispatch(setinitialPageURL());
       }
@@ -192,24 +192,24 @@ export class SearchbarComponent implements OnInit{
   }
 
   searchItems(event) {
-    console.log("searchItems")
+    //console.log("searchItems")
     var searchquery = event.target.value
     this.offerSubject.next(searchquery);
     this.showResults = true;
   }
 
   closeResults(query){
-    console.log("closeResults")
+   // console.log("closeResults")
     this.searchDatabase(query);
   }
 
   onEnter(event){
-    console.log("onEnter");
+   // console.log("onEnter");
     this.searchDatabase(event.target.value);
   }
 
   buttonClick($event){
-    console.log("buttonClick")
+    //console.log("buttonClick")
     this.searchDatabase(this.searchInput.nativeElement.value);
   }
 

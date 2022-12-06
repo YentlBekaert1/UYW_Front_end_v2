@@ -16,7 +16,7 @@ export class ActiveFiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.filters$.subscribe(res => {
-      console.log(res)
+      //console.log(res)
     })
   }
 
