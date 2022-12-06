@@ -156,6 +156,9 @@
           gap: 20px;
           &.tag{
             grid-template-columns: 2fr auto ;
+            input{
+              margin-bottom: 0;
+            }
             }
           div{
             position: relative;
@@ -193,11 +196,16 @@
               z-index: 1;
               width: 100%;
               display: none;
+              max-height: 20vh;
+              overflow-y: scroll;
               .taglistitem{
                 padding: 10px;
                 border-bottom: 1px solid var(--grey-border-color);
                 font-family: montserrat-light;
                 &:hover{
+                  background-color: var(--primary-light);
+                }
+                &.selected{
                   background-color: var(--primary-light);
                 }
               }

@@ -119,9 +119,13 @@
               <div>
                 <label for="tag">{{"ADD_OFFER_PAGE.LABEL_TAGS" | translate}}</label>
                 <input type="text" name="tag" formControlName="tag" class="form-control"
-                  (keyup)="autocompleteTag($event)">
-                <div class="taglist" #taglist>
-                  <div class="taglistitem" *ngFor="let tag of tags" (click)="taglistitemclicked(tag.id, tag.name)">
+                  (keyup)="autocompleteTag($event)"
+                  (keyup.enter)="onEnterTaglist($event)"
+                  autocomplete="off"
+                  >
+                <div class="taglist" #taglist >
+                  <div class="taglistitem" *ngFor="let tag of tags; let i = index" (click)="taglistitemclicked(tag.id, tag.name)"
+                  [ngClass]="i == taglistindex ? 'selected' : ''">
                     {{tag.name}}</div>
                 </div>
               </div>

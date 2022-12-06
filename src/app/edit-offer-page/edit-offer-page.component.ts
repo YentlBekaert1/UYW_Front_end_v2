@@ -814,6 +814,9 @@ export class EditOfferPageComponent implements OnInit {
       tag: name
    })
   }
+  onEnterTaglist($event){
+    this.addToSelectedTags();
+  }
 
   addToSelectedTags(){
     //vraag de waarden van de taginput op

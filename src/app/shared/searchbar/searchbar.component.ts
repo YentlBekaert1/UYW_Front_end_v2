@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { setinitialPageURL, updateFiltersFromFilterComponent, updateQuery } from 'src/app/store/filterstate/filter.actions';
@@ -36,7 +36,7 @@ export class SearchbarComponent implements OnInit{
   lang: string;
 
   constructor(private offerservice: OfferService, private eRef: ElementRef, private store: Store, private router: Router,
-    private translate: TranslateService, private geoSearch: GeosearchService) {
+    private translate: TranslateService, private geoSearch: GeosearchService, private route: ActivatedRoute) {
     this.offers$.subscribe(res=>{
       console.log(res);
       this.searchResults = res
@@ -171,7 +171,23 @@ export class SearchbarComponent implements OnInit{
     //na acties
     this.searchInput.nativeElement.style.outline = "none"
     this.searchInput.nativeElement.value = "";
-    this.router.navigate(['/items']);
+    const paramsub = this.route.paramMap.subscribe(params => {
+      var tab = params.get('tab');
+      if(tab === 'list'){
+        this.router.navigate(['/items','list']);
+      }
+      else if(tab === 'map'){
+        this.router.navigate(['/items', 'map']);
+      }
+      else if(tab === 'combi'){
+        this.router.navigate(['/items', 'combi']);
+      }
+      else{
+        this.router.navigate(['/items']);
+      }
+      paramsub.unsubscribe;
+    });
+
     this.showResults = false;
   }
 

@@ -57,6 +57,7 @@ export class AddOfferPageComponent implements OnInit {
   tagtimeout = null;
   selected_tags_count: number = 1;
   selected_tags: {key: number, tagname: string, new: boolean}[] = [];
+  taglistindex: number;
 
   lang$ = this.store.select(selectedLang);
   lang: string;
@@ -595,6 +596,7 @@ export class AddOfferPageComponent implements OnInit {
 
   autocompleteTag(event){
     clearTimeout(this.tagtimeout);
+    this.taglistindex = -1;
     // Make a new timeout set to go off in 1000ms (1 second)
     if(event.target.value === ""){
       this.taglist.nativeElement.style.display = "none";
@@ -614,7 +616,21 @@ export class AddOfferPageComponent implements OnInit {
   taglistitemclicked(key: number, name:string){
     this.form.patchValue({
        tag: name
-    })
+    });
+    this.addToSelectedTags();
+  }
+  onEnterTaglist($event){
+    this.addToSelectedTags();
+  }
+  onUpTaglist($event){
+    console.log(this.taglistindex)
+    if(this.taglistindex > -2){
+      this.taglistindex = this.taglistindex - 1;
+    }
+  }
+  onDownTaglist($event){
+    this.taglistindex = this.taglistindex + 1;
+    console.log(this.taglistindex)
   }
 
   addToSelectedTags(){

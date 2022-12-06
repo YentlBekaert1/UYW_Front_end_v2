@@ -25,36 +25,72 @@ export class MapComponent implements AfterViewInit  {
   @Output() selectedPointsEvent = new EventEmitter<[]>(); //geselecteerde punten na zoeken in straal;
 
   private map! : any;
+  private geoJSONData!: L.GeoJSON;
   private userLocation: any;
   private userLocationLat: any;
   private userLocationLng: any;
-
-  private geoJSONData!: L.GeoJSON;
-
   private theCircle: any; //cirkel die de range aanduid
   private theMarker: any; // marker voor middelpunt range
-  private geojsonLayer: any; //laag om de punten anders aan te duiden als ze binnen de range staan
-  private selPts:any = [];//geselecteerde punten binnen de range
-  private RadiusFilter!: [number,number,number,boolean];
+  markerCluster = new L.MarkerClusterGroup();
 
   zoomtimeout = null;
   pantimeout = null;
-
   canZoom = true;
-
   url = environment.apiUrl;
   storeFilters:any;
-
-  markerCluster = new L.MarkerClusterGroup();
+  //true = toon ennkel de markers die zichtbaar zijn op de kaart, false =  toon al de marker meteen
+  useMapBounds: boolean = false;
 
   constructor(private locationService: OfferlocationService, private store: Store) {
     this.store.select(selectAllFilters).subscribe( res => {
       this.storeFilters = res;
       if(this.map){
         const bounds = this.map.getBounds();
+        console.log(this.storeFilters);
+        if (this.theCircle != undefined) {
+          this.map.removeLayer(this.theCircle);
+        };
+        if (this.theMarker != undefined) {
+            this.map.removeLayer(this.theMarker);
+        };
+        if(this.storeFilters.coordinates[0] != null && this.storeFilters.coordinates[1] != null){
+            //gebruik search location
+            this.theMarker = L.marker([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], {icon: radiusCenterIcon}).addTo(this.map);
+            this.theCircle = L.circle([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], this.storeFilters.distance ,
+            {
+              color: 'orange',
+              fillOpacity: 0,
+              opacity: 1
+            }).addTo(this.map);
+        }
         this.getMarkerbyLocation(bounds);
+        if(this.storeFilters.distance <= 10000){
+          this.zoomToPoint([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], 11);
+        }
+        else if(this.storeFilters.distance <= 25000){
+          this.zoomToPoint([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], 10);
+        }
+        else if(this.storeFilters.distance <= 50000){
+          this.zoomToPoint([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], 9);
+        }
+        else if(this.storeFilters.distance <= 100000){
+          this.zoomToPoint([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], 8);
+        }
+        else if(this.storeFilters.distance <= 200000){
+          this.zoomToPoint([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], 7);
+        }
+        else if(this.storeFilters.distance <= 300000){
+          this.zoomToPoint([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], 6.5);
+        }
+        else if(this.storeFilters.distance <= 500000){
+          this.zoomToPoint([this.storeFilters.coordinates[0],this.storeFilters.coordinates[1]], 6);
+        }
       }
     })
+  }
+
+  zoomToPoint(coord: [number,number], zoom: number){
+    this.map.flyTo(coord, zoom)
   }
 
   private initMap(): void {
@@ -91,6 +127,11 @@ export class MapComponent implements AfterViewInit  {
     //controller toevoegen aan de map = rechtsboven knop om venster open te maken
     const layerControl = L.control.layers(baseLayers).addTo(this.map);
 
+    if(this.useMapBounds == false){
+      var bounds = "";
+      this.getMarkerbyLocation(bounds);
+    }
+
     /* --------------------------------------- KAART LATEN INZOOMEN OP GEBRUIKER -------------------------------------------------------------------*/
     //vraag de gebruiker om zijn locatie
     this.map.locate({setView: false, maxZoom:8});
@@ -119,7 +160,8 @@ export class MapComponent implements AfterViewInit  {
      this.map.on('locationfound', onLocationFound);
 
      this.map.on('zoomend', (event: any)=>{
-        if(this.canZoom == true){
+        //als de map kan zoomen en de we willen enkel de markers laden die zichtbaar op de kaart zouden staan
+        if(this.canZoom == true && this.useMapBounds == true){
           clearTimeout(this.zoomtimeout);
           // Make a new timeout set to go off in 1000ms (1 second)
           this.zoomtimeout = setTimeout(() => {
@@ -131,7 +173,8 @@ export class MapComponent implements AfterViewInit  {
       });
 
       this.map.on('move', (event: any)=>{
-        if(this.canZoom == true){
+        //als de map kan zoomen en de we willen enkel de markers laden die zichtbaar op de kaart zouden staan
+        if(this.canZoom == true && this.useMapBounds == true){
           clearTimeout(this.zoomtimeout);
           // Make a new timeout set to go off in 1000ms (1 second)
           this.zoomtimeout = setTimeout(() => {
@@ -142,6 +185,7 @@ export class MapComponent implements AfterViewInit  {
         }
       });
 
+      //als we een pop up openen willen we niet dat de markers opnieuw laden (kaart verschuifd soms een beetje)
       this.map.on('autopanstart', (event: any)=>{
         this.canZoom = false;
         clearTimeout(this.zoomtimeout);
@@ -164,20 +208,38 @@ export class MapComponent implements AfterViewInit  {
   }
 
   getMarkerbyLocation(resbounds: any){
-    var bounds = resbounds;
-    this.locationService.getLocations({
-      latNW: bounds._northEast.lat,
-      latSE: bounds._southWest.lat,
-      lonNW: bounds._northEast.lng,
-      lonSE: bounds._southWest.lng
-      },
-      {
-        categories: this.storeFilters.categories.toString(),
-        materials:this.storeFilters.materials.toString(),
-        query:this.storeFilters.query
-      }).subscribe(data=>{
-      this.addMarkers(data);
-    });
+    if(this.useMapBounds == true){
+      var bounds = resbounds;
+      this.locationService.getLocationsWithBounds({
+        latNW: bounds._northEast.lat,
+        latSE: bounds._southWest.lat,
+        lonNW: bounds._northEast.lng,
+        lonSE: bounds._southWest.lng
+        },
+        {
+          categories: this.storeFilters.categories.toString(),
+          materials:this.storeFilters.materials.toString(),
+          query:this.storeFilters.query,
+          lat: this.storeFilters.coordinates[0],
+          lon:this.storeFilters.coordinates[1],
+          distance: this.storeFilters.distance
+        }).subscribe(data=>{
+        this.addMarkers(data);
+      });
+    }
+    else{
+      this.locationService.getLocationsWithoutBounds(
+        {
+          categories: this.storeFilters.categories.toString(),
+          materials:this.storeFilters.materials.toString(),
+          query:this.storeFilters.query,
+          lat: this.storeFilters.coordinates[0],
+          lon:this.storeFilters.coordinates[1],
+          distance: this.storeFilters.distance
+        }).subscribe(data=>{
+        this.addMarkers(data);
+      });
+    }
   }
 
   //------test marker cluster--------
@@ -224,7 +286,6 @@ export class MapComponent implements AfterViewInit  {
     this.geoJSONData = L.geoJSON(data, {
             onEachFeature: onEachFeature,
             pointToLayer: function(feature, latlng) {
-
                     if(feature.properties.category === 1){
                       return L.marker(L.latLng(latlng), { icon: wasteIcon })
                     }
@@ -248,8 +309,7 @@ export class MapComponent implements AfterViewInit  {
                             fillOpacity: 0.8
                         });
                     }
-            }
-
+              }
     });
     //this.map.removeLayer(markerCluster);
     this.map.addLayer(this.markerCluster);
