@@ -12,6 +12,14 @@ export class MyFavoritesComponent implements OnInit {
   url = environment.apiUrl;
   isLoaded = false;
 
+  displayedColumns: string[] = ['image', 'title', 'category','actions'];
+  data: any = [];
+
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
+
+
   constructor(private offerservice: OfferService) { }
 
   ngOnInit(): void {

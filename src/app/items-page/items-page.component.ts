@@ -1,7 +1,11 @@
-import { Component, OnInit, Input,Output, EventEmitter,SimpleChanges,ViewChild,ElementRef, AfterViewInit, ViewContainerRef, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input,Output, EventEmitter,SimpleChanges,ViewChild,ElementRef, AfterViewInit, ViewContainerRef, HostListener, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { updatePageURL, updateQuery } from '../store/filterstate/filter.actions';
+import { selectAllFilters, selectCategories, selectMaterials, selectQuery } from '../store/filterstate/filter.selector';
+import { selectedLang } from '../store/languagestate/lang.selector';
 import { Filters } from '../_models/filters';
 import { OfferService } from '../_services/offer.service';
 import { OfferlocationService } from '../_services/offerlocation.service';
@@ -12,7 +16,7 @@ import { OfferlocationService } from '../_services/offerlocation.service';
   templateUrl: './items-page.component.html',
   styleUrls: ['./items-page.component.scss']
 })
-export class ItemsPageComponent implements OnInit, AfterViewInit {
+export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   listdata: {data: [], links:[], meta:[]} = {data: [], links:[], meta:[]};
 
   public wasteCategoryState: number = 1;
@@ -23,6 +27,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
 
   active_tab:string = 'list';
   active_category!:string;
+  tabs_style = "large"
 
   items_per_page: number;
   getoffersurl = environment.apiUrl + 'api/offers?page=1'
@@ -36,21 +41,52 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
 
   selectedFitlers: Filters = {category:'', distance: 0, lat:0, lon:0, userLocation:false, material: 0};
 
-  constructor(private route: ActivatedRoute, private offerService: OfferService) { }
+  filter_categories$ = this.store.select(selectCategories);
+  filter_materials$ = this.store.select(selectMaterials);
+  filters$ = this.store.select(selectAllFilters);
+  query$ = this.store.select(selectQuery);
+
+  showMoreFiltes = false;
+
+  lang$ = this.store.select(selectedLang);
+  lang: string;
+
+  isLoading = false;
+
+  userofferfavorites:any;
+
+  constructor(private route: ActivatedRoute, private offerService: OfferService, private store: Store, private router: Router) {
+    this.lang$.subscribe(res => {
+      this.lang =  res
+    });
+  }
 
   ngOnInit(): void {
+    if(window.innerWidth < 680){
+      this.tabs_style = "small";
+    }
+
     this.items_per_page = 20;
-    this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-    this.getData();
-    this.offerService.getMaterials().then((res: any) => {
+    this.offerService.getMaterials(this.lang).then((res: any) => {
       this.res_materials = res.data;
+    });
+    this.filters$.subscribe(res => {
+      //console.log(res)
+      //this.filtersCategorieEvent(res.categories)
+      this.getOffers(res.pageUrl,  this.items_per_page, res.query, res.categories, res.materials, res.coordinates, res.distance)
+    });
+    this.offerService.getUserFavorites().then((res: any) => {
+      //console.log(res)
+      this.userofferfavorites = [];
+      res.data.forEach((element: any) => {
+        this.userofferfavorites.push(element.id);
+      });
     })
   }
 
   changeListPage(urlstring: string){
     window.scrollTo(0, 0);
-    this.getoffersurl = urlstring;
-    this.getData();
+    this.store.dispatch(updatePageURL({pageURL:urlstring}))
   }
 
   ngAfterViewInit(): void {
@@ -79,7 +115,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
         dataView[0].classList.add('property-list-combi');
         dataView[0].classList.remove('property-list-map');
         dataView[0].classList.remove('property-list-full');
-        console.log(((window.innerWidth - this.propertylist.nativeElement.clientWidth - 50).toFixed()).toString(), window.innerWidth,  this.propertylist.nativeElement.clientWidth)
+        //console.log(((window.innerWidth - this.propertylist.nativeElement.clientWidth - 50).toFixed()).toString(), window.innerWidth,  this.propertylist.nativeElement.clientWidth)
         this.propertymap.nativeElement.style.width = ((window.innerWidth - this.propertylist.nativeElement.clientWidth - 50).toFixed()).toString() + "px";
         window.scrollTo(0, 0);
       }
@@ -93,58 +129,45 @@ export class ItemsPageComponent implements OnInit, AfterViewInit {
       else{
         this.locationString = "";
       }
-      this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-      this.getData();
     });
   }
 
-  filtersSelectedEvent(filters:Filters){
-    this.selectedFitlers.distance =filters.distance
-    this.selectedFitlers.lat = filters.lat
-    this.selectedFitlers.lon = filters.lon
-    this.selectedFitlers.userLocation = filters.userLocation
-    this.selectedFitlers.material = filters.material
 
-    this.setLocationFilters(this.selectedFitlers).then((res: string) => {
-      this.locationString = res;
-      this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-      this.getData();
+
+  getOffers(url: string, pagesize:number, query:string, categorieFilter: number[], materialFilter: number[], coordinatesFilter: [any,any], distanceFilter: number){
+    this.isLoading = true;
+    this.offerService.getOffers(url, pagesize, query, categorieFilter, materialFilter, coordinatesFilter, distanceFilter)
+    .then((res: {data: [], links:[], meta:[]})=> {
+      this.listdata = res;
+      this.isLoading = false;
     });
-
   }
 
-  filtersCategorieEvent(event: Array<any>){
-    console.log(event);
-    this.selectedFitlers.category = event.toString();
-    this.getoffersurl = environment.apiUrl + 'api/offers?page=1'
-    this.getData();
+  moreFiltersClicked(){
+    this.showMoreFiltes = !this.showMoreFiltes
+   }
+
+   removeQuery(){
+    this.store.dispatch(updateQuery({query:"" }));
+   }
+
+   goToAdd(){
+    this.router.navigate(['/addoffer']);
+   }
+   goToSearch(){
+    this.router.navigate(['/search']);
+   }
+
+   ngOnDestroy() {
+    this.store.dispatch(updateQuery({query:"" }));
   }
 
- async setLocationFilters(filters: any){
-  return new Promise(function (resolve, reject) {
-    if( filters.userLocation == false){
-      if(filters.lat !== 0 && filters.lat !== 0){
-        resolve((filters.lat + "," +filters.lon + "," +filters.distance).toString());
-      }else{
-        resolve("");
-      }
+  @HostListener("window:resize", ["$event"])
+  onResize(event: any) {
+    if(event.target.innerWidth < 680){
+      this.tabs_style = "small";
+    }else{
+      this.tabs_style = "large";
     }
-    else{
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=>{
-          const longitude = position.coords.longitude;
-          const latitude = position.coords.latitude;
-          resolve((latitude + "," +longitude + "," +filters.distance).toString());
-        });
-         }else {
-          console.log("No support for geolocation");
-          resolve("");
-        }
-    }
-   });
-  }
-
-  getData(){
-    this.offerService.getOffers(this.getoffersurl, this.items_per_page, this.selectedFitlers.material, this.locationString, this.selectedFitlers.category).then( (res: {data: [], links:[], meta:[]})=> {this.listdata = res});
   }
 }

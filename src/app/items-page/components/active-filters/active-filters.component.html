@@ -1,0 +1,31 @@
+<div class="filters" *ngIf="(filters$ | async).query != '' || (filters$ | async).categories.length > 0 || (filters$ | async).materials.length || ((filters$ | async).coordinates[0] !== null && (filters$ | async).coordinates[1] !== null)">
+  <p>Gevonden resultaten voor:</p>
+  <div class="chip" *ngIf="(filters$ | async).query != ''">
+    <!-- {{(filters$ | async).query}} -->
+    <span>{{(filters$ | async).query}}</span>
+    <button (click)="deleteFilter('query')"><i class="material-icons">close</i></button>
+  </div>
+  <div class="chip" *ngIf="(filters$ | async).categories.length > 0">
+    <!-- {{(filters$ | async).query}} -->
+    <span *ngIf="(filters$ | async).categories[0] == 1">Afval</span>
+    <span *ngIf="(filters$ | async).categories[0] == 2">Inspiratie</span>
+    <span *ngIf="(filters$ | async).categories[0] == 3">Persoon</span>
+    <span *ngIf="(filters$ | async).categories[0] == 4">Organisatie</span>
+    <span *ngIf="(filters$ | async).categories[0] == 5">Technologie</span>
+    <button (click)="deleteFilter('categories')"><i class="material-icons">close</i></button>
+  </div>
+  <div class="chip" *ngIf="(filters$ | async).materials.length > 0">
+    <!-- {{(filters$ | async).query}} -->
+    <span>{{(filters$ | async).material_name}}</span>
+    <button (click)="deleteFilter('materials')"><i class="material-icons">close</i></button>
+  </div>
+  <div class="chip" *ngIf="(filters$ | async).coordinates[0] !== null && (filters$ | async).coordinates[1] !== null">
+    <!-- {{(filters$ | async).query}} -->
+    <span>{{(filters$ | async).location_name}}</span>
+    <button (click)="deleteFilter('coordinates')"><i class="material-icons">close</i></button>
+  </div>
+  <div class="chip" *ngIf="(filters$ | async).distance !== null && (filters$ | async).distance > 0">
+    <span>Radius: {{(filters$ | async).distance / 1000}} km</span>
+    <button (click)="deleteFilter('distance')"><i class="material-icons">close</i></button>
+  </div>
+</div>

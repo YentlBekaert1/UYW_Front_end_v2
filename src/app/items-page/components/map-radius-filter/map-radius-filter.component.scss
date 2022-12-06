@@ -227,7 +227,7 @@ div.userLocationCheckbox{
     cursor: pointer;
     &:checked {
       border: 1px solid var(--white-color);
-      background-color: var(--yellow-gradient-color);
+      background-color: var(--primary-color);
     }
   }
   input:checked + span::before {
@@ -243,7 +243,7 @@ div.userLocationCheckbox{
     pointer-events: none;
 }
   span{
-    color: var(--white-color);
+    color: var(--black-color);
     font-size: 14px;
   }
 }

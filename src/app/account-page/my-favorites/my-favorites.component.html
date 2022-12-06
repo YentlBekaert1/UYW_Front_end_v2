@@ -1,31 +1,53 @@
 <div class="favorites-page">
-  <div *ngIf="isLoaded">
-    <table *ngIf="userFavorites.length > 0;else favoritesEmpty">
-      <thead>
-        <tr>
-          <th>afbeelding</th>
-          <th>name</th>
-          <th>categorie</th>
-          <th>actie</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let offer of userFavorites">
-          <td>
-            <img *ngIf="offer.images[0]; else default" src="{{url + offer.images[0].filename}}" alt="">
-            <ng-template #default> <img src="../../../assets/default_image.png" alt=""></ng-template>
-          </td>
-          <td><p>{{offer.title}}</p></td>
-          <td>{{offer.category.name}}</td>
-          <td><a [routerLink]="['/offerdetail', offer.id]">bekijk</a></td>
-        </tr>
-      </tbody>
-    </table>
-    <ng-template #favoritesEmpty>
-      <div class="favoritesEmpty">
-        <p>Er is nog niets aan u favorieten toegevoegd. Ontdek de verschillende items en voeg ze aan u favorieten toe.</p>
-      </div>
-    </ng-template>
+  <div class="example-container">
+    <div class="example-loading-shade" *ngIf="!isLoaded || isRateLimitReached">
+      <app-loading-overlay-account></app-loading-overlay-account>
+    </div>
+
+    <div class="example-table-container">
+      <table mat-table [dataSource]="userFavorites" class="example-table" matSort>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>{{"ACCOUNT_PAGE.TABLE_LABEL2" | translate}}</th>
+        <td mat-cell *matCellDef="let row">
+          <img class="circleimg" *ngIf="row.images[0]; else default" src="{{url + row.images[0].filename}}"
+            alt="">
+          <ng-template #default> <img class="circleimg" src="../../../assets/default_image.png" alt="">
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>{{"ACCOUNT_PAGE.TABLE_LABEL3" | translate}}</th>
+        <td mat-cell *matCellDef="let row">{{row.title}}</td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>{{"ACCOUNT_PAGE.TABLE_LABEL4" | translate}}</th>
+        <td class="category" mat-cell *matCellDef="let row">{{row.category.name}}</td>
+      </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>{{"ACCOUNT_PAGE.TABLE_LABEL1" | translate}}</th>
+          <td class="category" mat-cell *matCellDef="let row"><a [routerLink]="['/offerdetail', row.id]">{{"ACCOUNT_PAGE.TABLE_ACTION1" | translate}}</a></td>
+        </ng-container>
+
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="8">{{"ACCOUNT_PAGE.NO_ITEMS_LIKED" | translate}}</td>
+      </tr>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <!-- <mat-paginator [length]="resultsLength" [pageSize]="10" aria-label="Select page of GitHub search results">
+    </mat-paginator> -->
   </div>
-  <app-loading-overlay-account *ngIf="isLoaded == false"></app-loading-overlay-account>
+
 </div>

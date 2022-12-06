@@ -15,8 +15,16 @@
   </h3> -->
 
 <div class="categories" #categories>
-  <div *ngFor="let categorie of categories_array"  id="{{categorie.key}}" (click)="ButtonClick(categorie.key)">
-    <img src="{{categorie.image}}" alt="{{categorie.name}}">
-    <span>{{categorie.name}}</span>
+  <div class="tooltip" *ngFor="let categorie of categories_array"  id="{{categorie.id}}" (click)="ButtonClick(categorie.id)">
+    <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
+    <span class="tooltiptext tooptipCap"*ngIf="lang == 'nl'">{{categorie.name_nl}}</span>
+    <span class="tooltiptext tooptipCap" *ngIf="lang == 'fr'">{{categorie.name_fr}}</span>
+    <span class="tooltiptext tooptipCap" *ngIf="lang == 'en'">{{categorie.name_en}}</span>
   </div>
+
+  <!-- <div class="tooltip" id="add" (click)="goToAdd()">
+    <i class="material-icons">add</i>
+    <span class="tooltiptext">Voeg toe aan de database</span>
+  </div> -->
  </div>
+

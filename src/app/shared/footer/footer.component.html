@@ -2,27 +2,27 @@
   <div class="background-overlay"></div>
   <div class="footer-container">
       <div class="col-1">
-        <h3>Mijn upcycle your waste</h3>
+        <h3>{{"FOOTER.TITLE1" | translate}}</h3>
         <ul>
-          <li><a [routerLink]="['/account','profile']">Inloggen</a></li>
-          <li><a [routerLink]="['/register']">Registreren</a></li>
-          <li><a [routerLink]="['/account','item']">Mijn items</a></li>
-          <li><a [routerLink]="['/account','favorites']">Mijn favorieten</a></li>
-          <li><a [routerLink]="['/account','settings']">Instellingen</a></li>
+          <li><a [routerLink]="['/login']">{{"FOOTER.LOG_IN" | translate}}</a></li>
+          <li><a [routerLink]="['/register']">{{"FOOTER.REGISTER" | translate}}</a></li>
+          <li><a [routerLink]="['/account','item']">{{"FOOTER.MY_ITEMS" | translate}}</a></li>
+          <li><a [routerLink]="['/account','favorites']">{{"FOOTER.MY_FAVORTITES" | translate}}</a></li>
+          <li><a [routerLink]="['/account','settings']">{{"FOOTER.SETTINGS" | translate}}</a></li>
         </ul>
       </div>
       <div class="col-2">
-        <h3>Over upcycle your waste</h3>
+        <h3>{{"FOOTER.TITLE2" | translate}}</h3>
         <ul>
-          <li><a href="">Algemene Info</a></li>
-          <li><a href="">Veel gestelde vragen</a></li>
-          <li><a href="">Contacteer ons</a></li>
-          <li><a href="">Geef je feedback</a></li>
+          <li><a href="/home">{{"FOOTER.INFO" | translate}}</a></li>
+          <li><a href="">{{"FOOTER.QUESTIONS" | translate}}</a></li>
+          <li><a href="">{{"FOOTER.CONTACT_US" | translate}}</a></li>
+          <li><a href="">{{"FOOTER.FEEDBACK" | translate}}</a></li>
         </ul>
       </div>
       <div class="col-3">
-        <h3>upcycle your waste app</h3>
-        <p>Download de app uit de Playstore of Appstore.</p>
+        <h3>{{"FOOTER.TITLE3" | translate}}</h3>
+        <p>{{"FOOTER.DOWNLOAD" | translate}}</p>
         <div class="logos">
           <div class="applogo">
             <img src="../../../assets/applogo.png" alt="">
@@ -35,7 +35,7 @@
       </div>
   </div>
   <div class="footer_bottom">
-    <p>Copyright © 2022 door Upcycleyourwaste.com</p>
-    <p>Gebruiksvoorwaarden - Cookiebeleid - Privacy beleid - Privacy voorkeuren beheren</p>
+    <p>Copyright © 2022 Upcycleyourwaste.be - Yentl Bekaert - VIVES</p>
+    <p><a routerLink="/termsofcondition">{{"FOOTER.CONDITIONS" | translate}}</a> - {{"FOOTER.COOKIE" | translate}} - {{"FOOTER.PRIVACY" | translate}} - {{"FOOTER.PRIVACY_CONDITIONS" | translate}}</p>
   </div>
 </footer>

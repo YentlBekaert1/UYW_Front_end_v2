@@ -1,0 +1,205 @@
+<div class="main">
+  <div class="section1">
+    <div class="yellow-circle circle-small"></div>
+    <div class="yellow-circle circle-large"></div>
+    <div class="yellow-circle circle-blur"></div>
+    <div class="section1-text-content">
+      <h1>{{'HOMEPAGE.TITLE_BLACK' | translate}} <span>{{'HOMEPAGE.TITLE_GREEN' | translate}}</span></h1>
+      <div id="hero-description">
+        <p>{{'HOMEPAGE.INTRO_1' | translate}}</p>
+        <p>{{'HOMEPAGE.INTRO_2' | translate}}</p>
+        <p>{{'HOMEPAGE.INTRO_3' | translate}}</p>
+      </div>
+      <div class="call-to-actions">
+        <a [routerLink]="['/items/list']" routerLinkActive="router-link-active"  class="call-to-actions-btn1">{{'HOMEPAGE.INTRO_BUTTON_1' | translate}}</a>
+        <a [routerLink]="['/items/map']"  class="call-to-actions-btn2">{{'HOMEPAGE.INTRO_BUTTON_2' | translate}}</a>
+      </div>
+      <div class="discover-category">
+        <a href="#categories" class="discover-category-btn">{{'HOMEPAGE.INTRO_BUTTON_3' | translate}}</a>
+        <svg class="arrows">
+          <path class="a1" d="M0 0 L30 32 L60 0"></path>
+          <path class="a2" d="M0 20 L30 52 L60 20"></path>
+          <path class="a3" d="M0 40 L30 72 L60 40"></path>
+        </svg>
+      </div>
+    </div>
+    <div id="aarde_container" #aardbol>
+      <div id="aardbol_picture">
+        <img src="../../assets/aardbol_home/aarde_bg.svg" alt="">
+        <img src="../../assets/aardbol_home/aarde_bg_border.svg" alt="">
+        <img src="../../assets/aardbol_home/aarde_bg_blur.svg" alt="">
+        <div *ngFor="let categorie of categories_array; let i = index" class="categorie_logo logo{{i+1}}" class="">
+          <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
+          <p *ngIf="lang == 'nl'">{{categorie.name_nl}}</p>
+          <p *ngIf="lang == 'fr'">{{categorie.name_fr}}</p>
+          <p *ngIf="lang == 'en'">{{categorie.name_en}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section2 categorieën" id="categories">
+    <svg viewBox="0 0 1920 893" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_756_32)">
+        <path d="M0 188.522L64 176.616C128 164.874 256 141.061 384 130.973C512 120.72 640 124.028 768 135.934C896 147.676 1024 168.182 1152 166.528C1280 164.874 1408 141.061 1536 127.831C1664 114.602 1792 111.956 1856 110.467L1920 109.144V0H1856C1792 0 1664 0 1536 0C1408 0 1280 0 1152 0C1024 0 896 0 768 0C640 0 512 0 384 0C256 0 128 0 64 0H0V188.522Z" fill="#317066"/>
+        </g>
+        <defs>
+        <clipPath id="clip0_756_32">
+        <rect width="1920" height="893" fill="white"/>
+        </clipPath>
+        </defs>
+    </svg>
+    <svg  viewBox="0 0 1920 893" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_756_32)">
+      <path d="M0 894.654H64C128 894.654 256 894.654 384 894.654C512 894.654 640 894.654 768 894.654C896 894.654 1024 894.654 1152 894.654C1280 894.654 1408 894.654 1536 894.654C1664 894.654 1792 894.654 1856 894.654H1920V560.606L1856 571.024C1792 581.608 1664 602.444 1536 633.865C1408 665.285 1280 707.289 1152 707.289C1024 707.289 896 665.285 768 616.005C640 566.724 512 509.837 384 518.767C256 527.532 128 601.948 64 639.157L0 676.365V894.654Z" fill="#317066"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_756_32">
+      <rect width="1920" height="893" fill="white"/>
+      </clipPath>
+      </defs>
+    </svg>
+    <div class="content">
+     <h2>{{'HOMEPAGE.SECTION2_TITLE' | translate}}</h2>
+     <p>{{'HOMEPAGE.SECTION2_INTRO' | translate}}</p>
+     <div class="categories">
+        <div *ngFor="let categorie of categories_array; let i = index" class="categorie" id="categorie{{i+1}}">
+          <div>
+            <img src="{{categorie.category_image}}" alt="{{categorie.name}}">
+          </div>
+          <span *ngIf="lang == 'nl'">{{categorie.name_nl}}</span>
+          <span *ngIf="lang == 'fr'">{{categorie.name_fr}}</span>
+          <span *ngIf="lang == 'en'">{{categorie.name_en}}</span>
+          <p *ngIf="lang == 'nl'">{{categorie.description_nl}}</p>
+          <p *ngIf="lang == 'fr'">{{categorie.description_fr}}</p>
+          <p *ngIf="lang == 'en'">{{categorie.description_en}}</p>
+          <button [routerLink]="['/items']">{{'HOMEPAGE.SECTION2_BUTTON' | translate}}</button>
+        </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="linepart">
+    <div class="bg-image bg-image-line"></div>
+    <div class="section3">
+      <div class="content">
+        <h2>{{'HOMEPAGE.SECTION3_TITLE' | translate}}</h2>
+        <div class="HW-cards">
+          <div class="HW-card">
+            <svg width="96" height="92" viewBox="0 0 96 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M42.2548 84.8282L54.0586 84.6543M39.2097 76.4672L56.9156 76.2063M47.9686 67.9322L47.7178 45.5201M56.8215 67.8018L56.7745 63.5995C56.7177 58.5218 62.481 53.6332 66.2162 50.151C71.4813 45.2453 74.2048 38.7186 74.1198 31.1212C73.963 17.1137 62.0835 6.08085 47.2789 6.299C43.7883 6.34119 40.3376 7.038 37.1251 8.34937C33.9126 9.66075 31.0017 11.5608 28.5598 13.9403C26.1178 16.3198 24.1931 19.1318 22.8961 22.2147C21.5991 25.2975 20.9555 28.5904 21.0023 31.9039C21.0843 39.2299 24.0777 46.1119 29.3291 50.6945C33.12 54.0028 39.0113 58.7301 39.0687 63.8604L39.1157 68.0627L56.8215 67.8018Z" stroke="#515050" stroke-opacity="0.8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M54.6955 42.6152C54.6955 42.6152 50.7596 45.4752 47.7183 45.52C44.6769 45.5648 40.6784 42.8218 40.6784 42.8218" stroke="#777474" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>{{'HOMEPAGE.SECTION3_CARD1_TITLE' | translate}}</h3>
+            <p>{{'HOMEPAGE.SECTION3_CARD1_DESCRIPTION' | translate}}</p>
+          </div>
+          <div class="HW-card middle_card">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_576_8)">
+              <path d="M59.3393 22.2877L60.0353 22.5313L60.7229 22.2648L81.9104 14.0517L82 14.0349L82 74.4675C81.9874 74.4767 81.9646 74.4903 81.9275 74.5026L81.9215 74.5047L62 81.2158L62 79.5L62 25L62 23.5485L60.62 23.0985L37.62 15.5985L35 14.7442L35 17.5L35 71L35 72.3931L36.3067 72.876L59.3067 81.376L60.3643 81.7668L60.0124 81.8854L36.6607 73.7123L35.9647 73.4687L35.2771 73.7352L14.0896 81.9483L14 81.9651L14 21.5325C14.0126 21.5233 14.0354 21.5097 14.0725 21.4974L14.0725 21.4974L14.0785 21.4953L35.9876 14.1146L59.3393 22.2877Z" stroke="#777474" stroke-width="4"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_576_8">
+              <rect width="96" height="96" fill="white"/>
+              </clipPath>
+              </defs>
+            </svg>
+            <h3>{{'HOMEPAGE.SECTION3_CARD2_TITLE' | translate}}</h3>
+            <p>{{'HOMEPAGE.SECTION3_CARD2_DESCRIPTION' | translate}}</p>
+          </div>
+          <div class="HW-card">
+            <svg width="72" height="48" viewBox="0 0 72 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M28 44C28 46.2091 29.7909 48 32 48H40C42.2091 48 44 46.2091 44 44V44C44 41.7909 42.2091 40 40 40H32C29.7909 40 28 41.7909 28 44V44ZM4 0C1.79086 0 0 1.79086 0 4V4C0 6.20914 1.79086 8 4 8H68C70.2091 8 72 6.20914 72 4V4C72 1.79086 70.2091 0 68 0H4ZM12 24C12 26.2091 13.7909 28 16 28H56C58.2091 28 60 26.2091 60 24V24C60 21.7909 58.2091 20 56 20H16C13.7909 20 12 21.7909 12 24V24Z" fill="#515050" fill-opacity="0.8"/>
+            </svg>
+            <h3>{{'HOMEPAGE.SECTION3_CARD3_TITLE' | translate}}</h3>
+            <p>{{'HOMEPAGE.SECTION3_CARD3_DESCRIPTION' | translate}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section4 recent_toegevoegd">
+      <div class="content">
+        <div class="accent"></div>
+        <h2>{{'HOMEPAGE.SECTION4_TITLE' | translate}}</h2>
+        <app-card-slider [data]="latest_offers" [totalCards]="20" [card_view]="'database'" class=""></app-card-slider>
+        <div class="btn-cnt">
+          <button [routerLink]="['/items/list']">{{'HOMEPAGE.SECTION4_BUTTON' | translate}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="section5 zelf-toevoegen">
+        <svg viewBox="0 0 1920 393" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_756_32)">
+          <path d="M0 188.522L64 176.616C128 164.874 256 141.061 384 130.973C512 120.72 640 124.028 768 135.934C896 147.676 1024 168.182 1152 166.528C1280 164.874 1408 141.061 1536 127.831C1664 114.602 1792 111.956 1856 110.467L1920 109.144V0H1856C1792 0 1664 0 1536 0C1408 0 1280 0 1152 0C1024 0 896 0 768 0C640 0 512 0 384 0C256 0 128 0 64 0H0V188.522Z" fill="#317066"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_756_32">
+          <rect width="1920" height="393" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg>
+        <svg  viewBox="0 0 1920 693" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_756_32)">
+          <path d="M0 894.654H64C128 894.654 256 894.654 384 894.654C512 894.654 640 894.654 768 894.654C896 894.654 1024 894.654 1152 894.654C1280 894.654 1408 894.654 1536 894.654C1664 894.654 1792 894.654 1856 894.654H1920V560.606L1856 571.024C1792 581.608 1664 602.444 1536 633.865C1408 665.285 1280 707.289 1152 707.289C1024 707.289 896 665.285 768 616.005C640 566.724 512 509.837 384 518.767C256 527.532 128 601.948 64 639.157L0 676.365V894.654Z" fill="#317066"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_756_32">
+          <rect width="1920" height="693" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg>
+        <div class="content">
+          <div class="left">
+            <h2>{{'HOMEPAGE.SECTION5_TITLE' | translate}}</h2>
+            <p>{{'HOMEPAGE.SECTION5_INTRO' | translate}}</p>
+            <a [routerLink]="['/addoffer']">{{'HOMEPAGE.SECTION5_BUTTON' | translate}}</a>
+          </div>
+          <div class="right">
+            <img src="../../assets/phone.svg" alt="phone.svg">
+          </div>
+        </div>
+        <div class="bg-image bg-image6"></div>
+    </div>
+    <div class="section6 in_samenwerking_met">
+      <div class="content">
+        <h2>{{'HOMEPAGE.SECTION6_TITLE' | translate}}</h2>
+        <div class="samenwerking">
+          <div>
+            <img src="../../assets/logo-uyw.png" alt="Upcycle Your Waste">
+          </div>
+          <div>
+            <h3>{{'HOMEPAGE.SECTION6_CARD1_TITLE' | translate}}</h3>
+            <p>{{'HOMEPAGE.SECTION6_CARD1_DESCRIPTION' | translate}}</p>
+            <button>{{'HOMEPAGE.SECTION6_BUTTON' | translate}}</button>
+          </div>
+        </div>
+
+        <div class="samenwerking middle">
+          <div>
+            <img src="../../assets/logo_econhuis.png" alt="Economisch huis Oostende">
+          </div>
+          <div>
+            <h3>{{'HOMEPAGE.SECTION6_CARD2_TITLE' | translate}}</h3>
+            <p>{{'HOMEPAGE.SECTION6_CARD2_DESCRIPTION' | translate}}</p>
+            <button>{{'HOMEPAGE.SECTION6_BUTTON' | translate}}</button>
+          </div>
+        </div>
+
+        <div class="samenwerking">
+          <div>
+            <img src="../../assets/logo-vives.png" alt="Hogeschool Vives">
+          </div>
+          <div>
+            <h3>{{'HOMEPAGE.SECTION6_CARD3_TITLE' | translate}}</h3>
+            <p>{{'HOMEPAGE.SECTION6_CARD3_DESCRIPTION' | translate}}</p>
+            <button>{{'HOMEPAGE.SECTION6_BUTTON' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<app-footer></app-footer>
+
+<!-- <canvas #canvas id="canvas" width="500"></canvas> -->
+

@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
@@ -14,22 +15,46 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
   private activeTabSubject: BehaviorSubject<any>;
   active_tab$: Observable<{key: number, value: string}>;
   active_tab: any;
-  test = new Observable();
+
+  timeout = null;
 
   tab_array: {key: number, value: string}[] = [
-    { key: 1, value:"Mijn Gegevens"},
-    { key: 2, value:"Mijn Favorieten"},
-    { key: 3, value:"Mijn Items"},
+    { key: 1, value:"Accountoverzicht"},
+    { key: 2, value:"Mijn favorieten"},
+    { key: 3, value:"Mijn toegevoede items"},
     { key: 4, value:"Voeg een item toe"},
     { key: 5, value:"Instellingen"},
     { key: 6, value:"Uitloggen"},
   ];
 
-  constructor( private route: ActivatedRoute, private router: Router) {
+  constructor( private route: ActivatedRoute, private router: Router, private translate: TranslateService) {
     this.activeTabSubject = new BehaviorSubject<any>({} as any);
     this.active_tab$ = this.activeTabSubject.asObservable();
+    this.translate.get('ACCOUNT_PAGE').subscribe((res)=>{
+      this.tab_array =  [
+        { key: 1, value: res.ACCOUNT_INFO},
+        { key: 2, value: res.MY_FAVORITES},
+        { key: 3, value: res.MY_ITEMS},
+        { key: 4, value: res.ADD_ITEM},
+        { key: 5, value: res.SETTINGS},
+        { key: 6, value: res.LOG_OUT},
+      ];
+    })
+
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.tab_array =  [
+        { key: 1, value: event.translations.ACCOUNT_PAGE.ACCOUNT_INFO},
+        { key: 2, value: event.translations.ACCOUNT_PAGE.MY_FAVORITES},
+        { key: 3, value: event.translations.ACCOUNT_PAGE.MY_ITEMS},
+        { key: 4, value: event.translations.ACCOUNT_PAGE.ADD_ITEM},
+        { key: 5, value: event.translations.ACCOUNT_PAGE.SETTINGS},
+        { key: 6, value: event.translations.ACCOUNT_PAGE.LOG_OUT},
+      ];
+        this.setTabActive(this.active_tab.key);
+    });
   }
   ngOnInit(): void {
+    window.scrollTo(0,0);
     const paramsub = this.route.paramMap.subscribe(params => {
       var tab = params.get('tab');
       var number = 0;
@@ -119,6 +144,6 @@ export class AccountPageComponent implements AfterViewInit, OnInit {
       this.router.navigate(['addoffer']);
   }
   ontdekClicked(){
-    this.router.navigate(['items']);
+    this.router.navigate(['items', 'list']);
   }
 }

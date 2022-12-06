@@ -6,7 +6,7 @@
   <div class="login">
     <div class="form-container">
       <!-- <a [routerLink]="['/home']" class="home"><i class="material-icons">home</i><span>Home</span></a> -->
-      <h1>Log in</h1>
+      <h1>{{"LOGIN_PAGE.TITLE" | translate}}</h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
         <div class="validators">
           <ul *ngFor="let validation of offer_validation_messages.email">
@@ -26,31 +26,31 @@
           </ul>
         </div>
 
-        <label for="email">email</label>
+        <label for="email">{{"LOGIN_PAGE.lABEL_EMAIL" | translate}}</label>
         <input type="text" class="form-control" formControlName="email" name="email"/>
 
-        <label for="password">wachtwoord</label>
+        <label for="password">{{"LOGIN_PAGE.LABEL_PASSWORD" | translate}}</label>
         <input type="password" class="form-control" formControlName="password" name="password"/>
         <div class="form_bottom">
           <div class="remember_input">
             <input type="checkbox" name="remember" id="remember" formControlName="remember">
-            <label for="remember" >onthoud mij</label>
+            <label for="remember" >{{"LOGIN_PAGE.LABEL_REMEBER" | translate}}</label>
           </div>
           <div class="forget_password">
-            <a routerLink="/forgetpassword">Wachtwoord vergeten?</a>
+            <a routerLink="/forgetpassword">{{"LOGIN_PAGE.LINK_FORGET_PASSWORD" | translate}}</a>
           </div>
         </div>
         <div class="btns">
-          <button type="submit">Inloggen</button>
+          <button type="submit">{{"LOGIN_PAGE.BUTTON" | translate}}</button>
           <!-- <button type="button" (click)="goToRegister()">Maak account aan</button> -->
         </div>
       </form>
       <div class="or">
         <div class="line"></div>
-        <span>of</span>
+        <span>{{"LOGIN_PAGE.OR" | translate}}</span>
       </div>
       <div class="register_container">
-        <span>Nieuwe gebruiker <a routerLink="/register">Creëer hier een account</a></span>
+        <span>{{"LOGIN_PAGE.NEW_USER_LABEL" | translate}} <a routerLink="/register">{{"LOGIN_PAGE.CREATE_ACCOUNT_LABEL" | translate}}</a></span>
       </div>
     </div>
     <div class="image">

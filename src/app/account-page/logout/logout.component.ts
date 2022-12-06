@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { DeleteProfile } from 'src/app/store/authstate/auth.actions';
+
 
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router, private store: Store) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,14 +22,11 @@ export class LogoutComponent implements OnInit {
 
     this.auth.csrf().subscribe({
       next: data => {
-        this.auth.logout().subscribe({
-          next: data => {
-            this.store.dispatch(DeleteProfile());
-          },
-          error: err => {}
-        }
+        this.auth.logout().then((res)=>{
+          this.router.navigate(['home']);
+        }).catch(err =>
+          console.log(err)
         )
-        this.router.navigate(['home']);
       },
       error: err => {
         console.log(err);

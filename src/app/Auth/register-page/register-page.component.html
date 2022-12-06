@@ -6,7 +6,7 @@
   <div class="login">
     <div class="form-container">
       <!-- <a [routerLink]="['/home']" class="home"><i class="material-icons">home</i><span>Home</span></a> -->
-      <h1>Maak een account aan</h1>
+      <h1>{{"REGISTER_PAGE.TITLE" | translate}}</h1>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
         <div class="validators">
           <ul *ngFor="let validation of offer_validation_messages.name">
@@ -45,33 +45,33 @@
             </li>
           </ul>
         </div>
-        <label for="name">naam</label>
+        <label for="name">{{"REGISTER_PAGE.LABEL_NAME" | translate}}</label>
         <input type="text" class="form-control" formControlName="name" name="name"/>
 
-        <label for="email">email</label>
+        <label for="email">{{"REGISTER_PAGE.lABEL_EMAIL" | translate}}</label>
         <input type="text" class="form-control" formControlName="email" name="email"/>
 
-        <label for="password">wachtwoord</label>
+        <label for="password">{{"REGISTER_PAGE.LABEL_PASSWORD" | translate}}</label>
         <input type="password" class="form-control" formControlName="password" name="password"/>
 
-        <label for="password_confirmation">bevestig wachtwoord</label>
+        <label for="password_confirmation">{{"REGISTER_PAGE.LABEL_PASSWORD_CONFIRM" | translate}}</label>
         <input type="password" class="form-control" formControlName="password_confirmation" name="password_confirmation"/>
 
         <div class="terms">
           <input type="checkbox" class="form-control terms_input" formControlName="terms" name="terms"/>
-          <label for="terms" class="terms_label">Ik ga akkoord met de <a routerLink="/termsofcondition">algemene vooraarden</a></label>
+          <label for="terms" class="terms_label">{{"REGISTER_PAGE.LABEL_TOC" | translate}} <a routerLink="/termsofcondition">{{"REGISTER_PAGE.LINK_TOC" | translate}}</a></label>
         </div>
 
         <div class="btns">
-          <button type="submit">Maak aan</button>
+          <button type="submit">{{"REGISTER_PAGE.BUTTON" | translate}}</button>
         </div>
       </form>
       <div class="or">
         <div class="line"></div>
-        <span>of</span>
+        <span>{{"REGISTER_PAGE.OR" | translate}}</span>
       </div>
       <div class="back_container">
-        <span><a routerLink="/login">Log terug in</a></span>
+        <span><a routerLink="/login">{{"REGISTER_PAGE.TO_LOGIN" | translate}}</a></span>
       </div>
     </div>
     <div class="image">

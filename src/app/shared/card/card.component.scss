@@ -1,12 +1,13 @@
 #card
 {
-  max-width: 300px;
+  //min-width: 300px;
   min-height: 360px;
   border-radius: 15px;
   background-color: var(--white-color);
   filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
   margin: 10px auto;
   position: relative;
+  height: 95%;
   .likes{
     position: absolute;
     z-index: 10;
@@ -20,6 +21,7 @@
     background-color: rgba(0, 0, 0, 0.4);
     border-radius:  0 15px 0 15px;
     padding: 0.2rem 0.5rem;
+    cursor: pointer;
     i{
       font-size: 1rem;
      padding-right:0.2rem;
@@ -27,14 +29,13 @@
   }
   img{
     width: 100%;
-    max-height:200px;
+    height:200px;
     background: rgb(238, 238, 238);
     border-radius: 15px;
-    object-fit: cover;
-    -webkit-box-shadow:inset 0px 0px 0px 10px rgb(233, 233, 233);
-    -moz-box-shadow:inset 0px 0px 0px 10px rgb(233, 233, 233);
-    box-shadow:inset 0px 0px 0px 10px rgb(233, 233, 233);
-
+    object-fit: contain;
+    // -webkit-box-shadow:inset 0px 0px 0px 10px rgb(233, 233, 233);
+    // -moz-box-shadow:inset 0px 0px 0px 10px rgb(233, 233, 233);
+    // box-shadow:inset 0px 0px 0px 10px rgb(233, 233, 233);
     -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;
@@ -72,6 +73,8 @@
       margin: 1rem 0;
       color: var(--black-color);
       font-family: montserrat-bold;
+      font-size: 1.1rem;
+      cursor: pointer;
     }
     p{
       color: #727272;
@@ -80,6 +83,7 @@
       white-space: nowrap;
       overflow: hidden;
       margin: 0.5rem 0;
+      font-size: 0.8rem;
     }
     a{
       align-self: flex-end;
@@ -87,6 +91,7 @@
       text-transform: uppercase;
       font-weight: bold;
       margin: 0.5rem;
+      font-size: 1rem;
     }
   }
 

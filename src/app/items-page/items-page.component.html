@@ -1,32 +1,75 @@
-<div appScroll appResize>
+<div appScroll appResize [active_tab]="active_tab">
   <main>
     <section class="filters">
         <div class="filter-background"></div>
-        <div class="filters-container container ">
-            <div>
-              <app-category-buttons
-              (categoryFilterEvent)="filtersCategorieEvent($event)"
-              ></app-category-buttons>
-              <app-tabs
-              [activeFilters]="selectedFitlers"
-              ></app-tabs>
+        <div class="filters-container-large container ">
+            <div class="categrory-buttons">
+              <app-category-buttons [categorieFilters]="filter_categories$ | async"></app-category-buttons>
+              <h5>{{"ITEMS_PAGE.CATEGORY_FILTER_TITLE" | translate}}</h5>
             </div>
-            <app-map-radius-filter
-              [materials]="res_materials"
-              (filterRadius)="filtersSelectedEvent($event)"
-            ></app-map-radius-filter>
-       </div>
+            <div class="search">
+              <div class="search-top">
+                <div class="add-container">
+                  <div class="add" (click)="goToAdd()" >
+                    <i class="material-icons">add</i>
+                  </div>
+                  <h5>{{"ITEMS_PAGE.ADD_ITEM" | translate}}</h5>
+                </div>
+                <app-searchbar [placement]="'filterbalk'"></app-searchbar>
+                <!-- <select name="material" formControlName="material" class="form-control">
+                  <option value="300">+300km</option>
+                  <option value="150">+150km</option>
+                  <option value="100">+100km</option>
+                  <option value="70">+70km</option>
+                  <option value="20">+20km</option>
+                </select> -->
+              </div>
+              <div class="gb-locatie">
+
+                <!-- <div>
+                  <input type="checkbox">
+                  <h5>{{"ITEMS_PAGE.USE_MY_LOCATION" | translate}}</h5>
+                </div> -->
+              </div>
+            </div>
+            <div class="tabs">
+              <div>
+                <button (click)="goToSearch()"><i class="material-icons">search</i></button>
+                <h5>Search</h5>
+              </div>
+              <div>
+                <button (click)="goToAdd()"><i class="material-icons">add</i></button>
+                <h5>{{"ITEMS_PAGE.ADD_ITEM" | translate}}</h5>
+              </div>
+              <div>
+                <button (click)="moreFiltersClicked()"><i class="material-icons">filter_list</i></button>
+                <h5>{{"ITEMS_PAGE.FILTER" | translate}}</h5>
+              </div>
+              <app-tabs [style]="tabs_style"></app-tabs>
+            </div>
+        </div>
     </section>
-    <section class="container list-container" #listcontainer>
-      <div class="property-map" #propertymap>
-        <app-map [active_tab]="active_tab"></app-map>
-    </div>
-    <div class="property-list" #propertylist>
-       <app-list-display [listdata]="listdata" [active_tab]="active_tab"></app-list-display>
-       <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
-    </div>
+    <section class="container list-container" #listcontainer >
+      <app-active-filters></app-active-filters>
+        <div class="property-map" #propertymap>
+          <app-map [active_tab]="active_tab"></app-map>
+        </div>
+        <div class="property-list" #propertylist>
+          <div *ngIf="isLoading == false; else showLoading">
+            <app-list-display [listdata]="listdata" [active_tab]="active_tab" [userFav]="userofferfavorites"></app-list-display>
+            <app-links [listdata]="listdata" (clickOnLinkEvent)="changeListPage($event)"></app-links>
+          </div>
+          <ng-template #showLoading>
+            <app-loading-overlay-account></app-loading-overlay-account>
+          </ng-template>
+        </div>
     </section>
   </main>
   <div id="scrollBottom"></div>
   <app-footer></app-footer>
 </div>
+<div class="more_filters" [ngClass]="showMoreFiltes == true ? 'show' : ''">
+  <button (click)="showMoreFiltes = false">close</button>
+  <app-map-radius-filter [materials]="res_materials"></app-map-radius-filter>
+</div>
+

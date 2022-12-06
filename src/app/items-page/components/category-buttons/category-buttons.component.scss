@@ -1,73 +1,84 @@
 
 div.categories{
-  display:  flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: fit-content;
-  margin: 2% 0;
+  display:  grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
   div{
     background-color: var(--black-color);
     text-align: center;
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
     padding: 10px;
     border-radius: 70px;
+    cursor: pointer;
     img{
-      padding-top: 10px;
-      width: 50%;
+      padding-top: 1px;
+      width: 85%;
     }
-    span{
-      display: none;
-      padding-top: 2px;
-      font-size: 0.6rem;
-      color: var(--white-color);
-      text-transform: capitalize;
-    }
+    // span{
+    //   display: none;
+    //   padding-top: 2px;
+    //   font-size: 0.6rem;
+    //   color: var(--white-color);
+    //   text-transform: capitalize;
+    // }
     &.active{
       background-color: var(--secondary-color);
     }
+
   }
 }
 
 @media screen and (min-width: 480px) {
-  div.categories{
-    div{
-      width: 50px;
-      height: 50px;
-      padding: 10px;
-      border-radius: 70px;
-      img{
-        padding-top: 10px;
-        width: 50%;
-      }
-      span{
-        font-size: 0.6rem;
-        padding-top: 5px;
-        color: var(--white-color);
-      }
-    }
-  }
+  // div.categories{
+  //   div{
+  //     width: 50px;
+  //     height: 50px;
+  //     padding: 10px;
+  //     border-radius: 70px;
+  //     img{
+  //       padding-top: 10px;
+  //       width: 50%;
+  //     }
+  //     // span{
+  //     //   font-size: 0.6rem;
+  //     //   padding-top: 5px;
+  //     //   color: var(--white-color);
+  //     // }
+  //   }
+  // }
 }
 
 @media screen and (min-width: 680px) {
   div.categories{
-    div{
-      width: 60px;
-      height: 60px;
-      padding: 10px;
-      border-radius: 70px;
-      img{
-        padding-top: 5px;
-        width: 50%;
-      }
-      span{
-        display: block;
-        font-size: 0.6rem;
-        padding-top: 5px;
-        color: var(--white-color);
+      display:  grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      gap: 5px;
+      div{
+        background-color: var(--black-color);
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+        border-radius: 70px;
+        cursor: pointer;
+        img{
+          padding-top: 1px;
+          width: 85%;
+        }
+        // span{
+        //   display: none;
+        //   padding-top: 2px;
+        //   font-size: 0.6rem;
+        //   color: var(--white-color);
+        //   text-transform: capitalize;
+        // }
+        &.active{
+          background-color: var(--secondary-color);
+        }
+
       }
     }
-  }
 }
 
 @media screen and (min-width: 850px) {
@@ -94,10 +105,8 @@ div.categories{
 /* Tooltip container */
 .tooltip {
   position: relative;
-  display: inline-block;
 }
 
-/* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
@@ -105,26 +114,28 @@ div.categories{
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
   position: absolute;
   z-index: 1;
-  top: -5px;
-  left: 100px;
+  top: 125%;
+  left: 50%;
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
-  font-size: 1rem;
 }
 
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
-  top: 20%;
-  left: -5px;
+  top: -10%;
+  left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color:  transparent #555 transparent transparent;
+  border-color: #555 transparent transparent transparent;
+}
+.tooptipCap{
+  text-transform: capitalize;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

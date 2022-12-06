@@ -1,0 +1,17 @@
+<div class="search">
+  <input type="text" placeholder="Zoek in de database..." #searchInput (input)="searchItems($event)" (change)="keyUp()" (keyup.enter)="onEnter($event)">
+  <button (click)="buttonClick($event)"><i class="material-icons">search</i></button>
+</div>
+
+<ng-container>
+	<div class="searchterms-container" *ngIf="showResults == true" >
+    <ul>
+      <li *ngFor="let result of searchResults">
+        <a *ngIf="result.title" (click)="closeResults(result.title)">{{result.title | titlecase}}</a>
+        <a *ngIf="result.name" (click)="closeResults(result.name)">{{result.name | titlecase}}</a>
+        <a *ngIf="result.country && !result.city" (click)="closeResults(result.country)"> {{result.country} | titlecase}</a>
+        <a *ngIf="result.city" (click)="closeResults(result.city)">{{result.city | titlecase}}</a>
+      </li>
+    </ul>
+  </div>
+</ng-container>

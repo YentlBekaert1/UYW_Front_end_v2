@@ -1,0 +1,116 @@
+h3{
+  margin: 2rem 0;
+  font-family: "montserrat-light";
+  font-size: 1.1rem;
+}
+
+.form{
+  box-sizing: border-box;
+  border: 1px solid var(--surface-border);
+    border-radius: 15px;
+    padding-top: 1rem;
+    background-color: var(--white-color);
+    margin: 2rem 0;
+  label{
+    text-transform: uppercase;
+    color: #AEABAB;
+    font-size: 14px;
+    padding: 1rem;
+  }
+  input{
+    display: block;
+    width: calc(100% - 2rem);
+    height: 40px;
+    margin-bottom: 5%;
+    border: none;
+    border-bottom: 1px solid #AEABAB;
+    outline: none;
+    font-size: 1rem;
+    margin: 1rem;
+    margin-bottom: 2rem;
+  }
+
+}
+.btns{
+  background-color: rgb(249 250 251 / 1);
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+  justify-content: flex-end;
+  button{
+    padding: 5px 20px;
+    background-color: var(--primary-color);
+    color:var(--white-color);
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    font-size: .8rem;
+    font-family: montserrat-bold;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    &:hover{
+      background-color: var(--white-color);
+      color:var(--primary-color);
+      border-radius: 5px;
+      border: 3px solid var(--primary-color);
+    }
+  }
+}
+.btns.deletecont{
+  border-radius: 15px;
+  button{
+    background-color: red;
+    border-color: red;
+  &:hover{
+    background-color: var(--white-color);
+    color:red;
+    border-radius: 5px;
+    border: 3px solid red;
+  }
+}
+}
+.custom-panel-header{
+  width: 100%;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-family: "montserrat-light";
+  h4{
+    text-transform: capitalize;
+    margin: 1rem 0;
+  }
+  button{
+    margin-top: 1rem;
+    padding: 5px 20px;
+    background-color: var(--primary-color);
+    color:var(--white-color);
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    font-size: .8rem;
+    font-family: montserrat-bold;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    &:hover{
+      background-color: var(--white-color);
+      color:var(--primary-color);
+      border-radius: 5px;
+      border: 3px solid var(--primary-color);
+    }
+  }
+}
+.mat-expansion-panel-header[aria-disabled=true] {
+  color: var(--black-color);
+}
+mat-expansion-panel-header{
+  height: fit-content;
+}
+
+mat-expansion-panel{
+  min-height: 8rem;
+}

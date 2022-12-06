@@ -2,26 +2,28 @@ import { createAction, props } from '@ngrx/store';
 import { Profile } from './auth.model';
 
 
-export const Authenticated = createAction(
-  '[auth] Authenticated'
+export const loadProfileSucces = createAction(
+  '[Auth/API] Load Profile Succes',
+  props<{ profile: Profile}>()
 );
 
-export const GetProfile = createAction(
-  '[auth] GetProfile',
+export const loadProfileFailure = createAction(
+  '[Auth/API] Load Profile Failure',
 );
 
-export const ShowProfile = createAction(
-  '[auth] ShowProfile',
+export const updateProfile = createAction(
+  '[Auth/API] Update Profile',
   props<{ profile: Profile, isLoggedIn: Boolean }>()
 );
 
-export const DeleteProfile = createAction(
-  '[auth] DeleteProfile',
+export const deleteProfile = createAction(
+  '[Auth/API] Delete Profile',
 );
 
+
 export const AuthActions = {
-  Authenticated:Authenticated,
-  GetProfile:GetProfile,
-  ShowProfile:ShowProfile,
-  DeleteProfile:DeleteProfile,
+  loadProfileSucces:loadProfileSucces,
+  loadProfileFailure:loadProfileFailure,
+  updateProfile:updateProfile,
+  deleteProfile:deleteProfile,
 }

@@ -5,7 +5,20 @@
   </div>
 	<div class="cards" [ngClass]="{'w-100': totalPages === 1}">
 		<div class="overflow" [ngStyle]="{'width': overflowWidth, 'left': pagePosition}">
-      <app-card class="card" *ngFor="let i of arr; let index = index" [ngStyle]="{'width': cardWidth}" ></app-card>
+      <app-card class="card" *ngFor="let i of data; let index = index" [ngStyle]="{'width': cardWidth}"
+      [id]="i.id"
+      [likes]="i.total_likes"
+      [name]="i.title"
+      [name_nl]="i.title_nl"
+      [name_fr]="i.title_fr"
+      [name_en]="i.title_en"
+      [images]="i.images"
+      [category]="i.category"
+      [material]="i.materials"
+      [locatie]="i.location"
+      [view]="card_view"
+      [total_views]="i.total_views"
+      ></app-card>
 		</div>
 	</div>
 	<div class="right" *ngIf="totalPages > 1" (click)="currentPage != totalPages && changePage(+1)"

@@ -1,13 +1,19 @@
-import { hasLifecycleHook } from '@angular/compiler/src/lifecycle_reflector';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { find } from 'rxjs';
 import { GeosearchService } from '../_services/geosearch.service';
 import { OfferService } from '../_services/offer.service';
 import { TagserviceService } from '../_services/tagservice.service';
 import { cutomValidators } from './customvalidators';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Category } from '../store/categorystate/category.model';
+import { Store } from '@ngrx/store';
+import { selectCategories } from '../store/categorystate/category.selector';
+import { selectedLang } from '../store/languagestate/lang.selector';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-add-offer-page',
@@ -20,14 +26,18 @@ export class AddOfferPageComponent implements OnInit {
   @ViewChild('taglist', { read: ElementRef }) taglist!: ElementRef<HTMLInputElement>;
 
   form!: FormGroup;
+  langForm!: FormGroup;
+  isSubmitting = false;
 
-  categories_array: {key: number, name: string, image: string}[] = [
-    { key: 1, name:"Afval", image:"../../assets/category-logos/afval.svg"},
-    { key: 2, name:"Inspiratie", image:"../../assets/category-logos/inspiratie.svg"},
-    { key: 3, name:"Persoon", image:"../../assets/category-logos/mens.svg"},
-    { key: 4, name:"Organisatie", image:"../../assets/category-logos/organisatie.svg"},
-    { key: 5, name:"Technologie", image:"../../assets/category-logos/technologie.svg"},
-  ];
+  // categories_array: {key: number, name: string, image: string}[] = [
+  //   { key: 1, name:"Afval", image:"../../assets/category-logos/afval.svg"},
+  //   { key: 2, name:"Inspiratie", image:"../../assets/category-logos/inspiratie.svg"},
+  //   { key: 3, name:"Persoon", image:"../../assets/category-logos/mens.svg"},
+  //   { key: 4, name:"Organisatie", image:"../../assets/category-logos/organisatie.svg"},
+  //   { key: 5, name:"Technologie", image:"../../assets/category-logos/technologie.svg"},
+  // ];
+  categories_array: Category[];
+  categories_array$ = this.store.select(selectCategories);
 
   iArr = [];
   fileArr = [];
@@ -36,7 +46,7 @@ export class AddOfferPageComponent implements OnInit {
   image_error_show = false;
   image_error = '';
 
-  selectedCategory: {key: number, name: string, image: string} = {key: 0, name: 'Geen categorie geselecteerd', image: ''};
+  selectedCategory: Category;
 
   materials: {id: number, name: string}[] = [];
   submaterials: {id: number, name: string}[] = [];
@@ -47,6 +57,14 @@ export class AddOfferPageComponent implements OnInit {
   tagtimeout = null;
   selected_tags_count: number = 1;
   selected_tags: {key: number, tagname: string, new: boolean}[] = [];
+  taglistindex: number;
+
+  lang$ = this.store.select(selectedLang);
+  lang: string;
+
+  addNL = false;
+  addEN = false;
+  addFR = false;
 
   offer_validation_messages = {
     'category_id': [
@@ -54,13 +72,13 @@ export class AddOfferPageComponent implements OnInit {
     ],
     'title': [
       { type: 'required', message: 'Title is required' },
-      { type: 'minlength', message: 'Title must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Title cannot be more than 60 characters long' },
+      { type: 'minlength', message: 'Title must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 150 characters long' },
     ],
     'description': [
       { type: 'required', message: 'Description is required' },
-      { type: 'minlength', message: 'Description must be at least 5 characters long' },
-      { type: 'maxlength', message: 'Description cannot be more than 2000 characters long' },
+      { type: 'minlength', message: 'Description must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Description is to long' },
     ],
     'materials': [
       { type: 'betweenLength', message: 'There can only be 20 materials' },
@@ -75,16 +93,16 @@ export class AddOfferPageComponent implements OnInit {
       { type: 'betweenLength', message: 'There can only be 20 new tags' },
     ],
     'street_number': [
-      { type: 'maxlength', message: 'Street and number cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Street and number cannot be more than 250 characters long' },
     ],
     'city': [
-      { type: 'maxlength', message: 'City cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'City cannot be more than 250 characters long' },
     ],
     'country': [
-      { type: 'maxlength', message: 'Country cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Country cannot be more than 250 characters long' },
     ],
     'url': [
-      { type: 'maxlength', message: 'Url cannot be more than 100 characters long' },
+      { type: 'maxlength', message: 'Url cannot be more than 250 characters long' },
     ],
     'contact': [
       { type: 'maxlength', message: 'Contact cannot be more than 250 characters long' },
@@ -95,8 +113,82 @@ export class AddOfferPageComponent implements OnInit {
     'images': [
       { type: 'size', message: 'The max size in 2MB' },
       { type: 'extention', message: 'You must accept terms and conditions' }
+    ],
+    'title_nl': [
+      { type: 'minlength', message: 'Title must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 150 characters long' },
+    ],
+    'description_nl': [
+      { type: 'minlength', message: 'Description must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Description is to long' },
+    ],
+    'title_en': [
+      { type: 'minlength', message: 'Title must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 150 characters long' },
+    ],
+    'description_en': [
+      { type: 'minlength', message: 'Description must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Description is to long' },
+    ],
+    'title_fr': [
+      { type: 'minlength', message: 'Title must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Title cannot be more than 150 characters long' },
+    ],
+    'description_fr': [
+      { type: 'minlength', message: 'Description must be at least 1 characters long' },
+      { type: 'maxlength', message: 'Description is to long' },
     ]
   }
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '5',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'montserrat', name: 'Montserrat'},
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    toolbarHiddenButtons: [
+      [
+      ],
+      [
+        'customClasses',
+        'insertImage',
+        'insertVideo',
+        'removeFormat',
+        'toggleEditorMode'
+      ]
+    ]
+};
 
   constructor(
     private fb: FormBuilder,
@@ -104,12 +196,23 @@ export class AddOfferPageComponent implements OnInit {
     private offerservice: OfferService,
     private tagservice: TagserviceService,
     private geoservice: GeosearchService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService,
+    private store: Store,
+    private toastService: HotToastService
     ) {
 
+    this.lang$.subscribe(res => {
+      this.lang =  res
+    });
+
+    this.categories_array$.subscribe(res => {
+      this.categories_array =  res
+    });
+
     this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(60)]],
-      description: ['', [Validators.required, Validators.maxLength(2000)]],
+      title: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(150)]],
+      description: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10000)]],
       material: [0, []],
       submaterial: [0, []],
       selectedmaterials:[[]],
@@ -117,26 +220,190 @@ export class AddOfferPageComponent implements OnInit {
       tag: ['', []],
       new_tags: [[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
       selectedtags:[[], [Validators.compose([cutomValidators.betweenLength(0,20)])]],
-      street_number: ['', [Validators.maxLength(100)]],
-      city: ['', [Validators.maxLength(100)]],
-      country: ['', [Validators.maxLength(100)]],
+      street_number: ['', [Validators.maxLength(250)]],
+      city: ['', [Validators.maxLength(250)]],
+      country: ['', [Validators.maxLength(250)]],
       contact: ['', [Validators.maxLength(250)]],
       lat: [0, []],
       lon: [0, []],
-      url: ['', [Validators.maxLength(100)]],
-      terms: [false, [Validators.requiredTrue]],
+      url: ['', [Validators.maxLength(250)]],
+      terms: [false, []],
       images: [null],
       category_id:['',Validators.required]
+    });
+
+    this.langForm = this.fb.group({
+      title_nl: ['', [Validators.minLength(1), Validators.maxLength(150)]],
+      description_nl: ['', [Validators.minLength(1), Validators.maxLength(10000)]],
+      title_en: ['', [Validators.minLength(1), Validators.maxLength(150)]],
+      description_en: ['', [Validators.minLength(1), Validators.maxLength(10000)]],
+      title_fr: ['', [Validators.minLength(1), Validators.maxLength(150)]],
+      description_fr: ['', [Validators.minLength(1), Validators.maxLength(10000)]],
     })
+
+    this.translate.get('MESSAGES').subscribe((res)=>{
+      this.offer_validation_messages = {
+        'category_id': [
+          { type: 'required', message: res.CATEGORY1 }
+        ],
+        'title': [
+          { type: 'required', message: res.TITLE1 },
+          { type: 'minlength', message: res.TITLE2 },
+          { type: 'maxlength', message: res.TITLE3 },
+        ],
+        'description': [
+          { type: 'required', message: res.DESCRIPTION2 },
+          { type: 'minlength', message: res.DESCRIPTION2 },
+          { type: 'maxlength', message: res.DESCRIPTION3},
+        ],
+        'materials': [
+          { type: 'betweenLength', message: res.MATERIALS},
+        ],
+        'submaterials': [
+          { type: 'betweenLength', message: res.SUBMATERIALS },
+        ],
+        'tags': [
+          { type: 'betweenLength', message: res.TAGS},
+        ],
+        'new_tags': [
+          { type: 'betweenLength', message: res.NEW_TAGS },
+        ],
+        'street_number': [
+          { type: 'maxlength', message: res.STREET_NUMBER },
+        ],
+        'city': [
+          { type: 'maxlength', message: res.CITY },
+        ],
+        'country': [
+          { type: 'maxlength', message: res.COUNTRY },
+        ],
+        'url': [
+          { type: 'maxlength', message: res.URL},
+        ],
+        'contact': [
+          { type: 'maxlength', message: res.CONTACT },
+        ],
+        'terms': [
+          { type: 'required', message: res.TERMS }
+        ],
+        'images': [
+          { type: 'size', message: res.IMAGES2 },
+          { type: 'extention', message: res.IMAGES2 }
+        ],
+        'title_nl': [
+          { type: 'minlength', message: res.TITLE2 + " nl" },
+          { type: 'maxlength', message: res.TITLE3 + " nl" },
+        ],
+        'description_nl': [
+          { type: 'minlength', message: res.DESCRIPTION2 + " nl" },
+          { type: 'maxlength', message: res.DESCRIPTION3 + " nl" },
+        ],
+        'title_en': [
+          { type: 'minlength', message: res.TITLE2 + " en" },
+          { type: 'maxlength', message: res.TITLE3 + " en"  },
+        ],
+        'description_en': [
+          { type: 'minlength', message: res.DESCRIPTION2 + " en"  },
+          { type: 'maxlength', message: res.DESCRIPTION3 + " en" },
+        ],
+        'title_fr': [
+          { type: 'minlength', message: res.TITLE2 + " fr" },
+          { type: 'maxlength', message: res.TITLE3 + " fr"  },
+        ],
+        'description_fr': [
+          { type: 'minlength', message: res.DESCRIPTION2 + " fr"  },
+          { type: 'maxlength', message: res.DESCRIPTION3 + " fr" },
+        ]
+      }
+    })
+
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.offer_validation_messages = {
+        'category_id': [
+          { type: 'required', message: event.translations.MESSAGES.CATEGORY1 }
+        ],
+        'title': [
+          { type: 'required', message: event.translations.MESSAGES.TITLE1 },
+          { type: 'minlength', message: event.translations.MESSAGES.TITLE2 },
+          { type: 'maxlength', message: event.translations.MESSAGES.TITLE3 },
+        ],
+        'description': [
+          { type: 'required', message: event.translations.MESSAGES.DESCRIPTION2 },
+          { type: 'minlength', message: event.translations.MESSAGES.DESCRIPTION2 },
+          { type: 'maxlength', message: event.translations.MESSAGES.DESCRIPTION3},
+        ],
+        'materials': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.MATERIALS},
+        ],
+        'submaterials': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.SUBMATERIALS },
+        ],
+        'tags': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.TAGS},
+        ],
+        'new_tags': [
+          { type: 'betweenLength', message: event.translations.MESSAGES.NEW_TAGS },
+        ],
+        'street_number': [
+          { type: 'maxlength', message: event.translations.MESSAGES.STREET_NUMBER },
+        ],
+        'city': [
+          { type: 'maxlength', message: event.translations.MESSAGES.CITY },
+        ],
+        'country': [
+          { type: 'maxlength', message: event.translations.MESSAGES.COUNTRY },
+        ],
+        'url': [
+          { type: 'maxlength', message: event.translations.MESSAGES.URL},
+        ],
+        'contact': [
+          { type: 'maxlength', message: event.translations.MESSAGES.CONTACT },
+        ],
+        'terms': [
+          { type: 'required', message: event.translations.MESSAGES.TERMS }
+        ],
+        'images': [
+          { type: 'size', message: event.translations.MESSAGES.IMAGES2 },
+          { type: 'extention', message: event.translations.MESSAGES.IMAGES2 }
+        ],
+        'title_nl': [
+          { type: 'minlength', message: event.translations.MESSAGES.TITLE2 + " nl"  },
+          { type: 'maxlength', message: event.translations.MESSAGES.TITLE3 + " nl"  },
+        ],
+        'description_nl': [
+          { type: 'minlength', message: event.translations.MESSAGES.DESCRIPTION2 + "nl" },
+          { type: 'maxlength', message: event.translations.MESSAGES.DESCRIPTION3 + "nl" },
+        ],
+        'title_en': [
+          { type: 'minlength', message: event.translations.MESSAGES.TITLE2 + " en" },
+          { type: 'maxlength', message: event.translations.MESSAGES.TITLE3 + " en" },
+        ],
+        'description_en': [
+          { type: 'minlength', message: event.translations.MESSAGES.DESCRIPTION2 + " en" },
+          { type: 'maxlength', message: event.translations.MESSAGES.DESCRIPTION3 + " en" },
+        ],
+        'title_fr': [
+          { type: 'minlength', message: event.translations.MESSAGES.TITLE2 + " fr" },
+          { type: 'maxlength', message: event.translations.MESSAGES.TITLE3 + " fr" },
+        ],
+        'description_fr': [
+          { type: 'minlength', message: event.translations.MESSAGES.DESCRIPTION2 + " fr" },
+          { type: 'maxlength', message: event.translations.MESSAGES.DESCRIPTION3 + " fr" },
+        ]
+      }
+      this.offerservice.getMaterials(event.lang).then(res => {this.materials = res['data']});
+    });
+
    }
 
   ngOnInit(): void {
-    this.offerservice.getMaterials().then(res => {console.log(res['data']); this.materials = res['data']});
+    this.offerservice.getMaterials(this.lang).then(res => {console.log(res['data']); this.materials = res['data']});
   }
 
   onSubmit(){
-    if(this.form.status === 'VALID'){
-      if(this.form.get('terms').value == true){
+    if(this.form.status === 'VALID' && this.langForm.status === 'VALID'){
+      if(this.form.get('terms').value == true && this.isSubmitting == false){
+        this.isSubmitting = true;
         const searchTerm = (this.form.value.street_number + '+' + this.form.value.city + '+' + this.form.value.country).toLowerCase();
         this.geoservice.searchWordPhoton(searchTerm)
         .subscribe((features: any) => {
@@ -147,20 +414,40 @@ export class AddOfferPageComponent implements OnInit {
               lon: features[0].lon
             })
           }
-          this.offerservice.addOffer(this.form.value).subscribe(res => {
-            console.log(res)
-            this.router.navigate(['account', 'items']);
+          this.offerservice.addOffer(this.form.value, this.langForm.value, this.lang).subscribe({
+            next: data => {
+              console.log(data);
+              this.router.navigate(['account', 'items']);
+              this.isSubmitting = false;
+              },
+            error: err_res => {
+              this.isSubmitting = false;
+              alert('Item kon niet worden toegevoegd');
+              window.scrollTo(0,0);
+            }
+
           });
         });
-      }
-      else{
-        //show message terms
-
+      }else{
+        this.toastService.error(this.offer_validation_messages.terms[0].message, {
+          position: 'top-right',
+          style: {
+            border: '2px solid #EF4444',
+            padding: '16px',
+            color: '#EF4444',
+            background: '#fff'
+          },
+          iconTheme: {
+            primary: '#EF4444',
+            secondary: '#fff',
+          },
+        });
       }
     }
     else{
       //show message invalid
       this.form.markAllAsTouched();
+      this.GetToastForFields();
     }
   }
 
@@ -207,15 +494,25 @@ export class AddOfferPageComponent implements OnInit {
     this.iArr.splice(i,1);
   }
 
+  drop(event: CdkDragDrop<[]>) {
+    console.log(event);
+    moveItemInArray(this.fileArr, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.iArr, event.previousIndex, event.currentIndex);
 
+    this.form.patchValue({
+      images: this.iArr
+    })
+
+    this.form.get('images').updateValueAndValidity();
+  }
 
  //  --------------------------------------- category  --------------------------------------- //
   categoryClicked(category_key: number){
-    const found = this.categories_array.find(element => element.key === category_key);
+    const found = this.categories_array.find(element => element.id === category_key);
     this.selectedCategory = found;
     this.setCategoryActive(category_key);
     this.form.patchValue({
-      category_id: this.selectedCategory.key
+      category_id: this.selectedCategory.id
     })
   }
   setCategoryActive(category_number: number){
@@ -228,7 +525,7 @@ export class AddOfferPageComponent implements OnInit {
   //  --------------------------------------- materials  --------------------------------------- //
   getSubMaterials(event: any){
     //console.log(event);
-    this.offerservice.getSubMaterials(event.target.value).then(res => {console.log(res); this.submaterials = res['data']});
+    this.offerservice.getSubMaterials(event.target.value, this.lang).then(res => {console.log(res); this.submaterials = res['data']});
   }
 
   addToSelectedMaterials(){
@@ -299,6 +596,7 @@ export class AddOfferPageComponent implements OnInit {
 
   autocompleteTag(event){
     clearTimeout(this.tagtimeout);
+    this.taglistindex = -1;
     // Make a new timeout set to go off in 1000ms (1 second)
     if(event.target.value === ""){
       this.taglist.nativeElement.style.display = "none";
@@ -307,7 +605,7 @@ export class AddOfferPageComponent implements OnInit {
       this.tagtimeout = setTimeout(() => {
         //console.log(event.target.value);
         this.tagservice.tagsTypeAhead(event.target.value).subscribe((res:any) => {this.tags = res.data});
-      }, 1000);
+      }, 50);
     }
   }
   //als er naast de dropdown geklikt word.
@@ -318,7 +616,21 @@ export class AddOfferPageComponent implements OnInit {
   taglistitemclicked(key: number, name:string){
     this.form.patchValue({
        tag: name
-    })
+    });
+    this.addToSelectedTags();
+  }
+  onEnterTaglist($event){
+    this.addToSelectedTags();
+  }
+  onUpTaglist($event){
+    console.log(this.taglistindex)
+    if(this.taglistindex > -2){
+      this.taglistindex = this.taglistindex - 1;
+    }
+  }
+  onDownTaglist($event){
+    this.taglistindex = this.taglistindex + 1;
+    console.log(this.taglistindex)
   }
 
   addToSelectedTags(){
@@ -375,6 +687,10 @@ export class AddOfferPageComponent implements OnInit {
                 console.log(this.selected_tags);
               }
             }
+
+            this.form.patchValue({
+              tag: ""
+            });
           }
         );
       }
@@ -412,4 +728,59 @@ export class AddOfferPageComponent implements OnInit {
     //delete visible pil
     this.selected_tags.splice(this.selected_tags.indexOf(found), 1);
   }
+
+  stepperButtonClicked(){
+    this.form.markAllAsTouched();
+    this.langForm.markAllAsTouched();
+    if(this.form.invalid){
+      this.GetToastForFields();
+    }
+  }
+
+  GetToastForFields(){
+    const validation_array = ['title','description','category_id','materials','submaterials','tags','new_tags','street_number','city','country','url','contact','terms', 'images'];
+    validation_array.forEach(validation_item => {
+      this.offer_validation_messages[validation_item].forEach((validation_message: any) => {
+        if(this.form.get(validation_item).hasError(validation_message.type)){
+          this.toastService.error(validation_message.message, {
+            position: 'top-right',
+            style: {
+              border: '2px solid #EF4444',
+              padding: '16px',
+              color: '#EF4444',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#EF4444',
+              secondary: '#fff',
+            },
+          });
+        }
+
+      });
+    });
+
+    const validation_array2 = ['title_nl','description_nl','title_fr','description_fr','title_en','description_en'];
+    validation_array2.forEach(validation_item => {
+      this.offer_validation_messages[validation_item].forEach((validation_message: any) => {
+        if(this.langForm.get(validation_item).hasError(validation_message.type)){
+          this.toastService.error(validation_message.message, {
+            position: 'top-right',
+            style: {
+              border: '2px solid #EF4444',
+              padding: '16px',
+              color: '#EF4444',
+              background: '#fff'
+            },
+            iconTheme: {
+              primary: '#EF4444',
+              secondary: '#fff',
+            },
+          });
+        }
+
+      });
+    });
+  }
+
 }

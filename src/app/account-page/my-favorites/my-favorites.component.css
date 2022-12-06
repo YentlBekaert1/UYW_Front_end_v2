@@ -1,0 +1,99 @@
+.favorites-page {
+  position: relative;
+  min-height: 50vh;
+  margin-top: 2rem;
+}
+
+.favorites-page app-loading-overlay-account {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+/* Structure */
+.example-container {
+  position: relative;
+}
+
+.example-table-container {
+  position: relative;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  position: relative;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.example-rate-limit-reached {
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state,
+.mat-column-views,
+.mat-column-likes,
+.mat-column-actions {
+  min-width: 50px;
+  max-width: 60px;
+}
+
+.mat-column-title {
+  min-width: 100px;
+  padding: 0 .5rem;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+
+.category {
+  color: var(--secondary-color);
+}
+
+.circleimg {
+  margin: 1rem 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media screen and (min-width: 800px) {
+  .myitems-page div table {
+    table-layout: fixed;
+  }
+  .myitems-page div table tbody tr:last-child ul {
+    right: 1rem;
+  }
+}
+/*# sourceMappingURL=my-favorites.component.css.map */

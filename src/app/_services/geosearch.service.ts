@@ -31,5 +31,9 @@ export class GeosearchService {
   searchWordPhoton(query: string) {
     return this.http.get(this.urlPhoton + query + '&format=json&limit=1', this.httpOptions);
   }
+  searchWordPhotonbbCoordinates(lat: number, lon: number){
+    //?lat=50&lon=3&zoom=18&format=jsonv2
+    return this.http.get("https://nominatim.openstreetmap.org/reverse" + '?lat='+lat+'&lon='+lon+'&zoom=18&format=jsonv2', this.httpOptions);
+  }
 
 }

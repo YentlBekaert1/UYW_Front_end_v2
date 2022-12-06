@@ -2,31 +2,40 @@
 <div class="account-page">
   <div class="account-page-container">
      <div class="crumbs">
-      <span><a [routerLink]="['/home']">Home</a></span>
+      <span><a [routerLink]="['/home']">{{"ACCOUNT_PAGE.CRUMB1" | translate}}</a></span>
       <span>-</span>
-      <span><a [routerLink]="['/items/list/0/0/10000/0/0']">Items</a></span>
+      <span><a [routerLink]="['/items/list']">{{"ACCOUNT_PAGE.CRUMB2" | translate}}</a></span>
       <span>-</span>
-      <span>Account</span>
+      <span>{{"ACCOUNT_PAGE.CRUMB3" | translate}}</span>
       <span>-</span>
-      <span>{{active_tab.value}}</span>
+      <span *ngIf="active_tab.key == 1">{{"ACCOUNT_PAGE.ACCOUNT_INFO" | translate}}</span>
+      <span *ngIf="active_tab.key == 2">{{"ACCOUNT_PAGE.MY_FAVORITES" | translate}}</span>
+      <span *ngIf="active_tab.key == 3">{{"ACCOUNT_PAGE.MY_ITEMS" | translate}}</span>
+      <span *ngIf="active_tab.key == 4">{{"ACCOUNT_PAGE.SETTINGS" | translate}}</span>
+      <span *ngIf="active_tab.key == 5">{{"ACCOUNT_PAGE.LOG_OUT" | translate}}</span>
      </div>
      <div class="rows">
       <div class="left-colum">
-        <h1>Mijn Account</h1>
+        <h1>{{"ACCOUNT_PAGE.TITLE" | translate}}</h1>
         <ul #tabs>
-          <li *ngFor="let tab of tab_array; let first = first;"  [ngClass]="{'active': first}" (click)="navCLicked(tab.key)">{{tab.value}}</li>
+          <li (click)="navCLicked(tab_array[0].key)">{{tab_array[0].value}}</li>
+          <li (click)="navCLicked(tab_array[1].key)">{{tab_array[1].value}}</li>
+          <li (click)="navCLicked(tab_array[2].key)">{{tab_array[2].value}}</li>
+          <li (click)="navCLicked(tab_array[3].key)">{{tab_array[3].value}}</li>
+          <li (click)="navCLicked(tab_array[4].key)">{{tab_array[4].value}}</li>
+          <li (click)="navCLicked(tab_array[5].key)">{{tab_array[5].value}}</li>
         </ul>
       </div>
       <div class="right-colum">
         <div class="mijn_gegevens" *ngIf="active_tab.key === 1">
-          <h1>Mijn gegevens</h1>
+          <h1>{{"ACCOUNT_PAGE.ACCOUNT_INFO" | translate}}</h1>
           <app-my-profile></app-my-profile>
         </div>
 
         <div class="mijn-favorieten" *ngIf="active_tab.key === 2">
           <div>
-            <h1>Mijn favorieten</h1>
-            <button (click)="ontdekClicked()">Ontdek de items</button>
+            <h1>{{"ACCOUNT_PAGE.MY_FAVORITES" | translate}}</h1>
+            <button (click)="ontdekClicked()">{{"ACCOUNT_PAGE.EXPLORE_BUTTON" | translate}}</button>
           </div>
 
           <app-my-favorites></app-my-favorites>
@@ -34,21 +43,20 @@
 
         <div class="mijn-items" *ngIf="active_tab.key === 3">
           <div>
-            <h1>Mijn items</h1>
-            <button (click)="voegtoeClicked()">Voeg toe</button>
+            <h1>{{"ACCOUNT_PAGE.MY_ITEMS" | translate}}</h1>
+            <button (click)="voegtoeClicked()">{{"ACCOUNT_PAGE.ADD_BUTTON" | translate}}</button>
           </div>
-
           <app-my-items></app-my-items>
         </div>
 
 
         <div class="instellingen" *ngIf="active_tab.key === 5">
-          <h1>Instelingen</h1>
+          <h1>{{"ACCOUNT_PAGE.SETTINGS" | translate}}</h1>
           <app-settings></app-settings>
         </div>
 
         <div class="loguit" *ngIf="active_tab.key === 6">
-          <h1>Log uit</h1>
+          <h1>{{"ACCOUNT_PAGE.LOG_OUT" | translate}}</h1>
           <app-logout></app-logout>
         </div>
 

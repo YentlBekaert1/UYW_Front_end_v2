@@ -12,7 +12,10 @@ import { ListDisplayComponent } from './components/list-display/list-display.com
 import { ScrollSpyDirective } from './scrollspy.directive';
 import { ResizeDirective } from './resize.directive';
 import { LinksComponent } from './components/links/links.component';
-
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import { ActiveFiltersComponent } from './components/active-filters/active-filters.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -25,11 +28,15 @@ import { LinksComponent } from './components/links/links.component';
     ScrollSpyDirective,
     ResizeDirective,
     LinksComponent,
+    ActiveFiltersComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
-    SharedModule
+    SharedModule,
+    MatChipsModule,
+    MatIconModule,
+    TranslateModule
   ]
 })
 export class ItemsPageModule { }

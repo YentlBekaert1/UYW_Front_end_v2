@@ -1,6 +1,14 @@
 <div id="card">
-  <div class="likes">
-    <i class="material-icons out">favorite_outline</i>
+  <div class="likes" (click)="likeClicked()" *ngIf="view == 'database'">
+    <i *ngIf="isLikedbyUser != undefined" class="material-icons out">bookmark</i>
+    <i *ngIf="isLikedbyUser == undefined" class="material-icons out">bookmark_outline</i>
+    <!-- {{likes}} -->
+  </div>
+  <div class="likes" *ngIf="view == 'account'">
+    <i class="material-icons out">visibility</i>
+    {{total_views}}
+    <i *ngIf="isLikedbyUser != undefined" class="material-icons out">bookmark</i>
+    <i *ngIf="isLikedbyUser == undefined" class="material-icons out">bookmark_outline</i>
     {{likes}}
   </div>
   <img *ngIf="image;else defaultImage" src="{{env_url  + image}}" alt="{{name}}">
@@ -20,9 +28,9 @@
         <img src="../../../assets/category-logos/afval.svg" alt="">
       </div>
     </ng-template>
-    <h2>{{name}}</h2>
+    <h2 [routerLink]="['/offerdetail', id]">{{title}}</h2>
     <p>{{materials}}</p>
     <p>{{locatie_string}}</p>
-    <a [routerLink]="['/offerdetail', id]" >Meer info</a>
+    <a [routerLink]="['/offerdetail', id]">{{"CARD.MORE_INFO" | translate}}</a>
   </div>
 </div>

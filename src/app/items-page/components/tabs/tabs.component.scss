@@ -1,26 +1,97 @@
 .tabs{
   display: grid;
   width: fit-content;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap:20px;
+  grid-template-columns: 1fr 1fr;
+  gap:10%;
+  width: 100%;
   .tab{
     background-color: transparent;
-    height: 30px;
-    width: 100%;
-    border-radius: 15px;
     text-align: center;
-    padding: 5px 10px;
     color: var(--white-color);
-    font-family: montserrat-bold;
+    font-family: "montserrat-regular";
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     span{
       pointer-events: none;
+      height: 40px;
+      width: 100%;
+      border-bottom: 2px solid transparent;
+    }
+    h5{
+      padding-top: calc(.5rem - 2px);
+      font-family:'montserrat-light';
+      letter-spacing: .05rem;
+      font-size: .7rem;
+      font-weight: 100;
+    }
+    &.large{
+      span{
+        pointer-events: none;
+        height: 40px;
+        width: 100%;
+        border-bottom: 2px solid transparent;
+        img{
+          padding-top: .4rem;
+        }
+      }
+      h5{
+        padding-top: calc(.5rem - 2px);
+        font-family:'montserrat-light';
+        letter-spacing: .05rem;
+        font-size: .7rem;
+        font-weight: 100;
+
+      }
+    }
+    &.small{
+      background-color: transparent;
+      text-align: center;
+      color: var(--white-color);
+      font-family: "montserrat-regular";
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      span{
+        pointer-events: none;
+        width: 100%;
+        border-bottom: 2px solid transparent;
+        height: 40px;
+        width: 40px;
+        img{
+          padding-top: .8rem;
+        }
+      }
+      h5{
+        display: none;
+      }
     }
     &.active{
-      background-color: var(--secondary-color);
-      color: var(--white-color);
-   }
+     span{
+      border-bottom: 2px solid var(--secondary-color);
+     }
+    }
+    &:hover{
+      span{
+       border-bottom: 2px solid var(--secondary-color);
+      }
+     }
+    &:nth-child(3){
+     display: none;
+    }
+
+ }
+}
+
+@media screen and (min-width: 1000px) {
+ .tabs{
+  grid-template-columns: 1fr 1fr 1fr;
+  .tab:nth-child(3){
+   display: flex;
+  }
  }
 }

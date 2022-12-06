@@ -21,7 +21,7 @@ export class VerifyControlComponent implements OnInit {
             this.router.navigate(['account','profile']);
           },
           error: err => {
-            this.router.navigate(['forbidden']);
+            this.router.navigate(['login', url]);
           }
         });
       }

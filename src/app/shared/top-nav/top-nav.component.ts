@@ -1,8 +1,10 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { Profile } from 'src/app/store/authstate/auth.model';
-
-
+import { TranslateService } from '@ngx-translate/core';
+import { Store, select } from '@ngrx/store';
+import { changeLang } from 'src/app/store/languagestate/load.actions';
+import { BehaviorSubject, catchError, lastValueFrom, map, Observable, of, throwError } from 'rxjs';
+import { selectProfile } from '../../store/authstate/auth.selector';
 
 @Component({
   selector: 'app-top-nav',
@@ -10,8 +12,6 @@ import { Profile } from 'src/app/store/authstate/auth.model';
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent implements OnInit {
-  @ViewChild('searchInput', { read: ElementRef }) searchInput!: ElementRef<HTMLInputElement>;
-
   public accountDropdownState:boolean = false;
   public responsiveNavState:boolean = false;
   public accountresponsiveState:boolean = false;
@@ -22,8 +22,13 @@ export class TopNavComponent implements OnInit {
 
   @Input() profile: Profile;
   @Input() userLoggedIn: Boolean;
+  @Input() languageSelected: string;
 
-  constructor(private eRef: ElementRef) { }
+  @ViewChild('flag', { read: ElementRef }) flag!: ElementRef<HTMLInputElement>;
+  @ViewChild('flagres', { read: ElementRef }) flagres!: ElementRef<HTMLInputElement>;
+
+
+  constructor(private eRef: ElementRef, public translate: TranslateService, private store: Store) {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
@@ -35,10 +40,6 @@ export class TopNavComponent implements OnInit {
       this.responsiveNavState = false;
     }
   }
-  searchClicked(){
-    console.log(this.searchInput.nativeElement.value);
-  }
-
   accountButtonClicked(){
     this.accountDropdownState = !this.accountDropdownState;
   }
@@ -76,6 +77,14 @@ export class TopNavComponent implements OnInit {
       this.fullNavState = true;
       this.responsiveNavState = false;
     }
+  }
+
+  switchLang(event) {
+    console.log(event.target.value);
+    this.translate.use(event.target.value);
+    this.flag.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
+    this.flagres.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
+    this.store.dispatch(changeLang({lang: event.target.value}));
   }
 
 }

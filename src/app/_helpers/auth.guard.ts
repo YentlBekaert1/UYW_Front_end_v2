@@ -1,55 +1,32 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
-import { GetProfile } from '../store/authstate/auth.actions';
-import { selectisLoggedIn, selectProfile } from '../store/authstate/auth.selector';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+
+import {Observable} from 'rxjs';
+
 import { AuthService } from '../_services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanLoad {
+
+export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private auth: AuthService,
-    private store: Store
+    private auth: AuthService
   ){}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log(this.checkLoggedIn());
+  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):| boolean | UrlTree| Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.checkLoggedIn();
   }
 
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.checkLoggedIn();
+
+  private async checkLoggedIn(){
+    try {
+      const res = await this.auth.getuserdata();
+      //console.log(res);
+      return true;
+    } catch (error) {
+      return this.router.parseUrl('/login');
+    }
   }
-
-  private checkLoggedIn(){
-    this.store.dispatch(GetProfile());
-    return this.store.select(selectisLoggedIn).pipe(map(isLoggedIn => isLoggedIn ? true : this.router.parseUrl('/login')))
-  }
-
-  //  private async checkLoggedIn2(){
-  //   try {
-  //     const res = await this.store.dispatch(GetProfile())
-
-  //     return true
-  //   } catch (error) {
-  //     return this.router.parseUrl('/login');
-  //   }
-  // }
-
-  // private async checkLoggedIn(){
-  //   try {
-  //     const res = await this.auth.userdata();
-  //     return true;
-  //   } catch (error) {
-  //     return this.router.parseUrl('/login');
-  //   }
-  // }
 }

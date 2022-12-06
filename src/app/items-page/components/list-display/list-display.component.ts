@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { updateQuery } from 'src/app/store/filterstate/filter.actions';
+import { selectAllFilters } from 'src/app/store/filterstate/filter.selector';
+import { OfferService } from 'src/app/_services/offer.service';
 
 
 @Component({
@@ -10,22 +14,27 @@ import { Router } from '@angular/router';
 export class ListDisplayComponent implements OnInit {
   @Input() listdata: any;
   @Input() active_tab!: string;
-  @Output() clickOnItemEvent = new EventEmitter<any>();
+  @Input() userFav!: string;
 
   displayData: any = [];
   total_items: number = 0;
   start_items: number = 0;
   stop_items: number = 0;
-  constructor(private route: Router) { }
+
+  filters$ = this.store.select(selectAllFilters);
+
+
+  constructor(private route: Router, private store: Store) { }
 
   ngOnInit(): void {
-    //console.log(this.listdata);
+    this.filters$.subscribe(res => {
+
+    })
   }
 
   listItemClicked(item: number){
-    console.log(item);
+    //console.log(item);
     this.route.navigate(['/offerdetail', item]);
-    //this.clickOnItemEvent.emit(item);
   }
    //als er een verandering gebeurt van een Input()
    ngOnChanges(changes: SimpleChanges) {
@@ -34,7 +43,7 @@ export class ListDisplayComponent implements OnInit {
       cards[0].className = changes['active_tab'].currentValue;
     }
     if(changes['listdata']){
-      console.log(changes['listdata'].currentValue);
+      //console.log(changes['listdata'].currentValue);
       this.total_items = changes['listdata'].currentValue.meta.total;
       this.start_items = changes['listdata'].currentValue.meta.from;
       this.stop_items = changes['listdata'].currentValue.meta.to;

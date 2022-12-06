@@ -5,12 +5,20 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
-import { MyItemsComponent } from './my-items/my-items.component';
-import { SettingsComponent } from './settings/settings.component';
+import { DeleteDialog, MyItemsComponent, StatusDialog } from './my-items/my-items.component';
+import { DeleteUserDialog, SettingsComponent } from './settings/settings.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {TranslateModule} from '@ngx-translate/core';
+import {MatTableModule} from '@angular/material/table';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSortModule} from '@angular/material/sort';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -19,15 +27,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MyFavoritesComponent,
     MyItemsComponent,
     SettingsComponent,
-    LogoutComponent
+    LogoutComponent,
+    DeleteDialog,
+    StatusDialog,
+    DeleteUserDialog
   ],
   imports: [
     CommonModule,
     SharedModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    TranslateModule,
+    MatTableModule,
+    NgxChartsModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatMenuModule,
+    MatExpansionModule
   ]
 })
 export class AccountPageModule { }

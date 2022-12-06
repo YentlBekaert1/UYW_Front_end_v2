@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestPaginaModule } from './test-pagina/test-pagina.module';
@@ -8,7 +7,7 @@ import { TestPaginaModuleV2 } from './test-pagina-v2/test-pagina.module';
 import { TestPaginaModuleV3 } from './test-pagina-v3/test-pagina.module';
 import { ItemsPageModule } from './items-page/items-page.module';
 import { HomePageModule } from './home-page/home-page.module';
-import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { XsrfInterceptor } from './_helpers/http.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginPageModule } from './Auth/login-page/login-page.module';
@@ -29,6 +28,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/authstate/auth.effects';
 import { AuthReducer } from './store/authstate/auth.reducer';
 import { LoadReducer } from './store/loadstate/load.reducer';
+import { AuthGuard } from './_helpers/auth.guard';
+import { FilterReducer } from './store/filterstate/filter.reducers';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomePagev2Module } from './home-page-v2/home-page.module';
+import { SearchPageModule } from './search-page/search-page.module';
+import { ProfileGuard } from './_helpers/profile.guard';
+import { MatDialogModule } from '@angular/material/dialog';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { LanguageReducer } from './store/languagestate/lang.reducer';
+import { CategoryReducer } from './store/categorystate/category.reducer';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HotToastModule } from '@ngneat/hot-toast'; //https://ngneat.github.io/hot-toast/
+
 
 @NgModule({
   declarations: [
@@ -42,6 +55,7 @@ import { LoadReducer } from './store/loadstate/load.reducer';
     TestPaginaModuleV3,
     ItemsPageModule,
     HomePageModule,
+    HomePagev2Module,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -50,6 +64,7 @@ import { LoadReducer } from './store/loadstate/load.reducer';
     AccountPageModule,
     AddOfferPageModule,
     OfferDetailPageModule,
+    SearchPageModule,
     EditOfferPageModule,
     ForgetPasswordModule,
     ResetPasswordModule,
@@ -58,10 +73,25 @@ import { LoadReducer } from './store/loadstate/load.reducer';
     VerifyControlPageModule,
     ForbiddenPageModule,
     TermsofconditonsPageModule,
-    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer}, {}),
-    EffectsModule.forRoot([AuthEffects])
+    StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer, LangData: LanguageReducer, CategoryData: CategoryReducer}, {}),
+    EffectsModule.forRoot([AuthEffects]),
+    BrowserAnimationsModule,
+    MatDialogModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+          provide: TranslateLoader,
+          useFactory: httpTranslateLoader,
+          deps: [HttpClient]
+      }
+    }),
+    NgxChartsModule,
+    HotToastModule.forRoot()
   ],
-  providers: [ {
+  providers: [
+    AuthGuard,
+    ProfileGuard,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: XsrfInterceptor,
     multi: true,
@@ -69,3 +99,9 @@ import { LoadReducer } from './store/loadstate/load.reducer';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// AOT compilation support
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

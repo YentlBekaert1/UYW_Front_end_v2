@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "category-buttons.component.scss"
+    ],
+    "names": [],
+    "file": "category-buttons.component.css"
+}

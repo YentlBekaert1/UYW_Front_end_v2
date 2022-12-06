@@ -1,7 +1,7 @@
 @supports (display:grid){
   #cards{
      display: grid;
-     grid-column-gap: 20px;
+     grid-column-gap: 2rem;
      grid-template-columns: 1fr;
   }
 
@@ -46,3 +46,41 @@
   }
 }
 
+p{
+  margin: 1rem 1rem 1rem 0;
+}
+.filters{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.chip{
+  background-color: var(--secondary-color);
+  width: fit-content;
+  height: fit-content;
+  display: block;
+  padding: 0.3rem .5rem;
+  border-radius: 15px;
+  display: grid;
+    grid-template-columns: auto auto;
+  span{
+    color: var(--white-color);
+  }
+  button{
+    margin-left: 1rem;
+    border-radius: 15px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i{
+      font-size: 1rem;
+    }
+    &:hover{
+      background-color: rgb(177, 177, 177);
+    }
+  }
+}

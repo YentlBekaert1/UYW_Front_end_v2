@@ -3,11 +3,11 @@
     <div>
       <input type="text" placeholder="locatie" #textInput>
       <select name="distance" id="distance" #distanceSeletor>
-        <option value="10">+10km</option>
+        <option value="300">+300km</option>
+        <option value="150">+150km</option>
+        <option value="100">+100km</option>
+        <option value="70">+70km</option>
         <option value="20">+20km</option>
-        <option value="30">+30km</option>
-        <option value="40">+40km</option>
-        <option value="50">+50km</option>
       </select>
     </div>
   </div>
@@ -20,7 +20,7 @@
         <option value="0">materiaal</option>
         <option *ngFor="let material of materials" value="{{material.id}}">{{material.name}}</option>
       </select>
-      <button name="more_filters" id="more_filters" (click)="moreFiltersClicked()">Meer filters</button>
+      <!-- <button name="more_filters" id="more_filters" (click)="moreFiltersClicked()">Meer filters</button> -->
       <button id="zoek_button" (click)="searchButtonClicked()"><i class="material-icons">search</i>Zoeken</button>
     </div>
   </div>

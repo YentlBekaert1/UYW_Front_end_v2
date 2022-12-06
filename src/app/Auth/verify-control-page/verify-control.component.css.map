@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,GAAG,CAAA;EACD,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,KAAK;CAOd;;AAVD,AAIE,GAJC,CAID,2BAA2B,CAAA;EACzB,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,IAAI,EAAC,GAAG;EACR,SAAS,EAAE,qBAAqB;CACjC",
+    "sources": [
+        "verify-control.component.scss"
+    ],
+    "names": [],
+    "file": "verify-control.component.css"
+}

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_TITLE" | translate}}</h1>
+<div mat-dialog-content class="mat-dialog-content">
+  {{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_DESCRIPTION" | translate}}
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button class="cancel" (click)="onCancelClick()" cdkFocusInitial>{{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_CANCEL" | translate}}</button>
+  <button class="yes"  [mat-dialog-close]="data.id">{{"ACCOUNT_PAGE.DELETE_ACCOUNT_MODAL_YES" | translate}}</button>
+</div>

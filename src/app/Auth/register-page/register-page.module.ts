@@ -4,7 +4,7 @@ import { RegisterPageComponent } from './register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../../app-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class RegisterPageModule { }

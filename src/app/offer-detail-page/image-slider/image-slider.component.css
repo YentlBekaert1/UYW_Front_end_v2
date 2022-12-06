@@ -1,0 +1,91 @@
+.slide-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.slide-container .images {
+  width: calc(100% - 80px - 2rem);
+  overflow: hidden;
+}
+
+.slide-container .images div {
+  height: 100%;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.slide-container .images div div.overlay {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.slide-container .images div img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100px;
+}
+
+.slide-container .left, .slide-container .right {
+  height: 50px;
+  width: 50px;
+  color: var(--black-color);
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.slide-container .left i, .slide-container .right i {
+  font-size: 2.3rem;
+}
+
+.slide-container .left.disabled, .slide-container .right.disabled {
+  color: #CCC;
+}
+
+.slide-container .left {
+  left: 0;
+}
+
+.slide-container .right {
+  right: 0;
+}
+
+.overflow {
+  position: relative;
+  -webkit-transition: left 0.5s ease-in-out;
+  transition: left 0.5s ease-in-out;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.no-right-margin {
+  margin-right: 0px;
+}
+/*# sourceMappingURL=image-slider.component.css.map */

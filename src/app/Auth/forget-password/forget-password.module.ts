@@ -4,7 +4,7 @@ import { ForgetPasswordComponent } from './forget-password.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class ForgetPasswordModule { }

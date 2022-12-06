@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ForbiddenPageComponent } from './forbidden-page.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
-
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class ForbiddenPageModule { }
