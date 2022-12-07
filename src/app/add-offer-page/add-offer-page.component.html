@@ -13,7 +13,7 @@
       <p>{{"ADD_OFFER_PAGE.DESCRIPTION" | translate}}</p>
       <mat-stepper linear #stepper>
         <!-- [stepControl]="form" -->
-        <mat-step [stepControl]="form">
+        <mat-step>
           <ng-template matStepLabel>{{"ADD_OFFER_PAGE.STEPPER_LABEL1" | translate}}</ng-template>
           <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <h2>{{"ADD_OFFER_PAGE.TITLE_AG_INFO" | translate}}</h2>
@@ -323,6 +323,53 @@
                 <button mat-button matStepperNext (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.NEXT_BUTTON" | translate}}</button>
               </div>
             </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>{{"ADD_OFFER_PAGE.LINKED_MATERIALS_TITLE" | translate}}</ng-template>
+          <p>{{"ADD_OFFER_PAGE.STEPPER_LABEL4" | translate}}</p>
+          <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+              <!-- <div>
+                <label for="linked_item">{{"ADD_OFFER_PAGE.LABEL_LINKED_MATERIALS" | translate}}</label>
+                <select name="linked_item" formControlName="linked_item" class="form-control">
+                  <option value="0">{{"ADD_OFFER_PAGE.SELECT" | translate}}</option>
+                  <option *ngFor="let item of user_items" value="{{item.id}}">
+                      <span>{{item.category.name}} </span>
+                      <span>{{item.title}}</span>
+                  </option>
+                </select>
+              </div> -->
+              <div class="items_table">
+                <mat-table [dataSource]="user_items" class="mat-elevation-z8">
+
+                  <ng-container matColumnDef="link">
+                    <mat-header-cell *matHeaderCellDef> Link item </mat-header-cell>
+                    <mat-cell *matCellDef="let item"><input type="checkbox" ng-checked="linked_items.find(element => element.id === item.id)"
+                      (change)="addToSelectedLinkeditems(item.id)"
+                      ></mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="category">
+                    <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+                    <mat-cell *matCellDef="let item"> {{item.category.name}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="title">
+                    <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+                    <mat-cell *matCellDef="let item"> {{item.title}} </mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="displayedColumnsUserItems"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumnsUserItems;"></mat-row>
+                </mat-table>
+            </div>
+          </form>
+          <div class="stepper_buttons">
+            <p>{{"ADD_OFFER_PAGE.READY_LABEL" | translate}}</p>
+            <div>
+              <button mat-button matStepperPrevious (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.BACK_BUTTON" | translate}}</button>
+              <button mat-button matStepperNext (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.NEXT_BUTTON" | translate}}</button>
+            </div>
+          </div>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>{{"ADD_OFFER_PAGE.OVERVIEW_TITLE" | translate}}</ng-template>

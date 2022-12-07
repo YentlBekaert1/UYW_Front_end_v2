@@ -154,6 +154,11 @@
           display: grid;
           grid-template-columns: 1fr 1fr auto;
           gap: 20px;
+          &.linked-items{
+            padding: 0 24px;
+            grid-template-columns: 2fr auto ;
+            width:97%;
+          }
           &.tag{
             grid-template-columns: 2fr auto ;
             input{
@@ -600,4 +605,12 @@ mat-stepper{
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.items_table{
+  input{
+    width: 1rem  !important;
+    height: 100% !important;
+    margin-bottom: 0 !important;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -80,6 +80,13 @@ export class EditOfferPageComponent implements OnInit {
   addNL = false;
   addEN = false;
   addFR = false;
+
+  user_items: any;
+  linked_items_count: number = 0;
+  linked_items: {id: number, title: string}[] =[];
+  start_linked_items: {id: number, title: string}[] =[];
+
+  displayedColumnsUserItems: string[] = ['link', 'category', 'title'];
 
   offer_validation_messages = {
     'category_id': [
@@ -278,7 +285,9 @@ export class EditOfferPageComponent implements OnInit {
       terms: [false],
       newimages: [],
       editimages: [],
-      category_id:['',Validators.required]
+      category_id:['',Validators.required],
+      linked_item:[0],
+      selectedlinkeditems:[[]]
     });
 
     this.langForm = this.fb.group({
@@ -527,6 +536,21 @@ export class EditOfferPageComponent implements OnInit {
                 selectedtags: tags,
               });
             }
+
+            if(res.data[0].linked_offers){
+              //linked_offer
+              const linked_item = this.form.get('selectedlinkeditems').value;
+              res.data[0].linked_offers.forEach((element: any) => {
+                linked_item.push(element.id);
+                //maak pill met namen
+                this.linked_items.push({id: element.id, title: element.title});
+              });
+              this.form.patchValue({
+                selectedlinkeditems: linked_item,
+              });
+              this.start_linked_items = linked_item
+            }
+
             if(res.data[0].materials){
               //materials
               const materialselected = this.form.get('selectedmaterials').value;
@@ -583,6 +607,10 @@ export class EditOfferPageComponent implements OnInit {
       }
     });
     this.offerservice.getMaterials(this.lang).then(res => {this.materials = res['data']});
+    this.offerservice.getAllUserOffers().then(res => {
+      console.log(res['data']);
+      this.user_items = res['data'];
+    });
   }
 
   onSubmit(){
@@ -914,6 +942,81 @@ export class EditOfferPageComponent implements OnInit {
     //delete visible pil
     this.selected_tags.splice(this.selected_tags.indexOf(found), 1);
   }
+
+  //  --------------------------------------- Linked items  --------------------------------------- //
+
+  addToSelectedLinkeditems(id: number){
+    //verander formvalue
+    // const linked_item = this.form.get('linked_item').value;
+    const linked_item = id;
+    const linkeditemselected = this.form.get('selectedlinkeditems').value;
+
+    const found = this.linked_items.find(element => element.id === linked_item);
+    console.log(found);
+
+    if(!found){
+      var foundlinkeditem = {id: 0, title: ""};
+      if(linked_item){
+        if(linked_item != 0){
+          console.log("add linked items");
+          foundlinkeditem = this.user_items.find(element => element.id === linked_item);
+          linkeditemselected.push(linked_item);
+        }
+
+        this.form.patchValue({
+          selectedlinkeditems: linkeditemselected,
+        });
+
+        //maak pill met namen
+        this.linked_items.push({id: foundlinkeditem.id, title: foundlinkeditem.title})
+        console.log("linkeditemselected",this.linked_items);
+      }
+    }
+    else{
+      //delete from form array
+      const linkeditemselected = this.form.get('selectedmaterials').value;
+
+      linkeditemselected.splice(linkeditemselected.indexOf(found.title, 0), 1);
+
+      this.form.patchValue({
+        selectedlinkeditems: linkeditemselected,
+      })
+
+      //delete visible pil
+      this.linked_items.splice(this.linked_items.indexOf(found), 1);
+      console.log("linkeditemselected",this.linked_items);
+    }
+
+    this.linked_items.forEach(element => {
+      const input = document.getElementById((element.id).toString()) as HTMLInputElement | null;
+      if (input != null) {
+
+        input.checked = true;
+      }
+    });
+
+  }
+
+  // deleteFromSelectedLinkedItems(key: number){
+  //   const found = this.linked_items.find(element => element.id === key);
+  //   console.log("delete found", found)
+
+  //   //delete from form array
+  //   const linkeditemselected = this.form.get('selectedmaterials').value;
+
+  //   linkeditemselected.splice(linkeditemselected.indexOf(found.title, 0), 1);
+
+  //   this.form.patchValue({
+  //     selectedlinkeditems: linkeditemselected,
+  //   })
+
+  //  //delete visible pil
+  //   this.linked_items.splice(this.linked_items.indexOf(found), 1);
+  //   this.linked_items_count --;
+  //   console.log("linkeditemselected",this.linked_items);
+  // }
+
+//  --------------------------------------- other functions  --------------------------------------- //
 
   stepperButtonClicked(){
     this.form.markAllAsTouched();

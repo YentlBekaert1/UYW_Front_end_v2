@@ -53,7 +53,7 @@
       </div>
 
     </div>
-    <div class="line">
+    <div class="line" *ngIf="location || contact || url">
       <div class="accent"></div>
     </div>
     <div class="info-container" *ngIf="location || contact || url">
@@ -73,6 +73,12 @@
     <div class="locatie-container" *ngIf="location">
       <h4>{{"ITEM_DETAIL_PAGE.SHOW_ON_MAP" | translate}}</h4>
       <app-detail-map [lat_lan] = "Latlan"></app-detail-map>
+    </div>
+    <div class="line" *ngIf="linked_items">
+      <div class="accent"></div>
+    </div>
+    <div class="linked-items" *ngIf="linked_items">
+      <app-card-slider *ngIf="linked_items.length > 0" [data]="linked_items" [totalCards]="linked_items.length" [card_view]="'database'"></app-card-slider>
     </div>
   </div>
   <div class="top_curve"></div>

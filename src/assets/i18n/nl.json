@@ -141,7 +141,10 @@
     "NL":"Nedelands",
     "EN":"Engels",
     "FR":"Frans",
-    "OVERVIEW_TITLE":"Overzicht"
+    "OVERVIEW_TITLE":"Overzicht",
+    "LINKED_MATERIALS_TITLE":"Link naar item",
+    "STEPPER_LABEL4":"Hier kunt u een item dat u eerder heeft toegevoegd linken aan uw nieuw item",
+    "LABEL_LINKED_MATERIALS":"U reeds toegevoegde items"
   },
   "EDIT_OFFER_PAGE":{
     "CRUMB3":"Wijzig item",

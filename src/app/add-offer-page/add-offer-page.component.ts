@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -65,6 +65,12 @@ export class AddOfferPageComponent implements OnInit {
   addNL = false;
   addEN = false;
   addFR = false;
+
+  user_items: any;
+  linked_items_count: number = 0;
+  linked_items: {id: number, title: string}[] =[];
+
+  displayedColumnsUserItems: string[] = ['link', 'category', 'title'];
 
   offer_validation_messages = {
     'category_id': [
@@ -229,7 +235,9 @@ export class AddOfferPageComponent implements OnInit {
       url: ['', [Validators.maxLength(250)]],
       terms: [false, []],
       images: [null],
-      category_id:['',Validators.required]
+      category_id:['',Validators.required],
+      linked_item:[0],
+      selectedlinkeditems:[[]]
     });
 
     this.langForm = this.fb.group({
@@ -397,7 +405,14 @@ export class AddOfferPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.offerservice.getMaterials(this.lang).then(res => {console.log(res['data']); this.materials = res['data']});
+    this.offerservice.getMaterials(this.lang).then(res => {
+      //console.log(res['data']);
+      this.materials = res['data']
+    });
+    this.offerservice.getAllUserOffers().then(res => {
+      console.log(res['data']);
+      this.user_items = res['data']
+    });
   }
 
   onSubmit(){
@@ -728,6 +743,56 @@ export class AddOfferPageComponent implements OnInit {
     //delete visible pil
     this.selected_tags.splice(this.selected_tags.indexOf(found), 1);
   }
+
+    //  --------------------------------------- Linked items  --------------------------------------- //
+
+    addToSelectedLinkeditems(id: number){
+      //verander formvalue
+      // const linked_item = this.form.get('linked_item').value;
+      const linked_item = id;
+      const linkeditemselected = this.form.get('selectedlinkeditems').value;
+
+      const found = this.linked_items.find(element => element.id === linked_item);
+      console.log(found);
+
+      if(!found){
+        var foundlinkeditem = {id: 0, title: ""};
+        if(linked_item){
+          if(linked_item != 0){
+            console.log("add linked items");
+            foundlinkeditem = this.user_items.find(element => element.id === linked_item);
+            linkeditemselected.push(linked_item);
+          }
+
+          this.form.patchValue({
+            selectedlinkeditems: linkeditemselected,
+          });
+
+          //maak pill met namen
+          this.linked_items.push({id: foundlinkeditem.id, title: foundlinkeditem.title})
+          this.linked_items_count ++;
+          console.log("linkeditemselected",this.linked_items);
+        }
+      }
+      else{
+        //delete from form array
+        const linkeditemselected = this.form.get('selectedmaterials').value;
+
+        linkeditemselected.splice(linkeditemselected.indexOf(found.title, 0), 1);
+
+        this.form.patchValue({
+          selectedlinkeditems: linkeditemselected,
+        })
+
+        //delete visible pil
+        this.linked_items.splice(this.linked_items.indexOf(found), 1);
+        this.linked_items_count --;
+        console.log("linkeditemselected",this.linked_items);
+      }
+
+    }
+
+  //  --------------------------------------- other functions  --------------------------------------- //
 
   stepperButtonClicked(){
     this.form.markAllAsTouched();

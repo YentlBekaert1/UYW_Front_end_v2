@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Category } from 'src/app/store/categorystate/category.model';
 import { selectCategories } from 'src/app/store/categorystate/category.selector';
 import { setinitialPageURL, updateCategories } from 'src/app/store/filterstate/filter.actions';
+import { selectAllFilters } from 'src/app/store/filterstate/filter.selector';
 import { FilterState } from 'src/app/store/filterstate/filter.state';
 import { selectedLang } from 'src/app/store/languagestate/lang.selector';
 
@@ -35,6 +36,8 @@ export class CategoryButtonsComponent implements AfterViewInit {
   lang$ = this.store.select(selectedLang);
   lang: string;
 
+  filters$ = this.store.select(selectAllFilters);
+
   constructor(private route: ActivatedRoute, private store: Store, private router: Router) {
     this.lang$.subscribe(res => {
       this.lang =  res
@@ -43,6 +46,23 @@ export class CategoryButtonsComponent implements AfterViewInit {
     this.categories_array$.subscribe(res => {
       this.categories_array =  res
     });
+    this.filters$.subscribe(res => {
+      console.log(res.categories);
+      this.categories_array.forEach(categorie=> {
+        if(res.categories.length > 0){
+          res.categories.forEach(filter_el => {
+            if(filter_el === categorie.id){
+              this.categories.nativeElement.children[filter_el-1].classList.add('active');
+            }
+         });
+        }
+        else{
+          this.categories_array.forEach(element => {
+              this.categories.nativeElement.children[element.id-1].classList.remove('active');
+          });
+        }
+     });
+    })
   }
 
   ngOnChanges(changes: SimpleChanges) {

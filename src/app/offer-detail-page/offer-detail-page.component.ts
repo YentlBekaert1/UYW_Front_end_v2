@@ -33,6 +33,7 @@ export class OfferDetailPageComponent implements AfterViewInit {
   submaterials = [];
   tags = [];
   likes: number;
+  linked_items: any;
 
   viewTimeOut = null;
 
@@ -124,6 +125,24 @@ export class OfferDetailPageComponent implements AfterViewInit {
     this.isLoggedIn$.subscribe(res => this.isLoggedIn = res);
 
     const paramsub = this.route.paramMap.subscribe(params => {
+      this.offer = null;
+      this.imageArr = [];
+      this.activeImage = "";
+      this.imageExpand = false;
+      this.imageActiveIndex = 1;
+      this.Latlan = [];
+      this.location = "";
+      this.contact = "";
+      this.url = "";
+      this.title = "";
+      this.description = null;
+      this.category_name = "";
+      this.materials = [];
+      this.submaterials = [];
+      this.tags = [];
+      this.likes = 0;
+      this.linked_items = null;
+      this.isLoaded = false;
       //get activetab
       var id = params.get('id');
       this.offerservice.getOfferById(id).then((res: any)=> {
@@ -237,6 +256,11 @@ export class OfferDetailPageComponent implements AfterViewInit {
           this.location = street + city + country;
           this.Latlan = [this.offer.location.lat,this.offer.location.lon];
         }
+        console.log(this.offer.linked_offers);
+        if(this.offer.linked_offers.length > 0){
+          this.linked_items = this.offer.linked_offers
+        }
+        console.log(this.linked_items)
 
         this.offerservice.getUserFavorites().then((res: any) => {
           //console.log(res)

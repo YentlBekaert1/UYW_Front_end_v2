@@ -194,6 +194,11 @@ export class OfferService {
       body.append('description_fr', formData.description);
     }
 
+    if(formData.selectedlinkeditems){
+      let uniqueLinkedOffers = [...new Set(formData.selectedlinkeditems)];
+      body.append('linked_offers', JSON.stringify(uniqueLinkedOffers));
+    }
+
     //console.log(body);
 
     return this.http.post(requesturl, body, httpOptions);
@@ -301,7 +306,10 @@ export class OfferService {
       body.append('description_fr', formData.description);
     }
 
-    //console.log(body.getAll('title_en'));
+    if(formData.selectedlinkeditems){
+      let uniqueLinkedOffers = [...new Set(formData.selectedlinkeditems)];
+      body.append('linked_offers', JSON.stringify(uniqueLinkedOffers));
+    }
 
     return this.http.post(requesturl, body, httpOptions);
 
@@ -429,6 +437,18 @@ export class OfferService {
 
     return lastValueFrom(
       this.http.get(requestUrl, httpOptions)
+    );
+  }
+
+  getAllUserOffers(){
+    const href = environment.apiUrl + 'api/useroffersall';
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'Accept': 'application/json', }),
+      withCredentials: true,
+    };
+
+    return lastValueFrom(
+      this.http.get(href, httpOptions)
     );
   }
 }

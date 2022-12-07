@@ -120,8 +120,8 @@
               <div>
                 <label for="tag">{{"ADD_OFFER_PAGE.LABEL_TAGS" | translate}}</label>
                 <input type="text" name="tag" formControlName="tag" class="form-control"
-                  (keyup)="autocompleteTag($event)">
-                  (keyup.enter)="onEnterTaglist($event)
+                  (keyup)="autocompleteTag($event)"
+                  (keyup.enter)="onEnterTaglist($event)">
                 <div class="taglist" #taglist>
                   <div class="taglistitem" *ngFor="let tag of tags" (click)="taglistitemclicked(tag.id, tag.name)">
                     {{tag.name}}</div>
@@ -337,6 +337,65 @@
                 translate}}</button>
               <button mat-button matStepperNext (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.NEXT_BUTTON" |
                 translate}}</button>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>{{"ADD_OFFER_PAGE.LINKED_MATERIALS_TITLE" | translate}}</ng-template>
+          <p>{{"ADD_OFFER_PAGE.STEPPER_LABEL4" | translate}}</p>
+          <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <!-- <div class="inputs-select linked-items">
+              <div>
+                <label for="linked_item">{{"ADD_OFFER_PAGE.LABEL_LINKED_MATERIALS" | translate}}</label>
+                <select name="linked_item" formControlName="linked_item" class="form-control">
+                  <option value="0">{{"ADD_OFFER_PAGE.SELECT" | translate}}</option>
+                  <option *ngFor="let item of user_items" value="{{item.id}}">
+                      <span>{{item.title}}</span>
+                  </option>
+                </select>
+              </div>
+              <div>
+                <button type="button" (click)="addToSelectedLinkeditems()">{{"ADD_OFFER_PAGE.ADD_BUTTON" |
+                  translate}}</button>
+              </div>
+              <div class="chosed-select">
+                <div *ngFor="let item of linked_items">
+                  <span>{{item.title}}</span>
+                  <i class="material-icons" (click)="deleteFromSelectedLinkedItems(item.id)">close</i>
+                </div>
+              </div>
+            </div> -->
+            <div class="items_table">
+              <mat-table [dataSource]="user_items" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="link">
+                  <mat-header-cell *matHeaderCellDef> Link item </mat-header-cell>
+                  <mat-cell *matCellDef="let item">
+                    <input type="checkbox" [checked]="start_linked_items.indexOf(item.id, 0) > -1" (change)="addToSelectedLinkeditems(item.id)"
+                    id="{{item.id}}">
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="category">
+                  <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+                  <mat-cell *matCellDef="let item"> {{item.category.name}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="title">
+                  <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+                  <mat-cell *matCellDef="let item"> {{item.title}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumnsUserItems"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumnsUserItems;"></mat-row>
+              </mat-table>
+          </div>
+          </form>
+          <div class="stepper_buttons">
+            <p>{{"ADD_OFFER_PAGE.READY_LABEL" | translate}}</p>
+            <div>
+              <button mat-button matStepperPrevious (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.BACK_BUTTON" | translate}}</button>
+              <button mat-button matStepperNext (click)="stepperButtonClicked()">{{"ADD_OFFER_PAGE.NEXT_BUTTON" | translate}}</button>
             </div>
           </div>
         </mat-step>

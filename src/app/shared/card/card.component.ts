@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Store } from '@ngrx/store';
 import { selectisLoggedIn, selectProfile } from 'src/app/store/authstate/auth.selector';
@@ -42,7 +43,7 @@ export class CardComponent implements OnInit{
   isLoggedIn$ = this.store.select(selectisLoggedIn);
   isLoggedIn: Boolean = false;
 
-  constructor(private store: Store, private offerservice: OfferService,  private toastService: HotToastService) {
+  constructor(private store: Store, private offerservice: OfferService,  private toastService: HotToastService, private router: Router) {
     this.isLoggedIn$.subscribe(res => this.isLoggedIn = res);
   }
 
@@ -207,5 +208,10 @@ export class CardComponent implements OnInit{
       })
     }
 
+  }
+
+  linkClicked(id: number){
+    window.scrollTo(0, 0);
+    this.router.navigate(['/offerdetail', id]);
   }
 }

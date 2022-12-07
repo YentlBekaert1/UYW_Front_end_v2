@@ -80,7 +80,6 @@ export class HomePageComponent implements OnInit {
   }
 
   goToitemsPage(){
-
     var url = '/items/list/'
     + this.categorieInput.nativeElement.value
     + '/'

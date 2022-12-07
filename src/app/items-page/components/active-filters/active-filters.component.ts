@@ -15,9 +15,6 @@ export class ActiveFiltersComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.filters$.subscribe(res => {
-      //console.log(res)
-    })
   }
 
   deleteFilter(type: string){

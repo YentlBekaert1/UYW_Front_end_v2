@@ -141,7 +141,10 @@
     "NL": "Dutch",
     "EN": "English",
     "FR": "French",
-    "OVERVIEW_TITLE": "Overview"
+    "OVERVIEW_TITLE": "Overview",
+    "LINKED_MATERIALS_TITLE": "Link to item",
+    "STEPPER_LABEL4": "Here you can link an item you have previously added to your new item",
+    "LABEL_LINKED_MATERIALS": "You already added items"
   },
   "EDIT_OFFER_PAGE":{
     "CRUMB3": "edit item",

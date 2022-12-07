@@ -31,6 +31,6 @@
     <h2 [routerLink]="['/offerdetail', id]">{{title}}</h2>
     <p>{{materials}}</p>
     <p>{{locatie_string}}</p>
-    <a [routerLink]="['/offerdetail', id]">{{"CARD.MORE_INFO" | translate}}</a>
+    <a (click)="linkClicked(id)">{{"CARD.MORE_INFO" | translate}}</a>
   </div>
 </div>
