@@ -89,7 +89,8 @@
     "CONTACT":"Contact",
     "LINK":"Kom hier meer te weten",
     "MATERIALS":"Materialen",
-    "TAGS":"Tags"
+    "TAGS":"Tags",
+    "LINKED_ITEMS":"Items gelinkt aan dit item:"
   },
   "FORBIDDEN_PAGE":{
     "TITLE": "Forbidden",

@@ -378,7 +378,10 @@
 
                 <ng-container matColumnDef="category">
                   <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-                  <mat-cell *matCellDef="let item"> {{item.category.name}} </mat-cell>
+                  <mat-cell *matCellDef="let item">
+                    <span *ngIf="lang == 'nl' && item.category.name_nl ">{{item.category.name_nl}}</span>
+                    <span *ngIf="lang == 'en' && item.category.name_en ">{{item.category.name_en}}</span>
+                    <span *ngIf="lang == 'fr' && item.category.name_fr ">{{item.category.name_fr}}</span></mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="title">

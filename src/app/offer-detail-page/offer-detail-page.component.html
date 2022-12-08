@@ -78,6 +78,7 @@
       <div class="accent"></div>
     </div>
     <div class="linked-items" *ngIf="linked_items">
+      <h4>{{"ITEM_DETAIL_PAGE.LINKED_ITEMS" | translate}}</h4>
       <app-card-slider *ngIf="linked_items.length > 0" [data]="linked_items" [totalCards]="linked_items.length" [card_view]="'database'"></app-card-slider>
     </div>
   </div>

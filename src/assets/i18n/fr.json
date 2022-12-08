@@ -88,7 +88,8 @@
     "CONTACT" : "Contact",
     "LINK" : "Pour en savoir plus, cliquez ici",
     "MATERIALS" : "Matériaux",
-    "TAGS" : "Tags"
+    "TAGS" : "Tags",
+    "LINKED_ITEMS" : "Articles liés à cet article:"
   },
   "FORBIDDEN_PAGE":{
     "TITLE" : "Interdit",

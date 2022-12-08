@@ -13,7 +13,7 @@
       <p>{{"ADD_OFFER_PAGE.DESCRIPTION" | translate}}</p>
       <mat-stepper linear #stepper>
         <!-- [stepControl]="form" -->
-        <mat-step>
+        <mat-step [stepControl]="form">
           <ng-template matStepLabel>{{"ADD_OFFER_PAGE.STEPPER_LABEL1" | translate}}</ng-template>
           <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <h2>{{"ADD_OFFER_PAGE.TITLE_AG_INFO" | translate}}</h2>
@@ -350,7 +350,11 @@
 
                   <ng-container matColumnDef="category">
                     <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-                    <mat-cell *matCellDef="let item"> {{item.category.name}} </mat-cell>
+                    <mat-cell *matCellDef="let item">
+                      <span *ngIf="lang == 'nl' && item.category.name_nl ">{{item.category.name_nl}}</span>
+                      <span *ngIf="lang == 'en' && item.category.name_en ">{{item.category.name_en}}</span>
+                      <span *ngIf="lang == 'fr' && item.category.name_fr ">{{item.category.name_fr}}</span>
+                    </mat-cell>
                   </ng-container>
 
                   <ng-container matColumnDef="title">
