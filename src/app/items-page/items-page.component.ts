@@ -92,7 +92,7 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.propertymap.nativeElement.style.top = "auto";
     this.propertymap.nativeElement.style.width = "auto";
-    this.propertymap.nativeElement.style.height = (window.innerHeight-250).toString() + "px";
+    this.propertymap.nativeElement.style.height = (window.innerHeight-200).toString() + "px";
     var dataView = document.getElementsByClassName('list-container');
     const paramsub = this.route.paramMap.subscribe(params => {
       //get activetab

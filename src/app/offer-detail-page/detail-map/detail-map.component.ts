@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -6,8 +6,8 @@ import * as L from 'leaflet';
   templateUrl: './detail-map.component.html',
   styleUrls: ['./detail-map.component.scss']
 })
-export class DetailMapComponent implements OnInit {
-  private map! : any;
+export class DetailMapComponent implements OnInit, OnDestroy {
+  private map_detail! : any;
   @Input() lat_lan: any;
 
   constructor() { }
@@ -16,9 +16,14 @@ export class DetailMapComponent implements OnInit {
     this.initMap();
   }
 
+  ngOnDestroy(){
+    console.log('remove map');
+    this.map_detail.remove();
+  }
+
   private initMap(): void {
     //kaart op pagina plaatsen
-      this.map = L.map('map', {
+      this.map_detail = L.map('map_detail', {
         center: [50.85, 3.6],
         zoom: 10,
         minZoom: 2,
@@ -45,12 +50,12 @@ export class DetailMapComponent implements OnInit {
       'Satellite' :satellite
     };
 
-    this.map.addLayer(osm);
+    this.map_detail.addLayer(osm);
 
     //controller toevoegen aan de map = rechtsboven knop om venster open te maken
-    const layerControl = L.control.layers(baseLayers).addTo(this.map);
+    const layerControl = L.control.layers(baseLayers).addTo(this.map_detail);
 
-    if(this.lat_lan != undefined && this.map != undefined){
+    if(this.lat_lan != undefined && this.map_detail != undefined){
       //console.log(this.lat_lan);
       const icon = L.divIcon({
         iconSize: [20, 20],
@@ -61,14 +66,14 @@ export class DetailMapComponent implements OnInit {
       });
       // create marker
       var marker = L.marker(this.lat_lan , {icon: icon,title: 'user location'});
-      marker.addTo(this.map);
-      this.map.setView(this.lat_lan, 10)
+      marker.addTo(this.map_detail);
+      this.map_detail.setView(this.lat_lan, 10)
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['lat_lan']){
-      if(changes['lat_lan'].currentValue != undefined && this.map != undefined){
+      if(changes['lat_lan'].currentValue != undefined && this.map_detail != undefined){
         //console.log(changes['lat_lan']);
         const icon = L.divIcon({
           iconSize: [20, 20],
@@ -79,8 +84,8 @@ export class DetailMapComponent implements OnInit {
         });
         // create marker
         var marker = L.marker(changes['lat_lan'].currentValue, {icon: icon,title: 'user location'});
-        marker.addTo(this.map);
-        this.map.setView(changes['lat_lan'].currentValue, 10)
+        marker.addTo(this.map_detail);
+        this.map_detail.setView(changes['lat_lan'].currentValue, 10)
       }
     }
   }

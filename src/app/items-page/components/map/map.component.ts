@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, Input, SimpleChanges, Output, EventEmitter  } from '@angular/core';
+import { Component, AfterViewInit, OnInit, Input, SimpleChanges, Output, EventEmitter, OnDestroy  } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
@@ -14,7 +14,7 @@ import {wasteIcon,inspirationIcon,organisationIcon,humanIcon,technologyIcon,radi
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit  {
+export class MapComponent implements OnInit, OnDestroy  {
   @Input() jsonData!: any
   @Input() categoryFilter!: [number,number];
   @Input() radiusFilterValues!: [number,number,number,boolean];
@@ -40,6 +40,8 @@ export class MapComponent implements AfterViewInit  {
   storeFilters:any;
   //true = toon ennkel de markers die zichtbaar zijn op de kaart, false =  toon al de marker meteen
   useMapBounds: boolean = false;
+
+  mapisInit = false;
 
   constructor(private locationService: OfferlocationService, private store: Store) {
     this.store.select(selectAllFilters).subscribe( res => {
@@ -204,7 +206,7 @@ export class MapComponent implements AfterViewInit  {
     //laat de map een event geven als er een overlay aangeklikt in de controller van de map
     // this.map.on('overlayadd', this.overlayControlClicked);
     // this.map.on('overlayremove', this.overlayControlClicked);
-
+    this.mapisInit = true;
   }
 
   getMarkerbyLocation(resbounds: any){
@@ -321,10 +323,17 @@ export class MapComponent implements AfterViewInit  {
   }
 
   //functie uitgevoerd bij initialiseren component
-  ngAfterViewInit(): void {
-        this.initMap();
-    }
-
+  ngOnInit(): void {
+      if(this.mapisInit === false){
+        console.log('init map')
+          this.initMap();
+      }
+  }
+  
+  ngOnDestroy(){
+    console.log('remove map');
+    this.map.remove();
+  }
   //als er een verandering gebeurt van een Input()
   ngOnChanges(changes: SimpleChanges) {
     if(changes['active_tab']){

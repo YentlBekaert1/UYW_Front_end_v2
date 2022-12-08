@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Category } from '../store/categorystate/category.model';
 import { selectCategories } from '../store/categorystate/category.selector';
+import { updateCategories } from '../store/filterstate/filter.actions';
 import { selectedLang, selectLang } from '../store/languagestate/lang.selector';
 import { Filters } from '../_models/filters';
 import { AuthService } from '../_services/auth.service';
@@ -54,6 +55,10 @@ export class HomePagev2Component implements AfterViewInit{
     })
       const hiddenElements = document.querySelectorAll(".hidden");
       hiddenElements.forEach((el)=> observer.observe(el));
+  }
+  goToItems(categorie_id: number){
+   this.store.dispatch(updateCategories({categories:[categorie_id]}));
+   this.router.navigate(['items']);
   }
 
 }

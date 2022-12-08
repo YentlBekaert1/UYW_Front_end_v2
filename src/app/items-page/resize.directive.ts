@@ -18,7 +18,7 @@ export class ResizeDirective {
       mapEl.style.top = "auto";
       mapEl.style.width = "auto";
       mapEl.style.width = ((event.target.innerWidth - listEl.clientWidth - 20).toFixed()).toString() + "px";
-      mapEl.style.height = (event.target.innerHeight - 250).toString() + "px";
+      mapEl.style.height = (event.target.innerHeight - 200).toString() + "px";
       if(this.active_tab === 'list'){
         listEl.style.minHeight = "906px";
        // window.scrollTo(0, 0);
