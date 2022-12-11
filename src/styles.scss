@@ -79,13 +79,42 @@ body{
   color:var(--black-color);
 }
 
-.user_location_icon{
+.user_location_icon_icon{
   width: 20px;
   height: 20px;
-  background-color: blue;
+  background-color: rgb(0, 162, 255);
+  border: 2px solid white;
   border-radius: 50%;
   box-shadow: 0px 0px 4px white;
-  //transition: all 1s
+  position: absolute;
+}
+
+.user_location_icon_animation{
+  width: 20px;
+  height: 20px;
+  background-color: rgb(0, 162, 255);
+  border-radius: 50%;
+  box-shadow: 0px 0px 4px white;
+  //transition: all 1s;
+  animation: user_location 2s infinite;
+  position: absolute;
+  left: 60%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+}
+
+/* The animation code */
+@keyframes user_location {
+  from {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 162, 255, 0.8);
+  }
+  to {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 162, 255, 0);
+  }
 }
 
 body{

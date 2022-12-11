@@ -24,6 +24,7 @@ export class MapComponent implements OnInit, OnDestroy  {
   @Output() categoryControlEvent = new EventEmitter<[number,number]>();
   @Output() selectedPointsEvent = new EventEmitter<[]>(); //geselecteerde punten na zoeken in straal;
 
+  private usermarker: any;
   private map! : any;
   private geoJSONData!: L.GeoJSON;
   private userLocation: any;
@@ -155,11 +156,21 @@ export class MapComponent implements OnInit, OnDestroy  {
           className: 'user_location_icon' // class css staat in global styles.css
       });
        // create marker
-       var marker = L.marker(e.latlng, {icon: icon,title: 'user location'});
-       this.map.addLayer(marker);
+       var usermarker = L.marker(e.latlng, {icon: icon,title: 'user location'});
+       usermarker.on('add', function(){
+          var myIcon = document.querySelector('.user_location_icon') as HTMLElement | null;
+          var newDiv = document.createElement('div');
+          newDiv.className = "user_location_icon_animation"
+          myIcon.append(newDiv);
+          var newDiv2 = document.createElement('div');
+          newDiv2.className = "user_location_icon_icon"
+          myIcon.append(newDiv2);
+        })
+        this.map.addLayer(usermarker);
      }
 
      this.map.on('locationfound', onLocationFound);
+
 
      this.map.on('zoomend', (event: any)=>{
         //als de map kan zoomen en de we willen enkel de markers laden die zichtbaar op de kaart zouden staan
@@ -329,7 +340,7 @@ export class MapComponent implements OnInit, OnDestroy  {
           this.initMap();
       }
   }
-  
+
   ngOnDestroy(){
     console.log('remove map');
     this.map.remove();

@@ -14,10 +14,10 @@
       <div class="col-2">
         <h3>{{"FOOTER.TITLE2" | translate}}</h3>
         <ul>
-          <li><a href="/home">{{"FOOTER.INFO" | translate}}</a></li>
-          <li><a href="">{{"FOOTER.QUESTIONS" | translate}}</a></li>
-          <li><a href="">{{"FOOTER.CONTACT_US" | translate}}</a></li>
-          <li><a href="">{{"FOOTER.FEEDBACK" | translate}}</a></li>
+          <li><a [routerLink]="['/home','#section4']">{{"FOOTER.INFO" | translate}}</a></li>
+          <li><a routerLink="/faq">{{"FOOTER.QUESTIONS" | translate}}</a></li>
+          <li><a routerLink="/contactus">{{"FOOTER.CONTACT_US" | translate}}</a></li>
+          <li><a routerLink="/feedback">{{"FOOTER.FEEDBACK" | translate}}</a></li>
         </ul>
       </div>
       <div class="col-3">

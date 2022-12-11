@@ -21,6 +21,9 @@ import { ResetPasswordComponent } from './Auth/reset-password/reset-password.com
 import { HomePagev2Component } from './home-page-v2/home-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { ProfileGuard } from './_helpers/profile.guard';
+import { FeedbackPageComponent } from './feedback-page/feedback-page.component';
+import { FAQPageComponent } from './faq-page/faq-page.component';
+import { ContactusPageComponent } from './contactus-page/contactus-page.component';
 
 
 const routes: Routes = [
@@ -123,6 +126,18 @@ const routes: Routes = [
   {
     path: "email/verify/:url",
     component: VerifyControlComponent,
+  },
+  {
+    path: "contactus",
+    component: ContactusPageComponent,
+  },
+  {
+    path: "faq",
+    component: FAQPageComponent,
+  },
+  {
+    path: "feedback",
+    component: FeedbackPageComponent,
   },
   {
       path: "**",

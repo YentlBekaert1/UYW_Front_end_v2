@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
+import { radiusCenterIcon } from 'src/app/items-page/components/map/customMarkers';
 
 @Component({
   selector: 'app-detail-map',
@@ -65,7 +66,7 @@ export class DetailMapComponent implements OnInit, OnDestroy {
         className: 'user_location_icon' // class css staat in global styles.css
       });
       // create marker
-      var marker = L.marker(this.lat_lan , {icon: icon,title: 'user location'});
+      var marker = L.marker(this.lat_lan , {icon: radiusCenterIcon,title: 'user location'});
       marker.addTo(this.map_detail);
       this.map_detail.setView(this.lat_lan, 10)
     }
