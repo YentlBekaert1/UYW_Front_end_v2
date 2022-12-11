@@ -27,7 +27,7 @@ h1{
     display: flex;
     align-items: top;
     margin-top: 1rem;
-    .yellow-circle{
+    .yellow-circle-sm, .yellow-circle-lg{
       display: none;
     }
     .section1-text-content{
@@ -108,7 +108,6 @@ h1{
      width: 100%;
      height: 100%;
      position: relative;
-     z-index: -6;
      img{
       position: absolute;
       transform: translate(-50%,-50%);
@@ -138,6 +137,7 @@ h1{
       justify-content: flex-start;
       align-content: center;
       flex-direction: column;
+      // animation: clockwise 10s linear infinite;
       img{
         position: relative;
         transform: translate(0%,0%);
@@ -837,26 +837,44 @@ h1{
     overflow: hidden;
     margin: 0;
     align-items: center;
-    .yellow-circle{
-      background-color: var(--secondary-color);
+    .yellow-circle-sm{
       position: absolute;
       display: block;
+      left: 5rem;
+      top:15vh;
+      width: 50%;
+      height: 50%;
+      // animation: yellow_circ 20s infinite;
+    }
+    .yellow-circle-lg{
+      position: absolute;
+      display: block;
+      left: 2rem;
+      top: 30vh;
+      width: 50%;
+      height: 50%;
+      // animation: yellow_circ 20s infinite;
+    }
+    .yellow-circle-inside{
+      background-color: var(--secondary-color);
       &.circle-small{
        height: 20px;
        width:20px;
        border-radius: 20px;
-       left: 5rem;
-       top:15vh;
        opacity: 0.64;
+      //  animation: yellow_circ 1s infinite;
       }
       &.circle-large{
         height: 40px;
         width:40px;
         border-radius: 20px;
-        left: 2rem;
-        top: 30vh;
+
         opacity: 0.85;
       }
+    }
+    .yellow-circle{
+      position: absolute;
+      display: block;
       &.circle-blur{
         height: 680px;
         width:680px;
@@ -896,6 +914,7 @@ h1{
         display: flex;
         flex-direction: row;
         font-size: 1.1rem;
+        z-index: 100;
         a.call-to-actions-btn1{
           width: 100%;
           text-align: center;
@@ -1465,3 +1484,24 @@ HW-card:nth-of-type(3){
     transition: none;
   }
 }
+
+
+/* The animation code */
+@keyframes yellow_circ {
+  0%   {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes clockwise {
+  0% {
+      transform: rotate(0deg);
+  }
+  50% {
+      transform: rotate(5deg);
+  }
+}
+
