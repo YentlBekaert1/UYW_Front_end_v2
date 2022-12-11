@@ -1,1 +1,40 @@
-<p>contactus-page works!</p>
+<div class="page">
+  <div id="background_circle1"></div>
+  <div id="background_circle2"></div>
+  <div id="background_line"></div>
+  <div id="content-container">
+    <h1>Contacteer ons</h1>
+    <p>Als u iets wilt vragen aan ons kan u dit doen via onderstaand formulier. U wordt dan later via email gecontacteerd.</p>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form">
+      <div class="validators">
+        <ul *ngFor="let validation of offer_validation_messages.email">
+          <li *ngIf="contactForm.get('email').hasError(validation.type) && (contactForm.get('email').dirty || contactForm.get('email').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </li>
+        </ul>
+        <ul *ngFor="let validation of offer_validation_messages.question">
+          <li *ngIf="contactForm.get('question').hasError(validation.type) && (contactForm.get('question').dirty || contactForm.get('question').touched)" class="alert alert-danger">
+            {{validation.message}}
+          </li>
+        </ul>
+        <ul>
+          <li *ngIf="errorMessage" class="alert alert-danger">
+            {{errorMessage}}
+          </li>
+        </ul>
+      </div>
+
+      <label for="email">email</label>
+      <input type="text" class="form-control" formControlName="email" name="email"/>
+
+      <label for="question" >Vraag</label>
+      <textarea  type="question" class="form-control" formControlName="question" name="question" rows="10"></textarea>
+
+      <div class="btns">
+        <button type="submit">Verzend</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

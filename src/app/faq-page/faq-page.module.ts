@@ -4,7 +4,7 @@ import { FAQPageComponent } from '../faq-page/faq-page.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     AppRoutingModule,
     SharedModule,
-    TranslateModule
+    TranslateModule,
+    MatExpansionModule
   ]
 })
 export class FAQPageModule { }

@@ -41,6 +41,9 @@ import { LanguageReducer } from './store/languagestate/lang.reducer';
 import { CategoryReducer } from './store/categorystate/category.reducer';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HotToastModule } from '@ngneat/hot-toast'; //https://ngneat.github.io/hot-toast/
+import { FAQPageModule } from './faq-page/faq-page.module';
+import { ContactusPageModule } from './contactus-page/contactus-page.module';
+import { FeedbackPageModule } from './feedback-page/feedback-page.module';
 
 
 @NgModule({
@@ -73,6 +76,9 @@ import { HotToastModule } from '@ngneat/hot-toast'; //https://ngneat.github.io/h
     VerifyControlPageModule,
     ForbiddenPageModule,
     TermsofconditonsPageModule,
+    FAQPageModule,
+    ContactusPageModule,
+    FeedbackPageModule,
     StoreModule.forRoot({Authdata: AuthReducer, LoadData: LoadReducer, FilterData: FilterReducer, LangData: LanguageReducer, CategoryData: CategoryReducer}, {}),
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
