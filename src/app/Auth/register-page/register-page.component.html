@@ -9,27 +9,27 @@
       <h1>{{"REGISTER_PAGE.TITLE" | translate}}</h1>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
         <div class="validators">
-          <ul *ngFor="let validation of offer_validation_messages.name">
+          <ul *ngFor="let validation of register_validation_messages.name">
             <li *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)" class="alert alert-danger">
               {{validation.message}}
             </li>
           </ul>
-          <ul *ngFor="let validation of offer_validation_messages.email">
+          <ul *ngFor="let validation of register_validation_messages.email">
             <li *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)" class="alert alert-danger">
               {{validation.message}}
             </li>
           </ul>
-          <ul *ngFor="let validation of offer_validation_messages.password">
+          <ul *ngFor="let validation of register_validation_messages.password">
             <li *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)" class="alert alert-danger">
               {{validation.message}}
             </li>
           </ul>
-          <ul *ngFor="let validation of offer_validation_messages.password_confirmation">
+          <ul *ngFor="let validation of register_validation_messages.password_confirmation">
             <li *ngIf="registerForm.get('password_confirmation').hasError(validation.type) && (registerForm.get('password_confirmation').dirty || registerForm.get('password_confirmation').touched)" class="alert alert-danger">
               {{validation.message}}
             </li>
           </ul>
-          <ul *ngFor="let validation of offer_validation_messages.terms">
+          <ul *ngFor="let validation of register_validation_messages.terms">
             <li *ngIf="registerForm.get('terms').hasError(validation.type) && (registerForm.get('terms').dirty || registerForm.get('terms').touched)" class="alert alert-danger">
               {{validation.message}}
             </li>

@@ -9,12 +9,12 @@
       <h1>{{"LOGIN_PAGE.TITLE" | translate}}</h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
         <div class="validators">
-          <ul *ngFor="let validation of offer_validation_messages.email">
+          <ul *ngFor="let validation of login_validation_messages.email">
             <li *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="alert alert-danger">
               {{validation.message}}
             </li>
           </ul>
-          <ul *ngFor="let validation of offer_validation_messages.password">
+          <ul *ngFor="let validation of login_validation_messages.password">
             <li *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)" class="alert alert-danger">
               {{validation.message}}
             </li>

@@ -3,16 +3,16 @@
   <div id="background_circle2"></div>
   <div id="background_line"></div>
   <div id="content-container">
-    <h1>Contacteer ons</h1>
-    <p>Als u iets wilt vragen aan ons kan u dit doen via onderstaand formulier. U wordt dan later via email gecontacteerd.</p>
+    <h1>{{"CONTACTUS_PAGE.TITLE" | translate}}</h1>
+    <p>{{"CONTACTUS_PAGE.DESCRIPTION" | translate}}</p>
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form">
       <div class="validators">
-        <ul *ngFor="let validation of offer_validation_messages.email">
+        <ul *ngFor="let validation of contact_validation_messages.email">
           <li *ngIf="contactForm.get('email').hasError(validation.type) && (contactForm.get('email').dirty || contactForm.get('email').touched)" class="alert alert-danger">
             {{validation.message}}
           </li>
         </ul>
-        <ul *ngFor="let validation of offer_validation_messages.question">
+        <ul *ngFor="let validation of contact_validation_messages.question">
           <li *ngIf="contactForm.get('question').hasError(validation.type) && (contactForm.get('question').dirty || contactForm.get('question').touched)" class="alert alert-danger">
             {{validation.message}}
           </li>
@@ -24,16 +24,17 @@
         </ul>
       </div>
 
-      <label for="email">email</label>
+      <label for="email">{{"CONTACTUS_PAGE.EMAIL" | translate}}</label>
       <input type="text" class="form-control" formControlName="email" name="email"/>
 
-      <label for="question" >Vraag</label>
+      <label for="question" >{{"CONTACTUS_PAGE.QUESTION" | translate}}</label>
       <textarea  type="question" class="form-control" formControlName="question" name="question" rows="10"></textarea>
 
       <div class="btns">
-        <button type="submit">Verzend</button>
+        <button type="submit">{{"CONTACTUS_PAGE.SEND" | translate}}</button>
       </div>
     </form>
+    <app-loading-overlay *ngIf="isLoading == true"></app-loading-overlay>
   </div>
 </div>
 

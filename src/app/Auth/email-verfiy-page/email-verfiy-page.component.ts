@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
@@ -10,9 +11,26 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class EmailVerfiyPageComponent implements OnInit {
   isLoading = false;
   responseMessage = "";
+  responseMessageSuccesfull = "";
+  responseMessageError = "";
   responseMessageState = false;
 
-  constructor(private authservice: AuthService, private router: Router) { }
+  constructor(
+    private authservice: AuthService,
+    private router: Router,
+    private translate: TranslateService
+    ) {
+      this.translate.get('EMAIL_VERIFY_PAGE').subscribe((res)=>{
+        this.responseMessageError = res.ERROR_RESPONSE;
+        this.responseMessageSuccesfull = res.SUCCES_RESPONSE;
+      })
+
+      this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        this.responseMessageError =  event.translations.EMAIL_VERIFY_PAGE.ERROR_RESPONSE;
+        this.responseMessageSuccesfull = event.translations.EMAIL_VERIFY_PAGE.SUCCES_RESPONSE;
+        this.responseMessage = "";
+      });
+     }
 
   ngOnInit(): void {
   }
@@ -36,19 +54,19 @@ export class EmailVerfiyPageComponent implements OnInit {
       next: data => {
        this.authservice.resendverfiy().subscribe({
           next: data => {
-            console.log(data);
-            this.responseMessage = "Nieuwe email succesvol verzonden"
+            //console.log(data);
+            this.responseMessage = this.responseMessageSuccesfull
             this.responseMessageState = true;
           },
           error: err_res => {
-            this.responseMessage = "Oeps, er is iets mis gegaan."
+            this.responseMessage = this.responseMessageError;
             this.responseMessageState = true;
           }
         });
       },
       error: err => {
         this.isLoading = true;
-        this.responseMessage = "Oeps, er is iets mis gegaan."
+        this.responseMessage = this.responseMessageError;
       }
     });
   }

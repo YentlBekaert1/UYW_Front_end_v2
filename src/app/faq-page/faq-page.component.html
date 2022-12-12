@@ -3,19 +3,21 @@
   <div id="background_circle2"></div>
   <div id="background_line"></div>
   <div id="content-container">
-    <h1>FAQ (veelgestelde vragen)</h1>
-    <p>Hier vind u de meest gesletde vragen door gebruikers van de site</p>
+    <h1>{{"FAQ_PAGE.TITLE" | translate}}</h1>
+    <p>{{"FAQ_PAGE.DESCRIPTION" | translate}}</p>
     <mat-accordion>
 
       <mat-expansion-panel *ngFor="let question of questions">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{question.title}}
+            <span *ngIf="lang == 'nl'">{{question.title_nl}}</span>
+            <span *ngIf="lang == 'en'">{{question.title_en}}</span>
+            <span *ngIf="lang == 'fr'">{{question.title_fr}}</span>
           </mat-panel-title>
         </mat-expansion-panel-header>
-
-        <p>{{question.description}}</p>
-
+          <p *ngIf="lang == 'nl'">{{question.description_nl}}</p>
+          <p *ngIf="lang == 'en'">{{question.description_nl}}</p>
+          <p *ngIf="lang == 'fr'">{{question.description_nl}}</p>
         </mat-expansion-panel>
 
     </mat-accordion>

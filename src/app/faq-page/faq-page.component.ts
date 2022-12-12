@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectedLang } from '../store/languagestate/lang.selector';
+import { FaqService } from '../_services/faq.service';
 
 @Component({
   selector: 'app-faq-page',
@@ -7,21 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FAQPageComponent implements OnInit {
 
-  questions: any = [
-    {title:"vraag1", description:"beschrijving"},
-    {title:"vraag2", description:"beschrijving"},
-    {title:"vraag3", description:"beschrijving"},
-    {title:"vraag4", description:"beschrijving"},
-    {title:"vraag5", description:"beschrijving"},
-    {title:"vraag6", description:"beschrijving"},
-    {title:"vraag7", description:"beschrijving"},
-    {title:"vraag8", description:"beschrijving"}
-  ]
+  questions: any;
 
-  constructor() { }
+  lang$ = this.store.select(selectedLang);
+  lang: string;
+
+  constructor(private faqservice: FaqService, private store: Store) {
+    this.lang$.subscribe(res => {
+      this.lang =  res
+    });
+   }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
+    this.faqservice.get_faq().subscribe(
+      (res: any) => {
+        console.log(res)
+        this.questions = res.data;
+      }
+    )
   }
 
 }

@@ -176,7 +176,7 @@
     "IMAGES2":"You must accept terms and conditions"
   },
   "LOGIN_PAGE":{
-    "TITLE": "login",
+    "TITLE": "Login",
     "lABEL_EMAIL": "email",
     "LABEL_PASSWORD": "password",
     "LABEL_REMEBER": "remember me",
@@ -184,7 +184,12 @@
     "BUTTON": "log in",
     "OR": "or",
     "NEW_USER_LABEL": "New user",
-    "CREATE_ACCOUNT_LABEL": "Create an account here"
+    "CREATE_ACCOUNT_LABEL": "Create an account here",
+    "VALIDATION_EMAIL1": "Email must be entered",
+    "VALIDATION_EMAIL2": "No correct email address has been entered",
+    "VALIDATION_PASSWORD": "Password must be entered",
+    "ERROR_TOAST": "Oops something has gone wrong",
+    "CREDENTIALS_ERROR": "This data does not match our data."
   },
   "REGISTER_PAGE":{
     "TITLE": "Create an account",
@@ -196,14 +201,25 @@
     "LINK_TOC": "general terms and conditions",
     "BUTTON": "create",
     "OR": "or",
-    "TO_LOGIN": "Log back in"
+    "TO_LOGIN": "Log back in",
+    "VALIDATION_NAME": "Name must be filled in",
+    "VALIDATION_EMAIL1": "Email must be entered",
+    "VALIDATION_EMAIL2": "No correct email address has been entered",
+    "VALIDATION_PASSWORD": "Password must be entered",
+    "VALIDATION_PASSWORD_CONFIRM": "Confirmation of password must be entered",
+    "VALIDATION_TERMS": "You must agree to the terms and conditions",
+    "ERROR_TOAST": "Oops something went wrong"
   },
   "FORGET_PASSWORD_PAGE":{
     "TITLE": "Forgot password",
     "lABEL_EMAIL": "email",
     "BUTTON": "email password reset link",
     "OR": "or",
-    "TO_LOGIN": "Return to Login"
+    "TO_LOGIN": "Return to Login",
+    "VALIDATION_EMAIL1": "Email must be entered",
+    "VALIDATION_EMAIL2": "No correct email address has been entered",
+    "ERROR_TOAST": "Oops something has gone wrong",
+    "CREDENTIALS_ERROR": "This data does not match our data."
   },
   "RESET_PASSWORD_PAGE":{
     "TITLE": "Reset your password",
@@ -220,7 +236,16 @@
     "OR": "or",
     "SEND_CODE": "send code",
     "AGAIN": "again",
-    "TO_LOGIN": "return to Login"
+    "TO_LOGIN": "return to Login",
+    "SUCCES_RESPONSE": "New email sent successfully",
+    "ERROR_RESPONSE": "Oops, something went wrong",
+    "VALIDATION_EMAIL1": "Email must be entered",
+    "VALIDATION_EMAIL2": "No correct email address has been entered",
+    "VALIDATION_PASSWORD": "Password must be entered",
+    "VALIDATION_PASSWORD_CONFIRM": "Password confirmation must be entered",
+    "ERROR_TOAST": "Oops something went wrong",
+    "SUCCES_TOAST": "Changing password successfully",
+    "RESPONSE": "An email was sent with a reset link."
   },
   "ACCOUNT_PAGE":{
     "CRUMB1": "Home",
@@ -284,5 +309,21 @@
     "LOGOUT_DESCRIPTION": "Are you sure you want to log out?",
     "LOGOUT_BUTTON": "Log out",
     "EDIT_BUTTON":"Edit"
+  },
+  "FAQ_PAGE":{
+    "TITLE": "FAQ (frequently asked questions)",
+    "DESCRIPTION": "Here you will find the most frequently asked questions by users of the site."
+  },
+  "CONTACTUS_PAGE":{
+    "TITLE": "Contact us",
+    "DESCRIPTION": "If you want to ask something to us you can do so using the form below. You will then be contacted via email later.",
+    "EMAIL": "email",
+    "QUESTION": "question",
+    "SEND": "send",
+    "VALIDATION_EMAIL1": "Email must be filled in",
+    "VALIDATION_EMAIL2": "No correct email address has been entered",
+    "VALIDATION_QUESTION1": "Question must be entered",
+    "SUCCES_TOAST": "Transmission successful",
+    "ERROR_TOAST": "Oops something went wrong"
   }
 }

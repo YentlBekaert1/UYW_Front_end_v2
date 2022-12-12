@@ -175,7 +175,7 @@
     "IMAGES2" : "Vous devez accepter les termes et conditions"
   },
   "LOGIN_PAGE":{
-    "TITLE" : "login",
+    "TITLE" : "Login",
     "lABEL_EMAIL" : "email",
     "LABEL_PASSWORD" : "password",
     "LABEL_REMEBER" : "souviens-toi de moi",
@@ -183,7 +183,12 @@
     "BUTTON" : "log in",
     "OR" : "ou",
     "NEW_USER_LABEL" : "Nouvel utilisateur",
-    "CREATE_ACCOUNT_LABEL" : "Créez un compte ici"
+    "CREATE_ACCOUNT_LABEL" : "Créez un compte ici",
+    "VALIDATION_EMAIL1" : "L'adresse électronique doit être saisie",
+    "VALIDATION_EMAIL2" : "Aucune adresse électronique correcte n'a été saisie",
+    "VALIDATION_PASSWORD" : "Le mot de passe doit être saisi",
+    "ERROR_TOAST" : "Oups, quelque chose a mal tourné",
+    "CREDENTIALS_ERROR" : "Ces données ne correspondent pas à nos données."
   },
   "REGISTER_PAGE":{
     "TITLE" : "Créer un compte",
@@ -195,14 +200,25 @@
     "LINK_TOC" : "conditions générales",
     "BUTTON" : "créer",
     "OR" : "ou",
-    "TO_LOGIN" : "Se reconnecter"
+    "TO_LOGIN" : "Se reconnecter",
+    "VALIDATION_NAME" : "Le nom doit être renseigné",
+    "VALIDATION_EMAIL1" : "L'adresse électronique doit être saisie",
+    "VALIDATION_EMAIL2" : "Aucune adresse électronique correcte n'a été saisie",
+    "VALIDATION_PASSWORD" : "Le mot de passe doit être saisi",
+    "VALIDATION_PASSWORD_CONFIRM" : "La confirmation du mot de passe doit être saisie",
+    "VALIDATION_TERMS" : "Vous devez accepter les termes et conditions",
+    "ERROR_TOAST" : "Oups, quelque chose a mal tourné"
   },
   "FORGET_PASSWORD_PAGE":{
     "TITLE" : "Mot de passe oublié",
     "lABEL_EMAIL" : "email",
     "BUTTON" : "lien de réinitialisation du mot de passe par courriel",
     "OR" : "ou",
-    "TO_LOGIN" : "Retour à la connexion"
+    "TO_LOGIN" : "Retour à la connexion",
+    "VALIDATION_EMAIL1" : "L'adresse électronique doit être saisie",
+    "VALIDATION_EMAIL2" : "Aucune adresse électronique correcte n'a été saisie",
+    "ERROR_TOAST" : "Oups, quelque chose a mal tourné",
+    "CREDENTIALS_ERROR" : "Ces données ne correspondent pas à nos données."
   },
   "RESET_PASSWORD_PAGE":{
     "TITLE" : "Réinitialiser votre mot de passe",
@@ -210,7 +226,14 @@
     "LABEL_PASSWORD" : "password",
     "LABEL_PASSWORD_CONFIRM" : "CONFIRMER LE MOT DE PASSE",
     "BUTTON" : "reset password",
-    "TO_LOGIN" : "retour au login"
+    "TO_LOGIN" : "retour au login",
+    "VALIDATION_EMAIL1" : "L'adresse électronique doit être saisie",
+    "VALIDATION_EMAIL2" : "Aucune adresse électronique correcte n'a été saisie",
+    "VALIDATION_PASSWORD" : "Le mot de passe doit être saisi",
+    "VALIDATION_PASSWORD_CONFIRM" : "La confirmation du mot de passe doit être saisie",
+    "ERROR_TOAST" : "Oops something went wrong",
+    "SUCCES_TOAST" : "Changement de mot de passe réussi",
+    "RESPONSE" : "Un e-mail a été envoyé avec un lien de réinitialisation."
   },
   "EMAIL_VERIFY_PAGE":{
     "TITLE" : "Vérifier votre compte.",
@@ -219,7 +242,9 @@
     "OR" : "ou",
     "SEND_CODE" : "code d'envoi",
     "AGIAN" : "encore",
-    "TO_LOGIN" : "retour au login"
+    "TO_LOGIN" : "retour au login",
+    "SUCCES_RESPONSE" : "Nouveau courriel envoyé avec succès",
+    "ERROR_RESPONSE" : "Oups, quelque chose a mal tourné"
   },
   "ACCOUNT_PAGE":{
     "CRUMB1" : "Accueil",
@@ -283,6 +308,22 @@
     "LOGOUT_DESCRIPTION" : "Êtes-vous sûr de vouloir vous déconnecter ?",
     "LOGOUT_BUTTON" : "Déconnexion",
     "EDIT_BUTTON":"Modifier"
+  },
+  "FAQ_PAGE":{
+    "TITLE" : "FAQ (questions fréquemment posées)",
+    "DESCRIPTION" : "Vous trouverez ici les questions les plus fréquemment posées par les utilisateurs du site."
+  },
+  "CONTACTUS_PAGE":{
+    "TITLE" : "Nous contacter",
+    "DESCRIPTION" : "Si vous voulez nous demander quelque chose, vous pouvez le faire en utilisant le formulaire ci-dessous. Vous serez contacté ultérieurement par e-mail",
+    "EMAIL" : "email",
+    "QUESTION" : "question",
+    "SEND" : "send",
+    "VALIDATION_EMAIL1" : "L'adresse électronique doit être remplie",
+    "VALIDATION_EMAIL2" : "Aucune adresse électronique correcte n'a été saisie",
+    "VALIDATION_QUESTION1" : "La question doit être saisie",
+    "SUCCES_TOAST" : "Transmission réussie",
+    "ERROR_TOAST" : "Oops something went wrong"
   }
 }
 

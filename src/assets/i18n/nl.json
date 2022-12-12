@@ -184,7 +184,12 @@
     "BUTTON":"Meld aan",
     "OR":"of",
     "NEW_USER_LABEL":"Nieuwe gebruiker",
-    "CREATE_ACCOUNT_LABEL":"Creëer hier een account"
+    "CREATE_ACCOUNT_LABEL":"Creëer hier een account",
+    "VALIDATION_EMAIL1":"Email moet worden ingevuld",
+    "VALIDATION_EMAIL2":"Er is geen correct email adres ingegeven",
+    "VALIDATION_PASSWORD":"Wachtwoord moet worden ingevuld",
+    "ERROR_TOAST":"Oeps er is iets verkeerd gegaan",
+    "CREDENTIALS_ERROR":"Deze gegevens komen niet overeen met onze gegevens."
   },
   "REGISTER_PAGE":{
     "TITLE":"Maak een account aan",
@@ -196,14 +201,26 @@
     "LINK_TOC":"algemene vooraarden",
     "BUTTON":"Maak aan",
     "OR":"of",
-    "TO_LOGIN":"Log terug in"
+    "TO_LOGIN":"Log terug in",
+    "VALIDATION_NAME":"Naam moet worden ingevuld",
+    "VALIDATION_EMAIL1":"Email moet worden ingevuld",
+    "VALIDATION_EMAIL2":"Er is geen correct email adres ingegeven",
+    "VALIDATION_PASSWORD":"Wachtwoord moet worden ingevuld",
+    "VALIDATION_PASSWORD_CONFIRM":"Bevestiging van wachtwoord moet worden ingevuld",
+    "VALIDATION_TERMS":"Je moet akkoord gaan met de algemene voorwaarden",
+    "ERROR_TOAST":"Oeps er is iets verkeerd gegaan"
   },
   "FORGET_PASSWORD_PAGE":{
     "TITLE":"Wachtwoord vergeten",
     "lABEL_EMAIL":"email",
     "BUTTON":"Email wachtwoord reset link",
     "OR":"of",
-    "TO_LOGIN":"Keer terug naar Login"
+    "TO_LOGIN":"Keer terug naar Login",
+    "VALIDATION_EMAIL1":"Email moet worden ingevuld",
+    "VALIDATION_EMAIL2":"Er is geen correct email adres ingegeven",
+    "ERROR_TOAST":"Oeps er is iets verkeerd gegaan",
+    "CREDENTIALS_ERROR":"Deze gegevens komen niet overeen met onze gegevens.",
+    "RESPONSE":"Er werd een mail verzonden met een reset link."
   },
   "RESET_PASSWORD_PAGE":{
     "TITLE":"Stel je wachtwoord  opnieuw in.",
@@ -211,7 +228,13 @@
     "LABEL_PASSWORD":"wachtwoord",
     "LABEL_PASSWORD_CONFIRM":"BEVESTIG WACHTWOORD",
     "BUTTON":"Reset wachtwoord",
-    "TO_LOGIN":"Keer terug naar Login"
+    "TO_LOGIN":"Keer terug naar Login",
+    "VALIDATION_EMAIL1":"Email moet worden ingevuld",
+    "VALIDATION_EMAIL2":"Er is geen correct email adres ingegeven",
+    "VALIDATION_PASSWORD":"Wachtwoord moet worden ingevuld",
+    "VALIDATION_PASSWORD_CONFIRM":"Bevestiging van wachtwoord moet worden ingevuld",
+    "ERROR_TOAST":"Oeps er is iets verkeerd gegaan",
+    "SUCCES_TOAST":"Veranderen van wachtwoord succesvol"
   },
   "EMAIL_VERIFY_PAGE":{
     "TITLE":"Verificeer u account.",
@@ -220,7 +243,9 @@
     "OR":"of",
     "SEND_CODE":"Zend code",
     "AGAIN":"opnieuw",
-    "TO_LOGIN":"Keer terug naar Login"
+    "TO_LOGIN":"Keer terug naar Login",
+    "SUCCES_RESPONSE":"Nieuwe email succesvol verzonden",
+    "ERROR_RESPONSE":"Oeps, er is iets mis gegaan"
   },
   "ACCOUNT_PAGE":{
     "CRUMB1":"Home",
@@ -284,5 +309,21 @@
     "LOGOUT_DESCRIPTION":"Weet u zeker dat u wilt uitloggen?",
     "LOGOUT_BUTTON":"Log uit",
     "EDIT_BUTTON":"Bewerken"
+  },
+  "FAQ_PAGE":{
+    "TITLE":"FAQ (veelgestelde vragen)",
+    "DESCRIPTION":"Hier vind u de meest gesletde vragen door gebruikers van de site."
+  },
+  "CONTACTUS_PAGE":{
+    "TITLE":"Contacteer ons",
+    "DESCRIPTION":"Als u iets wilt vragen aan ons kan u dit doen via onderstaand formulier. U wordt dan later via email gecontacteerd.",
+    "EMAIL":"email",
+    "QUESTION":"vraag",
+    "SEND":"Verzend",
+    "VALIDATION_EMAIL1":"Email moet worden ingevuld",
+    "VALIDATION_EMAIL2":"Er is geen correct email adres ingegeven",
+    "VALIDATION_QUESTION1":"Vraag moet worden ingevuld",
+    "SUCCES_TOAST":"Verzenden succesvol",
+    "ERROR_TOAST":"Oeps er is iets verkeerd gegaan"
   }
 }
