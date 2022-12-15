@@ -16,7 +16,8 @@ p{
   padding: 0.3rem .5rem;
   border-radius: 15px;
   display: grid;
-    grid-template-columns: auto auto;
+  grid-template-columns: auto auto;
+  margin: 0.2rem;
   span{
     color: var(--white-color);
   }

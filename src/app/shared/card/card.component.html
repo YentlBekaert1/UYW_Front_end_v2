@@ -17,11 +17,11 @@
   </ng-template>
   <div class="card-content">
     <div class="category-circle" *ngIf="category;else defaultCircle">
-      <img *ngIf="category.id === 1" src="../../../assets/category-logos/afval.svg" alt="">
-      <img *ngIf="category.id === 2" src="../../../assets/category-logos/inspiratie.svg" alt="">
-      <img *ngIf="category.id === 3" src="../../../assets/category-logos/mens.svg" alt="">
-      <img *ngIf="category.id === 4" src="../../../assets/category-logos/organisatie.svg" alt="">
-      <img *ngIf="category.id === 5" src="../../../assets/category-logos/technologie.svg" alt="">
+      <img *ngIf="category === 1" src="../../../assets/category-logos/afval.svg" alt="">
+      <img *ngIf="category === 2" src="../../../assets/category-logos/inspiratie.svg" alt="">
+      <img *ngIf="category === 3" src="../../../assets/category-logos/mens.svg" alt="">
+      <img *ngIf="category === 4" src="../../../assets/category-logos/organisatie.svg" alt="">
+      <img *ngIf="category === 5" src="../../../assets/category-logos/technologie.svg" alt="">
     </div>
     <ng-template #defaultCircle>
       <div class="category-circle">

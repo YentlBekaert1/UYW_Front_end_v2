@@ -16,7 +16,7 @@ export const updateQuery = createAction(
 
 export const updateCategories = createAction(
   '[filters] updateCategories',
-   props<{ categories: number[]}>()
+   props<{ categories: number[], categorie_name: string}>()
 );
 
 export const updateMaterials = createAction(

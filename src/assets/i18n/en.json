@@ -139,6 +139,7 @@
     "ADD_LANG_TITLE": "Add languages",
     "ADD_LANG_DESCRIPTION1": "Here you can optionally add a title and/or description in another language. you can also optionally skip this step.",
     "ADD_LANG_DESCRIPTION2": "Which language would you like to add?",
+    "ADD_LANG_DESCRIPTION3": "Tip: You can use the following sites to translate you text",
     "NL": "Dutch",
     "EN": "English",
     "FR": "French",
@@ -230,7 +231,7 @@
     "TO_LOGIN": "return to Login"
   },
   "EMAIL_VERIFY_PAGE":{
-    "TITLE": "Verify you account.",
+    "TITLE": "Verify your account.",
     "DESCRIPTION": "Before proceeding, Do you need to verify your email address by clicking on the link we just emailed you? If you did not receive the email, we will gladly send you a new one.",
     "LOGOUT": "log out",
     "OR": "or",
@@ -325,5 +326,10 @@
     "VALIDATION_QUESTION1": "Question must be entered",
     "SUCCES_TOAST": "Transmission successful",
     "ERROR_TOAST": "Oops something went wrong"
+  },
+  "LIST":{
+    "TEXT1": "of the",
+    "TEXT2": "results",
+    "TEXT3": "Results found for:"
   }
 }

@@ -56,8 +56,8 @@ export class HomePagev2Component implements AfterViewInit{
       const hiddenElements = document.querySelectorAll(".hidden");
       hiddenElements.forEach((el)=> observer.observe(el));
   }
-  goToItems(categorie_id: number){
-   this.store.dispatch(updateCategories({categories:[categorie_id]}));
+  goToItems(categorie_id: number, cat_name: string){
+   this.store.dispatch(updateCategories({categories:[categorie_id], categorie_name:cat_name}));
    this.router.navigate(['items']);
   }
 

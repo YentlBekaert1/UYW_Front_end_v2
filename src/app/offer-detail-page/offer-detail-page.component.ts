@@ -33,7 +33,11 @@ export class OfferDetailPageComponent implements AfterViewInit {
   submaterials = [];
   tags = [];
   likes: number;
+
   linked_items: any;
+  linked_items_ids: any;
+  offers_with_same_tag:any
+
 
   viewTimeOut = null;
 
@@ -256,9 +260,28 @@ export class OfferDetailPageComponent implements AfterViewInit {
           this.location = street + city + country;
           this.Latlan = [this.offer.location.lat,this.offer.location.lon];
         }
+
         console.log(this.offer.linked_offers);
+        this.linked_items_ids = [];
+        this.linked_items = [];
         if(this.offer.linked_offers.length > 0){
-          this.linked_items = this.offer.linked_offers
+          this.offer.linked_offers.forEach((element: any) => {
+            this.linked_items_ids.push(element.id);
+            this.linked_items.push(element);
+          });
+        }
+        if(this.offer.offers_with_same_tag.length > 0){
+          var offers_per_tag = this.offer.offers_with_same_tag
+          offers_per_tag.forEach((tag: any) => {
+            tag.forEach((element : any) => {
+              var found =  this.linked_items_ids.find(el => el == element.id);
+              console.log(found)
+              if(!found){
+                this.linked_items_ids.push(element.id);
+                this.linked_items.push(element);
+              }
+            })
+          });
         }
         console.log(this.linked_items)
 

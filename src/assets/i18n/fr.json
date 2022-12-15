@@ -138,6 +138,7 @@
     "ADD_LANG_TITLE" : "Ajouter des langues",
     "ADD_LANG_DESCRIPTION1" : "Ici, vous pouvez éventuellement ajouter un titre et/ou une description dans une autre langue. Vous pouvez également sauter cette étape.",
     "ADD_LANG_DESCRIPTION2" : "Quelle langue voulez-vous ajouter ?",
+    "ADD_LANG_DESCRIPTION3" : "Conseil: vous pouvez utiliser les sites suivants pour traduire votre texte",
     "NL" : "Néerlandais",
     "EN" : "Anglais",
     "FR" : "Français",
@@ -324,6 +325,11 @@
     "VALIDATION_QUESTION1" : "La question doit être saisie",
     "SUCCES_TOAST" : "Transmission réussie",
     "ERROR_TOAST" : "Oops something went wrong"
+  },
+  "LIST":{
+    "TEXT1" : "du",
+    "TEXT2" : "résultats",
+    "TEXT3" : "Résultats trouvés pour:"
   }
 }
 

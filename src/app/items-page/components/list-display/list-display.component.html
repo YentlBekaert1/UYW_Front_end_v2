@@ -1,5 +1,5 @@
 
-<p>{{start_items}}-{{stop_items}} van de {{total_items}} resultaten.</p>
+<p>{{start_items}}-{{stop_items}} {{"LIST.TEXT1" | translate}} {{total_items}} {{"LIST.TEXT2" | translate}}</p>
 <div id="cards">
   <div *ngFor="let item of displayData" class="card">
     <app-card
@@ -10,7 +10,7 @@
       [name_fr]="item.title_fr"
       [name_en]="item.title_en"
       [images]="item.images"
-      [category]="item.category"
+      [category]="item.categories_id"
       [material]="item.materials"
       [locatie]="item.location"
       [userFav]="userFav"

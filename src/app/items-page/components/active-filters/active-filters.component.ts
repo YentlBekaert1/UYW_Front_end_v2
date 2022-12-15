@@ -22,7 +22,7 @@ export class ActiveFiltersComponent implements OnInit {
       this.store.dispatch(updateQuery({query:"" }));
     }
     if(type == 'categories'){
-      this.store.dispatch(updateCategories({categories: []}));
+      this.store.dispatch(updateCategories({categories: [],categorie_name:""}));
     }
     if(type == 'materials'){
       this.store.dispatch(updateMaterials({materials: [], material_name:""}));

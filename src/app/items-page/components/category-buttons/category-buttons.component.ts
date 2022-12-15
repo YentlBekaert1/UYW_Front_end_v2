@@ -57,26 +57,28 @@ export class CategoryButtonsComponent implements AfterViewInit {
          });
         }
         else{
-          this.categories_array.forEach(element => {
+          if(this.categories != undefined){
+            this.categories_array.forEach(element => {
               this.categories.nativeElement.children[element.id-1].classList.remove('active');
           });
         }
+      }
      });
     })
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['categorieFilters']){
-      const active_categories = changes['categorieFilters'].currentValue;
-      active_categories.forEach(cat => {
-        //console.log(cat);
-        this.categories_array.forEach(element => {
-          if(parseInt(cat) === element.id){
-           //this.categories.nativeElement.children[element.key-1].classList.add('active');
-          }
-        });
-      });
-    }
+    // if(changes['categorieFilters']){
+    //   const active_categories = changes['categorieFilters'].currentValue;
+    //   active_categories.forEach(cat => {
+    //     //console.log(cat);
+    //     this.categories_array.forEach(element => {
+    //       if(parseInt(cat) === element.id){
+    //        //this.categories.nativeElement.children[element.key-1].classList.add('active');
+    //       }
+    //     });
+    //   });
+    // }
   }
 
   ngAfterViewInit(): void {
@@ -92,6 +94,7 @@ export class CategoryButtonsComponent implements AfterViewInit {
   ButtonClick(category_id: any){
     //voor filter met alleen 1 categorie
     var new_array = [];
+    var name = "";
     // this.categorieFilters.forEach(el=>new_array.push(el));
     // const found = new_array.find(element => element === category_id);
     // console.log(new_array);
@@ -101,6 +104,17 @@ export class CategoryButtonsComponent implements AfterViewInit {
       if(element.id == category_id && category_id != this.active_cat){
         this.categories.nativeElement.children[element.id-1].classList.add('active');
         new_array.push(category_id);
+        console.log(this.lang)
+        if(this.lang == 'nl'){
+          name = element.name_nl;
+        }else if(this.lang == 'en'){
+          name = element.name_en;
+        }else if(this.lang == 'fr'){
+          name = element.name_fr;
+        }else{
+          name = element.name;
+        }
+
         this.active_cat = category_id;
       }else if(element.id == category_id && category_id == this.active_cat){
         this.categories.nativeElement.children[element.id-1].classList.remove('active');
@@ -119,7 +133,8 @@ export class CategoryButtonsComponent implements AfterViewInit {
     //   this.categories.nativeElement.children[category_id-1].classList.add('active');
     //   new_array.push(category_id);
     // }
-    this.store.dispatch(updateCategories({categories: new_array}));
+
+    this.store.dispatch(updateCategories({categories: new_array, categorie_name: name }));
     this.store.dispatch(setinitialPageURL());
   }
   goToAdd(){

@@ -251,9 +251,10 @@
         <mat-step [stepControl]="langForm">
           <ng-template matStepLabel class="stepLabel">{{"ADD_OFFER_PAGE.STEPPER_LABEL2" | translate}}</ng-template>
           <div class="lang-selector">
-            <h2>{{"ADD_OFFER_PAGE.ADD_LANG_TITLE" | translate}}</h2>
+            <h1 class="lang_title">{{"ADD_OFFER_PAGE.ADD_LANG_TITLE" | translate}}</h1>
             <p>{{"ADD_OFFER_PAGE.ADD_LANG_DESCRIPTION1" | translate}}</p>
-            <p>{{"ADD_OFFER_PAGE.ADD_LANG_DESCRIPTION2" | translate}}</p>
+            <p class="translate_tip">{{"ADD_OFFER_PAGE.ADD_LANG_DESCRIPTION3" | translate}} <a href="https://www.deepl.com/translator" target="blank">deepl.com</a>, <a href="https://translate.google.com" target="blank">Google Translate</a></p>
+            <h2>{{"ADD_OFFER_PAGE.ADD_LANG_DESCRIPTION2" | translate}}</h2>
             <mat-slide-toggle *ngIf="lang !== 'nl'" [(ngModel)]="addNL">{{"ADD_OFFER_PAGE.NL" | translate}}
             </mat-slide-toggle>
             <mat-slide-toggle *ngIf="lang !== 'en'" [(ngModel)]="addEN">{{"ADD_OFFER_PAGE.EN" | translate}}

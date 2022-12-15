@@ -39,6 +39,7 @@ $LeafLetMapTest-theme: mat.define-light-theme((
   --black-color: #0e1111;
   --primary-color: #42998B;
   --primary-light: #4baa9a;
+  --primary-light-toggle: rgba(66, 153, 139, 0.51);
   --primary-dark: #478E83;
   --primary-darker: #2F8678;
   --secondary-color: #ffb048;
@@ -163,4 +164,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .mat-step-label{
     display: inline-block !important;
   }
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb{
+	background-color: var(--primary-color);
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar{
+  background-color: var(--primary-light-toggle);
 }

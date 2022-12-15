@@ -139,6 +139,7 @@
     "ADD_LANG_TITLE":"Voeg talen toe.",
     "ADD_LANG_DESCRIPTION1":"Hier kun je eventueel een titel en/of beschrijving toeveogen in een andere taal. je kunt deze stap ook eventueel overslaan.",
     "ADD_LANG_DESCRIPTION2":"Welke taal wil je toeveoegen?",
+    "ADD_LANG_DESCRIPTION3":"Tip: U kan gebruik maken van volgende sites om u text te vertalen",
     "NL":"Nedelands",
     "EN":"Engels",
     "FR":"Frans",
@@ -237,7 +238,7 @@
     "SUCCES_TOAST":"Veranderen van wachtwoord succesvol"
   },
   "EMAIL_VERIFY_PAGE":{
-    "TITLE":"Verificeer u account.",
+    "TITLE":"Verifieer  uw account.",
     "DESCRIPTION":"Voordat u verdergaat, Moet u uw e-mailadres verifiëren door op de link te klikken die we u zojuist hebben gemaild? Als u de e-mail niet hebt ontvangen, sturen we u graag een nieuwe.",
     "LOGOUT":"Log uit",
     "OR":"of",
@@ -325,5 +326,10 @@
     "VALIDATION_QUESTION1":"Vraag moet worden ingevuld",
     "SUCCES_TOAST":"Verzenden succesvol",
     "ERROR_TOAST":"Oeps er is iets verkeerd gegaan"
+  },
+  "LIST":{
+    "TEXT1":"van de",
+    "TEXT2":"resultaten",
+    "TEXT3":"Gevonden resultaten voor:"
   }
 }

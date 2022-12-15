@@ -76,7 +76,9 @@
           <p *ngIf="lang == 'nl'">{{categorie.description_nl}}</p>
           <p *ngIf="lang == 'fr'">{{categorie.description_fr}}</p>
           <p *ngIf="lang == 'en'">{{categorie.description_en}}</p>
-          <button (click)="goToItems(categorie.id)">{{'HOMEPAGE.SECTION2_BUTTON' | translate}}</button>
+          <button *ngIf="lang == 'nl'" (click)="goToItems(categorie.id, categorie.name_nl)">{{'HOMEPAGE.SECTION2_BUTTON' | translate}}</button>
+          <button *ngIf="lang == 'en'" (click)="goToItems(categorie.id, categorie.name_en)">{{'HOMEPAGE.SECTION2_BUTTON' | translate}}</button>
+          <button *ngIf="lang == 'fr'" (click)="goToItems(categorie.id, categorie.name_fr)">{{'HOMEPAGE.SECTION2_BUTTON' | translate}}</button>
         </div>
     </div>
   </div>

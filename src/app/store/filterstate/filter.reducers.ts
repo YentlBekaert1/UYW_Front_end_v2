@@ -12,6 +12,7 @@ export const initialFilterState: FilterState = {
   categories: [],
   materials: [],
   coordinates:[null,null],
+  categorie_name:"",
   material_name: "",
   location_name: "",
   distance: 0
@@ -22,7 +23,7 @@ export const FilterReducer = createReducer(
   initialFilterState,
   on(setinitialPageURL, ((state) => ({...state, pageUrl: environment.apiUrl + "api/offers?page=1"}))),
   on(updateQuery, ((state, {query}) => ({...state, query:query}))),
-  on(updateCategories, ((state, {categories}) => ({...state, categories:categories}))),
+  on(updateCategories, ((state, {categories, categorie_name}) => ({...state, categories:categories, categorie_name:categorie_name}))),
   on(updateMaterials, ((state, {materials, material_name}) => ({...state, materials:materials, material_name:material_name}))),
   on(updateLocation, ((state, {coordinates, distance, location_name}) => ({...state, coordinates:coordinates, distance:distance, location_name:location_name}))),
   on(updatePageURL, ((state, {pageURL}) => ({...state, pageUrl:pageURL}))),
