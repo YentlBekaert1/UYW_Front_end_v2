@@ -1,7 +1,10 @@
 <div class="nav">
   <div class="top-nav container">
     <div class="logo">
-     <a [routerLink]="['/home']">
+     <a [routerLink]="['/home']" class="seas">
+      <img src="../../../assets/logos/Logo_CMYK_NL.png" alt="Interreg">
+     </a>
+     <a [routerLink]="['/home']" class="Letsupcycle">
       <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9.20452 6.6665V24.9998C4.05514 24.5415 0 20.703 0 16.005V6.6665L4.57008 10.7342L9.20452 6.6665Z" fill="#90BE97"/>
         <path d="M20.2504 4.21615V15.677C20.2504 20.5463 16.1953 24.5843 11.0459 25V4.21615L15.6803 0L20.2504 4.21615Z" fill="#17823D"/>
@@ -21,7 +24,7 @@
         </div>
 
         <app-searchbar [placement]="'top'"></app-searchbar>
-    
+
         <div class="account_container">
           <div class="login" *ngIf="!userLoggedIn">
             <a [routerLink]="['/login']" class="login_knop">{{'NAV.LOGIN' | translate}}</a>
@@ -39,12 +42,6 @@
         </div>
       </div>
       <div class="menu-responsive-small" >
-        <div class="login language">
-          <img src="../../../assets/flags/{{languageSelected}}.svg" alt="" class="flag" #flagres>
-          <select name="" (change)="switchLang($event)">
-            <option *ngFor="let language of translate.getLangs()" value="{{language}}" [selected]="language == languageSelected">{{ language }}</option>
-          </select>
-        </div>
         <a (click)="toggleResponsiveNav()"><i class="material-icons">menu</i></a>
       </div>
     </div>
@@ -68,6 +65,14 @@
         <li routerLink="/account/settings" (click)="responsiveNavitemClicked()"><a>{{'NAV.SETTINGS' | translate}}</a></li>
         <li routerLink="/account/logout" (click)="responsiveNavitemClicked()"><a>{{'NAV.LOG_OUT' | translate}}</a></li>
       </ul>
+      <li>
+        <div class="login language">
+        <img src="../../../assets/flags/{{languageSelected}}.svg" alt="" class="flag" #flagres>
+        <select name="" (change)="switchLang($event)">
+          <option *ngFor="let language of translate.getLangs()" value="{{language}}" [selected]="language == languageSelected">{{ language }}</option>
+        </select>
+      </div>
+    </li>
     </ul>
   </div>
   </div>

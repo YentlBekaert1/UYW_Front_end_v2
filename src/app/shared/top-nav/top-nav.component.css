@@ -68,6 +68,7 @@
   text-transform: capitalize;
   text-decoration: none;
   color: var(--black-color);
+  cursor: pointer;
 }
 
 .container.top-nav .menu .menu-responsive-large .links ul li.active {

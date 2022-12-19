@@ -18,7 +18,7 @@ export class MapRadiusFilterComponent implements OnInit {
   @ViewChild("materialInput") materialInput!: ElementRef;
 
   @Input() materials: any;
-  @Output() filterRadius = new EventEmitter<Filters>(); //[afstand, lat, lng, useUserLocation]
+  @Output() searchClicked = new EventEmitter<any>();
 
   distance: number = 0;
   addresses: string[] = [];
@@ -26,7 +26,6 @@ export class MapRadiusFilterComponent implements OnInit {
 
   selectedFitlers: Filters = {category:'', distance: 0, lat:0, lon:0, userLocation:false, material: 0};
 
-  showMoreFiltes = false;
 
   constructor(private geoSearch: GeosearchService, private store: Store) { }
 
@@ -118,12 +117,8 @@ export class MapRadiusFilterComponent implements OnInit {
           }))
         }
       }
+      this.searchClicked.emit(true);
     }
-
-    moreFiltersClicked(){
-     this.showMoreFiltes = !this.showMoreFiltes
-    }
-
 }
 
 

@@ -3,31 +3,31 @@ import * as L from 'leaflet';
 
 // icon class aanmaken
 export const wasteIcon = L.icon({
-  iconUrl: '../../../assets/map-icons/marker_waste.png',
+  iconUrl: '../../../assets/map-icons/marker_waste2.png',
   iconSize:     [40, 51], // size of the icon
   iconAnchor:   [20, 51], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -51] // point from which the popup should open relative to the iconAnchor
 });
 export const inspirationIcon = L.icon({
-  iconUrl: '../../assets/map-icons/marker_inspiration.png',
+  iconUrl: '../../assets/map-icons/marker_inspiration2.png',
   iconSize:     [40, 51], // size of the icon
   iconAnchor:   [20, 51], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -51] // point from which the popup should open relative to the iconAnchor
 });
 export const organisationIcon = L.icon({
-  iconUrl: '../../../assets/map-icons/marker_organisation.png',
+  iconUrl: '../../../assets/map-icons/marker_organisation2.png',
   iconSize:     [40, 51], // size of the icon
   iconAnchor:   [20, 51], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -51] // point from which the popup should open relative to the iconAnchor
 });
 export const humanIcon = L.icon({
-  iconUrl: '../../../assets/map-icons/marker_human.png',
+  iconUrl: '../../../assets/map-icons/marker_human2.png',
   iconSize:     [40, 51], // size of the icon
   iconAnchor:   [20, 51], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -51] // point from which the popup should open relative to the iconAnchor
 });
 export const technologyIcon = L.icon({
-  iconUrl: '../../../assets/map-icons/marker_technology.png',
+  iconUrl: '../../../assets/map-icons/marker_technology2.png',
   iconSize:     [40, 51], // size of the icon
   iconAnchor:   [20, 51], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -51] // point from which the popup should open relative to the iconAnchor

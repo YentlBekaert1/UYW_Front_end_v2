@@ -29,8 +29,11 @@
       </div>
     </ng-template>
     <h2 [routerLink]="['/offerdetail', id]">{{title}}</h2>
-    <p>{{materials}}</p>
-    <p>{{locatie_string}}</p>
+    <div class="wrapper">
+      <p class="description"  [innerHTML]="displayed_description"></p>
+    </div>
+    <p class="normal"><span *ngIf="materials">Materiaal:</span> {{materials}}</p>
+    <p class="normal"><span *ngIf="locatie_string">Locatie:</span> {{locatie_string}}</p>
     <a (click)="linkClicked(id)">{{"CARD.MORE_INFO" | translate}}</a>
   </div>
 </div>

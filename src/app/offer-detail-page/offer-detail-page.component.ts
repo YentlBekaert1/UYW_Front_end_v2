@@ -8,6 +8,7 @@ import { selectCategories } from '../store/categorystate/category.selector';
 import { selectedLang } from '../store/languagestate/lang.selector';
 import { OfferService } from '../_services/offer.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { updateQuery } from '../store/filterstate/filter.actions';
 
 @Component({
   selector: 'app-offer-detail-page',
@@ -51,7 +52,7 @@ export class OfferDetailPageComponent implements AfterViewInit {
   lang$ = this.store.select(selectedLang);
   lang: string;
 
-  constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store, private toastService: HotToastService) {
+  constructor(private offerservice: OfferService, private route: ActivatedRoute, private store: Store, private toastService: HotToastService, private router: Router) {
     this.lang$.subscribe(res => {
       this.lang =  res
       console.log(res)
@@ -306,6 +307,11 @@ export class OfferDetailPageComponent implements AfterViewInit {
       })
     });
   }
+  tag_clicked(tagName: string){
+    this.store.dispatch(updateQuery({query: tagName}));
+    this.router.navigate(["/items"]);
+  }
+
   imageClicked(event: any){
     console.log(event);
     this.imageExpand = true;

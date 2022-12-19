@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Store } from '@ngrx/store';
@@ -25,7 +25,11 @@ export class CardComponent implements OnInit{
   @Input() likes!: any;
   @Input() userFav!:any;
   @Input() view!: any
-  @Input() total_views!: any
+  @Input() total_views!: any;
+  @Input() description!: any
+  @Input() description_nl!:any;
+  @Input() description_fr!:any;
+  @Input() description_en!:any;
   @Output() likeButtonClicked = new EventEmitter();
 
   image: any;
@@ -34,6 +38,7 @@ export class CardComponent implements OnInit{
   env_url: string = environment.apiUrl;
 
   title:any;
+  displayed_description: any;
 
   lang$ = this.store.select(selectedLang);
   lang: string;
@@ -67,7 +72,7 @@ export class CardComponent implements OnInit{
       this.material.forEach(mat => {
         matArray.push(mat.name);
       });
-      this.materials = matArray.toString();
+      this.materials = matArray.join(', ');
     }
     if(this.locatie){
       var city = "";
@@ -92,6 +97,12 @@ export class CardComponent implements OnInit{
         else{
           this.title = this.name;
         }
+        if(this.description_nl){
+          this.displayed_description = this.description_nl;
+        }
+        else{
+          this.displayed_description = this.description;
+        }
       }
       else if(this.lang == "fr"){
         if(this.name_fr){
@@ -99,6 +110,12 @@ export class CardComponent implements OnInit{
         }
         else{
           this.title = this.name;
+        }
+        if(this.description_fr){
+          this.displayed_description = this.description_fr;
+        }
+        else{
+          this.displayed_description = this.description;
         }
       }
       else if(this.lang == "en"){
@@ -108,6 +125,12 @@ export class CardComponent implements OnInit{
         else{
           this.title = this.name;
         }
+        if(this.description_en){
+          this.displayed_description = this.description_en;
+        }
+        else{
+          this.displayed_description = this.description;
+        }
       }
       else{
         if(this.name_en){
@@ -116,7 +139,20 @@ export class CardComponent implements OnInit{
         else{
           this.title = this.name;
         }
+        if(this.description_en){
+          this.displayed_description = this.description_en;
+        }
+        else{
+          this.displayed_description = this.description;
+        }
       }
+      //dit is om de opmaak uit de beschrijving te verwijderen 
+      var description_tags = document.querySelectorAll(".description font");
+      description_tags.forEach((el: any) => {
+        el.size = 2
+        el.color ="";
+        el.face="";
+      })
     });
   }
 

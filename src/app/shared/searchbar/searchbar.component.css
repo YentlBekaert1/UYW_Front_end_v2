@@ -43,6 +43,7 @@
       -ms-flex-align: center;
           align-items: center;
   border-bottom: 2px solid var(--back-color);
+  width: 70%;
 }
 
 .filterbalk input {
@@ -138,6 +139,7 @@
 .searchterms-container {
   max-height: 51vh;
   overflow: hidden;
+  overflow-y: scroll;
   background-color: var(--back-color);
   position: absolute;
   width: -webkit-fit-content;
@@ -154,5 +156,82 @@
 
 .searchterms-container ul li:hover {
   background-color: var(--primary-color);
+}
+
+.bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.distance-select {
+  width: 20%;
+}
+
+.distance-select select {
+  width: 100%;
+  background-color: transparent;
+  display: block;
+  height: 43px;
+  border: none;
+  border-bottom: 2px solid var(--back-color);
+  color: var(--white-color);
+  text-align: end;
+  outline: none;
+  font-size: .8rem;
+  font-family: montserrat-light;
+}
+
+.distance-select select option:not(:first-of-type) {
+  color: var(--black-color);
+}
+
+.checkboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+div.checkbox-location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: .5rem 0 0 0;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+div.checkbox-location h5 {
+  padding: 0;
+  font-family: 'montserrat-light';
+  letter-spacing: .05rem;
+  font-size: .7rem;
+  font-weight: 100;
+  color: var(--white-color);
+}
+
+div.checkbox-location:last-child {
+  margin-right: 0;
 }
 /*# sourceMappingURL=searchbar.component.css.map */

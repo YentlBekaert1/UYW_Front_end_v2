@@ -155,6 +155,14 @@ main .list-container.property-list-map .property-list {
   display: none;
 }
 
+app-loading-overlay-account {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 .more_filters {
   display: none;
   position: absolute;
@@ -173,6 +181,17 @@ main .list-container.property-list-map .property-list {
 
 .more_filters.show {
   display: block;
+}
+
+.more_filters button {
+  background-color: transparent;
+  color: var(--black-color);
+  border: none;
+  float: right;
+}
+
+.more_filters button:hover {
+  color: var(--primary-color);
 }
 
 .more-button {
@@ -580,23 +599,7 @@ main .list-container.property-list-map .property-list {
     color: var(--back-color);
   }
   .filters-container-large .categrory-buttons.search .search-top app-searchbar, .filters-container-large .search.search .search-top app-searchbar, .filters-container-large .tabs.search .search-top app-searchbar {
-    width: 60%;
-  }
-  .filters-container-large .categrory-buttons.search .search-top select, .filters-container-large .search.search .search-top select, .filters-container-large .tabs.search .search-top select {
-    background-color: transparent;
-    display: block;
-    width: 20%;
-    height: 43px;
-    border: none;
-    border-bottom: 2px solid var(--back-color);
-    color: var(--white-color);
-    text-align: end;
-    outline: none;
-    font-size: .8rem;
-    font-family: montserrat-light;
-  }
-  .filters-container-large .categrory-buttons.search .search-top select option:not(:first-of-type), .filters-container-large .search.search .search-top select option:not(:first-of-type), .filters-container-large .tabs.search .search-top select option:not(:first-of-type) {
-    color: var(--black-color);
+    width: 100%;
   }
   .filters-container-large .categrory-buttons.search .gb-locatie, .filters-container-large .search.search .gb-locatie, .filters-container-large .tabs.search .gb-locatie {
     display: -webkit-box;
@@ -610,27 +613,6 @@ main .list-container.property-list-map .property-list {
         -ms-flex-pack: justify;
             justify-content: space-between;
     width: 100%;
-  }
-  .filters-container-large .categrory-buttons.search .gb-locatie div, .filters-container-large .search.search .gb-locatie div, .filters-container-large .tabs.search .gb-locatie div {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    padding: .5rem 0 0 0;
-    gap: 10px;
-  }
-  .filters-container-large .categrory-buttons.search .gb-locatie div h5, .filters-container-large .search.search .gb-locatie div h5, .filters-container-large .tabs.search .gb-locatie div h5 {
-    padding: 0;
-    font-family: 'montserrat-light';
-    letter-spacing: .05rem;
-    font-size: .7rem;
-    font-weight: 100;
   }
   .filters-container-large .tabs {
     -webkit-box-orient: horizontal;

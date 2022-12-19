@@ -2,7 +2,7 @@
 .container.top-nav {
     padding-left: 5%;
     padding-right: 5%;
-    min-height: 65px;
+    min-height: var(--nav-height);
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -10,19 +10,27 @@
     flex-wrap: wrap;
     flex-direction: row;
     .logo{
-      a{
+      display: flex;
+      align-items: flex-start;
+      a.seas{
+        img{
+          max-height: 25px;
+        }
+        margin-right: 2rem;
+      }
+      a.Letsupcycle{
       display: flex;
       align-items: center;
       text-decoration: none;
       color: var(--black-color);
-      h1{
-        margin-left: 1rem;
-        font-family: "montserrat-bold";
-        font-size: 1.5rem;
-        span:last-of-type{
-          color: var(--primary-color);
+        h1{
+          margin-left: .5rem;
+          font-family: "montserrat-bold";
+          font-size: 1rem;
+          span:last-of-type{
+            color: var(--primary-color);
+          }
         }
-      }
       }
     }
    .menu{
@@ -127,23 +135,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      div.language{
-        margin-left: 1rem;
-        display: flex;
-        align-items: center;
-        .flag{
-          height: 15px;
-        }
-        select{
-          width: 100%;
-          background-color: transparent;
-          border: none;
-          font-size: var(--nav-font-size);
-          font-family: "montserrat-light";
-          padding: 0.7rem 0.5rem;
-          outline: none;
-        }
-      }
       a{
         text-align: end;
         text-decoration: none;
@@ -213,7 +204,7 @@
   .responsiveNav{
     // background-color: red;
     position: absolute;
-    top: 65px;
+    top: var(--nav-height);
     left: 0;
     width: 100%;
     z-index: 2000;
@@ -255,11 +246,59 @@
             flex-wrap: nowrap;
             justify-content: space-between;
           }
+           div.language{
+              margin-left: 1rem;
+              display: flex;
+              align-items: center;
+              .flag{
+                height: 15px;
+              }
+              select{
+                width: 100%;
+                background-color: transparent;
+                border: none;
+                font-size: var(--nav-font-size);
+                font-family: "montserrat-light";
+                padding: 0.7rem 0.5rem;
+                outline: none;
+              }
+          }
         }
         &.responsiveAccount{
           padding-left: 3rem;
         }
       }
+    }
+  }
+  @media screen and (min-width: 1250px) {
+    .container.top-nav {
+      padding-left: 1%;
+      padding-right: 1%;
+      .logo{
+        display: flex;
+        align-items: center;
+        a.seas{
+          img{
+            max-height: 40px;
+          }
+          margin-right: 2rem;
+        }
+        a.Letsupcycle{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--black-color);
+          h1{
+            margin-left: .5rem;
+            font-family: "montserrat-bold";
+            font-size: 1.5rem;
+            span:last-of-type{
+              color: var(--primary-color);
+            }
+          }
+        }
+      }
+
     }
   }
 

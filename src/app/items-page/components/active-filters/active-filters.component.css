@@ -32,6 +32,7 @@ p {
   display: grid;
   -ms-grid-columns: auto auto;
       grid-template-columns: auto auto;
+  margin: 0.2rem;
 }
 
 .chip span {

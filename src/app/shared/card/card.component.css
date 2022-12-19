@@ -1,4 +1,5 @@
 #card {
+  max-width: 300px;
   min-height: 360px;
   border-radius: 15px;
   background-color: var(--white-color);
@@ -27,6 +28,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 0 15px 0 15px;
   padding: 0.2rem 0.5rem;
+  cursor: pointer;
 }
 
 #card .likes i {
@@ -90,9 +92,10 @@
   font-family: montserrat-bold;
   font-size: 1.1rem;
   cursor: pointer;
+  min-height: 50px;
 }
 
-#card .card-content p {
+#card .card-content p.normal {
   color: #727272;
   text-overflow: ellipsis;
   /* Required for text-overflow to do anything */
@@ -100,6 +103,7 @@
   overflow: hidden;
   margin: 0.5rem 0;
   font-size: 0.8rem;
+  min-height: 1em;
 }
 
 #card .card-content a {
@@ -110,5 +114,25 @@
   font-weight: bold;
   margin: 0.5rem;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+#card .card-content a:hover {
+  text-decoration: underline;
+}
+
+.wrapper {
+  max-width: 300px;
+  height: 90px;
+  margin: 0.5rem 0;
+}
+
+.description {
+  color: #727272;
+  font-size: 0.8rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 /*# sourceMappingURL=card.component.css.map */

@@ -134,6 +134,7 @@ app-loading-overlay-account{
   position: absolute;
     top: 30%;
     left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .more_filters{
@@ -150,6 +151,15 @@ app-loading-overlay-account{
    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
    &.show{
     display: block;
+   }
+   button{
+    background-color: transparent;
+    color:var(--black-color);
+    border: none;
+    float: right;
+    &:hover{
+      color: var(--primary-color);
+    }
    }
 }
 

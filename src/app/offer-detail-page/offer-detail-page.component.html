@@ -48,7 +48,7 @@
       <div class="tag-row" *ngIf="tags.length > 0">
         <h4>{{"ITEM_DETAIL_PAGE.TAGS" | translate}}</h4>
         <div>
-          <div class="tag-pil" *ngFor="let tag of tags">{{tag.name}}</div>
+          <div class="tag-pil" *ngFor="let tag of tags" (click)="tag_clicked(tag.name)">{{tag.name}}</div>
         </div>
       </div>
 

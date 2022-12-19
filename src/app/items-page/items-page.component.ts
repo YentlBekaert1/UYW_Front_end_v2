@@ -147,6 +147,12 @@ export class ItemsPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showMoreFiltes = !this.showMoreFiltes
    }
 
+   morefilterssearchClicked(event){
+    if(this.showMoreFiltes == true){
+      this.showMoreFiltes = false;
+    }
+   }
+
    removeQuery(){
     this.store.dispatch(updateQuery({query:"" }));
    }
