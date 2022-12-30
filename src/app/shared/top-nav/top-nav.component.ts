@@ -82,8 +82,12 @@ export class TopNavComponent implements OnInit {
   switchLang(event) {
     console.log(event.target.value);
     this.translate.use(event.target.value);
-    this.flag.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
-    this.flagres.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
+    if(this.flag !== undefined){
+      this.flag.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
+    }
+    if(this.flagres !== undefined){
+      this.flagres.nativeElement.src = "../../../assets/flags/"+event.target.value+".svg"
+    }
     this.store.dispatch(changeLang({lang: event.target.value}));
   }
 

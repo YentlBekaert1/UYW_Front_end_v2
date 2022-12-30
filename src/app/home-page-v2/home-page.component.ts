@@ -34,6 +34,7 @@ export class HomePagev2Component implements AfterViewInit{
 
     this.categories_array$.subscribe(res => {
       this.categories_array =  res
+      console.log(this.categories_array)
     });
 
     this.offerservice.getOffersDesc(20).then((res: any) => {
